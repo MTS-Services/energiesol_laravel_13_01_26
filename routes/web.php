@@ -16,4 +16,7 @@ Route::middleware(['auth', 'verified'])->group(function () {
     })->name('dashboard');
 });
 
+Route::resource('todos', \App\Http\Controllers\TodoController::class)
+    ->only(['index', 'store', 'update', 'destroy']);
+
 require __DIR__.'/settings.php';
