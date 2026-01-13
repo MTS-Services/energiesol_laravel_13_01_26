@@ -1,4 +1,4 @@
-import { Head, router, useForm } from '@inertiajs/react';
+import { Head, Link, router, useForm } from '@inertiajs/react';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -27,14 +27,14 @@ export default function TodosIndex({ todos }: TodosPageProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post('/todos', {
+        post(route('todos.store'), {
             preserveScroll: true,
             onSuccess: () => reset(),
         });
     };
 
     const handleToggleComplete = (todo: Todo) => {
-        router.patch(`/todos/${todo.id}`, {
+        router.patch(route('todos.update', todo.id), {
             title: todo.title,
             description: todo.description,
             completed: !todo.completed,
@@ -45,7 +45,7 @@ export default function TodosIndex({ todos }: TodosPageProps) {
 
     const handleDelete = (todo: Todo) => {
         if (confirm('Are you sure you want to delete this todo?')) {
-            router.delete(`/todos/${todo.id}`, {
+            router.delete(route('todos.destroy', todo.id), {
                 preserveScroll: true,
             });
         }
@@ -56,7 +56,15 @@ export default function TodosIndex({ todos }: TodosPageProps) {
             <Head title="Todos" />
             <div className="min-h-screen bg-background p-6">
                 <div className="mx-auto max-w-4xl">
-                    <h1 className="mb-8 text-3xl font-bold">Todo List</h1>
+                    <div className="mb-8 flex items-center justify-between gap-4">
+                        <h1 className="text-3xl font-bold">Todo List</h1>
+                        <Link
+                            href={route('home')}
+                            className="inline-flex items-center rounded-md border border-transparent bg-indigo-600 px-4 py-2 text-sm font-medium text-white shadow-sm hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2"
+                        >
+                            Back to Home
+                        </Link>
+                    </div>
 
                     {/* Create Todo Form */}
                     <div className="mb-8 rounded-lg border border-border bg-card p-6 shadow-sm">
@@ -114,19 +122,17 @@ export default function TodosIndex({ todos }: TodosPageProps) {
                                         </div>
                                         <div className="flex-1">
                                             <h3
-                                                className={`text-lg font-semibold ${
-                                                    todo.completed
-                                                        ? 'line-through text-muted-foreground'
-                                                        : ''
-                                                }`}
+                                                className={`text-lg font-semibold ${todo.completed
+                                                    ? 'line-through text-muted-foreground'
+                                                    : ''
+                                                    }`}
                                             >
                                                 {todo.title}
                                             </h3>
                                             {todo.description && (
                                                 <p
-                                                    className={`mt-2 text-sm text-muted-foreground ${
-                                                        todo.completed ? 'line-through' : ''
-                                                    }`}
+                                                    className={`mt-2 text-sm text-muted-foreground ${todo.completed ? 'line-through' : ''
+                                                        }`}
                                                 >
                                                     {todo.description}
                                                 </p>
