@@ -1,4 +1,5 @@
 import { Head, Link, router, useForm } from '@inertiajs/react';
+import { store, update, destroy } from '@/actions/App/Http/Controllers/TodoController';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Label } from '@/components/ui/label';
@@ -19,7 +20,7 @@ interface TodosPageProps {
 }
 
 export default function TodosIndex({ todos }: TodosPageProps) {
-    const { data, setData, post, processing, errors, reset } = useForm({
+    const { data, setData, submit, processing, errors, reset } = useForm({
         title: '',
         description: '',
         completed: false,
@@ -27,14 +28,14 @@ export default function TodosIndex({ todos }: TodosPageProps) {
 
     const handleSubmit = (e: React.FormEvent) => {
         e.preventDefault();
-        post(route('todos.store'), {
+        submit(store(), {
             preserveScroll: true,
             onSuccess: () => reset(),
         });
     };
 
     const handleToggleComplete = (todo: Todo) => {
-        router.patch(route('todos.update', todo.id), {
+        router.patch(update(todo.id), {
             title: todo.title,
             description: todo.description,
             completed: !todo.completed,
@@ -45,7 +46,7 @@ export default function TodosIndex({ todos }: TodosPageProps) {
 
     const handleDelete = (todo: Todo) => {
         if (confirm('Are you sure you want to delete this todo?')) {
-            router.delete(route('todos.destroy', todo.id), {
+            router.delete(destroy(todo.id), {
                 preserveScroll: true,
             });
         }
