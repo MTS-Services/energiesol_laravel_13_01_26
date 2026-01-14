@@ -1,4 +1,4 @@
-import { Sheet, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
+import { Sheet, SheetClose, SheetContent, SheetHeader, SheetTitle, SheetTrigger } from '@/components/ui/sheet';
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { DropdownMenu, DropdownMenuContent, DropdownMenuTrigger } from '@/components/ui/dropdown-menu';
@@ -6,8 +6,8 @@ import { useInitials } from '@/hooks/use-initials';
 import { login, register } from '@/routes';
 import { type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu } from 'lucide-react';
-import * as React from 'react';
+import { Menu, XIcon } from 'lucide-react';
+import { useState } from 'react';
 import AppLogo from '@/components/app-logo';
 import { UserMenuContent } from '@/components/user-menu-content';
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
@@ -15,7 +15,7 @@ import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 export function FrontendHeader() {
     const { auth } = usePage<SharedData>().props;
     const getInitials = useInitials();
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
         { name: 'Features', href: '#' },
@@ -86,11 +86,20 @@ export function FrontendHeader() {
                                 <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
-                        <SheetContent side="right" className="flex flex-col p-0"> {/* Removed default padding to control it internally */}
-                            <SheetHeader className="p-6 text-left border-b">
+
+                        <SheetContent side="right" className="flex flex-col p-0" showCloseButton={false}>
+                            {/* Updated Header: Now uses flex justify-between to align logo and close button */}
+                            <SheetHeader className="p-6 flex-row items-center justify-between border-b space-y-0">
                                 <SheetTitle>
                                     <AppLogo />
                                 </SheetTitle>
+
+                                <SheetClose asChild>
+                                    <Button variant="ghost" size="icon" className="h-9 w-9 p-0 hover:bg-muted">
+                                        <XIcon className="h-5 w-5" />
+                                        <span className="sr-only">Close menu</span>
+                                    </Button>
+                                </SheetClose>
                             </SheetHeader>
 
                             <div className="flex flex-col flex-1 overflow-y-auto p-6">
