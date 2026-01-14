@@ -91,7 +91,7 @@ export function FrontendHeader() {
                                             </Link>
                                         </>
                                     ) : (
-                                        <Link href={route('dashboard')} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                                        <Link href={route('admin.dashboard')} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
                                             <Button className="w-full bg-violet-600 py-6">Dashboard</Button>
                                         </Link>
                                     )}

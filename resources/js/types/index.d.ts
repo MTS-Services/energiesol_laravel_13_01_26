@@ -18,8 +18,17 @@ export interface NavGroup {
 export interface NavItem {
     title: string;
     href: NonNullable<InertiaLinkProps['href']>;
-    icon?: LucideIcon | null;
+    icon?: LucideIcon | string | null;
     isActive?: boolean;
+    children?: NavItem[];
+    permission?: string;
+    onClick?: (item: NavItem, event?: React.MouseEvent) => void;
+    badge?: string | number;
+    disabled?: boolean;
+    external?: boolean;
+    target?: '_blank' | '_self' | '_parent' | '_top';
+    className?: string;
+    [key: string]: any; // Allow any additional properties
 }
 
 export interface SharedData {
