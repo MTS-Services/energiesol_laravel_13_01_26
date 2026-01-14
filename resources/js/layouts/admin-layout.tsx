@@ -1,14 +1,23 @@
-import AdminSidebarLayout from '@/layouts/app/admin-template';
-import { type BreadcrumbItem } from '@/types';
-import { type ReactNode } from 'react';
+import { AdminSidebar } from '@/components/layouts/admin/AdminSidebar';
+import { AdminHeader } from '@/components/layouts/admin/AdminHeader';
+import { AdminFooter } from '@/components/layouts/admin/AdminFooter';
+import * as React from 'react';
 
-interface FrontendLayoutProps {
-    children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+interface AdminLayoutProps {
+    children: React.ReactNode;
 }
 
-export default ({ children, breadcrumbs, ...props }: FrontendLayoutProps) => (
-    <AdminSidebarLayout breadcrumbs={breadcrumbs} {...props}>
-        {children}
-    </AdminSidebarLayout>
-);
+export default function AdminLayout({ children }: AdminLayoutProps) {
+    const [isCollapsed, setIsCollapsed] = React.useState(false);
+
+    return (
+        <div className="flex min-h-screen">
+            <AdminSidebar isCollapsed={isCollapsed} />
+            <div className="flex flex-1 flex-col">
+                <AdminHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+                <main className="flex-1 p-6">{children}</main>
+                <AdminFooter />
+            </div>
+        </div>
+    );
+}

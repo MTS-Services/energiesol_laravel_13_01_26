@@ -1,8 +1,9 @@
 <?php
 
+use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
-use Laravel\Fortify\Features;
 
 // Route::get('/', function () {
 //     return Inertia::render('welcome', [
@@ -11,9 +12,8 @@ use Laravel\Fortify\Features;
 // })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('dashboard', function () {
-        return Inertia::render('dashboard');
-    })->name('dashboard');
+    Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
+    Route::get('user/dashboard', UserDashboardController::class)->name('user.dashboard');
 });
 
 Route::resource('todos', \App\Http\Controllers\TodoController::class)

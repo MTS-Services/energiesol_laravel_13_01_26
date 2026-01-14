@@ -1,14 +1,17 @@
-import AppLayoutTemplate from '@/layouts/app/app-header-layout';
-import { type BreadcrumbItem } from '@/types';
-import { type ReactNode } from 'react';
+import * as React from 'react';
+import { FrontendHeader } from '@/components/layouts/frontend/FrontendHeader';
+import { FrontendFooter } from '@/components/layouts/frontend/FrontendFooter';
 
 interface FrontendLayoutProps {
-    children: ReactNode;
-    breadcrumbs?: BreadcrumbItem[];
+    children: React.ReactNode;
 }
 
-export default ({ children, breadcrumbs, ...props }: FrontendLayoutProps) => (
-    <AppLayoutTemplate breadcrumbs={breadcrumbs} {...props}>
-        {children}
-    </AppLayoutTemplate>
-);
+export default function FrontendLayout({ children }: FrontendLayoutProps) {
+    return (
+        <div className="flex min-h-screen flex-col">
+            <FrontendHeader />
+            <main className="flex-1 flex flex-col">{children}</main>
+            <FrontendFooter />
+        </div>
+    );
+}
