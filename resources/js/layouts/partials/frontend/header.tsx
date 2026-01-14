@@ -12,7 +12,7 @@ import AppLogo from '@/components/app-logo';
 import { UserMenuContent } from '@/components/user-menu-content';
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 
-export function AuthHeader() {
+export function FrontendHeader() {
     const { auth } = usePage<SharedData>().props;
     const getInitials = useInitials();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
