@@ -1,6 +1,6 @@
-import { UserSidebar } from '@/components/layouts/user/UserSidebar';
-import { UserHeader } from '@/components/layouts/user/UserHeader';
-import { UserFooter } from '@/components/layouts/user/UserFooter';
+import { UserSidebar } from '@/layouts/partials/user/sidebar';
+import { UserHeader } from '@/layouts/partials/user/header';
+import { UserFooter } from '@/layouts/partials/user/footer';
 import * as React from 'react';
 
 interface AppLayoutProps {

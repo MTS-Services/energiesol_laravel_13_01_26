@@ -1,6 +1,6 @@
-import { AdminSidebar } from '@/components/layouts/admin/AdminSidebar';
-import { AdminHeader } from '@/components/layouts/admin/AdminHeader';
-import { AdminFooter } from '@/components/layouts/admin/AdminFooter';
+import { AdminSidebar } from '@/layouts/partials/admin/sidebar';
+import { AdminHeader } from '@/layouts/partials/admin/header';
+import { AdminFooter } from '@/layouts/partials/admin/footer';
 import * as React from 'react';
 
 interface AdminLayoutProps {

@@ -1,6 +1,6 @@
 import * as React from 'react';
-import { FrontendHeader } from '@/components/layouts/frontend/FrontendHeader';
-import { FrontendFooter } from '@/components/layouts/frontend/FrontendFooter';
+import { FrontendHeader } from '@/layouts/partials/frontend/header';
+import { FrontendFooter } from '@/layouts/partials/frontend/footer';
 
 interface FrontendLayoutProps {
     children: React.ReactNode;

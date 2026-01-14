@@ -1,35 +1,54 @@
 import * as React from 'react';
 import AppLogo from '@/components/app-logo';
 import { Head, Link } from '@inertiajs/react';
+import { AuthHeader } from '@/layouts/partials/auth/header';
+import { AuthFooter } from '@/layouts/partials/auth/footer';
+import AppLogoIcon from '@/components/app-logo-icon';
+import { home } from '@/routes';
+
 
 interface AuthLayoutProps {
     children: React.ReactNode;
     title: string;
     description: string;
+    showHeader?: boolean; // New prop
+    showFooter?: boolean; // New prop
 }
 
-export default function AuthLayout({ children, title, description }: AuthLayoutProps) {
+export default function AuthLayout({
+    children,
+    title,
+    description,
+    showHeader = false,
+    showFooter = false,
+}: AuthLayoutProps) {
     return (
-        <>
-            <Head title={title} />
-            <div className="flex min-h-screen flex-col items-center justify-center bg-gray-50 p-4 dark:bg-gray-900">
-                <div className="w-full max-w-md">
-                    <div className="mb-8 text-center">
-                        <Link href="/">
-                            <AppLogo className="mx-auto h-10 w-auto" />
+        <div className="flex min-h-svh flex-col bg-background">
+            {showHeader && <AuthHeader />}
+
+            <main className="flex flex-1 items-center justify-center p-6 md:p-10">
+                <div className="w-full max-w-sm space-y-8">
+                    <div className="flex flex-col items-center gap-6">
+                        <Link href={home()} className="flex flex-col items-center gap-2">
+                            <div className="flex h-12 w-12 items-center justify-center rounded-xl bg-primary/5">
+                                <AppLogoIcon className="size-10 fill-current text-foreground" />
+                            </div>
                         </Link>
-                        <h2 className="mt-6 text-2xl font-bold tracking-tight text-gray-900 dark:text-gray-100">
-                            {title}
-                        </h2>
-                        <p className="mt-2 text-sm text-gray-600 dark:text-gray-400">
-                            {description}
-                        </p>
+
+                        <div className="space-y-2 text-center">
+                            <h1 className="text-2xl font-semibold tracking-tight">{title}</h1>
+                            <p className="text-sm text-muted-foreground">{description}</p>
+                        </div>
                     </div>
-                    <div className="rounded-lg bg-white p-8 shadow-lg dark:bg-gray-800">
+
+                    {/* Content Slot */}
+                    <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
                         {children}
                     </div>
                 </div>
-            </div>
-        </>
+            </main>
+
+            {showFooter && <AuthFooter />}
+        </div>
     );
 }
