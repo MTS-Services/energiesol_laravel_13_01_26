@@ -12,129 +12,87 @@ import AppLogo from '@/components/app-logo';
 import { UserMenuContent } from '@/components/user-menu-content';
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
 
-export function FrontendHeader() {
+export function AuthHeader() {
     const { auth } = usePage<SharedData>().props;
     const getInitials = useInitials();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-    const navLinks = [
-        { name: 'Features', href: '#' },
-        { name: 'Pricing', href: '#' },
-        { name: 'About', href: '#' },
-    ];
+
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur-sm supports-backdrop-filter:bg-background/60 dark:border-border/40">
+        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
-                <div className="flex items-center gap-10">
-                    <Link href="/" className="transition-opacity hover:opacity-90">
+                <div className="flex items-center gap-8">
+                    <Link href="/" className="transition-transform active:scale-95">
                         <AppLogo />
                     </Link>
-
-                    <nav className="hidden items-center gap-6 md:flex">
-                        {navLinks.map((link) => (
-                            <Link
-                                key={link.name}
-                                href={link.href}
-                                className="text-sm font-medium text-muted-foreground transition-colors hover:text-foreground"
-                            >
-                                {link.name}
-                            </Link>
-                        ))}
-                    </nav>
                 </div>
 
-                <div className="flex items-center gap-2 md:gap-4">
+                <div className="flex items-center gap-3">
                     <AppearanceToggleDropdown />
 
-                    <div className="flex items-center gap-2">
-                        {auth.user ? (
-                            <DropdownMenu>
-                                <DropdownMenuTrigger asChild>
-                                    <Button variant="ghost" className="relative h-9 w-9 rounded-full">
-                                        <Avatar className="h-9 w-9 border border-border">
-                                            <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
-                                            <AvatarFallback className="bg-violet-500/10 text-violet-600 dark:text-violet-400">
-                                                {getInitials(auth.user.name)}
-                                            </AvatarFallback>
-                                        </Avatar>
-                                    </Button>
-                                </DropdownMenuTrigger>
-                                <DropdownMenuContent className="w-56" align="end">
-                                    <UserMenuContent user={auth.user} />
-                                </DropdownMenuContent>
-                            </DropdownMenu>
-                        ) : (
-                            <div className="hidden items-center gap-2 md:flex">
-                                <Link href={login()}>
-                                    <Button variant="ghost" size="sm">Log in</Button>
-                                </Link>
-                                <Link href={register()}>
-                                    <Button size="sm" className="bg-violet-600 text-white hover:bg-violet-700">
-                                        Get Started
-                                    </Button>
-                                </Link>
-                            </div>
-                        )}
-                    </div>
+                    <div className="hidden h-6 w-[1px] bg-border md:block" /> {/* Divider */}
 
-                    {/* FIXED MOBILE SIDEBAR SECTION */}
+                    {auth.user ? (
+                        <DropdownMenu>
+                            <DropdownMenuTrigger asChild>
+                                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-ring">
+                                    <Avatar className="h-9 w-9">
+                                        <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
+                                        <AvatarFallback className="bg-violet-600 text-white text-xs">
+                                            {getInitials(auth.user.name)}
+                                        </AvatarFallback>
+                                    </Avatar>
+                                </Button>
+                            </DropdownMenuTrigger>
+                            <DropdownMenuContent className="w-56" align="end" sideOffset={8}>
+                                <UserMenuContent user={auth.user} />
+                            </DropdownMenuContent>
+                        </DropdownMenu>
+                    ) : (
+                        <div className="hidden items-center gap-2 md:flex">
+                            <Link href={login()}>
+                                <Button variant="ghost" size="sm" className="text-sm font-medium">Log in</Button>
+                            </Link>
+                            <Link href={register()}>
+                                <Button size="sm" className="bg-violet-600 text-white shadow-sm hover:bg-violet-700">
+                                    Get Started
+                                </Button>
+                            </Link>
+                        </div>
+                    )}
+
+                    {/* Mobile Menu Trigger */}
                     <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                         <SheetTrigger asChild>
                             <Button variant="ghost" size="icon" className="md:hidden">
                                 <Menu className="h-5 w-5" />
-                                <span className="sr-only">Toggle menu</span>
                             </Button>
                         </SheetTrigger>
-
-                        <SheetContent side="right" className="flex flex-col p-0" showCloseButton={false}>
-                            {/* Updated Header: Now uses flex justify-between to align logo and close button */}
-                            <SheetHeader className="p-6 flex-row items-center justify-between border-b space-y-0">
-                                <SheetTitle>
-                                    <AppLogo />
-                                </SheetTitle>
-
+                        <SheetContent side="right" className="flex w-full flex-col p-0 sm:max-w-sm">
+                            <SheetHeader className="flex-row items-center justify-between border-b p-6 space-y-0">
+                                <AppLogo />
                                 <SheetClose asChild>
-                                    <Button variant="ghost" size="icon" className="h-9 w-9 p-0 hover:bg-muted">
+                                    <Button variant="ghost" size="icon" className="rounded-full">
                                         <XIcon className="h-5 w-5" />
-                                        <span className="sr-only">Close menu</span>
                                     </Button>
                                 </SheetClose>
                             </SheetHeader>
 
-                            <div className="flex flex-col flex-1 overflow-y-auto p-6">
-                                <nav className="flex flex-col gap-4">
-                                    {navLinks.map((link) => (
-                                        <Link
-                                            key={link.name}
-                                            href={link.href}
-                                            className="text-lg font-semibold py-2 transition-colors text-foreground/70 hover:text-foreground"
-                                            onClick={() => setIsMobileMenuOpen(false)}
-                                        >
-                                            {link.name}
-                                        </Link>
-                                    ))}
-                                </nav>
-
-                                <div className="mt-auto pt-6 border-t">
+                            <div className="flex flex-1 flex-col justify-between p-6">
+                                <div className="space-y-3">
                                     {!auth.user ? (
-                                        <div className="flex flex-col gap-3">
-                                            <Link href={login()} onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button variant="outline" className="w-full justify-center py-6 text-base">
-                                                    Log in
-                                                </Button>
+                                        <>
+                                            <Link href={login()} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                                                <Button variant="outline" className="w-full py-6">Log in</Button>
                                             </Link>
-                                            <Link href={register()} onClick={() => setIsMobileMenuOpen(false)}>
-                                                <Button className="w-full justify-center bg-violet-600 py-6 text-base hover:bg-violet-700">
-                                                    Get Started
-                                                </Button>
+                                            <Link href={register()} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                                                <Button className="w-full bg-violet-600 py-6 hover:bg-violet-700">Get Started</Button>
                                             </Link>
-                                        </div>
+                                        </>
                                     ) : (
-                                        <Link href={route('dashboard')} onClick={() => setIsMobileMenuOpen(false)}>
-                                            <Button className="w-full bg-violet-600 py-6 text-base">
-                                                Dashboard
-                                            </Button>
+                                        <Link href={route('dashboard')} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
+                                            <Button className="w-full bg-violet-600 py-6">Dashboard</Button>
                                         </Link>
                                     )}
                                 </div>
