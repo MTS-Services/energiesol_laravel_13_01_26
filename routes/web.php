@@ -12,7 +12,6 @@ use Inertia\Inertia;
 // })->name('home');
 
 Route::middleware(['auth', 'verified'])->group(function () {
-    Route::get('admin/dashboard', AdminDashboardController::class)->name('admin.dashboard');
     Route::get('user/dashboard', UserDashboardController::class)->name('user.dashboard');
 });
 
@@ -22,3 +21,4 @@ Route::resource('todos', \App\Http\Controllers\TodoController::class)
 require __DIR__ . '/settings.php';
 require __DIR__ . '/frontend.php';
 require __DIR__ . '/user.php';
+require __DIR__ . '/admin.php';

@@ -2,13 +2,15 @@ import { AdminSidebar } from '@/layouts/partials/admin/sidebar';
 import { AdminHeader } from '@/layouts/partials/admin/header';
 import { AdminFooter } from '@/layouts/partials/admin/footer';
 import * as React from 'react';
+import { BreadcrumbItem } from '@/types';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
     activeSlug?: string | null;
+    breadcrumbs?: BreadcrumbItem[];
 }
 
-export default function AdminLayout({ children, activeSlug }: AdminLayoutProps) {
+export default function AdminLayout({ children, activeSlug, breadcrumbs }: AdminLayoutProps) {
     const [isCollapsed, setIsCollapsed] = React.useState(false);
     return (
         <div className="flex min-h-screen">

@@ -65,11 +65,11 @@ const adminNavItems: NavItem[] = [
                 ],
             },
             {
-                title: 'Customers',
+                title: 'Users',
                 href: '#',
                 icon: BarChart,
                 children: [
-                    { title: 'All', href: '#' },
+                    { title: 'All', href: route('admin.users.index'), slug: 'admin-users' },
                     { title: 'Active', href: '#' },
                 ],
             },
