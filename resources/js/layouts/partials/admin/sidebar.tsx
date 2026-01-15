@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { type NavItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Users, BarChart, Shield, LayoutGrid, Settings } from 'lucide-react';
+import { Users, BarChart, Shield, LayoutGrid, Settings, User } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavItem } from '@/components/ui/nav-item';
 // Navigation configuration
@@ -59,6 +59,16 @@ const adminNavItems: NavItemType[] = [
                 href: '#',
                 children: [
                     { title: 'All Customers', href: '#' },
+                    { title: 'Active', href: '#' },
+                    { title: 'Premium', href: '#', badge: 15 },
+                ],
+            },
+            {
+                title: 'Users',
+                href: '#',
+                icon: Users,
+                children: [
+                    { title: 'All', href: route('admin.users.index'), badge: 'New', icon: User },
                     { title: 'Active', href: '#' },
                     { title: 'Premium', href: '#', badge: 15 },
                 ],

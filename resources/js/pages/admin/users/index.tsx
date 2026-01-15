@@ -1,193 +1,208 @@
-import * as React from "react"
-import {
-    flexRender,
-    getCoreRowModel,
-    getFilteredRowModel,
-    getPaginationRowModel,
-    getSortedRowModel,
-    useReactTable,
-    type ColumnDef,
-    type ColumnFiltersState,
-    type SortingState,
-    type VisibilityState,
-} from "@tanstack/react-table"
-import { ArrowUpDown, ChevronDown, MoreHorizontal } from "lucide-react"
-import { Head, usePage } from '@inertiajs/react';
+import React from 'react';
+import { Head, router } from '@inertiajs/react';
+import { Pencil, Trash2, Eye, UserCheck, UserX } from 'lucide-react';
+import AdminLayout from '@/layouts/admin-layout';
+import { DataTable } from '@/components/ui/data-table';
+import { useDataTable } from '@/hooks/use-data-table';
+import { ColumnConfig, FilterConfig, ActionConfig } from '@/types/data-table.types';
+import { Badge } from '@/components/ui/badge';
 
-import { Button } from "@/components/ui/button"
-import { Checkbox } from "@/components/ui/checkbox"
-import {
-    DropdownMenu,
-    DropdownMenuCheckboxItem,
-    DropdownMenuContent,
-    DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
-    DropdownMenuTrigger,
-} from "@/components/ui/dropdown-menu"
-import { Input } from "@/components/ui/input"
-import {
-    Table,
-    TableBody,
-    TableCell,
-    TableHead,
-    TableHeader,
-    TableRow,
-} from "@/components/ui/table"
-import AdminLayout from "@/layouts/admin-layout"
-
-// 1. Cleaned User Type (Roles removed)
-export type User = {
-    id: number
-    name: string
-    email: string
-    created_at: string
+interface Role {
+  id: number;
+  name: string;
 }
 
-export const columns: ColumnDef<User>[] = [
+interface User {
+  id: number;
+  name: string;
+  email: string;
+  status: 'active' | 'inactive' | 'banned';
+  // roles: Role[];
+  created_at: string;
+}
+
+interface Props {
+  users: User[];
+  pagination: any;
+  offset: number;
+  filters: Record<string, any>;
+  search: string;
+  sortBy: string;
+  sortOrder: 'asc' | 'desc';
+  filterOptions: {
+    status: Array<{ label: string; value: string }>;
+    // 'roles.name': Array<{ label: string; value: string }>;
+  };
+}
+
+export default function UsersIndex({
+  users,
+  pagination,
+  offset,
+  filters,
+  search,
+  sortBy,
+  sortOrder,
+  filterOptions,
+}: Props) {
+  const {
+    isLoading,
+    handleSearch,
+    handleFilterChange,
+    handleSort,
+    handlePerPageChange,
+    handlePageChange,
+  } = useDataTable();
+
+  // Define columns
+  const columns: ColumnConfig<User>[] = [
     {
-        id: "select",
-        header: ({ table }) => (
-            <Checkbox
-                checked={table.getIsAllPageRowsSelected() || (table.getIsSomePageRowsSelected() && "indeterminate")}
-                onCheckedChange={(value) => table.toggleAllPageRowsSelected(!!value)}
-                aria-label="Select all"
-            />
-        ),
-        cell: ({ row }) => (
-            <Checkbox
-                checked={row.getIsSelected()}
-                onCheckedChange={(value) => row.toggleSelected(!!value)}
-                aria-label="Select row"
-            />
-        ),
-        enableSorting: false,
-        enableHiding: false,
+      key: 'name',
+      label: 'Name',
+      sortable: true,
+      render: (user) => (
+        <div className="font-medium text-gray-900 dark:text-gray-100">
+          {user.name}
+        </div>
+      ),
     },
     {
-        accessorKey: "name",
-        header: "Name",
-        cell: ({ row }) => <div className="font-medium">{row.getValue("name")}</div>,
+      key: 'email',
+      label: 'Email',
+      sortable: true,
+      render: (user) => (
+        <div className="text-gray-600 dark:text-gray-400">
+          {user.email}
+        </div>
+      ),
+    },
+    // {
+    //   key: 'roles',
+    //   label: 'Roles',
+    //   sortable: false,
+    //   render: (user) => (
+    //     <div className="flex gap-1 flex-wrap">
+    //       {user.roles.map((role) => (
+    //         <Badge key={role.id} variant="secondary">
+    //           {role.name}
+    //         </Badge>
+    //       ))}
+    //     </div>
+    //   ),
+    // },
+    // {
+    //   key: 'status',
+    //   label: 'Status',
+    //   sortable: true,
+    //   render: (user) => {
+    //     const statusColors = {
+    //       active: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
+    //       inactive: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
+    //       banned: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
+    //     };
+
+    //     return (
+    //       <Badge className={statusColors[user.status]}>
+    //         {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
+    //       </Badge>
+    //     );
+    //   },
+    // },
+    {
+      key: 'created_at',
+      label: 'Joined Date',
+      sortable: true,
+      render: (user) => (
+        <div className="text-gray-600 dark:text-gray-400">
+          {new Date(user.created_at).toLocaleDateString()}
+        </div>
+      ),
+    },
+  ];
+
+  // Define filters
+  const filterConfigs: FilterConfig[] = [
+    {
+      key: 'status',
+      label: 'Status',
+      options: filterOptions.status,
+      placeholder: 'Filter by status',
+    },
+    // {
+    //   key: 'roles.name',
+    //   label: 'Role',
+    //   options: filterOptions['roles.name'],
+    //   placeholder: 'Filter by role',
+    // },
+  ];
+
+  // Define actions
+  const actions: ActionConfig<User>[] = [
+    {
+      label: 'View',
+      icon: <Eye className="h-4 w-4" />,
+      onClick: (user) => {
+        router.visit(route('admin.users.show', user.id));
+      },
     },
     {
-        accessorKey: "email",
-        header: ({ column }) => (
-            <Button variant="ghost" onClick={() => column.toggleSorting(column.getIsSorted() === "asc")}>
-                Email
-                <ArrowUpDown className="ml-2 h-4 w-4" />
-            </Button>
-        ),
-        cell: ({ row }) => <div className="lowercase">{row.getValue("email")}</div>,
+      label: 'Edit',
+      icon: <Pencil className="h-4 w-4" />,
+      onClick: (user) => {
+        router.visit(route('admin.users.edit', user.id));
+      },
     },
+    // {
+    //   label: (user) => user.status === 'active' ? 'Deactivate' : 'Activate',
+    //   icon: (user) => user.status === 'active' ? <UserX className="h-4 w-4" /> : <UserCheck className="h-4 w-4" />,
+    //   onClick: (user) => {
+    //     const newStatus = user.status === 'active' ? 'inactive' : 'active';
+    //     router.put(route('admin.users.update-status', user.id), {
+    //       status: newStatus,
+    //     });
+    //   },
+    //   show: (user) => user.status !== 'banned',
+    // },
     {
-        id: "actions",
-        cell: ({ row }) => {
-            const user = row.original
-            return (
-                <DropdownMenu>
-                    <DropdownMenuTrigger asChild>
-                        <Button variant="ghost" className="h-8 w-8 p-0">
-                            <MoreHorizontal className="h-4 w-4" />
-                        </Button>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent align="end">
-                        <DropdownMenuLabel>Actions</DropdownMenuLabel>
-                        <DropdownMenuItem onClick={() => navigator.clipboard.writeText(user.id.toString())}>
-                            Copy User ID
-                        </DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Edit User</DropdownMenuItem>
-                        <DropdownMenuItem className="text-red-600">Delete User</DropdownMenuItem>
-                    </DropdownMenuContent>
-                </DropdownMenu>
-            )
-        },
+      label: 'Delete',
+      icon: <Trash2 className="h-4 w-4" />,
+      onClick: (user) => {
+        if (confirm(`Are you sure you want to delete ${user.name}?`)) {
+          router.delete(route('admin.users.destroy', user.id));
+        }
+      },
+      variant: 'destructive',
     },
-]
+  ];
 
-export default function Users() {
-    // Get data from Inertia
-    const { users } = usePage<{ users: User[] }>().props;
+  return (
+    <AdminLayout activeSlug="admin-users">
+      <Head title="Users" />
 
-    const [sorting, setSorting] = React.useState<SortingState>([])
-    const [columnFilters, setColumnFilters] = React.useState<ColumnFiltersState>([])
-    const [columnVisibility, setColumnVisibility] = React.useState<VisibilityState>({})
-    const [rowSelection, setRowSelection] = React.useState({})
-
-    const table = useReactTable({
-        data: users || [], // Fallback to empty array to prevent map errors
-        columns,
-        onSortingChange: setSorting,
-        onColumnFiltersChange: setColumnFilters,
-        getCoreRowModel: getCoreRowModel(),
-        getPaginationRowModel: getPaginationRowModel(),
-        getSortedRowModel: getSortedRowModel(),
-        getFilteredRowModel: getFilteredRowModel(),
-        onColumnVisibilityChange: setColumnVisibility,
-        onRowSelectionChange: setRowSelection,
-        state: {
-            sorting,
-            columnFilters,
-            columnVisibility,
-            rowSelection,
-        },
-    })
-
-    return (
-        <AdminLayout activeSlug="admin-users">
-            <Head title="User Management" />
-            <div className="w-full">
-                <div className="flex items-center py-4">
-                    <Input
-                        placeholder="Filter emails..."
-                        value={(table.getColumn("email")?.getFilterValue() as string) ?? ""}
-                        onChange={(event) => table.getColumn("email")?.setFilterValue(event.target.value)}
-                        className="max-w-sm"
-                    />
-                </div>
-                <div className="rounded-md border">
-                    <Table>
-                        <TableHeader>
-                            {table.getHeaderGroups().map((headerGroup) => (
-                                <TableRow key={headerGroup.id}>
-                                    {headerGroup.headers.map((header) => (
-                                        <TableHead key={header.id}>
-                                            {header.isPlaceholder ? null : flexRender(header.column.columnDef.header, header.getContext())}
-                                        </TableHead>
-                                    ))}
-                                </TableRow>
-                            ))}
-                        </TableHeader>
-                        <TableBody>
-                            {table.getRowModel().rows?.length ? (
-                                table.getRowModel().rows.map((row) => (
-                                    <TableRow key={row.id}>
-                                        {row.getVisibleCells().map((cell) => (
-                                            <TableCell key={cell.id}>
-                                                {flexRender(cell.column.columnDef.cell, cell.getContext())}
-                                            </TableCell>
-                                        ))}
-                                    </TableRow>
-                                ))
-                            ) : (
-                                <TableRow>
-                                    <TableCell colSpan={columns.length} className="h-24 text-center">
-                                        No users found.
-                                    </TableCell>
-                                </TableRow>
-                            )}
-                        </TableBody>
-                    </Table>
-                </div>
-                <div className="flex items-center justify-end space-x-2 py-4">
-                    <Button variant="outline" size="sm" onClick={() => table.previousPage()} disabled={!table.getCanPreviousPage()}>
-                        Previous
-                    </Button>
-                    <Button variant="outline" size="sm" onClick={() => table.nextPage()} disabled={!table.getCanNextPage()}>
-                        Next
-                    </Button>
-                </div>
-            </div>
-        </AdminLayout>
-    )
+      <div className="mx-auto">
+        <DataTable
+          data={users}
+          columns={columns}
+          pagination={pagination}
+          offset={offset}
+          showNumbering={true}
+          // numberingKey="id" // Uncomment to show actual IDs
+          filters={filterConfigs}
+          actions={actions}
+          onSearch={handleSearch}
+          onFilterChange={handleFilterChange}
+          onSort={handleSort}
+          onPerPageChange={handlePerPageChange}
+          onPageChange={handlePageChange}
+          searchValue={search}
+          filterValues={filters}
+          sortBy={sortBy}
+          sortOrder={sortOrder}
+          isLoading={isLoading}
+          emptyMessage="No users found"
+          searchPlaceholder="Search users by name, email, or role..."
+        />
+      </div>
+    </AdminLayout>
+  );
 }

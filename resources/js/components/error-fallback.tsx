@@ -5,7 +5,7 @@ export default function ErrorFallback({ error, resetErrorBoundary }: { error: Er
     const [showDetails, setShowDetails] = useState(false);
 
     // Check if we are in debug mode via Vite env
-    const isDebug = import.meta.env.VITE_APP_DEBUG === 'true' || import.meta.env.DEV;
+    const isDebug = true;
 
     return (
         <div className="min-h-screen bg-white dark:bg-[#0B0F1A] flex items-center justify-center p-6 relative overflow-hidden">
