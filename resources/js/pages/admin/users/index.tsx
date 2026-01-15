@@ -5,16 +5,16 @@ import { Pencil, Trash2, Eye } from 'lucide-react';
 import AdminLayout from '@/layouts/admin-layout';
 import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
-import { ColumnConfig, ActionConfig } from '@/types/data-table.types';
+import { PaginationData, ColumnConfig, ActionConfig } from '@/types/data-table.types';
 import { Badge } from '@/components/ui/badge';
 import { User } from '@/types/user';
 import { Button } from '@/components/ui/button';
 
 interface Props {
   users: User[];
-  pagination: any;
+  pagination: PaginationData;
   offset: number;
-  filters: Record<string, any>;
+  filters: Record<string, string | number>;
   search: string;
   sortBy: string;
   sortOrder: 'asc' | 'desc';
@@ -112,7 +112,7 @@ export default function UsersIndex({
     <AdminLayout activeSlug="admin-users">
       <Head title="Users" />
 
-      <div className="flex justify-end mb-4">
+      <div className="flex justify-end mb-6">
         <Link href={create.url()}>
           <Button>Create User</Button>
         </Link>

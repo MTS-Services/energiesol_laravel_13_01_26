@@ -45,13 +45,13 @@ export function DataTable<T extends Record<string, any>>({
 
     useEffect(() => {
         const timer = setTimeout(() => {
-            if (localSearch !== searchValue && onSearch) {
-                onSearch(localSearch);
+            if (localSearch !== searchValue) {
+                onSearch?.(localSearch);
             }
         }, 500);
 
         return () => clearTimeout(timer);
-    }, [localSearch]);
+    }, [localSearch, searchValue, onSearch]);
 
     const handleFilterChange = (key: string, value: string) => {
         const newFilters = { ...localFilters, [key]: value };
@@ -83,8 +83,8 @@ export function DataTable<T extends Record<string, any>>({
     const renderNumbering = (index: number, item: T) => {
         if (!showNumbering) return null;
 
-        if (numberingKey && item[numberingKey]) {
-            return <td className="datatable-cell datatable-cell-number">{item[numberingKey]}</td>;
+        if (numberingKey && item[numberingKey] !== undefined) {
+            return <td className="datatable-cell datatable-cell-number">{item[numberingKey] as React.ReactNode}</td>;
         }
 
         return <td className="datatable-cell datatable-cell-number">{offset + index + 1}</td>;
@@ -94,7 +94,7 @@ export function DataTable<T extends Record<string, any>>({
         const pages = [];
         const maxVisible = 5;
         let startPage = Math.max(1, pagination.current_page - Math.floor(maxVisible / 2));
-        let endPage = Math.min(pagination.last_page, startPage + maxVisible - 1);
+        const endPage = Math.min(pagination.last_page, startPage + maxVisible - 1);
 
         if (endPage - startPage < maxVisible - 1) {
             startPage = Math.max(1, endPage - maxVisible + 1);

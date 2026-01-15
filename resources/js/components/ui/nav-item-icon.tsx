@@ -10,6 +10,8 @@ interface NavItemIconProps {
 }
 
 export const NavItemIcon = React.memo<NavItemIconProps>(({ item, level, className }) => {
+    const DefaultIconComponent = getDefaultIcon(level);
+
     if (item.icon) {
         if (typeof item.icon === 'string') {
             return (
@@ -24,8 +26,7 @@ export const NavItemIcon = React.memo<NavItemIconProps>(({ item, level, classNam
         return <IconComponent className={cn("h-5 w-5", className)} />;
     }
 
-    const DefaultIcon = getDefaultIcon(level);
-    return <DefaultIcon className={cn("h-5 w-5", className)} />;
+    return React.createElement(DefaultIconComponent, { className: cn("h-5 w-5", className) });
 });
 
 NavItemIcon.displayName = 'NavItemIcon';
