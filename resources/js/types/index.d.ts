@@ -12,14 +12,25 @@ export interface BreadcrumbItem {
 
 export interface NavGroup {
     title: string;
-    items: NavItem[];
+    items: NavItemType[];
 }
 
-export interface NavItem {
+export interface NavItemType {
     title: string;
     href: NonNullable<InertiaLinkProps['href']>;
-    icon?: LucideIcon | null;
+    icon?: LucideIcon | string | null;
+    slug?: string;
     isActive?: boolean;
+    children?: NavItemType[];
+    permission?: string;
+    onClick?: (item: NavItemType, event?: React.MouseEvent) => void;
+    badge?: string | number;
+    disabled?: boolean;
+    external?: boolean;
+    target?: '_blank' | '_self' | '_parent' | '_top';
+    className?: string;
+    description?: string;
+    [key: string]: any;
 }
 
 export interface SharedData {
@@ -36,7 +47,23 @@ export interface User {
     avatar?: string;
     email_verified_at: string | null;
     two_factor_enabled?: boolean;
+    permissions?: string[];
+    all_permissions?: string[];
     created_at: string;
     updated_at: string;
-    [key: string]: unknown; // This allows for additional properties...
+    [key: string]: unknown;
+}
+
+export interface NavItemProps {
+    item: NavItem;
+    isCollapsed: boolean;
+    level?: number;
+    isActive?: boolean;
+    currentRoute?: string;
+    permissions?: string[];
+}
+
+export interface DropdownPosition {
+    top: number;
+    left: number;
 }

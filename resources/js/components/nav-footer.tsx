@@ -7,7 +7,7 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { toUrl } from '@/lib/utils';
-import { type NavItem } from '@/types';
+import { type NavItemType } from '@/types';
 import { type ComponentPropsWithoutRef } from 'react';
 
 export function NavFooter({
@@ -15,7 +15,7 @@ export function NavFooter({
     className,
     ...props
 }: ComponentPropsWithoutRef<typeof SidebarGroup> & {
-    items: NavItem[];
+    items: NavItemType[];
 }) {
     return (
         <SidebarGroup
