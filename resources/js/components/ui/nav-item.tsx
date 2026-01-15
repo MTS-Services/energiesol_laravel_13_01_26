@@ -4,15 +4,16 @@ import { type NavItemProps } from '@/types';
 import { Link } from '@inertiajs/react';
 import { ChevronDown } from 'lucide-react';
 import { Collapsible, CollapsibleContent, CollapsibleTrigger } from '@/components/ui/collapsible';
-import { NavItemIcon } from '@/components/ui/nav-item-icon';
-import { NavItemBadge } from '@/components/ui/nav-item-badge';
-import { NavItemDropdown } from '@/components/ui/nav-item-dropdown';
+import { NavItemIcon } from './nav-item-icon';
+import { NavItemBadge } from './nav-item-badge';
+import { NavItemDropdown } from './nav-item-dropdown';
 import { hasPermission } from '@/lib/nav-utils';
-import {
-    useNavActiveState,
-    useFilteredChildren,
+import { 
+    useNavActiveState, 
+    useFilteredChildren, 
     useDropdownPosition,
-    useClickOutside
+    useClickOutside,
+    useHasActiveChild
 } from '@/hooks/nav-hooks';
 
 export const NavItem = React.memo<NavItemProps>(({
@@ -21,16 +22,18 @@ export const NavItem = React.memo<NavItemProps>(({
     level = 0,
     isActive = false,
     currentRoute = '',
-    permissions = []
+    permissions = [],
+    activeSlug
 }) => {
-    const [isOpen, setIsOpen] = React.useState(false);
+    const hasActiveChild = useHasActiveChild(item, activeSlug);
+    const [isOpen, setIsOpen] = React.useState(hasActiveChild);
     const [showDropdown, setShowDropdown] = React.useState(false);
-
+    
     const triggerRef = React.useRef<HTMLButtonElement>(null);
     const dropdownRef = React.useRef<HTMLDivElement>(null);
 
     // Custom hooks
-    const itemIsActive = useNavActiveState(item, currentRoute, isActive);
+    const itemIsActive = useNavActiveState(item, currentRoute, isActive, activeSlug);
     const filteredChildren = useFilteredChildren(item.children, permissions);
     const { position, calculatePosition } = useDropdownPosition();
 
@@ -38,8 +41,15 @@ export const NavItem = React.memo<NavItemProps>(({
     const hasChildren = filteredChildren.length > 0;
     const userHasPermission = hasPermission(item, permissions);
 
+    // Auto-expand parent when child is active
+    React.useEffect(() => {
+        if (hasActiveChild && !isCollapsed) {
+            setIsOpen(true);
+        }
+    }, [hasActiveChild, isCollapsed]);
+
     // Click outside handler
-    useClickOutside([dropdownRef as React.RefObject<HTMLElement>, triggerRef as React.RefObject<HTMLElement>], () => setShowDropdown(false), showDropdown);
+    useClickOutside([dropdownRef, triggerRef], () => setShowDropdown(false), showDropdown);
 
     // Handlers
     const handleClick = React.useCallback((event: React.MouseEvent) => {
@@ -90,20 +100,20 @@ export const NavItem = React.memo<NavItemProps>(({
                         )}
                     >
                         <NavItemIcon item={item} level={level} />
-
+                        
                         {!isCollapsed && (
                             <>
                                 <span className="flex-1 truncate">{item.title}</span>
                                 {item.badge && <NavItemBadge badge={item.badge} />}
                                 <ChevronDown
                                     className={cn(
-                                        "h-4 w-4 shrink-0 transition-transform duration-200",
+                                        "h-4 w-4 flex-shrink-0 transition-transform duration-200",
                                         isOpen && "rotate-180"
                                     )}
                                 />
                             </>
                         )}
-
+                        
                         {/* Active indicator */}
                         {isCollapsed && itemIsActive && (
                             <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full">
@@ -123,6 +133,7 @@ export const NavItem = React.memo<NavItemProps>(({
                                     level={level + 1}
                                     currentRoute={currentRoute}
                                     permissions={permissions}
+                                    activeSlug={activeSlug}
                                 />
                             ))}
                         </CollapsibleContent>
@@ -145,6 +156,7 @@ export const NavItem = React.memo<NavItemProps>(({
                                 level={0}
                                 currentRoute={currentRoute}
                                 permissions={permissions}
+                                activeSlug={activeSlug}
                             />
                         ))}
                     </NavItemDropdown>
@@ -173,23 +185,23 @@ export const NavItem = React.memo<NavItemProps>(({
             {...(item.external && { target: item.target || '_blank', rel: 'noopener noreferrer' })}
         >
             <NavItemIcon item={item} level={level} />
-
+            
             {!isCollapsed && (
                 <>
                     <span className="flex-1 truncate">{item.title}</span>
                     {item.badge && <NavItemBadge badge={item.badge} />}
                 </>
             )}
-
+            
             {/* Active indicators */}
             {isCollapsed && itemIsActive && (
                 <div className="absolute -top-1 -right-1 w-2 h-2 bg-primary rounded-full">
                     <div className="absolute inset-0 bg-primary rounded-full animate-ping" />
                 </div>
             )}
-
+            
             {!isCollapsed && itemIsActive && (
-                <div className="w-1.5 h-1.5 bg-primary rounded-full shrink-0">
+                <div className="w-1.5 h-1.5 bg-primary rounded-full flex-shrink-0">
                     <div className="absolute w-1.5 h-1.5 bg-primary rounded-full animate-ping" />
                 </div>
             )}

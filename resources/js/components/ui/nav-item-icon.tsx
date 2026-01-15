@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { type NavItemType } from '@/types';
-import { getDefaultIcon } from '../../lib/nav-utils';
+import { getDefaultIcon } from '@/lib/nav-utils';
 import { cn } from '@/lib/utils';
 
 interface NavItemIconProps {

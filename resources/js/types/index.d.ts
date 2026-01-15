@@ -33,6 +33,9 @@ export interface NavItemType {
     [key: string]: any;
 }
 
+// Alias for backward compatibility
+export type NavItem = NavItemType;
+
 export interface SharedData {
     name: string;
     auth: Auth;
@@ -55,12 +58,13 @@ export interface User {
 }
 
 export interface NavItemProps {
-    item: NavItem;
+    item: NavItemType;
     isCollapsed: boolean;
     level?: number;
     isActive?: boolean;
     currentRoute?: string;
     permissions?: string[];
+    activeSlug?: string;
 }
 
 export interface DropdownPosition {

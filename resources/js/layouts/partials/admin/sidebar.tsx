@@ -2,7 +2,7 @@ import * as React from 'react';
 import { cn } from '@/lib/utils';
 import { type NavItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Users, BarChart, Shield, LayoutGrid, Settings, User } from 'lucide-react';
+import { Users, User, BarChart, Shield, LayoutGrid, Settings } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import { NavItem } from '@/components/ui/nav-item';
 // Navigation configuration
@@ -46,29 +46,16 @@ const adminNavItems: NavItemType[] = [
                 ],
             },
             {
-                title: 'Staff Members',
-                href: '#',
-                children: [
-                    { title: 'All Staff', href: '#' },
-                    { title: 'Active', href: '#', badge: 'New' },
-                    { title: 'On Leave', href: '#' },
-                ],
-            },
-            {
-                title: 'Customers',
-                href: '#',
-                children: [
-                    { title: 'All Customers', href: '#' },
-                    { title: 'Active', href: '#' },
-                    { title: 'Premium', href: '#', badge: 15 },
-                ],
-            },
-            {
                 title: 'Users',
                 href: '#',
-                icon: Users,
+                icon: User,
                 children: [
-                    { title: 'All', href: route('admin.users.index'), badge: 'New', icon: User, slug: 'admin-users' },
+                    { 
+                        title: 'All', 
+                        href: route('admin.users.index'), 
+                        icon: User, 
+                        slug: 'admin-users'
+                    },
                     { title: 'Active', href: '#' },
                     { title: 'Premium', href: '#', badge: 15 },
                 ],
@@ -103,14 +90,14 @@ interface AdminSidebarProps {
 export const AdminSidebar = React.memo<AdminSidebarProps>(({ isCollapsed, activeSlug }) => {
     const { url, props } = usePage();
     const currentRoute = url;
-
+    
     // Extract permissions from auth props
     const userPermissions = React.useMemo(() => {
         const auth = props.auth as any;
-        return auth?.user?.permissions ||
-            auth?.user?.all_permissions ||
-            auth?.permissions ||
-            [];
+        return auth?.user?.permissions || 
+               auth?.user?.all_permissions || 
+               auth?.permissions || 
+               [];
     }, [props.auth]);
 
     return (
@@ -127,8 +114,8 @@ export const AdminSidebar = React.memo<AdminSidebarProps>(({ isCollapsed, active
                 "flex h-16 items-center border-b",
                 isCollapsed ? "justify-center px-2" : "px-6"
             )}>
-                <Link
-                    href="/"
+                <Link 
+                    href="/" 
                     className="flex items-center gap-2 transition-opacity hover:opacity-80"
                 >
                     {isCollapsed ? (

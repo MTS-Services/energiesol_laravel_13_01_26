@@ -17,5 +17,14 @@
         "lib": "@/lib",
         "hooks": "@/hooks"
     },
-    "iconLibrary": "lucide"
+    "iconLibrary": "lucide",
+    "registries": {
+        "@acme": "https://registry.acme.com/{name}.json",
+        "@internal": {
+            "url": "https://internal.company.com/{name}.json",
+            "headers": {
+                "Authorization": "Bearer ${REGISTRY_TOKEN}"
+            }
+        }
+    }
 }
