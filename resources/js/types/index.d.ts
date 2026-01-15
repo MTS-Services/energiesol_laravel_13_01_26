@@ -12,7 +12,7 @@ export interface BreadcrumbItem {
 
 export interface NavGroup {
     title: string;
-    items: NavItem[];
+    items: NavItemType[];
 }
 
 export interface NavItemType {
@@ -21,9 +21,9 @@ export interface NavItemType {
     icon?: LucideIcon | string | null;
     slug?: string;
     isActive?: boolean;
-    children?: NavItem[];
+    children?: NavItemType[];
     permission?: string;
-    onClick?: (item: NavItem, event?: React.MouseEvent) => void;
+    onClick?: (item: NavItemType, event?: React.MouseEvent) => void;
     badge?: string | number;
     disabled?: boolean;
     external?: boolean;

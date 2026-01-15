@@ -1,12 +1,12 @@
 import * as React from 'react';
-import { type NavItem, type DropdownPosition } from '@/types';
+import { type NavItemType, type DropdownPosition } from '@/types';
 
 /**
  * Hook to manage active state checking for navigation items
  */
-export function useNavActiveState(item: NavItem, currentRoute: string, isActive?: boolean) {
+export function useNavActiveState(item: NavItemType, currentRoute: string, isActive?: boolean) {
     return React.useMemo(() => {
-        const checkIsActive = (navItem: NavItem): boolean => {
+        const checkIsActive = (navItem: NavItemType): boolean => {
             if (navItem.href === currentRoute) return true;
             if (navItem.children) {
                 return navItem.children.some(child => checkIsActive(child));
@@ -21,7 +21,7 @@ export function useNavActiveState(item: NavItem, currentRoute: string, isActive?
 /**
  * Hook to filter children based on permissions
  */
-export function useFilteredChildren(children?: NavItem[], permissions: string[] = []) {
+export function useFilteredChildren(children?: NavItemType[], permissions: string[] = []) {
     return React.useMemo(() => {
         if (!children) return [];
 

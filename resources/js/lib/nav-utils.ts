@@ -1,10 +1,10 @@
-import { type NavItem } from '@/types';
+import { type NavItemType } from '@/types';
 import { Folder, File, Circle, Dot } from 'lucide-react';
 
 /**
  * Check if user has permission to view nav item
  */
-export function hasPermission(item: NavItem, permissions: string[]): boolean {
+export function hasPermission(item: NavItemType, permissions: string[]): boolean {
     return !item.permission || permissions.length === 0 || permissions.includes(item.permission);
 }
 
@@ -25,7 +25,7 @@ export function getDefaultIcon(level: number) {
 /**
  * Count total children (recursively)
  */
-export function countChildren(items: NavItem[]): number {
+export function countChildren(items: NavItemType[]): number {
     return items.reduce((count, item) => {
         let total = 1;
         if (item.children) {

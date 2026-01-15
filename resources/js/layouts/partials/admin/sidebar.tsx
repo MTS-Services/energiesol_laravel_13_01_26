@@ -68,7 +68,7 @@ const adminNavItems: NavItemType[] = [
                 href: '#',
                 icon: Users,
                 children: [
-                    { title: 'All', href: route('admin.users.index'), badge: 'New', icon: User },
+                    { title: 'All', href: route('admin.users.index'), badge: 'New', icon: User, slug: 'admin-users' },
                     { title: 'Active', href: '#' },
                     { title: 'Premium', href: '#', badge: 15 },
                 ],

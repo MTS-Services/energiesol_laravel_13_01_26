@@ -6,6 +6,9 @@ use {{ namespacedModel }};
 use {{ rootNamespace }}Http\Controllers\Controller;
 use {{ namespacedParentModel }};
 use Illuminate\Http\Request;
+use Inertia\Response;
+use Inertia\Inertia;
+
 
 class {{ class }} extends Controller
 {

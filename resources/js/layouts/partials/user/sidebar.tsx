@@ -1,11 +1,11 @@
 import { cn } from '@/lib/utils';
-import { type NavItem } from '@/types';
+import { type NavItemType } from '@/types';
 import { Link } from '@inertiajs/react';
 import { Settings, LayoutGrid } from 'lucide-react';
 import AppLogo from '@/components/app-logo';
 import * as React from 'react';
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: NavItemType[] = [
     {
         title: 'Dashboard',
         href: route('user.dashboard'),

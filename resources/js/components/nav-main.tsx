@@ -6,10 +6,10 @@ import {
     SidebarMenuItem,
 } from '@/components/ui/sidebar';
 import { useActiveUrl } from '@/hooks/use-active-url';
-import { type NavItem } from '@/types';
+import { type NavItemType } from '@/types';
 import { Link } from '@inertiajs/react';
 
-export function NavMain({ items = [] }: { items: NavItem[] }) {
+export function NavMain({ items = [] }: { items: NavItemType[] }) {
     const { urlIsActive } = useActiveUrl();
 
     return (

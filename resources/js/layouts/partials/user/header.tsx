@@ -6,7 +6,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { useInitials } from '@/hooks/use-initials';
-import { type SharedData, type NavItem } from '@/types';
+import { type SharedData, type NavItemType } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
 import { ChevronLeft, Menu, ChevronRight, Settings, LayoutGrid } from 'lucide-react';
 import * as React from 'react';
@@ -19,7 +19,7 @@ interface UserHeaderProps {
     setIsCollapsed: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
-const mainNavItems: NavItem[] = [
+const mainNavItems: NavItemType[] = [
     {
         title: 'Dashboard',
         href: route('user.dashboard'),
