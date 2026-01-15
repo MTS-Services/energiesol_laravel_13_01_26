@@ -1,28 +1,23 @@
-import { cn } from '@/lib/utils';
-import { type NavItem } from '@/types';
-import { Link } from '@inertiajs/react';
-import { Users, BarChart, Shield, LayoutGrid } from 'lucide-react';
-import AppLogo from '@/components/app-logo';
-import { AdminNavItem } from './admin-nav-item';
-import { usePage } from '@inertiajs/react';
 import * as React from 'react';
-
-const adminNavItems: NavItem[] = [
+import { cn } from '@/lib/utils';
+import { type NavItemType } from '@/types';
+import { Link, usePage } from '@inertiajs/react';
+import { Users, BarChart, Shield, LayoutGrid, Settings } from 'lucide-react';
+import AppLogo from '@/components/app-logo';
+import { NavItem } from '@/components/ui/nav-item';
+// Navigation configuration
+const adminNavItems: NavItemType[] = [
     {
         title: 'Dashboard',
         href: route('admin.dashboard'),
         icon: LayoutGrid,
-        badge: 'New', // Example badge
         slug: 'dashboard',
     },
     {
-        title: 'User management',
+        title: 'User Management',
         href: '#',
         icon: Users,
-        badge: 42, // Example numeric badge
-        // onClick: (item, event) => {
-        //     console.log('User management clicked:', item);
-        // },
+        badge: 42,
         children: [
             {
                 title: 'Admins',
@@ -30,24 +25,20 @@ const adminNavItems: NavItem[] = [
                 icon: Shield,
                 permission: 'manage admins',
                 children: [
-                    {
-                        title: 'All', href: '#', onClick: (item, event) => {
-                            console.log('User management clicked:', item);
-                        },
-                    },
+                    { title: 'All Admins', href: '#' },
                     { title: 'Active', href: '#' },
                     {
                         title: 'Inactive',
                         href: '#',
                         children: [
-                            { title: 'Recently Inactive', href: '#' }, // Level 2 - Circle icon
-                            { title: 'Long Inactive', href: '#' }, // Level 2 - Circle icon
+                            { title: 'Recently Inactive', href: '#' },
+                            { title: 'Long Inactive', href: '#' },
                             {
-                                title: 'Very Old',
+                                title: 'Archive',
                                 href: '#',
                                 children: [
-                                    { title: 'Over 1 year', href: '#' }, // Level 3 - Dot icon
-                                    { title: 'Over 2 years', href: '#' }, // Level 3 - Dot icon
+                                    { title: 'Over 1 year', href: '#' },
+                                    { title: 'Over 2 years', href: '#' },
                                 ]
                             }
                         ]
@@ -55,22 +46,21 @@ const adminNavItems: NavItem[] = [
                 ],
             },
             {
-                title: 'Staffs',
+                title: 'Staff Members',
                 href: '#',
-                icon: '/favicon.svg',
                 children: [
-                    { title: 'All', href: '#' },
-                    { title: 'Active', href: '#' },
-                    { title: 'Banned', href: '#' },
+                    { title: 'All Staff', href: '#' },
+                    { title: 'Active', href: '#', badge: 'New' },
+                    { title: 'On Leave', href: '#' },
                 ],
             },
             {
-                title: 'Users',
+                title: 'Customers',
                 href: '#',
-                icon: BarChart,
                 children: [
-                    { title: 'All', href: route('admin.users.index'), slug: 'admin-users' },
+                    { title: 'All Customers', href: '#' },
                     { title: 'Active', href: '#' },
+                    { title: 'Premium', href: '#', badge: 15 },
                 ],
             },
         ],
@@ -80,21 +70,18 @@ const adminNavItems: NavItem[] = [
         href: '#',
         icon: BarChart,
         permission: 'view analytics',
-        external: true, // Opens in new tab
-        target: '_blank',
+    },
+    {
+        title: 'Settings',
+        href: '#',
+        icon: Settings,
+        badge: 3,
     },
     {
         title: 'Disabled Item',
         href: '#',
         icon: Shield,
-        disabled: true, // Disabled state
-    },
-    {
-        title: 'Roles',
-        href: '#',
-        icon: Shield,
-        permission: 'manage roles',
-        className: 'custom-nav-item', // Custom CSS class
+        disabled: true,
     },
 ];
 
@@ -103,38 +90,71 @@ interface AdminSidebarProps {
     activeSlug?: string | null;
 }
 
-export function AdminSidebar({ isCollapsed, activeSlug }: AdminSidebarProps) {
+export const AdminSidebar = React.memo<AdminSidebarProps>(({ isCollapsed, activeSlug }) => {
     const { url, props } = usePage();
     const currentRoute = url;
-    // Get permissions from backend props - adjust this path based on your auth structure
-    // const userPermissions = props.auth?.user?.permissions ||
-    //     props.auth?.user?.all_permissions ||
-    //     props.auth?.permissions ||
-    //     [];
+
+    // Extract permissions from auth props
+    const userPermissions = React.useMemo(() => {
+        const auth = props.auth as any;
+        return auth?.user?.permissions ||
+            auth?.user?.all_permissions ||
+            auth?.permissions ||
+            [];
+    }, [props.auth]);
 
     return (
-        <div
+        <aside
             className={cn(
-                'relative hidden h-screen border-r bg-background transition-all duration-300 md:flex flex-col',
-                isCollapsed ? 'w-20' : 'w-64'
+                'relative hidden h-screen border-r bg-background',
+                'transition-all duration-300 ease-in-out',
+                'md:flex flex-col',
+                isCollapsed ? 'w-16' : 'w-64'
             )}
         >
-            <div className="flex h-16 items-center border-b px-6">
-                <Link href="/">
-                    {isCollapsed ? <LayoutGrid className="h-6 w-6" /> : <AppLogo />}
+            {/* Logo Section */}
+            <div className={cn(
+                "flex h-16 items-center border-b",
+                isCollapsed ? "justify-center px-2" : "px-6"
+            )}>
+                <Link
+                    href="/"
+                    className="flex items-center gap-2 transition-opacity hover:opacity-80"
+                >
+                    {isCollapsed ? (
+                        <LayoutGrid className="h-6 w-6 text-primary" />
+                    ) : (
+                        <AppLogo />
+                    )}
                 </Link>
             </div>
-            <nav className="flex-1 space-y-2 p-4">
-                {adminNavItems.map((item) => (
-                    <AdminNavItem
-                        key={item.title}
-                        item={item}
-                        isCollapsed={isCollapsed}
-                        currentRoute={currentRoute}
-                        isActive={activeSlug === item.slug}
-                    />
-                ))}
-            </nav>
-        </div>
+
+            {/* Navigation */}
+            <div className="flex-1 overflow-y-auto px-3 py-4 custom-scrollbar">
+                <nav className="space-y-1">
+                    {adminNavItems.map((item, index) => (
+                        <NavItem
+                            key={`${item.title}-${index}`}
+                            item={item}
+                            isCollapsed={isCollapsed}
+                            currentRoute={currentRoute}
+                            isActive={activeSlug === item.slug}
+                            permissions={userPermissions}
+                        />
+                    ))}
+                </nav>
+            </div>
+
+            {/* Footer Section (Optional) */}
+            {!isCollapsed && (
+                <div className="border-t p-4">
+                    <div className="text-xs text-muted-foreground text-center">
+                        v1.0.0
+                    </div>
+                </div>
+            )}
+        </aside>
     );
-}
+});
+
+AdminSidebar.displayName = 'AdminSidebar';
