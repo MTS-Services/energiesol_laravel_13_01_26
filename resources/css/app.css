@@ -59,6 +59,24 @@
     --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
     --color-sidebar-border: var(--sidebar-border);
     --color-sidebar-ring: var(--sidebar-ring);
+
+
+    /* Frontend Brand Colors */
+    --color-brand: var(--brand);
+    --color-brand-hover: var(--brand-hover);
+    --color-brand-light: var(--brand-light);
+    --color-brand-foreground: var(--brand-foreground);
+    --color-accent-orange: var(--accent-orange);
+    --color-accent-orange-light: var(--accent-orange-light);
+    --color-accent-orange-foreground: var(--accent-orange-foreground);
+    --color-navy: var(--navy);
+    --color-navy-light: var(--navy-light);
+    --color-navy-dark: var(--navy-dark);
+    --color-navy-foreground: var(--navy-foreground);
+    --color-section-light: var(--section-light);
+    --color-section-cream: var(--section-cream);
+    --color-section-gray: var(--section-gray);
+    --color-section-dark: var(--section-dark);
 }
 
 :root {
@@ -95,6 +113,77 @@
     --sidebar-accent-foreground: oklch(0.205 0 0);
     --sidebar-border: oklch(0.922 0 0);
     --sidebar-ring: oklch(0.87 0 0);
+
+
+
+  /* ========================================
+     FRONTEND BRAND COLORS - Solar Energy Site
+     ======================================== */
+
+  /* Primary Brand Green - Main CTA & Buttons */
+  --brand: #16a34a;
+  --brand-hover: #15803d;
+  --brand-light: #22c55e;
+  --brand-foreground: #ffffff;
+
+  /* Accent Orange - Badges & Highlights */
+  --accent-orange: #f97316;
+  --accent-orange-light: #fb923c;
+  --accent-orange-foreground: #ffffff;
+
+  /* Navy Dark - Text & Dark Sections */
+  --navy: #1e293b;
+  --navy-light: #334155;
+  --navy-dark: #0f172a;
+  --navy-foreground: #ffffff;
+
+  /* Section Backgrounds */
+  --section-light: #f8fafc;
+  --section-cream: #fffbeb;
+  --section-gray: #f1f5f9;
+  --section-dark: #1e293b;
+
+  /* Navigation */
+  --nav-bg: #ffffff;
+  --nav-text: #1e293b;
+  --nav-text-hover: #16a34a;
+  --nav-border: #e2e8f0;
+
+  /* Footer */
+  --footer-bg: #0f172a;
+  --footer-text: #94a3b8;
+  --footer-heading: #ffffff;
+  --footer-link-hover: #22c55e;
+
+  /* Testimonial Section */
+  --testimonial-bg: #ffffff;
+  --testimonial-quote: #16a34a;
+  --testimonial-text: #475569;
+  --testimonial-author: #1e293b;
+
+  /* Stats Section */
+  --stats-number: #16a34a;
+  --stats-label: #64748b;
+  --stats-bg: #ffffff;
+
+  /* Card Styles */
+  --card-bg: #ffffff;
+  --card-border: #e2e8f0;
+  --card-shadow: rgba(0, 0, 0, 0.1);
+
+  /* Hero Section */
+  --hero-overlay: rgba(0, 0, 0, 0.4);
+  --hero-text: #ffffff;
+  --hero-badge-bg: #f97316;
+
+  /* Success Stories Section */
+  --success-overlay: rgba(30, 41, 59, 0.85);
+  --success-text: #ffffff;
+  --success-accent: #22c55e;
+
+  /* ========================================
+       DATATABLE COLOR VALUES
+    ======================================== */
 
     --datatable-bg: #ffffff;
     --datatable-bg-secondary: #f8fafc;
@@ -147,6 +236,55 @@
     --sidebar-accent-foreground: oklch(0.985 0 0);
     --sidebar-border: oklch(0.269 0 0);
     --sidebar-ring: oklch(0.439 0 0);
+
+    /* ========================================
+       FRONTEND BRAND COLOR VALUES - DARK MODE
+    ======================================== */
+
+    /* Primary Brand Green */
+    --brand: #22c55e;
+    --brand-foreground: #ffffff;
+    --brand-hover: #16a34a;
+    --brand-light: #14532d;
+
+    /* Accent Orange */
+    --accent-orange: #fb923c;
+    --accent-orange-foreground: #0f172a;
+    --accent-orange-light: #431407;
+
+    /* Section Backgrounds */
+    --section-light: #1e293b;
+    --section-dark: #020617;
+    --section-dark-foreground: #f1f5f9;
+    --section-cream: #1c1917;
+
+    /* Hero Section */
+    --hero-overlay: rgba(2, 6, 23, 0.7);
+    --hero-text: #f1f5f9;
+
+    /* Navigation */
+    --nav-bg: #0f172a;
+    --nav-text: #cbd5e1;
+    --nav-text-hover: #22c55e;
+
+    /* Footer */
+    --footer-bg: #020617;
+    --footer-text: #e2e8f0;
+    --footer-text-muted: #64748b;
+
+    /* Testimonial Cards */
+    --testimonial-bg: #1e293b;
+    --testimonial-border: #334155;
+    --testimonial-quote: #22c55e;
+
+    /* Stats & Badges */
+    --stats-bg: #1e293b;
+    --badge-success: #22c55e;
+    --badge-success-foreground: #ffffff;
+
+  /* ========================================
+       DATATABLE COLOR VALUES - DARK MODE
+    ======================================== */
 
     --datatable-bg: #0f172a;
     --datatable-bg-secondary: #1e293b;
