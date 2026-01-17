@@ -24,6 +24,7 @@ class DatabaseSeeder extends Seeder
             UserSeeder::class,
             SolarPanelSeeder::class,
             SolarInverterSeeder::class,
+            PartnerSeeder::class,
         ]);
     }
 }

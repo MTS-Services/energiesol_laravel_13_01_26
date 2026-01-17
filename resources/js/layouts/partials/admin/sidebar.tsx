@@ -75,6 +75,12 @@ const adminNavItems: NavItemType[] = [
         permission: 'view analytics',
     },
     {
+        title: 'Partners',
+        href: route('admin.partners.index'),
+        icon: BarChart,
+        permission: 'view analytics',
+    },
+    {
         title: 'Analytics',
         href: '#',
         icon: BarChart,

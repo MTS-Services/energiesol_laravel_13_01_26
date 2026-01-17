@@ -27,4 +27,13 @@ interface SolarInverters {
     updated_at: string;
     [key: string]: unknown;
 }
-export type { SolarPanels, SolarInverters };
+
+interface Partners {
+    id: number;
+    name: string;
+    image: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}
+export type { SolarPanels, SolarInverters, Partners };
