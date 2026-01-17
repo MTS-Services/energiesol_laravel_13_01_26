@@ -15,23 +15,23 @@ class SolarPanelSeeder extends Seeder
         //
 
         SolarPanel::create([
-            'brand_title' => 'SolarTech',
+            'brand_title' => 'TrinaSolar',
             'brand_logo' => 'solartec_logo.png',
-            'title' => 'SolarTech X100',
+            'title' => 'Budget-Friendly Excellence',
             'image' => 'solartec_x100.png',
-            'description' => 'High efficiency solar panel with advanced technology',
+            'description' => 'Get superior power output with the best return on your investment.',
             'price' => 299.99,
-            'note' => 'Best for residential use.',
+            'note' => 'Trina V ertex s+ 455Wp (Glass-Glass',
             'status' => true,
         ],
         [
             'brand_title' => 'EcoPower',
             'brand_logo' => 'ecopower_logo.png',
-            'title' => 'EcoPower Pro',
+            'title' => 'Ultimate Power Output',
             'image' => 'ecopower_pro.png',
-            'description' => 'Durable and reliable solar panel for all weather conditions',
+            'description' => 'Advanced technology engineered for the highest possible energy generation.',
             'price' => 349.99,
-            'note' => 'Ideal for commercial installations.',
+            'note' => 'Aiko V ertex s+ 455Wp (Glass-Glass}',
             'status' => true,
         ]
         );
