@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { cn } from '@/lib/utils';
-import { formatBadge } from '../../lib/nav-utils';
+import { formatBadge } from '@/lib/nav-utils';
 
 interface NavItemBadgeProps {
     badge: string | number;

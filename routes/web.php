@@ -11,6 +11,11 @@ use Inertia\Inertia;
 //     ]);
 // })->name('home');
 
+// Route::get('/dashboard', function () {
+//     return Inertia::render('admin/dashboard');
+// })->name('dashboard');
+
+
 Route::middleware(['auth', 'verified'])->group(function () {
     Route::get('user/dashboard', UserDashboardController::class)->name('user.dashboard');
 });

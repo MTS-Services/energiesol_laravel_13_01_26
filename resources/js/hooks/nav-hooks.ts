@@ -2,10 +2,48 @@ import * as React from 'react';
 import { type NavItemType, type DropdownPosition } from '@/types';
 
 /**
+ * Hook to check if item or any child has matching slug
+ */
+export function useHasActiveChild(item: NavItemType, activeSlug?: string): boolean {
+    return React.useMemo(() => {
+        if (!activeSlug || !item.children) return false;
+
+        const checkChildSlug = (navItem: NavItemType): boolean => {
+            if (navItem.slug === activeSlug) return true;
+            if (navItem.children) {
+                return navItem.children.some(child => checkChildSlug(child));
+            }
+            return false;
+        };
+
+        return item.children.some(child => checkChildSlug(child));
+    }, [item, activeSlug]);
+}
+
+/**
  * Hook to manage active state checking for navigation items
  */
-export function useNavActiveState(item: NavItemType, currentRoute: string, isActive?: boolean) {
+export function useNavActiveState(item: NavItemType, currentRoute: string, isActive?: boolean, activeSlug?: string) {
     return React.useMemo(() => {
+        // First check if slug matches activeSlug (highest priority)
+        if (activeSlug && item.slug === activeSlug) {
+            return true;
+        }
+
+        // Check if any child has matching slug (for parent highlighting)
+        const checkChildSlug = (navItem: NavItemType): boolean => {
+            if (navItem.slug === activeSlug) return true;
+            if (navItem.children) {
+                return navItem.children.some(child => checkChildSlug(child));
+            }
+            return false;
+        };
+
+        if (activeSlug && item.children && checkChildSlug(item)) {
+            return true;
+        }
+
+        // Then check route matching
         const checkIsActive = (navItem: NavItemType): boolean => {
             if (navItem.href === currentRoute) return true;
             if (navItem.children) {
@@ -15,7 +53,7 @@ export function useNavActiveState(item: NavItemType, currentRoute: string, isAct
         };
 
         return checkIsActive(item) || isActive || false;
-    }, [item, currentRoute, isActive]);
+    }, [item, currentRoute, isActive, activeSlug]);
 }
 
 /**

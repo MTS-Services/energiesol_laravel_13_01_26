@@ -1,38 +1,23 @@
 import React from 'react';
-import { Head, router } from '@inertiajs/react';
-import { Pencil, Trash2, Eye, UserCheck, UserX } from 'lucide-react';
+import { Head, router, Link } from '@inertiajs/react';
+import { show, edit, destroy, create } from '@/actions/App/Http/Controllers/Admin/UserController';
+import { Pencil, Trash2, Eye } from 'lucide-react';
 import AdminLayout from '@/layouts/admin-layout';
 import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
-import { ColumnConfig, FilterConfig, ActionConfig } from '@/types/data-table.types';
+import { PaginationData, ColumnConfig, ActionConfig } from '@/types/data-table.types';
 import { Badge } from '@/components/ui/badge';
-
-interface Role {
-  id: number;
-  name: string;
-}
-
-interface User {
-  id: number;
-  name: string;
-  email: string;
-  status: 'active' | 'inactive' | 'banned';
-  // roles: Role[];
-  created_at: string;
-}
+import { User } from '@/types/user';
+import { Button } from '@/components/ui/button';
 
 interface Props {
   users: User[];
-  pagination: any;
+  pagination: PaginationData;
   offset: number;
-  filters: Record<string, any>;
+  filters: Record<string, string | number>;
   search: string;
   sortBy: string;
   sortOrder: 'asc' | 'desc';
-  filterOptions: {
-    status: Array<{ label: string; value: string }>;
-    // 'roles.name': Array<{ label: string; value: string }>;
-  };
 }
 
 export default function UsersIndex({
@@ -43,7 +28,6 @@ export default function UsersIndex({
   search,
   sortBy,
   sortOrder,
-  filterOptions,
 }: Props) {
   const {
     isLoading,
@@ -54,7 +38,6 @@ export default function UsersIndex({
     handlePageChange,
   } = useDataTable();
 
-  // Define columns
   const columns: ColumnConfig<User>[] = [
     {
       key: 'name',
@@ -76,38 +59,16 @@ export default function UsersIndex({
         </div>
       ),
     },
-    // {
-    //   key: 'roles',
-    //   label: 'Roles',
-    //   sortable: false,
-    //   render: (user) => (
-    //     <div className="flex gap-1 flex-wrap">
-    //       {user.roles.map((role) => (
-    //         <Badge key={role.id} variant="secondary">
-    //           {role.name}
-    //         </Badge>
-    //       ))}
-    //     </div>
-    //   ),
-    // },
-    // {
-    //   key: 'status',
-    //   label: 'Status',
-    //   sortable: true,
-    //   render: (user) => {
-    //     const statusColors = {
-    //       active: 'bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200',
-    //       inactive: 'bg-yellow-100 text-yellow-800 dark:bg-yellow-900 dark:text-yellow-200',
-    //       banned: 'bg-red-100 text-red-800 dark:bg-red-900 dark:text-red-200',
-    //     };
-
-    //     return (
-    //       <Badge className={statusColors[user.status]}>
-    //         {user.status.charAt(0).toUpperCase() + user.status.slice(1)}
-    //       </Badge>
-    //     );
-    //   },
-    // },
+    {
+        key: 'is_admin',
+        label: 'Is Admin',
+        sortable: false,
+        render: (user) => (
+            <Badge variant={user.is_admin ? 'default' : 'secondary'}>
+                {user.is_admin ? 'Yes' : 'No'}
+            </Badge>
+        ),
+    },
     {
       key: 'created_at',
       label: 'Joined Date',
@@ -120,55 +81,27 @@ export default function UsersIndex({
     },
   ];
 
-  // Define filters
-  const filterConfigs: FilterConfig[] = [
-    {
-      key: 'status',
-      label: 'Status',
-      options: filterOptions.status,
-      placeholder: 'Filter by status',
-    },
-    // {
-    //   key: 'roles.name',
-    //   label: 'Role',
-    //   options: filterOptions['roles.name'],
-    //   placeholder: 'Filter by role',
-    // },
-  ];
-
-  // Define actions
   const actions: ActionConfig<User>[] = [
     {
       label: 'View',
       icon: <Eye className="h-4 w-4" />,
       onClick: (user) => {
-        router.visit(route('admin.users.show', user.id));
+        router.visit(show.url(user.id));
       },
     },
     {
       label: 'Edit',
       icon: <Pencil className="h-4 w-4" />,
       onClick: (user) => {
-        router.visit(route('admin.users.edit', user.id));
+        router.visit(edit.url(user.id));
       },
     },
-    // {
-    //   label: (user) => user.status === 'active' ? 'Deactivate' : 'Activate',
-    //   icon: (user) => user.status === 'active' ? <UserX className="h-4 w-4" /> : <UserCheck className="h-4 w-4" />,
-    //   onClick: (user) => {
-    //     const newStatus = user.status === 'active' ? 'inactive' : 'active';
-    //     router.put(route('admin.users.update-status', user.id), {
-    //       status: newStatus,
-    //     });
-    //   },
-    //   show: (user) => user.status !== 'banned',
-    // },
     {
       label: 'Delete',
       icon: <Trash2 className="h-4 w-4" />,
       onClick: (user) => {
         if (confirm(`Are you sure you want to delete ${user.name}?`)) {
-          router.delete(route('admin.users.destroy', user.id));
+          router.delete(destroy.url(user.id));
         }
       },
       variant: 'destructive',
@@ -179,6 +112,12 @@ export default function UsersIndex({
     <AdminLayout activeSlug="admin-users">
       <Head title="Users" />
 
+      <div className="flex justify-end mb-6">
+        <Link href={create.url()}>
+          <Button>Create User</Button>
+        </Link>
+      </div>
+
       <div className="mx-auto">
         <DataTable
           data={users}
@@ -186,8 +125,6 @@ export default function UsersIndex({
           pagination={pagination}
           offset={offset}
           showNumbering={true}
-          // numberingKey="id" // Uncomment to show actual IDs
-          filters={filterConfigs}
           actions={actions}
           onSearch={handleSearch}
           onFilterChange={handleFilterChange}
@@ -200,7 +137,7 @@ export default function UsersIndex({
           sortOrder={sortOrder}
           isLoading={isLoading}
           emptyMessage="No users found"
-          searchPlaceholder="Search users by name, email, or role..."
+          searchPlaceholder="Search users by name, email..."
         />
       </div>
     </AdminLayout>

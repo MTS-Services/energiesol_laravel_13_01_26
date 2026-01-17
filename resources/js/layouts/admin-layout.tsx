@@ -1,8 +1,7 @@
 import * as React from 'react';
 import { AdminSidebar } from '@/layouts/partials/admin/sidebar';
 import { AdminHeader } from '@/layouts/partials/admin/header';
-import { AdminFooter } from '@/layouts/partials/admin/footer';
-import { cn } from '@/lib/utils';
+import { AdminFooter } from './partials/admin/footer';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
@@ -27,24 +26,14 @@ export default function AdminLayout({ children, activeSlug }: AdminLayoutProps) 
     }, [isCollapsed]);
 
     return (
-        <div className="flex min-h-screen bg-background">
+        <div className="relative flex h-full max-h-screen min-h-screen bg-background">
             <AdminSidebar isCollapsed={isCollapsed} activeSlug={activeSlug} />
-
             <div className="flex flex-1 flex-col overflow-hidden">
-                <AdminHeader
-                    isCollapsed={isCollapsed}
-                    setIsCollapsed={setIsCollapsed}
-                />
-
-                <main className={cn(
-                    "flex-1 overflow-y-auto overflow-x-hidden",
-                    "bg-linear-to-br from-background to-muted/20"
-                )}>
-                    <div className="mx-auto p-6 space-y-6">
-                        {children}
-                    </div>
+                <AdminHeader isCollapsed={isCollapsed} setIsCollapsed={setIsCollapsed} />
+                <main className="flex-1 overflow-y-auto overflow-x-hidden p-6 space-y-6">
+                    {children}
                 </main>
-
+            
                 <AdminFooter />
             </div>
         </div>
