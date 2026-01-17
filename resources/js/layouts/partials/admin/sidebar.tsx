@@ -63,6 +63,12 @@ const adminNavItems: NavItemType[] = [
         ],
     },
     {
+        title: 'Solar Panels',
+        href: route('admin.solar-panels.index'),
+        icon: BarChart,
+        permission: 'view analytics',
+    },
+    {
         title: 'Analytics',
         href: '#',
         icon: BarChart,
