@@ -23,8 +23,9 @@ class SolarPanelSeeder extends Seeder
             'price' => 299.99,
             'note' => 'Trina V ertex s+ 455Wp (Glass-Glass',
             'status' => true,
-        ],
-        [
+        ]);
+
+        SolarPanel::create([
             'brand_title' => 'EcoPower',
             'brand_logo' => 'ecopower_logo.png',
             'title' => 'Ultimate Power Output',
@@ -33,7 +34,6 @@ class SolarPanelSeeder extends Seeder
             'price' => 349.99,
             'note' => 'Aiko V ertex s+ 455Wp (Glass-Glass}',
             'status' => true,
-        ]
-        );
+        ]);
     }
 }
