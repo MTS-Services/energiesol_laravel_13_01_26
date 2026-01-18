@@ -10,7 +10,8 @@ use Inertia\Response;
 
 class HomeController extends Controller
 {
-    public function home()
+
+    public function home(Request $request): Response
     {
         return Inertia::render('frontend/home');
     }

@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AdminDashboardController;
+use App\Http\Controllers\GuestController;
 use App\Http\Controllers\UserDashboardController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
