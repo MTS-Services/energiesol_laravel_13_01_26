@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('title')->index();
             $table->string('sub_title')->index();
             $table->string('image')->nullable();
-            $table->text('description')->index();
+            $table->text('description');
             $table->timestamps();
         });
     }

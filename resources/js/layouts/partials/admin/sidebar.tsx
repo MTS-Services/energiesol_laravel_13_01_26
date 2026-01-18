@@ -67,6 +67,7 @@ const adminNavItems: NavItemType[] = [
         href: route('admin.solar-panels.index'),
         icon: BarChart,
         permission: 'view analytics',
+        slug: 'admin-solar-panels',
     },
     {
         title: 'Solar Inverters',
@@ -86,6 +87,13 @@ const adminNavItems: NavItemType[] = [
         icon: LayoutGrid, // Using LayoutGrid icon
         slug: 'admin-features',
         permission: 'view features',
+    },
+    {
+        title: 'Services',
+        href: route('admin.services.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-services',
+        permission: 'view services',
     },
     {
         title: 'Analytics',
