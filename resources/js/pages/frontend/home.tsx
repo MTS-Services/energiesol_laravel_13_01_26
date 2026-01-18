@@ -25,7 +25,7 @@ export default function HomePage() {
         <ConfiguratorSection />
         <CareersSection /> */}
       </main>
-      {/* <Footer /> */}
+      <Footer />
     </div>
   )
 }

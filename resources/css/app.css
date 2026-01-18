@@ -77,6 +77,8 @@
     --color-section-cream: var(--section-cream);
     --color-section-gray: var(--section-gray);
     --color-section-dark: var(--section-dark);
+    
+    --color-brand-blue: #2C38DD;
 }
 
 :root {
@@ -243,6 +245,7 @@
 
     /* Primary Brand Green */
     --brand: #22c55e;
+    --brand-blue: #2C38DD;
     --brand-foreground: #ffffff;
     --brand-hover: #16a34a;
     --brand-light: #14532d;
