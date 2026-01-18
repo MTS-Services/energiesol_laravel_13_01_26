@@ -97,6 +97,13 @@ const adminNavItems: NavItemType[] = [
         slug: 'admin-monitoring-system-edit',
     },
     {
+        title: 'Contacts',
+        href: route('admin.contacts.index'),
+        icon: Users,
+        permission: 'view analytics',
+        slug: 'admin-contacts',
+    },
+    {
         title: 'Partners',
         href: route('admin.partners.index'),
         icon: BarChart,

@@ -68,7 +68,17 @@ interface MonitoringSystem {
     updated_at: string;
 }
 
-export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem };
+interface Contact {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: string | null;
+    created_at: string;
+    updated_at: string;
+}
+
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact };
 
 interface Service {
     id: number;

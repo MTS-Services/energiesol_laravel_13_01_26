@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Admin\AdminDashboardController;
 use App\Http\Controllers\Admin\AdvantageController;
+use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -29,4 +30,5 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('services', ServiceController::class)->names('services');
     Route::resource('advantages', AdvantageController::class)->names('advantages');
     Route::resource('values', ValueController::class)->names('values');
+    Route::resource('contacts', ContactController::class)->only(['index', 'show', 'store', 'destroy'])->names('contacts');
 });
