@@ -30,6 +30,7 @@ class DatabaseSeeder extends Seeder
             AdvantageSeeder::class,
             ValueSeeder::class,
             BatteryWithChargerSeeder::class,
+            MonitoringSystemSeeder::class,
         ]);
     }
 }

@@ -90,6 +90,13 @@ const adminNavItems: NavItemType[] = [
         slug: 'admin-chargers-edit',
     },
     {
+        title: 'Monitoring System',
+        href: route('admin.monitoring-system.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-monitoring-system-edit',
+    },
+    {
         title: 'Partners',
         href: route('admin.partners.index'),
         icon: BarChart,
