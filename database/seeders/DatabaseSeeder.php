@@ -27,6 +27,7 @@ class DatabaseSeeder extends Seeder
             PartnerSeeder::class,
             FeatureSeeder::class,
             ServiceSeeder::class,
+            AdvantageSeeder::class,
         ]);
     }
 }

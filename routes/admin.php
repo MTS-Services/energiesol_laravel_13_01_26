@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\AdvantageController;
 use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -9,7 +10,7 @@ use App\Http\Controllers\Admin\SolarPanelController;
 use App\Http\Controllers\Admin\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'verified']], function () {
+Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
     Route::get('dashboard', AdminDashboardController::class)->name('dashboard');
 
     Route::resource('users', UserController::class)->names('users');
@@ -18,4 +19,5 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('partners', PartnerController::class)->names('partners');
     Route::resource('features', FeatureController::class)->names('features');
     Route::resource('services', ServiceController::class)->names('services');
+    Route::resource('advantages', AdvantageController::class)->names('advantages');
 });
