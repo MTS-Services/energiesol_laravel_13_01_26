@@ -25,6 +25,7 @@ class DatabaseSeeder extends Seeder
             SolarPanelSeeder::class,
             SolarInverterSeeder::class,
             PartnerSeeder::class,
+            FeatureSeeder::class,
         ]);
     }
 }

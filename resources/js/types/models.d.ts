@@ -36,4 +36,15 @@ interface Partners {
     updated_at: string;
     [key: string]: unknown;
 }
-export type { SolarPanels, SolarInverters, Partners };
+
+interface Feature {
+    id: number;
+    title: string;
+    description: string | null;
+    image: string | null;
+    action_text: string | null;
+    action_url: string | null;
+    created_at: string;
+    updated_at: string;
+}
+export type { SolarPanels, SolarInverters, Partners, Feature };

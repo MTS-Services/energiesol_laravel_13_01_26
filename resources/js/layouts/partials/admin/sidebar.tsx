@@ -81,6 +81,13 @@ const adminNavItems: NavItemType[] = [
         permission: 'view analytics',
     },
     {
+        title: 'Features',
+        href: route('admin.features.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-features',
+        permission: 'view features',
+    },
+    {
         title: 'Analytics',
         href: '#',
         icon: BarChart,

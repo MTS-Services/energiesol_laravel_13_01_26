@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdminDashboardController;
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\SolarInverterController;
 use App\Http\Controllers\Admin\SolarPanelController;
@@ -14,4 +15,5 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('solar-panels', SolarPanelController::class)->names('solar-panels');
     Route::resource('solar-inverters', SolarInverterController::class)->names('solar-inverters');
     Route::resource('partners', PartnerController::class)->names('partners');
+    Route::resource('features', FeatureController::class)->names('features');
 });
