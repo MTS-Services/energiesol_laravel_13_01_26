@@ -31,7 +31,8 @@ class DatabaseSeeder extends Seeder
             ValueSeeder::class,
             BatteryWithChargerSeeder::class,
             MonitoringSystemSeeder::class,
-            ContactSeeder::class
+            ContactSeeder::class,
+            InquirySeeder::class,
         ]);
     }
 }
