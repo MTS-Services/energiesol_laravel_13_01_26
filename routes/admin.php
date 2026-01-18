@@ -1,19 +1,13 @@
 <?php
 
-use App\Http\Controllers\Admin\AdminDashboardController;
-use App\Http\Controllers\Admin\AdvantageController;
-use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\PartnerController;
-use App\Http\Controllers\Admin\ServiceController;
-use App\Http\Controllers\Admin\SolarInverterController;
-use App\Http\Controllers\Admin\SolarPanelController;
-use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Admin\ValueController;
+use App\Http\Controllers\Admin\MonitoringSystemController;
+use App\Http\Controllers\Admin\ContactController;
+use App\Http\Controllers\Admin\InquiryController; // Added this line
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
-    Route::get('dashboard', AdminDashboardController::class)->name('dashboard');
+    Route::get('dashboard', [\App\Http\Controllers\Admin\AdminDashboardController::class, '__invoke'])->name('dashboard');
 
     Route::resource('users', UserController::class)->names('users');
     Route::resource('solar-panels', SolarPanelController::class)->names('solar-panels');
@@ -31,4 +25,8 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('advantages', AdvantageController::class)->names('advantages');
     Route::resource('values', ValueController::class)->names('values');
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'store', 'destroy'])->names('contacts');
+    
+    Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'store', 'destroy'])->names('inquiries');
+    Route::put('inquiries/{inquiry}/toggle-status', [InquiryController::class, 'toggleStatus'])->name('inquiries.toggle-status');
 });
+

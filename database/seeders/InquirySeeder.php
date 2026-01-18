@@ -37,7 +37,7 @@ class InquirySeeder extends Seeder
                 'solar_inverter_id' => 2,
                 'has_battery' => false,
                 'has_charger' => true,
-                'status' => true,
+                'status' => false,
             ],
         ]);
     }

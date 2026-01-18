@@ -78,7 +78,25 @@ interface Contact {
     updated_at: string;
 }
 
-export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact };
+interface Inquiry {
+    id: number;
+    area: number;
+    solar_panel_id: number;
+    solar_inverter_id: number;
+    has_battery: boolean;
+    has_charger: boolean;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: string | null;
+    status: boolean;
+    created_at: string;
+    updated_at: string;
+    solar_panel?: SolarPanels; // Optional, for eager loading
+    solar_inverter?: SolarInverters; // Optional, for eager loading
+}
+
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact, Inquiry };
 
 interface Service {
     id: number;

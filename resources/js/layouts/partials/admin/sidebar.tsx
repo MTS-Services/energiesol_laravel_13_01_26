@@ -104,6 +104,13 @@ const adminNavItems: NavItemType[] = [
         slug: 'admin-contacts',
     },
     {
+        title: 'Inquiries',
+        href: route('admin.inquiries.index'),
+        icon: BarChart, // Using BarChart as a placeholder, can be changed
+        permission: 'view analytics', // Assuming similar permission structure
+        slug: 'admin-inquiries',
+    },
+    {
         title: 'Partners',
         href: route('admin.partners.index'),
         icon: BarChart,
