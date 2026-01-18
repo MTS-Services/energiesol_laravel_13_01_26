@@ -24,7 +24,7 @@ class UpdateValueRequest extends FormRequest
         return [
             'title' => 'required|string|max:255',
             'description' => 'nullable|string',
-            'image' => 'nullable|string',
+            'image' => 'nullable|file',
             'action_text' => 'nullable|string',
             'action_url' => 'nullable|string',
         ];

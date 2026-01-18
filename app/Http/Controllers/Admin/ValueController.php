@@ -48,7 +48,7 @@ class ValueController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Values/Create');
+        return Inertia::render('admin/values/create');
     }
 
     /**
@@ -71,7 +71,7 @@ class ValueController extends Controller
      */
     public function show(Value $value)
     {
-        return Inertia::render('Admin/Values/Show', [
+        return Inertia::render('admin/values/show', [
             'value' => $value,
         ]);
     }
@@ -81,7 +81,7 @@ class ValueController extends Controller
      */
     public function edit(Value $value)
     {
-        return Inertia::render('Admin/Values/Edit', [
+        return Inertia::render('admin/values/edit', [
             'value' => $value,
         ]);
     }
