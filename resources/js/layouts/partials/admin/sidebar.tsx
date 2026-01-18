@@ -76,6 +76,20 @@ const adminNavItems: NavItemType[] = [
         permission: 'view analytics',
     },
     {
+        title: 'Batteries',
+        href: route('admin.batteries.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-batteries-edit',
+    },
+    {
+        title: 'Chargers',
+        href: route('admin.chargers.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-chargers-edit',
+    },
+    {
         title: 'Partners',
         href: route('admin.partners.index'),
         icon: BarChart,

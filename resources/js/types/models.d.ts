@@ -47,7 +47,23 @@ interface Feature {
     created_at: string;
     updated_at: string;
 }
-export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values };
+
+interface BatteryWithChargers {
+    id: number;
+    brand_title: string;
+    brand_logo: string;
+    title: string;
+    image: string;
+    description: string;
+    price: number;
+    note: string;
+    status: boolean;
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}
+
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers };
 
 interface Service {
     id: number;

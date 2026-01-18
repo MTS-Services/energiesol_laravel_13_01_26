@@ -17,6 +17,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('users', UserController::class)->names('users');
     Route::resource('solar-panels', SolarPanelController::class)->names('solar-panels');
     Route::resource('solar-inverters', SolarInverterController::class)->names('solar-inverters');
+    Route::get('batteries/edit', [\App\Http\Controllers\Admin\BatteryController::class, 'edit'])->name('batteries.edit');
+    Route::put('batteries', [\App\Http\Controllers\Admin\BatteryController::class, 'update'])->name('batteries.update');
+    Route::get('chargers/edit', [\App\Http\Controllers\Admin\ChargerController::class, 'edit'])->name('chargers.edit');
+    Route::put('chargers', [\App\Http\Controllers\Admin\ChargerController::class, 'update'])->name('chargers.update');
     Route::resource('partners', PartnerController::class)->names('partners');
     Route::resource('features', FeatureController::class)->names('features');
     Route::resource('services', ServiceController::class)->names('services');
