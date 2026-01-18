@@ -8,6 +8,7 @@ use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SolarInverterController;
 use App\Http\Controllers\Admin\SolarPanelController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ValueController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
@@ -20,4 +21,5 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('features', FeatureController::class)->names('features');
     Route::resource('services', ServiceController::class)->names('services');
     Route::resource('advantages', AdvantageController::class)->names('advantages');
+    Route::resource('values', ValueController::class)->names('values');
 });

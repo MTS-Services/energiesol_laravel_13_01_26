@@ -47,7 +47,7 @@ interface Feature {
     created_at: string;
     updated_at: string;
 }
-export type { SolarPanels, SolarInverters, Partners, Feature, Service };
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values };
 
 interface Service {
     id: number;
@@ -58,4 +58,15 @@ interface Service {
     created_at: string;
     updated_at: string;
     [key: string]: unknown;
+}
+
+interface Values {
+    id: number;
+    title: string;
+    description: string | null;
+    image: string | null;
+    action_text: string | null;
+    action_url: string | null;
+    created_at: string;
+    updated_at: string;
 }

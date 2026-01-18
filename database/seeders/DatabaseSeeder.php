@@ -28,6 +28,7 @@ class DatabaseSeeder extends Seeder
             FeatureSeeder::class,
             ServiceSeeder::class,
             AdvantageSeeder::class,
+            ValueSeeder::class,
         ]);
     }
 }

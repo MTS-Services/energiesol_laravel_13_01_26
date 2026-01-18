@@ -103,6 +103,13 @@ const adminNavItems: NavItemType[] = [
         permission: 'view advantages',
     },
     {
+        title: 'Values',
+        href: route('admin.values.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-values',
+        permission: 'view advantages',
+    },
+    {
         title: 'Analytics',
         href: '#',
         icon: BarChart,
