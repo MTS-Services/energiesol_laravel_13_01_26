@@ -24,6 +24,8 @@ export function Icon({ iconNode: IconComponent, className, variant = 'default' }
                 <IconComponent className={className} />
             </div>
         );
+    }else if (variant === 'default') {
+        return <IconComponent className={className} />;
     }
 
     return <IconComponent className={className} />;

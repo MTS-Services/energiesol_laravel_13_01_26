@@ -1,13 +1,12 @@
 import FrontendLayout from "@/layouts/frontend-layout";
-import Banner from "@/layouts/include/home/banner";
-import Default from "@/layouts/include/home/defaultPage";
-import DeliveryEnergy from "@/layouts/include/home/deliveryEnergy";
-import Feature from "@/layouts/include/home/feature";
-import Generation from "@/layouts/include/home/generation";
-import OptionalBanner from "@/layouts/include/home/optionalBanner";
-import Partner from "@/layouts/include/home/partner";
-import Review from "@/layouts/include/home/review";
-import StartConfigurator from "@/layouts/include/home/startConfigurator";
+import Banner from "@/components/sections/home/banner";
+import Partner from "@/components/sections/home/partner";
+import Feature from "@/components/sections/home/feature";
+import OptionalBanner from "@/components/sections/home/optional-banner";
+import Review from "@/components/sections/home/review";
+import DeliveryEnergy from "@/components/sections/home/delivery-energy";
+import Generation from "@/components/sections/home/generation";
+import StartConfigurator from "@/components/sections/home/start-configurator";
 
 export default function Home() {
   return (
@@ -20,17 +19,17 @@ export default function Home() {
     <Feature />
 
     <OptionalBanner />
-      
+   
     <Review />
 
 
     <DeliveryEnergy />
 
-    
-    <Generation />
 
+    <Generation />
+   
     <StartConfigurator />
-      
-    </FrontendLayout>
+     
+    </FrontendLayout> 
   );
 }
