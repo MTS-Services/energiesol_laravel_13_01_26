@@ -14,4 +14,13 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/home');
     }
+    public function service(Request $request): Response
+    {
+        return Inertia::render('frontend/service');
+    }
+
+    public function advantage(Request $request): Response
+    {
+        return Inertia::render('frontend/advantage');
+    }
 }

@@ -1,14 +1,12 @@
-import { Button } from '@/components/ui/button';
-import { Icon } from '@/components/ui/icon';
-import { Input } from '@/components/ui/input';
-import { ArrowRight } from 'lucide-react';
+import { ArrowRight } from "lucide-react"
+import { Button } from "../ui/button"
+import { Icon } from "../ui/icon"
+import { Input } from "../ui/input"
 
-export default function startConfigurator() {
-    return (
-        <div className="relative bg-linear-to-r from-btn-primary/15 to-info/5  mb-15 lg:mb-30">
-           
-            <div className="relative z-10 mx-auto max-w-7xl px-6  lg:px-0 flex flex-row gap-5">
-                <div className='grid lg:grid-cols-2 gird-cols gap-6 lg:gap-9'>
+
+  function ConfiguratorCard() {
+  return (
+    <div className='grid lg:grid-cols-2 gird-cols gap-6 lg:gap-9'>
                     <div className='py-20 rounded-xl'>
                         <div className="mb-3 flex flex-row items-center justify-start gap-3">
                             <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
@@ -41,7 +39,7 @@ export default function startConfigurator() {
                             <div>
                                 <Button className=''>
                                 <Icon iconNode={ArrowRight} variant="circle"  ></Icon>
-                                Configurator
+                                Start Configurator
                             </Button>
                             </div>
                         </div>
@@ -58,7 +56,7 @@ export default function startConfigurator() {
                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-    );
+  )
 }
+
+export {ConfiguratorCard}

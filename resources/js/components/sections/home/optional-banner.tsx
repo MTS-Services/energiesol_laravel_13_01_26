@@ -3,7 +3,7 @@ import { Icon } from '@/components/ui/icon'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 
-export default function optionalBanner() {
+export default function OptionalBanner() {
   return (
 <div className='relative'>
     <div className='absolute inset-0 top-0 left-0 w-full h-full z-0' style={
