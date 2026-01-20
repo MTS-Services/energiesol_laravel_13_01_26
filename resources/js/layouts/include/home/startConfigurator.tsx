@@ -36,7 +36,7 @@ export default function startConfigurator() {
 
                         <div className="mt-10 grid grid-cols-2 gap-4 items-center">
                             <div>
-                                <Input type='number' className='rounded-full shadow-[inset_1px_1px_20px_3px_#ffffff] px-4! py-6!' placeholder='80'/>
+                                <Input type='number' className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4! py-6!' placeholder='80'/>
                             </div>
                             <div>
                                 <Button className=''>
