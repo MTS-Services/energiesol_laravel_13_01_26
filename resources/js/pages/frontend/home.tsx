@@ -7,6 +7,7 @@ import Generation from "@/layouts/include/home/generation";
 import OptionalBanner from "@/layouts/include/home/optionalBanner";
 import Partner from "@/layouts/include/home/partner";
 import Review from "@/layouts/include/home/review";
+import StartConfigurator from "@/layouts/include/home/startConfigurator";
 
 export default function Home() {
   return (
@@ -27,6 +28,8 @@ export default function Home() {
 
     
     <Generation />
+
+    <StartConfigurator />
       
     </FrontendLayout>
   );

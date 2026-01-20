@@ -8,8 +8,8 @@ export default function feature() {
     <div>
         <div className='z-10 mx-auto max-w-7xl lg:py-30 py-15 px-6 lg:px-0'>
            <div className='flex flex-col lg:justify-center justify-start lg:items-center items-start'>
-            <h2 className='text-3xl lg:text-[40px] font-semibold font-montserrat'>Smart and Reliable Paths to <span className='text-info italic font-semibold'>Energy</span> </h2>
-            <h2 className='text-3xl lg:text-[40px] italic font-montserrat font-semibold text-info'>Independence</h2>
+            <h2 className='text-3xl text-center lg:text-[40px] font-semibold font-montserrat'>Smart and Reliable Paths to <span className='text-info italic font-semibold font-playfair-display'>Energy</span> <span className='text-info italic font-semibold font-playfair-display inline-block lg:block'>Independence</span> </h2>
+         
            </div>
 
            <div className='features pt-6 lg:pt-10 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-6'>

@@ -17,8 +17,8 @@ export default function optionalBanner() {
     </div>
     <div className='relative z-10 mx-auto max-w-7xl lg:py-30 py-15 px-6 lg:px-0 flex justify-center flex-col items-center'>
         <div className='flex justify-center items-center flex-col'>
-            <h2 className='text-3xl lg:text-[40px] font-semibold text-primary font-montserrat'>Proven Solar <span className='text-info italic font-playfair-display'>Success</span> Stories </h2>
-            <p className='text-3xl lg:text-[40px] font-semibold text-primary font-montserrat'>Near You</p>
+            <h2 className='text-3xl lg:text-[40px] font-semibold text-primary font-montserrat text-center'>Proven Solar <span className='text-info italic font-playfair-display'>Success</span> Stories <span className='inline-block lg:block '> Near You</span></h2>
+
         </div>
         <div className='flex justify-center items-center w-full lg:w-3/4 mx-auto mt-2'>
             <p className='text-center px-6 lg:px-16.5 text-base lg:text-xl font-open-sans text-primary/90 font-normal'>
