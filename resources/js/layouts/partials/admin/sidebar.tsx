@@ -67,6 +67,82 @@ const adminNavItems: NavItemType[] = [
         href: route('admin.solar-panels.index'),
         icon: BarChart,
         permission: 'view analytics',
+        slug: 'admin-solar-panels',
+    },
+    {
+        title: 'Solar Inverters',
+        href: route('admin.solar-inverters.index'),
+        icon: BarChart,
+        permission: 'view analytics',
+    },
+    {
+        title: 'Batteries',
+        href: route('admin.batteries.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-batteries-edit',
+    },
+    {
+        title: 'Chargers',
+        href: route('admin.chargers.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-chargers-edit',
+    },
+    {
+        title: 'Monitoring System',
+        href: route('admin.monitoring-system.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-monitoring-system-edit',
+    },
+    {
+        title: 'Contacts',
+        href: route('admin.contacts.index'),
+        icon: Users,
+        permission: 'view analytics',
+        slug: 'admin-contacts',
+    },
+    {
+        title: 'Inquiries',
+        href: route('admin.inquiries.index'),
+        icon: BarChart, // Using BarChart as a placeholder, can be changed
+        permission: 'view analytics', // Assuming similar permission structure
+        slug: 'admin-inquiries',
+    },
+    {
+        title: 'Partners',
+        href: route('admin.partners.index'),
+        icon: BarChart,
+        permission: 'view analytics',
+    },
+    {
+        title: 'Features',
+        href: route('admin.features.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-features',
+        permission: 'view features',
+    },
+    {
+        title: 'Services',
+        href: route('admin.services.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-services',
+        permission: 'view services',
+    },
+    {
+        title: 'Advantages',
+        href: route('admin.advantages.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-advantages',
+        permission: 'view advantages',
+    },
+    {
+        title: 'Values',
+        href: route('admin.values.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-values',
+        permission: 'view advantages',
     },
     {
         title: 'Analytics',

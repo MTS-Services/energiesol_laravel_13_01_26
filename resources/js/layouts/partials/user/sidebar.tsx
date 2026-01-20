@@ -12,6 +12,16 @@ const mainNavItems: NavItemType[] = [
         icon: LayoutGrid,
     },
     {
+        title: 'Features',
+        href: route('admin.features.index'),
+        icon: Settings, // Using Settings as a placeholder icon
+    },
+    {
+        title: 'Services',
+        href: route('admin.services.index'),
+        icon: Settings, // Using Settings as a placeholder icon
+    },
+    {
         title: 'Settings',
         href: route('settings.profile.edit'),
         icon: Settings,

@@ -1,0 +1,5 @@
+I have added the "Features" and "Services" links to the sidebar in `resources/js/layouts/partials/user/sidebar.tsx`.
+
+You will need to run `npm run build` or `npm run dev` to see these changes reflected in your browser.
+
+Please let me know if you'd like to use different icons for "Features" and "Services", or if you intended a nested navigation structure.

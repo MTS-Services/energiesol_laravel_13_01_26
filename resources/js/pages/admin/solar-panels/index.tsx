@@ -116,7 +116,7 @@ export default function Index({solarPanels, pagination, offset, filters, search,
   ];
 
    return (
-    <AdminLayout activeSlug="admin/solar-panels/create">
+    <AdminLayout activeSlug="admin-solar-panels">
       <Head title="Solar Panels" />
 
       <div className="flex justify-end mb-6">

@@ -23,6 +23,16 @@ class DatabaseSeeder extends Seeder
         $this->call([
             UserSeeder::class,
             SolarPanelSeeder::class,
+            SolarInverterSeeder::class,
+            PartnerSeeder::class,
+            FeatureSeeder::class,
+            ServiceSeeder::class,
+            AdvantageSeeder::class,
+            ValueSeeder::class,
+            BatteryWithChargerSeeder::class,
+            MonitoringSystemSeeder::class,
+            ContactSeeder::class,
+            InquirySeeder::class,
         ]);
     }
 }

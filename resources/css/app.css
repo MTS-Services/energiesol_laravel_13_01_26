@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&family=Open+Sans:ital,wght@0,300..800;1,300..800&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 @import 'tailwindcss';
 
 @import 'tw-animate-css';
@@ -13,6 +15,10 @@
         'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol',
         'Noto Color Emoji';
 
+    --font-open-sans: "Open Sans", sans-serif;
+    --font-montserrat: "Montserrat", sans-serif;
+    --font-playfair-display: "Playfair Display", serif;
+
     --radius-lg: var(--radius);
     --radius-md: calc(var(--radius) - 2px);
     --radius-sm: calc(var(--radius) - 4px);
@@ -27,9 +33,19 @@
     --color-popover-foreground: var(--popover-foreground);
 
     --color-primary: var(--primary);
+
     --color-primary-foreground: var(--primary-foreground);
 
     --color-secondary: var(--secondary);
+
+    --color-btn-primary: var(--btn-primary);
+
+    --color-info: var(--info);
+
+    --color-hover: var(--hover);
+
+    --color-golden-yellow: var(--golden-yellow);
+
     --color-secondary-foreground: var(--secondary-foreground);
 
     --color-muted: var(--muted);
@@ -62,15 +78,19 @@
 }
 
 :root {
+    --golden-yellow: hsla(48, 100%, 50%, 1);
     --background: oklch(1 0 0);
     --foreground: oklch(0.145 0 0);
     --card: oklch(1 0 0);
     --card-foreground: oklch(0.145 0 0);
     --popover: oklch(1 0 0);
     --popover-foreground: oklch(0.145 0 0);
-    --primary: oklch(0.205 0 0);
+    --primary: oklch(97.7% 0.013 247);
     --primary-foreground: oklch(0.985 0 0);
-    --secondary: oklch(0.97 0 0);
+    --secondary: hsla(236, 71%, 4%, 1);
+    --btn-primary: hsla(236, 72%, 52%, 1);
+    --hover: hsla(236, 72%, 52%, 1);
+    --info:hsla(135, 65%, 49%, 1);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
@@ -167,12 +187,25 @@
 }
 
 @layer base {
+
     * {
-        @apply border-border;
+        @apply border-border font-open-sans;
     }
 
     body {
-        @apply bg-background text-foreground;
+        @apply bg-background text-foreground font-open-sans;
+    }
+
+    h1,
+    h2,
+    h3 {
+        @apply font-playfair-display;
+    }
+
+    h4,
+    h5,
+    h6 {
+        @apply font-montserrat;
     }
 }
 
