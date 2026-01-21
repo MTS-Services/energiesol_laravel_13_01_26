@@ -8,7 +8,7 @@ interface FrontendLayoutProps {
 
 export default function FrontendLayout({ children }: FrontendLayoutProps) {
     return (
-        <div className="flex min-h-screen flex-col">
+        <div className="flex min-h-screen flex-col relative">
             <FrontendHeader />
             <main className="flex-1 flex flex-col">{children}</main>
             <FrontendFooter />

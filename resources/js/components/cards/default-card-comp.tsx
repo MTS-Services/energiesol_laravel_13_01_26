@@ -17,7 +17,7 @@ interface Props {
 }
 function DefaultCardComp({ slogan, title, description, subtile, image, btn , children}: Props) {
     return (
-        <div className="relative z-10 mx-auto grid grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ">
+        <div className="relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ">
             <div className=" w-full">
 
                {slogan && (
