@@ -22,7 +22,7 @@ export function FrontendHeader() {
         { name: 'Services', href: route('service') },
         { name: 'Advantage', href: route('advantage') },
         { name: 'About', href: route('about') },
-        // { name: 'Contact', href: route('contact') },
+        { name: 'Contact', href: route('contact') },
     ];
 
     return (
