@@ -23,4 +23,9 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/advantage');
     }
+
+    public function about(Request $request): Response
+    {
+        return Inertia::render('frontend/about');
+    }
 }

@@ -17,17 +17,33 @@ export function FrontendHeader() {
     const getInitials = useInitials();
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
-
+    const navLinks = [
+        { name: 'Home', href: route('home') },
+        { name: 'Services', href: route('service') },
+        { name: 'Advantage', href: route('advantage') },
+        { name: 'About', href: route('about') },
+        // { name: 'Contact', href: route('contact') },
+    ];
 
     return (
-        <header className="sticky top-0 z-50 w-full border-b border-border/40 bg-background/80 backdrop-blur-md">
+        <header className="fixed bg-linear-t-b from-white/80 to-white/80 top-0 z-50 w-full bg-white/15">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
                 <div className="flex items-center gap-8">
                     <Link href="/" className="transition-transform active:scale-95">
                         <AppLogo />
                     </Link>
                 </div>
-
+                    {navLinks && (
+                        
+                       <div className='hidden md:block'>
+                            <ul className='flex justify-between gap-7'>
+                                { navLinks && navLinks.map((link) => (
+                                    <li><Link href={link.href} className="text-sm md:text-base text-secondayr hover:text-btn-primary font-open-sans font-normal ">{link.name}</Link></li>
+                                ))
+                                }
+                            </ul>
+                        </div>
+                    )}
                 <div className="flex items-center gap-3">
                     <AppearanceToggleDropdown />
 

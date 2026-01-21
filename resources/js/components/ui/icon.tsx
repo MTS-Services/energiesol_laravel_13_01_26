@@ -14,7 +14,7 @@ export function Icon({ iconNode: IconComponent, className, variant = 'default' }
 
     if (variant === 'circle') {
         return (
-            <div className="flex size-8 items-center justify-center rounded-full bg-primary text-secondary">
+            <div className="flex size-6 sm:size-8 items-center justify-center rounded-full bg-primary text-secondary">
                 <IconComponent className={className} />
             </div>
         );
