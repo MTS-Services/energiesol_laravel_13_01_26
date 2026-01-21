@@ -5,15 +5,7 @@ import { ArrowRight } from 'lucide-react';
 export default function generation() {
     return (
         <div className="">
-            <div
-                className="absolute inset-y-0 right-0 z-0 h-full w-1/2"
-                style={{
-                    backgroundImage: "url('images/frame_dot.png')",
-                    backgroundSize: 'contain',
-                    backgroundPosition: 'right center',
-                    backgroundRepeat: 'no-repeat',
-                }}
-            ></div>
+       
             <div className="relative z-10 mx-auto max-w-7xl px-6 py-15 lg:px-0 lg:py-30 flex flex-row gap-5">
                 <div className='grid lg:grid-cols-2 gird-cols gap-6 lg:gap-9'>
                     <div className=' bg-linear-to-r from-btn-primary/15 to-info/5 p-6 rounded-xl'>

@@ -45,9 +45,9 @@ export function FrontendHeader() {
                         </div>
                     )}
                 <div className="flex items-center gap-3">
-                    <AppearanceToggleDropdown />
+                    {/* <AppearanceToggleDropdown /> */}
 
-                    <div className="hidden h-6 w-[1px] bg-border md:block" /> {/* Divider */}
+                    {/* <div className="hidden h-6 w-[1px] bg-border md:block" /> Divider */}
 
                     {auth.user ? (
                         <DropdownMenu>
