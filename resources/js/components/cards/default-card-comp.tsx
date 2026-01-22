@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
+import { cn } from "@/lib/utils";   
 
 interface Props {
     slogan?: string|null;
@@ -13,12 +14,14 @@ interface Props {
     description?: string|null;    
     image?: string|null;
     btn?: {label: string|null; href: string|null}|null,
-    children?: React.ReactNode
+    children?: React.ReactNode,
+    className?: string|null
+    order?: boolean|null
 }
-function DefaultCardComp({ slogan, title, description, subtile, image, btn , children}: Props) {
+function DefaultCardComp({ slogan, title, description, subtile, image, btn , children, className, order}: Props) {
     return (
-        <div className="relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ">
-            <div className=" w-full">
+        <div className={cn('relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ', className)}>
+            <div className={`w-full ${ !order ? 'order-first' : 'order-last'}`}>
 
                {slogan && (
                  <div className="mb-3 flex flex-row items-center justify-start gap-3">
@@ -54,13 +57,6 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn , chi
                 <div className="flex flex-col">
                     <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
                         {description}
-                    </p>
-                    <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
-                        From your initial inquiry and technical planning to the
-                        final installation, we are by your side every step of
-                        the way. Our commitment doesn’t end with the
-                        installation—you can rely on our expert support for
-                        years to come.
                     </p>
                 </div>
                     )

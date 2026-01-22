@@ -1,6 +1,7 @@
 import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
+import { Icon } from "../ui/icon"
 
 interface Props {
    item?: {
@@ -40,7 +41,7 @@ function ConfiguratorCard({item}: Props) {
                     </div>
                     <div>
                         <Button className='text-sm lg:text-base' variant={'default'}>
-                        <ArrowRight className="mr-2 h-4 w-4" />
+                        <Icon iconNode={ArrowRight} variant="circle"></Icon>
                         Start Configurator
                     </Button>
                     </div>
