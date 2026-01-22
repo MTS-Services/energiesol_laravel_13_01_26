@@ -30,6 +30,10 @@ class StoreSolarInverterRequest extends FormRequest
             'note' => ['nullable', 'string'],
             'image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
             'brand_logo' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'charger_price' => ['required', 'numeric', 'min:0'],
+            'battery_price' => ['required', 'numeric', 'min:0'],
+            'charger_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
+            'battery_image' => ['nullable', 'image', 'mimes:jpeg,png,jpg,gif', 'max:2048'],
         ];
     }
 }

@@ -29,7 +29,6 @@ class DatabaseSeeder extends Seeder
             ServiceSeeder::class,
             AdvantageSeeder::class,
             ValueSeeder::class,
-            BatteryWithChargerSeeder::class,
             MonitoringSystemSeeder::class,
             ContactSeeder::class,
             InquirySeeder::class,
