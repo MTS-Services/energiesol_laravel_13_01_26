@@ -7,6 +7,8 @@ import { CardThree } from '@/components/sections/products/card-three'
 import { CardFour } from '@/components/sections/products/card-four'
 import { CardFive } from '@/components/sections/products/card-five'
 import StartConfigurator from '@/components/sections/products/start-configurator'
+import { CardSeven } from '@/components/sections/products/card-seven'
+import { CardSix } from '@/components/sections/products/card-six'
 
 export default function products() {
   return (
@@ -16,7 +18,10 @@ export default function products() {
     <CardTwo />
     <CardThree />
     <CardFour />
+    <CardSix />
+    <CardSeven />
     <CardFive />
+ 
     <StartConfigurator />
   </FrontendLayout>
   )
