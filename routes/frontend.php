@@ -11,4 +11,6 @@ Route::group([], function () {
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/configurator', [HomeController::class, 'configurator'])->name('configurator');
 
+    Route::get('/products', [HomeController::class, 'products'])->name('products');
+    
 });

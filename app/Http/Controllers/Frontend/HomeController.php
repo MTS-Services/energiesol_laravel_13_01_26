@@ -40,3 +40,8 @@ class HomeController extends Controller
     }
     }
     
+    public function products(Request $request): Response
+    {
+        return Inertia::render('frontend/products');
+    }
+}

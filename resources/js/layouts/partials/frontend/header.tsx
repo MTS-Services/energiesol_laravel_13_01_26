@@ -24,7 +24,7 @@ export function FrontendHeader() {
         { name: 'Advantage', href: route('advantage') },
         { name: 'About', href: route('about') },
         { name: 'Contact', href: route('contact') },
-        { name: 'Configurator', href: route('configurator') },
+        { name: 'Our Products', href: route('products') },
     ];
 
     return (
