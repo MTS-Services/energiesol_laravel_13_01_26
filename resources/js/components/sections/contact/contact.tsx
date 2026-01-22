@@ -2,9 +2,9 @@ import { ContactForm } from '@/components/cards/contact-form';
 
 function Contact() {
     return (
-        <div className="relative isolate  bg-linear-to-r from-btn-primary/15 to-info/5">
+        <div className="relative isolate z-10  bg-linear-to-r from-btn-primary/15 to-info/5">
             <div
-                className="absolute  z-0  top-0 right-0 bg-cover bg-center bg-no-repeat w-1/2 h-full opacity-70"
+                className="absolute  -z-10  top-0 right-0 bg-cover bg-center bg-no-repeat w-1/2 h-full opacity-70"
                 style={{
                     backgroundImage: "url('/images/frame_dot.png')",
                     backgroundSize: 'cover',
