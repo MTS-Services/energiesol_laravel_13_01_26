@@ -5,6 +5,8 @@ import React from 'react'
 import { CardTwo } from '@/components/sections/products/card-two'
 import { CardThree } from '@/components/sections/products/card-three'
 import { CardFour } from '@/components/sections/products/card-four'
+import { CardFive } from '@/components/sections/products/card-five'
+import StartConfigurator from '@/components/sections/products/start-configurator'
 
 export default function products() {
   return (
@@ -14,6 +16,8 @@ export default function products() {
     <CardTwo />
     <CardThree />
     <CardFour />
+    <CardFive />
+    <StartConfigurator />
   </FrontendLayout>
   )
 }
