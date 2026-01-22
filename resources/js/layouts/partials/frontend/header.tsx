@@ -73,8 +73,8 @@ export function FrontendHeader() {
                                 <Button variant="ghost" size="sm" className="text-sm font-medium">Log in</Button>
                             </Link>
                             <Link href={route('configurator')} className='rounded-full!'>
-                                <Button size="sm" className="bg-btn-primary rounded-full! py-4!">
-                                    <Icon iconNode={ArrowRight} variant="circle" className="mr-2" />
+                                <Button size="sm" className="bg-btn-primary rounded-full! py-5!">
+                                    <Icon iconNode={ArrowRight} variant="circle" className='w-4! h-4! bg-primary p-3 rounded-full text-btn-primary'/>
                                     Configurator
                                 </Button>
                             </Link>

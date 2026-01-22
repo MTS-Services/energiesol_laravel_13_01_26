@@ -1,5 +1,17 @@
-import React from "react";
+import type { ComponentType, MouseEventHandler, SVGProps } from "react";
 import { cn } from "@/lib/utils"; // if you don't have this helper, I added a fallback below.
+
+type IconComponent = ComponentType<{ className?: string }> | ComponentType<SVGProps<SVGSVGElement>>;
+
+interface Configurator1CardProps {
+  title?: string;
+  area?: string;
+  icon?: IconComponent;
+  selected?: boolean;
+  disabled?: boolean;
+  onClick?: MouseEventHandler<HTMLButtonElement>;
+  className?: string;
+}
 
 export default function Configurator1Card({
   title = "",
@@ -9,26 +21,26 @@ export default function Configurator1Card({
   disabled = false,
   onClick,
   className = "",
-}) {
+}: Configurator1CardProps) {
   return (
     <button
       type="button"
       disabled={disabled}
       onClick={onClick}
       className={cn(
-        "group relative w-full overflow-hidden rounded-2xl border bg-linear-to-br from-slate-50 to-emerald-50 px-6 py-7 text-center shadow-sm transition-all",
+        "group relative w-full  overflow-hidden rounded-2xl  bg-linear-to-br from-slate-50 to-emerald-50 px-6 py-9 text-center shadow-sm transition-all",
         "hover:-translate-y-0.5 hover:shadow-md",
-        selected && "ring-2 ring-blue-500 ring-offset-2",
+        selected && "ring-2 ring-white ring-offset-2",
         disabled && "cursor-not-allowed opacity-60 hover:translate-y-0 hover:shadow-sm",
         className
       )}
     >
       {/* subtle tint overlay like the screenshot */}
-      <span className="pointer-events-none absolute inset-0 opacity-70 [background:radial-gradient(120%_120%_at_50%_0%,rgba(59,130,246,0.10)_0%,rgba(16,185,129,0.08)_45%,transparent_70%)]" />
-
+          <span className="pointer-events-none absolute inset-0 opacity-70  bg-linear-to-r from-btn-primary/15 to-info/5" />
+          
       <div className="relative flex flex-col items-center">
         <div className="mb-3 flex h-16 w-16 items-center justify-center rounded-xl">
-          {Icon ? <Icon className="h-14 w-14 text-blue-600" /> : null}
+          {Icon ? <Icon className="h-14 w-14 text-blue-500" /> : null}
         </div>
 
         <div className="text-lg font-semibold text-slate-900">{title}</div>
