@@ -3,13 +3,7 @@ import React from 'react'
 import { DefaultCardComp } from '@/components/cards/default-card-comp'
 
 function CardOne() {
-    const items = {
-        slogan: 'Test',
-        title: {
-            initial: 'Test',
-        },
-        description: 'Test',
-    }
+ 
   return (
     <div className="z-10 mx-auto max-w-7xl px-6 py-15 lg:px-0 lg:py-30">
        <div className=' border border-secondary/20 py-20 rounded-md'>
