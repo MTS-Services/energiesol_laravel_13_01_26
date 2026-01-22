@@ -38,7 +38,6 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/configurator');
     }
-    }
     
     public function products(Request $request): Response
     {
