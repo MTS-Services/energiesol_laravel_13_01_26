@@ -1,3 +1,4 @@
+import { BoxCard } from '@/components/cards/box-card'
 import { FeatureCard } from '../../cards/feature-card'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
@@ -12,8 +13,9 @@ export default function feature() {
             description: 'We provide a range of services to help you navigate the complex world of solar energy, from installation to maintenance and beyond.',
             btn: {
                 label: 'Discover our history',
-                link: '#'
-            }
+                href: '#'
+            }, 
+          
         },
         {
             image: '/images/feature2.png',
@@ -21,7 +23,7 @@ export default function feature() {
             description: 'By utilizing fully digitized processes, we reduce overhead to offer you top-tier solar technology at a competitive price. Get the best performance-to-cost ratio in the industry.',
             btn: {
                 label: 'Get a free estimate',
-                link: '#'
+                href: '#'
             }
         },
         {
@@ -30,7 +32,7 @@ export default function feature() {
             description: 'We pride ourselves on providing honest, transparent, and pressure-free advice. Our consultations are tailored to your specific home needs, helping you make a confident decision for your future.',
             btn: {
                 label: 'Book a consultation',
-                link: '#'
+                href: '#'
             }
         }
     ]
@@ -46,7 +48,8 @@ export default function feature() {
 
                   {
                 items.map((items, index) => (
-                    <FeatureCard key={index} item={items} />
+                    // <FeatureCard key={index} item={items} />
+                    <BoxCard key={index} item={items} />
                 ))}
             </div>
         </div>
