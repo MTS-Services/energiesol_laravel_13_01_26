@@ -1,3 +1,4 @@
+import { BoxCard } from "@/components/cards/box-card";
 import { ServiceCard } from "@/components/cards/service-card";
 
 export default function Service() {
@@ -6,6 +7,7 @@ export default function Service() {
     image: string;
     title: string;
     description: string;
+    changeOrder?: boolean|null
     };
     const items: ServiceItem[] = [
   {
@@ -13,12 +15,14 @@ export default function Service() {
     image: "/images/service1.jpg",
     title: "End-to-End Solar Expertise.",
     description: "As your full-service solar partner, we support you at every step — from initial consultation to final commissioning and grid connection. Our digital process ensures clarity, comfort, and full transparency.",
+   
   },
   {
     slogan: "PROJECT EXECUTION",
     image: "/images/service2.jpg",
     title: "Seamless Project Management",
     description: "We manage the complete implementation of your solar system — from sourcing high-quality components to coordinating professional installation — ensuring a smooth and reliable experience.",
+     changeOrder: true,
   },
   {
     slogan: "SYSTEM PLANNING",
@@ -31,6 +35,7 @@ export default function Service() {
     image: "/images/service4.jpg",
     title: "Hassle-Free Grid Connection",
     description: "We handle all approvals, technical coordination, and documentation to connect your system smoothly and securely to the local power grid.",
+    changeOrder: true,
   },
 ];
 
@@ -55,8 +60,10 @@ export default function Service() {
 
                         {
                             items.map((item, index)=>(
-                                
-                                <ServiceCard slogan={item.slogan} image={item.image} title={item.title} description={item.description} order={index % 2 !== 0} className={`mt-20 ${index === items.length - 1 ? 'border-none' : ''}`} />
+                              
+                              <BoxCard key={index} item={item} className={'grid-cols-2 gap-10 from-transparent to-transparent border-b border-[primary/70] pb-10 rounded-[0px]'} />
+
+                                // <ServiceCard slogan={item.slogan} image={item.image} title={item.title} description={item.description} order={index % 2 !== 0} className={`mt-20 ${index === items.length - 1 ? 'border-none' : ''}`} />
                             ))
                         }
                     

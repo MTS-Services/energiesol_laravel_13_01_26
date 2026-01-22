@@ -9,9 +9,9 @@ export default function banner() {
         <div className="relative isolate overflow-hidden">
             <div className="bannerArea relative flex flex-col">
                 <div
-                    className="absolute inset-0 z-0 scale-x-[-1] bg-cover bg-center bg-no-repeat"
+                    className="absolute inset-0 z-0  bg-cover bg-center bg-no-repeat"
                     style={{
-                        backgroundImage: "url('/images/banner3.jpg')",
+                        backgroundImage: "url('/images/advantage-banner.png')",
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
                     }}
