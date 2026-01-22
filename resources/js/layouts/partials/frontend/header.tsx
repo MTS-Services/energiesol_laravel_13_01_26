@@ -6,11 +6,12 @@ import { useInitials } from '@/hooks/use-initials';
 import { login, register } from '@/routes';
 import { type SharedData } from '@/types';
 import { Link, usePage } from '@inertiajs/react';
-import { Menu, XIcon } from 'lucide-react';
+import { ArrowRight, Menu, XIcon } from 'lucide-react';
 import { useState } from 'react';
 import AppLogo from '@/components/app-logo';
 import { UserMenuContent } from '@/components/user-menu-content';
 import AppearanceToggleDropdown from '@/components/appearance-dropdown';
+import { Icon } from '@/components/ui/icon';
 
 export function FrontendHeader() {
     const { auth } = usePage<SharedData>().props;
@@ -23,6 +24,7 @@ export function FrontendHeader() {
         { name: 'Advantage', href: route('advantage') },
         { name: 'About', href: route('about') },
         { name: 'Contact', href: route('contact') },
+        { name: 'Configurator', href: route('configurator') },
     ];
 
     return (
@@ -33,17 +35,17 @@ export function FrontendHeader() {
                         <AppLogo />
                     </Link>
                 </div>
-                    {navLinks && (
-                        
-                       <div className='hidden md:block'>
-                            <ul className='flex justify-between gap-7'>
-                                { navLinks && navLinks.map((link) => (
-                                    <li><Link href={link.href} className="text-sm md:text-base text-secondayr hover:text-btn-primary font-open-sans font-normal ">{link.name}</Link></li>
-                                ))
-                                }
-                            </ul>
-                        </div>
-                    )}
+                {navLinks && (
+
+                    <div className='hidden md:block'>
+                        <ul className='flex justify-between gap-7'>
+                            {navLinks && navLinks.map((link) => (
+                                <li><Link href={link.href} className="text-sm md:text-base text-secondayr hover:text-btn-primary font-open-sans font-normal ">{link.name}</Link></li>
+                            ))
+                            }
+                        </ul>
+                    </div>
+                )}
                 <div className="flex items-center gap-3">
                     {/* <AppearanceToggleDropdown /> */}
 
@@ -70,9 +72,10 @@ export function FrontendHeader() {
                             <Link href={login()}>
                                 <Button variant="ghost" size="sm" className="text-sm font-medium">Log in</Button>
                             </Link>
-                            <Link href={register()}>
-                                <Button size="sm" className="bg-violet-600 text-white shadow-sm hover:bg-violet-700">
-                                    Get Started
+                            <Link href={route('configurator')} className='rounded-full!'>
+                                <Button size="sm" className="bg-btn-primary rounded-full! py-4!">
+                                    <Icon iconNode={ArrowRight} variant="circle" className="mr-2" />
+                                    Configurator
                                 </Button>
                             </Link>
                         </div>

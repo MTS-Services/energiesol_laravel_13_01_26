@@ -33,4 +33,10 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/contact');
     }
-}
+    
+    public function configurator(Request $request): Response
+    {
+        return Inertia::render('frontend/configurator');
+    }
+    }
+    
