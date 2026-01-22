@@ -1,16 +1,18 @@
+import { BoxCard } from "@/components/cards/box-card";
 import { ServiceCard } from "@/components/cards/service-card";
 
 export default function Values() {
     type ServiceItem = {
-    slogan: string;
+    slogan?: string|null;
     image: string;
     title: string;
     description: string;
     btn?: {label: string|null; href: string|null}|null;
+    changeOrder?: boolean|null;
     };
     const items: ServiceItem[] = [
   {
-    slogan: "FULL-SERVICE APPROACH",
+
     image: "/images/service1.jpg",
     title: "End-to-End Solar Expertise.",
     description: "As your full-service solar partner, we support you at every step — from initial consultation to final commissioning and grid connection. Our digital process ensures clarity, comfort, and full transparency.",
@@ -20,14 +22,15 @@ export default function Values() {
     }
     },
   {
-    slogan: "PROJECT EXECUTION",
+
     image: "/images/service2.jpg",
     title: "Seamless Project Management",
     description: "We manage the complete implementation of your solar system — from sourcing high-quality components to coordinating professional installation — ensuring a smooth and reliable experience.",
     btn: {
       label: "Start configurator",
       href: "#",
-    }
+    },
+    changeOrder: true,
 },
 ];
 
@@ -52,8 +55,9 @@ export default function Values() {
 
                         {
                             items.map((item, index)=>(
+                              <BoxCard key={index} item={item} className={'grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} />
                                 
-                                <ServiceCard slogan={item.slogan} image={item.image} title={item.title} description={item.description} order={index % 2 === 0} className={`mt-20 ${index === items.length - 1 ? 'border-none' : ''}`} btn={item.btn} />
+                                // <ServiceCard slogan={item.slogan} image={item.image} title={item.title} description={item.description} order={index % 2 === 0} className={`mt-20 ${index === items.length - 1 ? 'border-none' : ''}`} btn={item.btn} />
                             ))
                         }
                     
