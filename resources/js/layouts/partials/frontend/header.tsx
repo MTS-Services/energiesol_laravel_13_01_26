@@ -30,7 +30,7 @@ export function FrontendHeader() {
         <header className="fixed bg-linear-t-b from-white/80 to-white/80 top-0 z-50 w-full bg-white/15">
             <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
                 <div className="flex items-center gap-8">
-                    <Link href="/" className="transition-transform active:scale-95">
+                    <Link href="/" className="">
                         <AppLogo />
                     </Link>
                 </div>
@@ -53,7 +53,8 @@ export function FrontendHeader() {
                     {auth.user ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
-                                <Button variant="ghost" className="relative h-9 w-9 rounded-full ring-offset-background transition-all hover:ring-2 hover:ring-ring">
+                                <Button variant="ghost" className="relative h-9 w-9 rounded-full  ">
+                                    
                                     <Avatar className="h-9 w-9">
                                         <AvatarImage src={auth.user.avatar} alt={auth.user.name} />
                                         <AvatarFallback className="bg-violet-600 text-white text-xs">
@@ -108,9 +109,17 @@ export function FrontendHeader() {
                                             </Link>
                                         </>
                                     ) : (
+                                      <div>
                                         <Link href={route('admin.dashboard')} className="block w-full" onClick={() => setIsMobileMenuOpen(false)}>
                                             <Button className="w-full bg-violet-600 py-6">Dashboard</Button>
                                         </Link>
+                                        <ul className='flex flex-col justify-between gap-2 mt-3'>
+                                            { navLinks && navLinks.map((link) => (
+                                                <li><Link href={link.href} className="w-full inline-block px-2 py-2 rounded-full text-primary bg-btn-primary hover:bg-btn-primary/90">{link.name}</Link></li>
+                                            ))
+                                            }
+                                        </ul>
+                                      </div>
                                     )}
                                 </div>
                             </div>
