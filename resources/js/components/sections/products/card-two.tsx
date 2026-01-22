@@ -40,7 +40,7 @@ function CardTwo() {
 
 
             <div className='mt-7'>
-                <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Expert Guidance for Every Project</h3>
+                <h3 className='text-secondary text-2xl font-semibold '>Expert Guidance for Every Project</h3>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
                 Detailed technical specifications are available in our downloadable product sheets. Discover the right fit for your project:
                 </p>
