@@ -12,7 +12,7 @@ function Contact() {
                 }}
             ></div>
             
-            <div className="z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-6 py-15 lg:px-0 lg:py-30">
+            <div className="z-10 mx-auto flex max-w-7xl flex-col items-center justify-center px-6 py-10 lg:px-0 lg:py-20">
                 <div className="mb-3 flex flex-row items-center justify-center gap-3">
                     <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
                     <p className="mt-1 text-sm font-normal uppercase md:text-base md:text-secondary">

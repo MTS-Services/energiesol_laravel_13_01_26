@@ -33,4 +33,8 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/contact');
     }
+    public function products(Request $request): Response
+    {
+        return Inertia::render('frontend/products');
+    }
 }

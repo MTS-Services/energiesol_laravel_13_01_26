@@ -6,7 +6,7 @@ export default function StartConfigurator() {
         changeOrder: false,
     }
     return (
-        <div className='pb-15 lg:pb-30'>
+        <div className='py-15 lg:py-30'>
             <div className="relative ">
             {/* <div className='absolute right-0 top-0w-full inset-0'
                 style={{

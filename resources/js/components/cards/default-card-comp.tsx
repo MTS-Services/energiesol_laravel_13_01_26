@@ -55,13 +55,6 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn , chi
                     <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
                         {description}
                     </p>
-                    <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
-                        From your initial inquiry and technical planning to the
-                        final installation, we are by your side every step of
-                        the way. Our commitment doesn’t end with the
-                        installation—you can rely on our expert support for
-                        years to come.
-                    </p>
                 </div>
                     )
                 }

@@ -10,5 +10,6 @@ Route::group([], function () {
     Route::get('/advantage', [HomeController::class, 'advantage'])->name('advantage');
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
+    Route::get('/products', [HomeController::class, 'products'])->name('products');
     
 });
