@@ -17,9 +17,13 @@ return new class extends Migration
             $table->string('brand_logo')->nullable();
             $table->string('title');
             $table->string('image')->nullable();
-            $table->string('description');    
-            $table->decimal('price', 8, 2);       
+            $table->string('description');
+            $table->decimal('price', 15, 2);
             $table->string('note');
+            $table->string('charger_image');
+            $table->string('battery_image');
+            $table->decimal('charger_price', 15, 2);
+            $table->decimal('battery_price', 15, 2);
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

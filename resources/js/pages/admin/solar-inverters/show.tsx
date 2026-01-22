@@ -88,6 +88,46 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
           </div>
 
           <div className="flex flex-col space-y-1">
+            <span className="font-semibold">Charger Price</span>
+            <span className="text-lg font-medium">
+              ${solarInverter.charger_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
+          </div>
+
+          <div className="flex flex-col space-y-1">
+            <span className="font-semibold">Battery Price</span>
+            <span className="text-lg font-medium">
+              ${solarInverter.battery_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
+            </span>
+          </div>
+
+          <div className="flex flex-col space-y-1">
+            <span className="font-semibold">Charger Image</span>
+            {solarInverter.charger_image ? (
+              <img 
+                src={solarInverter.charger_image} 
+                alt={`${solarInverter.title} charger image`}
+                className="max-w-md w-full h-auto object-contain border rounded"
+              />
+            ) : (
+              <span className="text-gray-400">No charger image uploaded</span>
+            )}
+          </div>
+
+          <div className="flex flex-col space-y-1">
+            <span className="font-semibold">Battery Image</span>
+            {solarInverter.battery_image ? (
+              <img 
+                src={solarInverter.battery_image} 
+                alt={`${solarInverter.title} battery image`}
+                className="max-w-md w-full h-auto object-contain border rounded"
+              />
+            ) : (
+              <span className="text-gray-400">No battery image uploaded</span>
+            )}
+          </div>
+
+          <div className="flex flex-col space-y-1">
             <span className="font-semibold">Status</span>
             <Badge variant={solarInverter.status ? 'default' : 'secondary'}>
               {solarInverter.status ? 'Active' : 'Inactive'}

@@ -20,6 +20,10 @@ export default function CreateSolarInverter() {
     status: true,
     price: 0,
     note: '',
+    charger_price: 0,
+    battery_price: 0,
+    charger_image: null as File | null,
+    battery_image: null as File | null,
   });
 
   function handleSubmit(e: React.FormEvent) {
@@ -123,8 +127,56 @@ export default function CreateSolarInverter() {
             </div>
 
             <div className="grid gap-2">
+              <Label htmlFor="charger_price">Charger Price</Label>
+              <Input
+                id="charger_price"
+                type="number"
+                step="0.01"
+                value={data.charger_price}
+                onChange={(e) => setData('charger_price', parseFloat(e.target.value) || 0)}
+                required
+              />
+              <InputError message={errors.charger_price} />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="battery_price">Battery Price</Label>
+              <Input
+                id="battery_price"
+                type="number"
+                step="0.01"
+                value={data.battery_price}
+                onChange={(e) => setData('battery_price', parseFloat(e.target.value) || 0)}
+                required
+              />
+              <InputError message={errors.battery_price} />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="charger_image">Charger Image</Label>
+              <Input
+                id="charger_image"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setData('charger_image', e.target.files?.[0] || null)}
+              />
+              <InputError message={errors.charger_image} />
+            </div>
+
+            <div className="grid gap-2">
+              <Label htmlFor="battery_image">Battery Image</Label>
+              <Input
+                id="battery_image"
+                type="file"
+                accept="image/*"
+                onChange={(e) => setData('battery_image', e.target.files?.[0] || null)}
+              />
+              <InputError message={errors.battery_image} />
+            </div>
+
+            <div className="grid gap-2">
               <Label>Status</Label>
-              <Select 
+              <Select
                 value={data.status ? '1' : '0'}
                 onValueChange={(value) => setData('status', value === '1')}
               >
