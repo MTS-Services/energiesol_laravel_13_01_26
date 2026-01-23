@@ -10,6 +10,10 @@ interface Props {
                 initial?: string|null;
                 middle?: string|null;
                 last?: string|null;
+                breakPoint?: {
+                    after?: boolean|null;
+                    before?: boolean|null;
+                }|null;
             }|null;
     description?: string|null;    
     image?: string|null;
@@ -21,7 +25,7 @@ interface Props {
 function DefaultCardComp({ slogan, title, description, subtile, image, btn , children, className, order}: Props) {
     return (
         <div className={cn('relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ', className)}>
-            <div className={`w-full ${ !order ? 'order-first' : 'order-last'}`}>
+            <div className={`w-full py-18.5 ${ !order ? 'order-first' : 'order-last'}`}>
 
                {slogan && (
                  <div className="mb-3 flex flex-row items-center justify-start gap-3">
@@ -34,11 +38,13 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn , chi
                 
                { title && (
                    <div className="">
-                    <h2 className="pr-0 font-montserrat text-3xl font-semibold lg:pr-10 lg:text-[40px]">
+                    <h2 className="pr-0 font-montserrat text-3xl font-semibold  lg:text-[40px]">
                         {title.initial}
+                        {title.breakPoint?.after && <br className="hidden lg:block"/>}
                         <span className="font-playfair-display font-semibold text-info italic">
                            {title.middle}
                         </span>
+                        {title.breakPoint?.before && <br className="hidden lg:block"/>}
                         {title.last}
                     </h2>
                 </div>
@@ -85,8 +91,8 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn , chi
                
             </div>
             {image && (
-                <div className="hidden  lg:block">
-                    <img src={image} alt="" />
+                <div className="hidden  lg:block ">
+                    <img src={image} alt="" className="w-full h-full" />
                 </div>
             )}
         </div>
