@@ -1,5 +1,4 @@
 import { BoxCard } from '@/components/cards/box-card'
-import { FeatureCard } from '../../cards/feature-card'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 import { ArrowRight } from 'lucide-react'

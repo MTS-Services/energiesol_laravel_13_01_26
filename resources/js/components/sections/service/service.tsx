@@ -1,5 +1,5 @@
 import { BoxCard } from "@/components/cards/box-card";
-import { ServiceCard } from "@/components/cards/service-card";
+
 
 export default function Service() {
     type ServiceItem = {
