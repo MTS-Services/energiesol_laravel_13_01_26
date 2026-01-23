@@ -5,16 +5,16 @@ export default function OptionalBanner() {
     const item = {
 
         title: {
-            initial: 'Proven Solar',
-            middle: 'Success',
-            last: 'Stories Near You',
+            initial: 'Bewährte ',
+            middle: 'Erfolgsgeschichten',
+            last: ' zum Thema Solarenergie in Ihrer Nähe',
             breakPoint: {
                 after: true,
             }
         },
-        description: 'Backed by decades of industry expertise, our dedicated specialists provide comprehensive phone support to help you select the right technology and navigate your journey toward energy independence.',
+        description: 'Gestützt auf jahrzehntelange Branchenerfahrung bieten unsere engagierten Spezialisten umfassenden telefonischen Support, um Ihnen bei der Auswahl der richtigen Technologie zu helfen und Sie auf Ihrem Weg zur Energieunabhängigkeit zu begleiten.',
         btn: {
-            label: 'Configurator',
+            label: 'Konfigurator',
             href: '#',
             buttonVariant: 'default',
             buttonClassName: '',
@@ -36,9 +36,9 @@ export default function OptionalBanner() {
                 }}
             ></div>
             <div className="relative z-10 mx-auto max-w-7xl  px-6 py-15 lg:px-0 lg:py-30">
-           
 
-               <SingleBanner item={item} />
+
+                <SingleBanner item={item} />
             </div>
         </div>
     );

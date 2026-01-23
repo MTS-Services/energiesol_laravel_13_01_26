@@ -2,36 +2,36 @@ import { ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
 
-interface Props{
-    slogan?: string|null,
-    item?:  {
-        image?: string|null,
+interface Props {
+    slogan?: string | null,
+    item?: {
+        image?: string | null,
         title?: {
-            initial?: string|null,
-            middle?: string|null,
-            last?: string|null,
+            initial?: string | null,
+            middle?: string | null,
+            last?: string | null,
             breakPoint?: {
-                after?: boolean|null,
-                before?: boolean|null
-            }|null
+                after?: boolean | null,
+                before?: boolean | null
+            } | null
         },
         btn?: {
-            label?: string|null,
-            href?: string|null,
-            buttonClassName?: string|null,
-            buttonVariant?: string|null,
-            iconParentClassName?: string|null,
-            iconClassName?: string|null,
-            iconVariant?: string|null,
-            iconNode?: LucideIcon|null,
+            label?: string | null,
+            href?: string | null,
+            buttonClassName?: string | null,
+            buttonVariant?: string | null,
+            iconParentClassName?: string | null,
+            iconClassName?: string | null,
+            iconVariant?: string | null,
+            iconNode?: LucideIcon | null,
 
-        }|null,
-        description?: string|null,
+        } | null,
+        description?: string | null,
     }
 }
-function Banner({item}: Props) {
-   
- return (
+function Banner({ item }: Props) {
+
+    return (
         <div className="relative isolate overflow-hidden">
             <div className="bannerArea relative flex flex-col">
                 <div
@@ -45,7 +45,7 @@ function Banner({item}: Props) {
                 {/* <div className="absolute inset-y-0 left-0 z-[1] w-[30%] bg-gradient-to-r from-white/30 via-white/20 to-transparent backdrop-blur-sm"></div> */}
                 <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
                     <div className="col-span-1 w-full lg:w-3/5">
-                         {
+                        {
                             item?.slogan && (
 
                                 <div className="inline-flex gap-3 items-center">
@@ -58,13 +58,13 @@ function Banner({item}: Props) {
                             )
                         }
                         <div className="block gap-3 pt-2">
-                           {item?.title && (
-                            <h2 className="font-montserrat text-3xl font-semibold lg:text-[40px] mb-2 text-center">{item.title.initial } 
-                                { item.title.breakPoint?.before && <br className="hidden lg:block " /> }
-                                <span className="font-playfair-display text-info italic"> {item.title.middle} </span> 
-                                { item.title.breakPoint?.after && <br className="hidden lg:block" /> }
-                                {item.title.last}
-                            </h2>
+                            {item?.title && (
+                                <h2 className="font-montserrat text-3xl font-semibold lg:text-[40px] mb-2 text-center lg:text-start">{item.title.initial}
+                                    {item.title.breakPoint?.before && <br className="hidden lg:block " />}
+                                    <span className="font-playfair-display text-info italic"> {item.title.middle} </span>
+                                    {item.title.breakPoint?.after && <br className="hidden lg:block" />}
+                                    {item.title.last}
+                                </h2>
                             )}
                         </div>
                         <div className="pt-3 pb-8">
@@ -74,8 +74,8 @@ function Banner({item}: Props) {
                         </div>
                         <div>
                             <Button size="default" variant={item?.btn?.buttonVariant || "default"} className={item?.btn?.buttonClassName || ""}>
-                                <Icon iconNode={item?.btn?.iconNode || ArrowRight} variant={item?.btn?.iconVariant || "circle"} className={item?.btn?.iconParentClassName || ""}  iconClassName={item?.btn?.iconClassName || ""} />
-                             Speak with an Expert 
+                                <Icon iconNode={item?.btn?.iconNode || ArrowRight} variant={item?.btn?.iconVariant || "circle"} className={item?.btn?.iconParentClassName || ""} iconClassName={item?.btn?.iconClassName || ""} />
+                                Meine Konfiguration starten
                             </Button>
                         </div>
 
