@@ -1,4 +1,5 @@
 import { Banner } from '@/components/cards/banner';
+import { ArrowRight } from 'lucide-react';
 
 
 export default function banner() {
@@ -18,9 +19,10 @@ export default function banner() {
         btn: {
             label: 'Meine Konfiguration starten',
             href: '#',
-            parentIconClassName: 'bg-primary',
-            iconClassName: 'text-secondary',
-        }
+            iconParentClassName: 'bg-primary!',
+            iconClassName: 'text-secondary!',
+            iconNode: ArrowRight,
+        },
     }
     return (
 
