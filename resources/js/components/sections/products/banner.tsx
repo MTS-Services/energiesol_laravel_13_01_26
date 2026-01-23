@@ -14,11 +14,11 @@ export default function banner() {
         },
 
         description: 'High-performance solar solutions for a smarter, independent energy future.',
-        image: '/images/service-banner.png',
+        image: '/images/product-banner.png',
         btn: {
             label: ' Start My Configuration',
             href: '#',
-            parentIconClassName: 'bg-primary',
+        iconParentClassName: 'bg-primary',
             iconClassName: 'text-secondary',
         }
     }

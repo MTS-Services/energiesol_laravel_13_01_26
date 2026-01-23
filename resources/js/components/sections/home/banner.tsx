@@ -42,7 +42,7 @@ export default function banner() {
                         </div>
                         <div>
                             <Button size="default" className="">
-                                <Icon iconNode={ArrowRight} variant="circle" />
+                                <Icon iconNode={ArrowRight} variant="circle" className='bg-primary!' iconClassName='text-secondary'/>
                                 Konfigurator
                             </Button>
                         </div>
