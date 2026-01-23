@@ -10,7 +10,7 @@ export function FrontendFooter() {
                     <div className="space-y-4">
                         <AppLogo />
                         <p className="max-w-xs text-sm leading-6 text-muted-foreground">
-                            Crafting beautiful digital experiences for modern teams. Build, ship, and scale with confidence.
+                            Energiesol ist ein unabhängiger Anbieter von Energielösungen. Wir erbringen unsere Dienstleistungen über ein zertifiziertes Netzwerk von lizenzierten regionalen Installateuren und Premium-Gerätepartnern.
                         </p>
                     </div>
 
@@ -46,7 +46,7 @@ export function FrontendFooter() {
                 {/* Bottom Bar */}
                 <div className="mt-16 border-t border-border pt-8 flex flex-col md:flex-row justify-between items-center gap-4">
                     <p className="text-xs text-muted-foreground">
-                        &copy; {new Date().getFullYear()} Team Artisan Inc. All rights reserved.
+                        &copy; {new Date().getFullYear()} Energiesol. Alle Rechte vorbehalten
                     </p>
                     <div className="flex items-center space-x-4">
                         <div className="h-1 w-1 rounded-full bg-muted-foreground/30" />

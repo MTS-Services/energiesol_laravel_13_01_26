@@ -6,16 +6,16 @@ import { DefaultCardComp } from '@/components/cards/default-card-comp';
 
 export default function DeliveryEnergy() {
     const item = {
-        slogan: "Nationwide Solar Coverage",
+        slogan: "Bundesweite Solarabdeckung",
         image: '/images/delivery-engergy.png',
         title: {
-            initial: 'We deliver energy independence in north ',
-            middle: 'Germany',
+            middle: 'Norddeutschlands',
+            last: ' Energie-Unabhängigkeit',
         },
         btn: {
             label: 'Configurator',
             href: '#',
-         
+
         },
     }
     return (
@@ -73,21 +73,14 @@ export default function DeliveryEnergy() {
                 </div>
             </div> */}
             <DefaultCardComp image={item.image} title={item.title} slogan={item.slogan} btn={item.btn} >
-                 <div className="flex flex-col">
-                        <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
-                            Every home has its own specific energy requirements.
-                            We provide manufacturer-independent planning and
-                            connect you with our specialized regional teams to
-                            ensure the perfect fit for your roof.
-                        </p>
-                        <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
-                            From your initial inquiry and technical planning to
-                            the final installation, we are by your side every
-                            step of the way. Our commitment doesn’t end with the
-                            installation—you can rely on our expert support for
-                            years to come.
-                        </p>
-                    </div>
+                <div className="flex flex-col">
+                    <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
+                        Jedes Haus hat seinen eigenen, spezifischen Energiebedarf. Wir bieten herstellerunabhängige Planung und vermitteln Ihnen unsere spezialisierten regionalen Teams, um die optimale Lösung für Ihr Dach zu gewährleisten.
+                    </p>
+                    <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
+                        Von Ihrer ersten Anfrage und der technischen Planung bis zur finalen Installation begleiten wir Sie auf jedem Schritt. Unser Engagement endet nicht mit der Installation – Sie können sich auch in den kommenden Jahren auf unsere kompetente Unterstützung verlassen.
+                    </p>
+                </div>
             </DefaultCardComp>
         </div>
     );

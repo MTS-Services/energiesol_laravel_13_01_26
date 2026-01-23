@@ -14,10 +14,10 @@ export default function feature() {
             btn: {
                 label: 'Unsere Geschichte',
                 href: '#',
-                iconClassName:"text-secondary!",
+                iconClassName: "text-secondary!",
                 iconParentClassName: 'bg-primary!',
-            }, 
-          
+            },
+
         },
         {
             image: '/images/feature2.png',
@@ -26,7 +26,7 @@ export default function feature() {
             btn: {
                 label: 'Unsere Geschichte',
                 href: '#',
-                iconClassName:"text-secondary!",
+                iconClassName: "text-secondary!",
                 iconParentClassName: 'bg-primary!',
             }
         },
@@ -36,8 +36,8 @@ export default function feature() {
             description: 'Wir legen großen Wert auf ehrliche, transparente und unbelastende Beratung. Unsere Beratungen sind auf Ihre spezifischen Hausbedürfnisse zugeschnitten und helfen Ihnen, eine sichere Entscheidung für Ihre Zukunft zu treffen.',
             btn: {
                 label: 'Unsere Geschichte',
-               iconClassName:"text-secondary!",
-               iconParentClassName: 'bg-primary!',
+                iconClassName: "text-secondary!",
+                iconParentClassName: 'bg-primary!',
             }
         }
     ]
@@ -51,24 +51,24 @@ export default function feature() {
             }
         }
     }
-  return (
-    <div>
-        <div className='z-10 mx-auto max-w-7xl lg:py-30 py-15 px-6 lg:px-0'>
-           {/* <div className='flex flex-col lg:justify-center justify-start lg:items-center items-start'>
+    return (
+        <div>
+            <div className='z-10 mx-auto max-w-7xl lg:py-30 py-15 px-6 lg:px-0'>
+                {/* <div className='flex flex-col lg:justify-center justify-start lg:items-center items-start'>
             <h2 className='text-3xl text-center lg:text-[40px] font-semibold font-montserrat'> <span className='text-info italic font-semibold font-playfair-display'>Energy</span> <span className='text-info italic font-semibold font-playfair-display inline-block lg:block'>Independence</span> </h2>
          
            </div> */}
-           <SectionHeader item={SectionHeaderData} className={'px-0 lg:px-50'}/>
+                <SectionHeader item={SectionHeaderData} className={'px-0 lg:px-50'} />
 
-           <div className='features pt-6 lg:pt-10 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-6'>
+                <div className='features pt-6 lg:pt-10 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-6'>
 
-                  {
-                items.map((items, index) => (
-                    // <FeatureCard key={index} item={items} />
-                    <BoxCard key={index} item={items} />
-                ))}
+                    {
+                        items.map((items, index) => (
+                            // <FeatureCard key={index} item={items} />
+                            <BoxCard key={index} item={items} />
+                        ))}
+                </div>
             </div>
         </div>
-    </div>
-  )
+    )
 }
