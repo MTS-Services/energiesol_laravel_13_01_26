@@ -52,7 +52,8 @@ import React from 'react'
 
                   {
                 items.map((items, index) => (
-                    <FeatureCard key={index} item={items} />
+                    ''
+                    // <FeatureCard key={index} item={items} />
                 ))}
             </div>
         </div>

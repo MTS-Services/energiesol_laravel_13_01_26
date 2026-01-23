@@ -1,7 +1,7 @@
 import React from 'react'
 import { Button } from '../ui/button'
 import { Icon } from '../ui/icon'
-import { ArrowRight } from 'lucide-react'
+import { ArrowRight, LucideIcon } from 'lucide-react'
 import { cn } from '@/lib/utils'
 import { Link } from '@inertiajs/react'
 
@@ -11,7 +11,17 @@ interface ItemProps{
         slogan?: string | null;
         title?: string | null;
         description?: string | null;
-        btn?: {label: string|null; href: string|null}|null,
+        btn?: {
+            label: string|null;
+            href: string|null;
+            buttonClassName?: string|null,
+            iconClassName?: string|null,
+            iconParentClassName?: string|null,
+            iconNode?: LucideIcon | null;
+            iconVariant?: "cricle" | "default" | "cirlce-transparent" | null ;
+
+
+        }|null,
         changeOrder?: boolean|null
     }
      children?: React.ReactNode,
@@ -69,16 +79,18 @@ function BoxCard({item, className, children}: ItemProps) {
             item?.btn && (
                 item?.btn?.href ? (
                     <Link href={item.btn.href}>
-                        <Button size="default" className="bg-secondary! mt-6 cursor-pointer!"> 
-                            <Icon iconNode={ArrowRight} variant="circle" /> 
+                        <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
+                            <Icon iconNode={item.btn.iconNode ?? ArrowRight} variant={item.btn.iconVariant ?? 'circle'} iconClassName={cn('', item.btn.iconClassName)} className={cn('', item.btn.iconParentClassName)} />  
+
                             
                             { item.btn.label }
 
                             </Button>
                     </Link>
                 ):  (
-                    <Button size="default" className="bg-secondary! mt-6 cursor-pointer!"> 
-                    <Icon iconNode={ArrowRight} variant="circle" /> 
+                    <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
+                   
+                    <Icon iconNode={item.btn.iconNode ?? ArrowRight} variant={item.btn.iconVariant ?? 'circle'} iconClassName={cn('', item.btn.iconClassName)} className={cn('', item.btn.iconParentClassName)} />  
                     
                     { item.btn.label }
 
