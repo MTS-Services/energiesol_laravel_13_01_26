@@ -9,10 +9,10 @@ export default function feature() {
     const items = [
         {
             image: '/images/feature1.png',
-            title: 'Smart and Reliable Paths to Energy Independence',
-            description: 'We provide a range of services to help you navigate the complex world of solar energy, from installation to maintenance and beyond.',
+            title: 'Mit Branchenexpertise',
+            description: 'Profitieren Sie von der Stabilität und dem umfassenden Know-how eines weltweit führenden Energieunternehmens. Unsere Lösungen basieren auf jahrzehntelanger Erfahrung und gewährleisten einen sicheren und nachhaltigen Übergang zu erneuerbarer Energie.',
             btn: {
-                label: 'Discover our history',
+                label: 'Unsere Geschichte',
                 href: '#',
                 iconClassName:"text-secondary!",
                 iconParentClassName: 'bg-primary!',
@@ -21,10 +21,10 @@ export default function feature() {
         },
         {
             image: '/images/feature2.png',
-            title: 'Premium Quality, Fair Value',
-            description: 'By utilizing fully digitized processes, we reduce overhead to offer you top-tier solar technology at a competitive price. Get the best performance-to-cost ratio in the industry.',
+            title: 'Premiumqualität, fairer Preis',
+            description: 'Durch die vollständige Digitalisierung reduzieren wir die Kosten und bieten Ihnen hochwertige Solartechnologie zu einem wettbewerbsfähigen Preis. Erhalten Sie das beste Leistungs-Kosten-Verhältnis auf dem Markt.',
             btn: {
-                label: 'Get a free estimate',
+                label: 'Unsere Geschichte',
                 href: '#',
                 iconClassName:"text-secondary!",
                 iconParentClassName: 'bg-primary!',
@@ -32,10 +32,10 @@ export default function feature() {
         },
         {
             image: '/images/feature3.png',
-            title: 'Transparent Expert Guidance',
-            description: 'We pride ourselves on providing honest, transparent, and pressure-free advice. Our consultations are tailored to your specific home needs, helping you make a confident decision for your future.',
+            title: 'Transparente Expertenberatung',
+            description: 'Wir legen großen Wert auf ehrliche, transparente und unbelastende Beratung. Unsere Beratungen sind auf Ihre spezifischen Hausbedürfnisse zugeschnitten und helfen Ihnen, eine sichere Entscheidung für Ihre Zukunft zu treffen.',
             btn: {
-                label: 'Book a consultation',
+                label: 'Unsere Geschichte',
                iconClassName:"text-secondary!",
                iconParentClassName: 'bg-primary!',
             }
@@ -43,8 +43,8 @@ export default function feature() {
     ]
     const SectionHeaderData = {
         title: {
-            initial: 'Smart and Reliable Paths to',
-            middle: 'Energy Independence',
+            initial: 'Intelligente und zuverlässige Wege zur ',
+            middle: 'Energieunabhängigkeit',
 
             breakPoint: {
                 after: true,

@@ -35,15 +35,15 @@ function ConfiguratorCard({item}: Props) {
                     </p>
                 </div>
 
-                <div className="mt-10 grid grid-cols-2 gap-4 items-center overflow-hidden">
+                <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center overflow-hidden">
                     <div>
                         <Input type='number' className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4 py-6' placeholder='80'/>
                     </div>
                     <div>
-                        <Button className='text-sm lg:text-base' variant={'default'}>
-                        <Icon iconNode={ArrowRight} variant="circle"></Icon>
+                        <Button className='text-sm lg:text-base w-full sm:w-auto!' variant={'default'}>
+                        <Icon iconNode={ArrowRight} variant="circle" className="bg-primary!" iconClassName="text-secondary"></Icon>
                         Start Configurator
-                    </Button>
+                        </Button>
                     </div>
                 </div>
             </div>

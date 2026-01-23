@@ -24,7 +24,7 @@ export default function banner() {
                         <div className="inline-flex gap-3 items-center">
                             <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
                             <p className="font-normal text-sm md:text-secondary uppercase mt-1">
-                                Email & SMS list optimization with AI
+                               E-Mail- und SMS-Listenoptimierung mit KI
                             </p>
                         </div>
                         <div className="inline-flex gap-3 pt-2">
@@ -32,20 +32,18 @@ export default function banner() {
                                 <span className="pr-2 font-playfair-display text-4xl md:text-[56px] font-semibold text-info italic">
                                     Premium
                                 </span>{' '}
-                                Solar Quality Made Affordable
+                               Solarqualität zum erschwinglichen Preis
                             </h2>
                         </div>
                         <div className="pt-3 pb-8">
                             <p className="text-xl md:text-2xl font-normal text-secondary">
-                                Calculate your home's energy potential and
-                                receive a personalized savings report in under 3
-                                minutes.
+                               Berechnen Sie das Energiepotenzial Ihres Hauses und erhalten Sie in weniger als 3 Minuten einen personalisierten Einsparungsbericht.
                             </p>
                         </div>
                         <div>
                             <Button size="default" className="">
                                 <Icon iconNode={ArrowRight} variant="circle" />
-                                Configurator
+                                Konfigurator
                             </Button>
                         </div>
                         <div className='py-8 flex items-center gap-4'>

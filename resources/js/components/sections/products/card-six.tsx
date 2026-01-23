@@ -1,4 +1,4 @@
-import { FeatureCard } from '../../cards/feature-card'
+import { BoxCard } from '@/components/cards/box-card'
 import { Button } from '@/components/ui/button'
 import { Icon } from '@/components/ui/icon'
 import { ArrowRight } from 'lucide-react'
@@ -51,9 +51,9 @@ import React from 'react'
            <div className='features pt-6 lg:pt-10 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-6'>
 
                   {
-                items.map((items, index) => (
-                    ''
+                 items.map((items, index) => (
                     // <FeatureCard key={index} item={items} />
+                    <BoxCard key={index} item={items} />
                 ))}
             </div>
         </div>
