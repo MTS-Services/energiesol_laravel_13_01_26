@@ -19,12 +19,12 @@ export function FrontendHeader() {
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const navLinks = [
-        { name: 'Home', href: route('home') },
-        { name: 'Services', href: route('service') },
-        { name: 'Advantage', href: route('advantage') },
-        { name: 'About', href: route('about') },
-        { name: 'Contact', href: route('contact') },
-        { name: 'Our Products', href: route('products') },
+        { name: 'Heim', href: route('home') },
+        { name: 'Service', href: route('service') },
+        { name: 'Vorteile', href: route('advantage') },
+        { name: 'Über uns', href: route('about') },
+        { name: 'Kontakt', href: route('contact') },
+        { name: 'Unsere Produkte', href: route('products') },
     ];
 
     return (
@@ -76,7 +76,7 @@ export function FrontendHeader() {
                             <Link href={route('configurator')} className='rounded-full!'>
                                 <Button size="sm" className="bg-btn-primary rounded-full! py-5!">
                                     <Icon iconNode={ArrowRight} variant="circle" className='w-4! h-4! bg-primary p-3 rounded-full text-btn-primary'/>
-                                    Configurator
+                                    Konfigurator
                                 </Button>
                             </Link>
                         </div>
