@@ -38,6 +38,11 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/configurator');
     }
+
+    public function configuratorStep2(Request $request): Response
+    {
+        return Inertia::render('frontend/configurator-step2');
+    }
     
     public function products(Request $request): Response
     {

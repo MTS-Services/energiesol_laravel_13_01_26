@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from "react";
-import { Link } from "@inertiajs/react";
+import { Link, router } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
 import {
     ArrowLeft,
@@ -24,6 +24,11 @@ export default function Configurator1() {
 
     const [selectedId, setSelectedId] = useState(cards[0].id);
     const [exactArea, setExactArea] = useState(0);
+
+    const handleCardClick = (id: string) => {
+        setSelectedId(id);
+        router.visit(route("configurator.step2"));
+    };
 
     return (
         <div className="py-40">
@@ -67,7 +72,7 @@ export default function Configurator1() {
                                 area={card.area}
                                 icon={card.icon}
                                 selected={selectedId === card.id}
-                                onClick={() => setSelectedId(card.id)}
+                                onClick={() => handleCardClick(card.id)}
                             />
                         ))}
                     </div>
