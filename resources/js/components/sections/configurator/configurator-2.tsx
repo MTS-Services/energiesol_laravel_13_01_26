@@ -1,18 +1,12 @@
 import React from "react";
 import { Link } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
-import {
-    ArrowLeft,
-    BadgeCheck,
-    DollarSign,
-    Lock,
-    Hammer,
-} from "lucide-react";
+import { ArrowLeft, BadgeCheck, DollarSign, Lock } from "lucide-react";
 
 export default function Configurator2() {
     return (
-        <div className="bg-white py-24 sm:py-28 lg:py-32">
-            <div className="container mx-auto px-6">
+        <div className="bg-white py-20 sm:py-28 lg:py-32">
+            <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back */}
                 <div className="mb-10">
                     <Link href={route("configurator")}>
@@ -32,17 +26,17 @@ export default function Configurator2() {
                         Perfect! What is your top priority for solar energy?
                     </h2>
 
-                    <p className="mt-2 text-sm text-slate-500 sm:text-base">
+                    <p className="mt-3 text-sm text-slate-500 sm:text-base">
                         Pick a category that fits your needs. This can be modified at any
                         stage.
                     </p>
 
                     {/* Cards */}
-                    <div className="mt-10 grid gap-6 sm:grid-cols-2">
+                    <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2">
                         {/* Left Card */}
-                        <div className="group relative overflow-hidden rounded-xl  bg-linear-to-r from-btn-primary/15 to-info/5 p-3 shadow-sm">
+                        <div className="group relative flex flex-col overflow-hidden rounded-xl bg-linear-to-r from-btn-primary/15 to-info/5 p-3 shadow-sm">
                             {/* Image area */}
-                            <div className="relative flex h-82  py-2 rounded-2xl overflow-hidden items-center justify-center bg-white">
+                            <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white px-4 py-6">
                                 {/* <div className="absolute left-6 top-5">
                                     <span className="text-lg font-semibold text-sky-600">
                                         TrinaSolar
@@ -53,7 +47,7 @@ export default function Configurator2() {
                                 <img
                                     src="/images/configurator/trina-panel.png"
                                     alt="Trina Solar panel"
-                                    className="h-full w-auto object-contain"
+                                    className="h-full max-h-82 w-auto object-contain"
                                 />
                             </div>
 
@@ -84,15 +78,15 @@ export default function Configurator2() {
                         </div>
 
                         {/* Right Card (Selected style like screenshot) */}
-                        <div className="group relative overflow-hidden rounded-xl  bg-linear-to-r from-btn-primary/15 to-info/5 p-3 shadow-sm  ">
+                        <div className="group relative flex flex-col overflow-hidden rounded-xl bg-linear-to-r from-btn-primary/15 to-info/5 p-3 shadow-sm">
                             {/* Image area */}
-                            <div className="relative h-82 flex rounded-2xl overflow-hidden items-center justify-center bg-white">
-                                
+                            <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white px-4 py-6">
+
                                 {/* Replace src with your real product image */}
                                 <img
                                     src="/images/configurator/aiko-panel.png"
                                     alt="AIKO panel"
-                                    className="h-full w-auto object-contain"
+                                    className="h-full max-h-82 w-auto object-contain"
                                 />
                             </div>
 
@@ -122,22 +116,22 @@ export default function Configurator2() {
                     </div>
 
                     {/* Under-card notes */}
-                    <div className="mt-8 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
-                        <div className="inline-flex items-center gap-2">
+                    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
                             <DollarSign className="h-4 w-4 text-blue-600" />
                             <span>100% Free and Non-Binding Consult.</span>
                         </div>
-                        <div className="inline-flex items-center gap-2">
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
                             <Lock className="h-4 w-4 text-blue-600" />
                             <span>Your Data Is Fully Secure and Protected</span>
                         </div>
                     </div>
 
                     {/* Bottom badges */}
-                    <div className="mt-40 grid grid-cols-3 max-w-4xl  mx-auto items-center justify-center gap-6 sm:flex-row">
+                    <div className="mt-20 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 max-w-4xl mx-auto">
                         {/* Card 1 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5  py-4  shadow-sm">
-                            <div className="flex h-9 w-9 items-center justify-center  overflow-hidden">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
                                 <img
                                     src="/images/configurator/local-teams.png"
                                     alt="Local professional teams"
@@ -152,8 +146,8 @@ export default function Configurator2() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 pl-4   py-4 shadow-sm">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl ">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                            <div className="flex h-10 w-10 items-center justify-center rounded-xl">
                                 <BadgeCheck className="h-full w-full text-emerald-600" />
                             </div>
                             <p className="text-left text-xs text-secondary">Certified Expert</p>
@@ -161,8 +155,8 @@ export default function Configurator2() {
 
 
                         {/* Card 3 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-2   py-4 shadow-sm">
-                            <div className="flex h-9 w-9  items-center justify-center overflow-hidden">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
                                 <img
                                     src="/images/configurator/craftsmanship.png"
                                     alt="Craftsmanship since 2018"
