@@ -116,7 +116,7 @@ export default function Configurator2() {
                     </div>
 
                     {/* Under-card notes */}
-                    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+                    <div className="mt-40 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
                         <div className="inline-flex items-center gap-2 text-center sm:text-left">
                             <DollarSign className="h-4 w-4 text-blue-600" />
                             <span>100% Free and Non-Binding Consult.</span>
