@@ -1,10 +1,10 @@
 import React, { useMemo, useState } from "react";
-import { Link, router } from "@inertiajs/react";
+import { Link } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, ArrowRight, BadgeCheck, DollarSign, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Configurator2CardProps {
+interface Configurator3CardProps {
     title: string;
     area: string;
     description: string;
@@ -14,7 +14,7 @@ interface Configurator2CardProps {
     onClick?: () => void;
 }
 
-function Configurator2Card({ title, area, description, image, meta, selected = false, onClick }: Configurator2CardProps) {
+function Configurator3Card({ title, area, description, image, meta, selected = false, onClick }: Configurator3CardProps) {
     return (
         <button
             type="button"
@@ -45,24 +45,24 @@ function Configurator2Card({ title, area, description, image, meta, selected = f
     );
 }
 
-export default function Configurator2() {
+export default function Configurator3() {
     const cards = useMemo(
         () => [
             {
-                id: "value",
-                title: "Budget-Friendly Excellence",
-                area: "Best return on investment",
-                description: "Get superior power output with the best return on your investment.",
+                id: "fast_install",
+                title: "Fast-Track Installation",
+                area: "Priority scheduling",
+                description: "Secure the earliest possible installation date with our dedicated rapid-response crew.",
                 image: "/images/configurator/trina-panel.png",
-                meta: "Vertex S+ TSM-NE9R.2",
+                meta: "Accelerated plan",
             },
             {
-                id: "performance",
-                title: "Ultimate Power Output",
-                area: "Maximum energy yield",
-                description: "Advanced technology engineered for the highest possible energy generation.",
+                id: "turnkey_support",
+                title: "Full Project Management",
+                area: "White-glove experience",
+                description: "Let our specialists handle permits, paperwork, and ongoing monitoring on your behalf.",
                 image: "/images/configurator/aiko-panel.png",
-                meta: "Aiko Neostar 3S+",
+                meta: "Concierge support",
             },
         ],
         []
@@ -70,17 +70,12 @@ export default function Configurator2() {
 
     const [selectedId, setSelectedId] = useState(cards[0].id);
 
-    const handleCardSelect = (id: string) => {
-        setSelectedId(id);
-        router.visit(route("configurator.step3"));
-    };
-
     return (
         <div className="bg-white py-20 sm:py-28 lg:py-32">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back */}
                 <div className="mb-10">
-                    <Link href={route("configurator")}>
+                    <Link href={route("configurator.step2")}>
                         <Button variant="ghost" className="hover:cursor-pointer">
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             Back
@@ -91,21 +86,20 @@ export default function Configurator2() {
                 {/* Title */}
                 <div className="mx-auto max-w-5xl text-center">
                     <h2 className="text-2xl font-montserrat font-semibold leading-tight text-secondary sm:text-3xl md:text-4xl">
-                        Perfect! What is your top priority for solar energy?
+                        Excellent! How much support would you like from our team?
                     </h2>
 
                     <p className="mt-3 text-sm text-slate-500 sm:text-base">
-                        Pick a category that fits your needs. This can be modified at any
-                        stage.
+                        Choose the service style that matches your expectations. You can always adjust this later.
                     </p>
 
                     {/* Cards */}
-                    <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2 hover:cursor-pointer">
+                    <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2">
                         {cards.map((card) => (
-                            <Configurator2Card
+                            <Configurator3Card
                                 key={card.id}
                                 selected={selectedId === card.id}
-                                onClick={() => handleCardSelect(card.id)}
+                                onClick={() => setSelectedId(card.id)}
                                 {...card}
                             />
                         ))}
