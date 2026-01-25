@@ -40,7 +40,7 @@ function CartDetails() {
         },
     ];
     return (
-        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:gap-x-10 lg:px-8 lg:py-40 lg:pt-26 lg:pb-10">
+        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-10 pt-13 pb-5 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
                 <AppLogo />
             </div>
@@ -57,7 +57,7 @@ function CartDetails() {
                 </p>
             </SectionHeader>
 
-            <div className="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+            <div className="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-2 ">
                 {items.map((item, index) => (
                     <BoxCard key={index} item={item} className={'pb-6!'}>
                         <p className="pt-3 text-secondary/70">

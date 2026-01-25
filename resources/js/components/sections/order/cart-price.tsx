@@ -9,7 +9,7 @@ import { CircleCheckBig, Download, RefreshCcw } from 'lucide-react';
 function CartPrice() {
     
     return (
-        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:gap-x-10 lg:px-8 lg:py-40 lg:pt-26 lg:pb-10">
+        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:gap-x-10 lg:px-8 lg:py-40 ">
           
             <SectionHeader >
                 <h2 className='font-montserrat font-semibold text-secondary text-3xl text[40px] text-center px-25 lg:px-50 pb-2'>Entfesseln Sie Ihr finanzielles Potenzial mit Solarenergie</h2>
