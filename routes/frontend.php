@@ -14,6 +14,7 @@ Route::group([], function () {
     Route::get('/configurator/step-3', [HomeController::class, 'configuratorStep3'])->name('configurator.step3');
     Route::get('/configurator/step-4', [HomeController::class, 'configuratorStep4'])->name('configurator.step4');
     Route::get('/configurator/step-5', [HomeController::class, 'configuratorStep5'])->name('configurator.step5');
+    Route::get('/configurator/step-6', [HomeController::class, 'configuratorStep6'])->name('configurator.step6');
 
     Route::get('/products', [HomeController::class, 'products'])->name('products');
     

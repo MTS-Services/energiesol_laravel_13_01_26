@@ -56,7 +56,7 @@ export default function Configurator5() {
 
     const handleCardSelect = (id: string) => {
         setSelectedId(id);
-        router.visit(route("contact"));
+        router.visit(route("configurator.step6"));
     };
 
     return (
