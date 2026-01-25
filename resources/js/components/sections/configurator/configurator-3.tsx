@@ -6,7 +6,6 @@ import { cn } from "@/lib/utils";
 
 interface Configurator3CardProps {
     title: string;
-    area: string;
     description: string;
     image: string;
     meta: string;
@@ -14,7 +13,7 @@ interface Configurator3CardProps {
     onClick?: () => void;
 }
 
-function Configurator3Card({ title, area, description, image, meta, selected = false, onClick }: Configurator3CardProps) {
+function Configurator3Card({ title, description, image, meta, selected = false, onClick }: Configurator3CardProps) {
     return (
         <button
             type="button"
@@ -29,16 +28,12 @@ function Configurator3Card({ title, area, description, image, meta, selected = f
                 <img src={image} alt={title} className="h-full max-h-82 w-auto object-contain" />
             </div>
 
-            <div className="p-6">
-                <p className="text-xs uppercase tracking-[0.2em] text-btn-primary">{area}</p>
-                <h3 className="mt-2 text-xl font-montserrat font-semibold text-secondary">{title}</h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">{description}</p>
+            <div className="pt-4 p-2">
+                <h3 className="mt-2 text-xl md:text-2xl lg:text-3xl  font-montserrat font-semibold text-secondary">{title}</h3>
+                <p className="mt-2 text-sm md:text-base lg:text-xl leading-relaxed text-slate-600">{description}</p>
 
-                <div className="mt-5 flex items-center gap-3">
-                    <div className="h-9 w-9 overflow-hidden rounded-full border border-white shadow">
-                        <img src={image} alt={meta} className="h-full w-full object-cover" />
-                    </div>
-                    <p className="text-xs text-slate-500">{meta}</p>
+                <div className="mt-3 flex items-center gap-3">
+                    <p className="text-base text-slate-500">{meta}</p>
                 </div>
             </div>
         </button>
@@ -49,24 +44,30 @@ export default function Configurator3() {
     const cards = useMemo(
         () => [
             {
-                id: "fast_install",
-                title: "Fast-Track Installation",
-                area: "Priority scheduling",
-                description: "Secure the earliest possible installation date with our dedicated rapid-response crew.",
-                image: "/images/configurator/trina-panel.png",
-                meta: "Accelerated plan",
+                id: "complete_solution",
+                title: "Complete solution",
+                description: "Enjoy up to 2300W AC output, easily powering high-demand appliances.",
+                image: "/images/configurator/singenergy.png",
+                meta: "EcoFlow STREAM Ultra X"
             },
             {
-                id: "turnkey_support",
-                title: "Full Project Management",
-                area: "White-glove experience",
-                description: "Let our specialists handle permits, paperwork, and ongoing monitoring on your behalf.",
-                image: "/images/configurator/aiko-panel.png",
-                meta: "Concierge support",
+                id: "price_performance",
+                title: "Price-performance",
+                description: "Get superior power output with the best return on your investment.",
+                image: "/images/configurator/huawei.png",
+                meta: "HUAWEI Smart PV Global"
+            },
+            {
+                id: "performance",
+                title: "Performance",
+                description: "Unmatched quality that offers the best value for your investment.",
+                image: "/images/configurator/ecoflow.png",
+                meta: "Zig Energy Vertex S+ 455Wp (Glass-Glass)"
             },
         ],
         []
     );
+
 
     const [selectedId, setSelectedId] = useState(cards[0].id);
 
@@ -84,7 +85,7 @@ export default function Configurator3() {
                 </div>
 
                 {/* Title */}
-                <div className="mx-auto max-w-5xl text-center">
+                <div className="mx-auto  text-center">
                     <h2 className="text-2xl font-montserrat font-semibold leading-tight text-secondary sm:text-3xl md:text-4xl">
                         Excellent! How much support would you like from our team?
                     </h2>
@@ -94,7 +95,7 @@ export default function Configurator3() {
                     </p>
 
                     {/* Cards */}
-                    <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2">
+                    <div className="mt-10 grid gap-6 md:gap-8 lg:grid-cols-3 sm:grid-cols-2">
                         {cards.map((card) => (
                             <Configurator3Card
                                 key={card.id}
@@ -107,11 +108,11 @@ export default function Configurator3() {
 
                     {/* Under-card notes */}
                     <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
-                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <DollarSign className="h-4 w-4 text-blue-600" />
                             <span>100% Free and Non-Binding Consult.</span>
                         </div>
-                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <Lock className="h-4 w-4 text-blue-600" />
                             <span>Your Data Is Fully Secure and Protected</span>
                         </div>
