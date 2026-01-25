@@ -13,6 +13,7 @@ Route::group([], function () {
     Route::get('/configurator/step-2', [HomeController::class, 'configuratorStep2'])->name('configurator.step2');
     Route::get('/configurator/step-3', [HomeController::class, 'configuratorStep3'])->name('configurator.step3');
     Route::get('/configurator/step-4', [HomeController::class, 'configuratorStep4'])->name('configurator.step4');
+    Route::get('/configurator/step-5', [HomeController::class, 'configuratorStep5'])->name('configurator.step5');
 
     Route::get('/products', [HomeController::class, 'products'])->name('products');
     

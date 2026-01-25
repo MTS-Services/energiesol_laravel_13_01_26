@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { ArrowLeft, BadgeCheck, DollarSign, Info, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
-interface Configurator4CardProps {
+interface Configurator5CardProps {
     title: string;
     image: string;
     titleColor?: string;
@@ -12,19 +12,19 @@ interface Configurator4CardProps {
     onClick?: () => void;
 }
 
-function Configurator4Card({ title, image, titleColor, selected = false, onClick }: Configurator4CardProps) {
+function Configurator5Card({ title, image, titleColor, selected = false, onClick }: Configurator5CardProps) {
     return (
         <button
             type="button"
             onClick={onClick}
             className={cn(
-                "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear p-3 text-left shadow-sm transition-all",
+                "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear p-4 text-left shadow-sm transition-all",
                 "hover:-translate-y-0.5 hover:shadow-md hover:cursor-pointer",
                 selected && "ring-2 ring-white ring-offset-2"
             )}
         >
-            <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white px-4 py-6">
-                <img src={image} alt={title} className="h-full max-h-82 w-auto object-contain" />
+            <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white ">
+                <img src={image} alt={title} className="h-full max-h-full w-full object-contain" />
             </div>
 
             <div className="pt-4 p-2">
@@ -34,18 +34,18 @@ function Configurator4Card({ title, image, titleColor, selected = false, onClick
     );
 }
 
-export default function Configurator4() {
+export default function Configurator5() {
     const cards = useMemo(
         () => [
             {
                 id: "yes",
                 title: "Yes!",
-                image: "/images/configurator/bettery.png",
+                image: "/images/configurator/electrical_car.png",
             },
             {
                 id: "no",
                 title: "No!",
-                image: "/images/configurator/bettery.png",
+                image: "/images/configurator/electrical_car.png",
                 titleColor: "text-red-600",
             }
         ],
@@ -56,7 +56,7 @@ export default function Configurator4() {
 
     const handleCardSelect = (id: string) => {
         setSelectedId(id);
-        router.visit(route("configurator.step5"));
+        router.visit(route("contact"));
     };
 
     return (
@@ -64,7 +64,7 @@ export default function Configurator4() {
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back */}
                 <div className="mb-10">
-                    <Link href={route("configurator.step3")}>
+                    <Link href={route("configurator.step4")}>
                         <Button variant="ghost" className="hover:cursor-pointer">
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             Back
@@ -87,7 +87,7 @@ export default function Configurator4() {
                     {/* Cards */}
                     <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2">
                         {cards.map((card) => (
-                            <Configurator4Card
+                            <Configurator5Card
                                 key={card.id}
                                 selected={selectedId === card.id}
                                 onClick={() => handleCardSelect(card.id)}
