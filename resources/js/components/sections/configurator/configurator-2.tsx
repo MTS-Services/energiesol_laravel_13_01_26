@@ -20,7 +20,7 @@ function Configurator2Card({ title, area, description, image, meta, selected = f
             type="button"
             onClick={onClick}
             className={cn(
-                "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 p-3 text-left shadow-sm transition-all",
+                "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear p-3 text-left shadow-sm transition-all",
                 "hover:-translate-y-0.5 hover:shadow-md hover:cursor-pointer",
                 selected && "ring-2 ring-white ring-offset-2"
             )}
@@ -126,7 +126,7 @@ export default function Configurator2() {
                     {/* Bottom badges */}
                     <div className="mt-40 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 max-w-4xl mx-auto">
                         {/* Card 1 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
                             <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
                                 <img
                                     src="/images/configurator/local-teams.png"
@@ -142,7 +142,7 @@ export default function Configurator2() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
                             <div className="flex h-10 w-10 items-center justify-center rounded-xl">
                                 <BadgeCheck className="h-full w-full text-emerald-600" />
                             </div>
@@ -151,7 +151,7 @@ export default function Configurator2() {
 
 
                         {/* Card 3 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 px-4 shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
                             <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
                                 <img
                                     src="/images/configurator/craftsmanship.png"

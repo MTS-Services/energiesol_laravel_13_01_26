@@ -133,7 +133,7 @@ export default function Configurator1() {
                     {/* Bottom badges */}
                     <div className="mt-60 grid grid-cols-3 max-w-4xl  mx-auto items-center justify-center gap-6 sm:flex-row">
                         {/* Card 1 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5  py-4  shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear  py-4  shadow-sm">
                             <div className="flex h-9 w-9 items-center justify-center  overflow-hidden">
                                 <img
                                     src="/images/configurator/local-teams.png"
@@ -149,7 +149,7 @@ export default function Configurator1() {
                         </div>
 
                         {/* Card 2 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 pl-4   py-4 shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear pl-4   py-4 shadow-sm">
                             <div className="flex h-9 w-9 items-center justify-center rounded-xl ">
                                 <BadgeCheck className="h-full w-full text-emerald-600" />
                             </div>
@@ -158,7 +158,7 @@ export default function Configurator1() {
 
 
                         {/* Card 3 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-2   py-4 shadow-sm">
+                        <div className="flex items-center gap-3 rounded-2xl bg-linear px-2   py-4 shadow-sm">
                             <div className="flex h-9 w-9  items-center justify-center overflow-hidden">
                                 <img
                                     src="/images/configurator/craftsmanship.png"
