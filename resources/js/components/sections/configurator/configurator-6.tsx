@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Checkbox } from "@/components/ui/checkbox";
 import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, ArrowRight, CheckCircle2, Shield } from "lucide-react";
+import { ArrowLeft, ArrowRight, Check, Shield } from "lucide-react";
 
 export default function Configurator6() {
     const [formData, setFormData] = useState({
@@ -136,29 +136,29 @@ export default function Configurator6() {
                     </div>
                 </form>
 
-                <div className="mt-10  p-6  sm:p-10">
-                    <div className="grid gap-10 lg:grid-cols-2">
+                <div className="mt-10 p-6 sm:p-10">
+                    <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                         <div className="flex flex-col justify-center">
                             <h3 className="text-2xl font-montserrat font-semibold text-secondary sm:text-3xl">Your Personalized Cost Estimate</h3>
                             <ul className="mt-8 space-y-4 text-base text-secondary/80">
                                 {benefits.map((item) => (
                                     <li key={item} className="flex items-start gap-3">
-                                        <span className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full border border-emerald-200 bg-emerald-50 text-emerald-500">
-                                            <CheckCircle2 className="h-4 w-4" />
+                                        <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#2dd36f] bg-white text-[#2dd36f] shadow-[0_6px_18px_rgba(45,211,111,0.25)]">
+                                            <Check className="h-5 w-5" />
                                         </span>
                                         <span>{item}</span>
                                     </li>
                                 ))}
                             </ul>
                         </div>
-                        <div className="rounded-3xl  bg-white p-6">
+                        <div className="rounded-3xl bg-white p-6">
                             <div className="relative mt-4 overflow-hidden rounded-2xl">
                                 <img
                                     src="/images/configurator/energie-solution.png"
                                     alt="Energie Solution Nord"
-                                    className="h-0 w-full object-cover sm:h-72 lg:h-full"
+                                    className=" w-full object-cover sm:h-72 lg:h-full"
                                 />
-                               
+
                             </div>
                         </div>
                     </div>
