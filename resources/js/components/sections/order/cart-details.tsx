@@ -40,18 +40,14 @@ function CartDetails() {
         },
     ];
     return (
-        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-10 pt-13 pb-5 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
+        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
                 <AppLogo />
             </div>
             <SectionHeader
-                item={{
-                    title: {
-                        initial: 'Ihre Kostenschätzung',
-                    },
-                }}
             >
-                <p className="px-50 text-center font-open-sans text-base text-secondary/70 lg:text-lg">
+                <h2 className='text-center text-3xl text-secondary text-[40px] mb-2'>Ihre Kostenschätzung</h2>
+                <p className="px-0 lg:px-50 text-center font-open-sans text-base text-secondary/70 lg:text-lg">
                     {' '}
                     {`description: "Basierend auf einer verfügbaren Installationsfläche von ca. 44 m² besteht die Systemkonfiguration aus 21 Photovoltaikmodulen mit einer erwarteten Leistung von rund 9,0 kWp und umfasst folgende Komponenten:"`}
                 </p>
@@ -92,7 +88,32 @@ function CartDetails() {
                             Inklusive
                         </span>
                     </h2>
-                    <p className="flex gap-2 pt-2 pr-120 pl-9 font-open-sans font-normal text-secondary/70">
+                    <p className="text-xs lg:text-base flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
+                        Unsere Expertentechniker übernehmen die komplette
+                        Montage und Elektroinstallation, sorgen für nahtlose
+                        Netzanbindung und verwenden ausschließlich hochwertige
+                        Materialien.
+                    </p>
+                </div>
+                <div className="mt-4">
+                    <h2 className="flex justify-center items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                        <span className="h-7.5 w-7.5">
+                            <Icon
+                                iconNode={CircleCheckBig}
+                                iconClassName="text-secondary"
+                            />
+                        </span>
+                        Professionelle Installation & Netzeinbindung
+                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
+                            <Icon
+                                iconNode={CircleCheckBig}
+                                iconClassName="w-4 h-4 text-primary"
+                                className="p-1"
+                            />{' '}
+                            Inklusive
+                        </span>
+                    </h2>
+                    <p className="text-xs lg:text-base  flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
                         Unsere Expertentechniker übernehmen die komplette
                         Montage und Elektroinstallation, sorgen für nahtlose
                         Netzanbindung und verwenden ausschließlich hochwertige
@@ -117,7 +138,7 @@ function CartDetails() {
                             Inklusive
                         </span>
                     </h2>
-                    <p className="flex gap-2 pt-2 pr-120 pl-9 font-open-sans font-normal text-secondary/70">
+                    <p className="flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
                         Unsere Expertentechniker übernehmen die komplette
                         Montage und Elektroinstallation, sorgen für nahtlose
                         Netzanbindung und verwenden ausschließlich hochwertige
@@ -142,32 +163,7 @@ function CartDetails() {
                             Inklusive
                         </span>
                     </h2>
-                    <p className="flex gap-2 pt-2 pr-120 pl-9 font-open-sans font-normal text-secondary/70">
-                        Unsere Expertentechniker übernehmen die komplette
-                        Montage und Elektroinstallation, sorgen für nahtlose
-                        Netzanbindung und verwenden ausschließlich hochwertige
-                        Materialien.
-                    </p>
-                </div>
-                <div className="mt-4">
-                    <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-                        <span className="h-7.5 w-7.5">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="text-secondary"
-                            />
-                        </span>
-                        Professionelle Installation & Netzeinbindung
-                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="w-4 h-4 text-primary"
-                                className="p-1"
-                            />{' '}
-                            Inklusive
-                        </span>
-                    </h2>
-                    <p className="flex gap-2 pt-2 pr-120 pl-9 font-open-sans font-normal text-secondary/70">
+                    <p className="flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
                         Unsere Expertentechniker übernehmen die komplette
                         Montage und Elektroinstallation, sorgen für nahtlose
                         Netzanbindung und verwenden ausschließlich hochwertige
@@ -175,13 +171,13 @@ function CartDetails() {
                     </p>
                 </div>
             </div>
-            <div className="mt-10">
-                <h2 className="py-4 font-montserrat text-3xl text-[40px] font-semibold text-secondary lg:py-8">
+          <div className="mt-10">
+                <h2 className="py-4 font-montserrat text-2xl text-[40px] font-semibold text-secondary lg:py-8">
                     Ihre Investition
                 </h2>
 
                 <div>
-                    <p className="mb-3 flex justify-between px-15 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between px-0 lg:px-15 font-open-sans text-base lg:text-lg">
                         <span className="font-normal text-secondary/70">
                             Ihre Investition
                         </span>{' '}
@@ -189,7 +185,7 @@ function CartDetails() {
                             18,345.87 €
                         </span>
                     </p>
-                    <p className="mb-3 flex justify-between px-15 pr-0 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between px-0 lg:px-15 pr-0 font-open-sans text-base lg:text-lg">
                         <span className="font-normal text-secondary/70">
                             0 % MwSt.
                         </span>{' '}
@@ -197,21 +193,21 @@ function CartDetails() {
                             18,345.87 €
                         </span>
                     </p>
-                    <p className="mb-3 flex justify-between border-b border-secondary/10 px-15 pr-0 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between border-b border-secondary/10 px-0 lg:px-15 pr-0 font-open-sans text-base lg:text-lg">
                         <span className="font-semibold text-secondary">
                             Summe
                         </span>{' '}
-                        <span className="text-[40px] font-semibold text-secondary">
+                        <span className="lg:text-[40px] font-semibold text-secondary">
                             18,345.87 €
                         </span>
                     </p>
 
-                    <p className="mb-3 flex justify-between px-15 font-open-sans text-base lg:text-lg">
-                        <span className="font-normal text-secondary/70">
+                    <p className="mb-3 flex justify-between px-0 lg:px-15 font-open-sans text-base lg:text-lg">
+                        <span className="font-normal text-xs lg:text-base text-secondary/70">
                             Spezifische Kosten pro kWp (gemäß den jährlichen
                             Steuerbestimmungen 2022){' '}
                         </span>{' '}
-                        <span className="font-semibold text-secondary">
+                        <span className="font-semibold text-secondary text-sm lg:text-base">
                             18,345.87 €
                         </span>
                     </p>
@@ -236,9 +232,9 @@ function CartDetails() {
                     Ihnen melden.
                 </p>
             </div>
-
+   
             <div className="mt-8 ">
-                <div className="flex items-center justify-center gap-4">
+                <div className="flex  flex-col lg:flex-row items-center justify-center gap-4">
                     <Link href="/booking">
                         <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
                             <Icon

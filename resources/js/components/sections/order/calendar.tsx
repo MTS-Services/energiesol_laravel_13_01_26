@@ -18,7 +18,7 @@ function Calendar() {
                     Secure Your Expert Consultation. We’re Excited to Help You Go Solar!  
                   </h2>
                  </div>
-                 <div className="p-5 w-4xl h-225 mx-auto bg-white rounded-md flex justify-center items-center my-10">
+                 <div className="p-5 lg:w-4xl lg:h-225 mx-auto bg-white rounded-md flex justify-center items-center my-10">
                     <h2> Calender Here</h2>
                  </div>
 

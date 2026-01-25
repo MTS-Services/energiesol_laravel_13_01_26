@@ -4,10 +4,10 @@ function Badges() {
     return (
         <div>
             {/* Bottom badges */}
-            <div className="mx-auto py-15 pt-11 lg:py-30 lg:pt-22 grid max-w-4xl grid-cols-3 items-center justify-center gap-6 sm:flex-row">
+            <div className="mx-auto py-15 pt-11 lg:py-30 lg:pt-22 grid max-w-4xl grid-cols-1 lg:grid-cols-3 items-center justify-center gap-6">
                 {/* Card 1 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 shadow-sm">
-                    <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden">
                         <img
                             src="/images/configurator/local-teams.png"
                             alt="Local professional teams"
@@ -22,8 +22,8 @@ function Badges() {
                 </div>
 
                 {/* Card 2 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 py-4 pl-4 shadow-sm">
-                    <div className="flex h-9 w-9 items-center justify-center rounded-xl">
+                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl">
                         <BadgeCheck className="h-full w-full text-emerald-600" />
                     </div>
                     <p className="text-left text-xs text-secondary">
@@ -32,8 +32,8 @@ function Badges() {
                 </div>
 
                 {/* Card 3 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-2 py-4 shadow-sm">
-                    <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
+                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden">
                         <img
                             src="/images/configurator/craftsmanship.png"
                             alt="Craftsmanship since 2018"
@@ -45,11 +45,12 @@ function Badges() {
                     </p>
                 </div>
 
-                 <p className=" text-secondary/70 text-xs text-center w-full! col-span-3 mt-3 pb-10">Impressum Datenschutz</p>
+                <p className="text-secondary/70 text-xs text-center w-full col-span-1 lg:col-span-3 mt-3 pb-10">
+                    Impressum Datenschutz
+                </p>
             </div>
-           
         </div>
     );
 }
 
-export {Badges}
+export { Badges }

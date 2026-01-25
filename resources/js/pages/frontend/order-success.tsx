@@ -14,8 +14,8 @@ import FrontendLayout from "@/layouts/frontend-layout";
 
            <CartDetails />
 
-           <CartPrice />
-
+          <CartPrice />
+  
            <Calendar />
 
            <Badges />

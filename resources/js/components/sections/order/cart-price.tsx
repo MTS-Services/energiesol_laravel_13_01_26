@@ -12,8 +12,8 @@ function CartPrice() {
         <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:gap-x-10 lg:px-8 lg:py-40 ">
           
             <SectionHeader >
-                <h2 className='font-montserrat font-semibold text-secondary text-3xl text[40px] text-center px-25 lg:px-50 pb-2'>Entfesseln Sie Ihr finanzielles Potenzial mit Solarenergie</h2>
-                <p className="px-35 text-center font-open-sans text-base text-secondary/70 lg:text-lg">
+                <h2 className='font-montserrat font-semibold text-secondary text-3xl text[40px] text-center px-10 lg:px-50 pb-2'>Entfesseln Sie Ihr finanzielles Potenzial mit Solarenergie</h2>
+                <p className="px-0 lg:px-35 text-center font-open-sans text-base text-secondary/70 lg:text-lg">
                     {' '}
                     {`Wir haben die langfristigen Einsparungen und die Effizienz Ihres maßgeschneiderten PV-Systems sorgfältig analysiert. Durch die Investition Ihres eigenen Kapitals wird ein Gesamtertrag von 30.122,19 € über die nächsten 20 Jahre prognostiziert.`}
                 </p>
@@ -22,7 +22,7 @@ function CartPrice() {
     <div className="mt-10">
             
                 <div>
-                    <p className="mb-3 flex justify-between pl-15 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between pl-0 lg:pl-15 font-open-sans text-base lg:text-lg">
                         <p className='text-lg lg:text-2xl font-open-sans text-secondary/80 font-normal'>
                             Gesamtinvestition
                             <span className="font-normal text-sm  lg:text-base text-secondary/70 block">
@@ -33,7 +33,7 @@ function CartPrice() {
                             18,345.87 €
                         </span>
                     </p>
-                    <p className="mb-3 flex justify-between px-15 pr-0 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between px-0 lg:px-15 pr-0 font-open-sans text-base lg:text-lg">
                         <span className="font-normal text-secondary/70">
                           Amortisation
                         </span>{' '}
@@ -41,7 +41,7 @@ function CartPrice() {
                           9 Years
                         </span>
                     </p>
-                    <p className="mb-2 flex justify-between border-b border-secondary/10 px-15 pr-0 font-open-sans text-lg lg:text-2xl">
+                    <p className="mb-2 flex justify-between border-b border-secondary/10 px-0 lg:px-15 pr-0 font-open-sans text-lg lg:text-2xl">
                         <span className="font-semibold text-secondary">
                          Stromerzeugungskosten
                         </span>{' '}
@@ -50,7 +50,7 @@ function CartPrice() {
                         </span>
                     </p>
 
-                    <p className="mb-3 flex items-center justify-between pl-15 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex items-center justify-between pl-0 lg:pl-15 font-open-sans text-base lg:text-lg">
                        <p>
                          <span className="font-semibold text-secondary">
                            Rendite
@@ -65,7 +65,7 @@ function CartPrice() {
                 </div>
             </div>
             <div className="mt-10 ">
-                <div className="flex items-center justify-center gap-4">
+                <div className="flex items-center  flex-col lg:flex-row justify-center gap-4">
                     <Link href="/booking">
                         <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
                             <Icon

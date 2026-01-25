@@ -17,7 +17,7 @@ function HeadingSection() {
         <div>
             <div className="relative z-10 mx-auto max-w-7xl px-6 pb-24 lg:gap-x-10 lg:px-8 lg:py-40">
                 <div>
-                    <div className="block">
+                    <div className="block mt-15 lg:mt-0">
                         <img
                             src="/images/order-page-image.png"
                             alt="Order Page Image"
