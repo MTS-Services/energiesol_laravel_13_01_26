@@ -90,7 +90,7 @@
     --secondary: hsla(236, 71%, 4%, 1);
     --btn-primary: hsla(236, 72%, 52%, 1);
     --hover: hsla(236, 72%, 52%, 1);
-    --info:hsla(135, 65%, 49%, 1);
+    --info: hsla(135, 65%, 49%, 1);
     --secondary-foreground: oklch(0.205 0 0);
     --muted: oklch(0.97 0 0);
     --muted-foreground: oklch(0.556 0 0);
@@ -293,7 +293,11 @@
 
 @layer utilities {
     .bg-linear {
-        @apply bg-linear-to-r from-btn-primary/15 to-info/5;
+        @apply bg-gradient-to-r from-btn-primary/15 to-info/5;
+    }
+
+    .bg-linear-to-br {
+        @apply bg-gradient-to-br from-btn-primary/10 to-info/10;
     }
 }
 
