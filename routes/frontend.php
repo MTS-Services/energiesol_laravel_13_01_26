@@ -10,7 +10,9 @@ Route::group([], function () {
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/configurator', [HomeController::class, 'configurator'])->name('configurator');
-
     Route::get('/products', [HomeController::class, 'products'])->name('products');
+
+
+    Route::get('/order/success', [HomeController::class, 'orderSuccess'])->name('order.success');
     
 });

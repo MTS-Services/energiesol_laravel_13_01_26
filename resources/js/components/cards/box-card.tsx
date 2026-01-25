@@ -35,7 +35,7 @@ function BoxCard({item, className, children}: ItemProps) {
         { item?.image && (
 
             <div className={`h-auto overflow-hidden rounded-md ${ !changeOrder ? 'order-first' : 'order-last'}`}>
-            <img src={item?.image ?? '/images/feature1.png'} alt="Feature image"  className='w-full h-auto'/>
+            <img src={item?.image ?? '/images/feature1.png'} alt="Feature image"  className='w-full! h-auto'/>
              </div>
         )}
 

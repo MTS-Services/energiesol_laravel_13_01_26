@@ -43,4 +43,10 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/products');
     }
+
+    public function orderSuccess(Request $request): Response
+    {
+        return Inertia::render('frontend/order-success');
+    }
+
 }
