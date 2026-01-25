@@ -291,6 +291,12 @@
     box-shadow: var(--datatable-shadow-md);
 }
 
+@layer utilities {
+    .bg-linear {
+        @apply bg-linear-to-r from-btn-primary/15 to-info/5;
+    }
+}
+
 /* Header Section */
 .datatable-header {
     display: flex;

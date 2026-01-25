@@ -1,5 +1,5 @@
 import type { ComponentType, MouseEventHandler, SVGProps } from "react";
-import { cn } from "@/lib/utils"; // if you don't have this helper, I added a fallback below.
+import { cn } from "@/lib/utils"; 
 
 type IconComponent = ComponentType<{ className?: string }> | ComponentType<SVGProps<SVGSVGElement>>;
 
