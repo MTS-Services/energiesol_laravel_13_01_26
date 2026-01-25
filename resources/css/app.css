@@ -192,6 +192,7 @@
         @apply border-border font-open-sans;
     }
 
+
     body {
         @apply bg-background text-foreground font-open-sans;
     }
@@ -207,6 +208,11 @@
     h6 {
         @apply font-montserrat;
     }
+    @layer utilities {
+  .calendly-wrapper iframe {
+    height: 100% !important;
+  }
+}
 }
 
 /* Hide scrollbar utility */
@@ -295,6 +301,7 @@
     .bg-linear {
         @apply bg-linear-to-r from-btn-primary/15 to-info/5;
     }
+
 }
 
 /* Header Section */

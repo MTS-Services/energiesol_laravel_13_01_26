@@ -1,16 +1,17 @@
 import { SectionHeader } from "@/components/cards/section-header"
 import { BadgeCheck } from "lucide-react"
+import { Calendly } from "./calendly"
 
 function Calendar() {
   return (
-      <div>
-          <div className="relative mx-auto grid max-w-7xl lg:py-10 py-5 items-center gap-6 sm:flex-row"  style={
+      <div   style={
                 {
                   background: "url('/images/calendar-bg.png')",
                   backgroundPosition: 'center center',
                   backgroundSize: 'cover',
                 }
               }>
+          <div className="relative mx-auto grid max-w-7xl lg:py-10 py-5 items-center gap-6 sm:flex-row">
 
               <div>
                  <div className="w-full">
@@ -18,8 +19,8 @@ function Calendar() {
                     Secure Your Expert Consultation. We’re Excited to Help You Go Solar!  
                   </h2>
                  </div>
-                 <div className="p-5 lg:w-4xl lg:h-225 mx-auto bg-white rounded-md flex justify-center items-center my-10">
-                    <h2> Calender Here</h2>
+                 <div className=" lg:w-4xl h-auto mx-auto rounded-md flex justify-center items-center my-10">
+                   <Calendly />
                  </div>
 
                  <div className="flex justify-center items-center gap-5 pb-5 lg:pb-10 flex-col">
