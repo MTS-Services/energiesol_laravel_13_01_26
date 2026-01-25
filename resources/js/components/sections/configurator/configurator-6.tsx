@@ -48,7 +48,7 @@ export default function Configurator6() {
                     </Link>
                 </div>
 
-                <div className="text-center">
+                <div className="text-center ">
                     <h1 className="mx-auto max-w-7xl text-2xl font-montserrat font-semibold text-secondary sm:text-3xl md:text-4xl lg:text-[40px]">
                         Energie Solution Nord — Your Trusted Partner for Sustainable Energy Solutions.
                     </h1>
@@ -57,7 +57,7 @@ export default function Configurator6() {
                     </p>
                 </div>
 
-                <form onSubmit={handleSubmit} className="mt-12 px-10">
+                <form onSubmit={handleSubmit} className="mt-20 px-10">
                     <div className="grid gap-6 md:grid-cols-2">
                         <div>
                             <label className="text-sm md:text-base lg:text-lg xl:text-2xl font-montserrat font-semibold text-secondary">First name*</label>
