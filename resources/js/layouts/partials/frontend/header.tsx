@@ -51,7 +51,7 @@ export function FrontendHeader() {
 
                     {/* <div className="hidden h-6 w-[1px] bg-border md:block" /> Divider */}
 
-                    {auth.user ? (
+                    {/* {auth.user ? (
                         <DropdownMenu>
                             <DropdownMenuTrigger asChild>
                                 <Button variant="ghost" className="relative h-9 w-9 rounded-full  ">
@@ -80,8 +80,16 @@ export function FrontendHeader() {
                                 </Button>
                             </Link>
                         </div>
-                    )}
+                    )} */}
 
+                    <div className="hidden items-center gap-2 md:flex">
+                            <Link href={route('configurator')} className='rounded-full!'>
+                                <Button size="sm" className="bg-btn-primary rounded-full! py-5!">
+                                    <Icon iconNode={ArrowRight} variant="circle" className='w-4! h-4! bg-primary p-3 rounded-full text-btn-primary'/>
+                                    Konfigurator
+                                </Button>
+                            </Link>
+                        </div>
                     {/* Mobile Menu Trigger */}
                     <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
                         <SheetTrigger asChild>
