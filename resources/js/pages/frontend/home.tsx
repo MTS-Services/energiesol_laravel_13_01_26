@@ -8,7 +8,7 @@ import DeliveryEnergy from "@/components/sections/home/delivery-energy";
 import Generation from "@/components/sections/home/generation";
 import StartConfigurator from "@/components/sections/home/start-configurator";
 
-export default function Home() {
+export default function Home({ features }: { features: any[] }) {
   return (
     <FrontendLayout>
 
@@ -16,7 +16,7 @@ export default function Home() {
     
     <Partner />
 
-    <Feature />
+    <Feature features={features} />
 
     <OptionalBanner />
    

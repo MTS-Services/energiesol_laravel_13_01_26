@@ -13,25 +13,25 @@ class FeatureSeeder extends Seeder
     public function run(): void
     {
         Feature::create([
-            'title' => 'Advanced Analytics',
-            'description' => 'Gain deep insights into your solar panel performance with our advanced analytics tools.',
-            'image' => 'https://via.placeholder.com/150/FF0000/FFFFFF?text=Analytics',
-            'action_text' => 'Learn More',
+            'title' => 'Mit Branchenexpertise',
+            'description' => 'Profitieren Sie von der Stabilität und dem umfassenden Know-how eines weltweit führenden Energieunternehmens. Unsere Lösungen basieren auf jahrzehntelanger Erfahrung und gewährleisten einen sicheren und nachhaltigen Übergang zu erneuerbarer Energie.',
+            'image' => '/images/feature1.png',
+            'action_text' => 'Unsere Geschichte',
             'action_url' => '/features/analytics',
         ]);
 
         Feature::create([
-            'title' => 'Smart Energy Management',
-            'description' => 'Optimize your energy consumption and savings with intelligent energy management systems.',
-            'image' => 'https://via.placeholder.com/150/0000FF/FFFFFF?text=Energy',
-            'action_text' => 'Get Started',
+            'title' => 'Premiumqualität, fairer Preis',
+            'description' => 'Durch den Einsatz vollständig digitalisierter Prozesse senken wir unsere Gemeinkosten und bieten Ihnen so erstklassige Solartechnologie zu einem wettbewerbsfähigen Preis. Profitieren Sie vom besten Preis-Leistungs-Verhältnis der Branche.',
+            'image' => '/images/feature2.png',
+            'action_text' => 'Unsere Geschichte',
             'action_url' => '/features/energy-management',
         ]);
 
         Feature::create([
             'title' => '24/7 Monitoring & Support',
             'description' => 'Our dedicated team provides continuous monitoring and support for your solar systems.',
-            'image' => 'https://via.placeholder.com/150/008000/FFFFFF?text=Support',
+            'image' => '/images/feature3.png',
             'action_text' => 'Contact Us',
             'action_url' => '/features/support',
         ]);

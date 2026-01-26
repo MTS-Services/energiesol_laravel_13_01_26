@@ -38,4 +38,9 @@ class FeatureService
 
         return $feature;
     }
+
+    public function latest(int $limit = 6)
+    {
+        return $this->model->latest()->limit($limit)->get();
+    }
 }

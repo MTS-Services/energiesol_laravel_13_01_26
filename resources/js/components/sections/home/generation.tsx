@@ -1,5 +1,6 @@
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
+import { Link } from '@inertiajs/react';
 import { ArrowRight } from 'lucide-react';
 
 export default function generation() {
@@ -34,10 +35,12 @@ export default function generation() {
                         </div>
 
                         <div className="mt-10">
+                           <Link href={route('about')}>
                             <Button className='bg-transparent!  border border-btn-primary! text-btn-primary!'>
                                 <Icon iconNode={ArrowRight} variant="circle-transparent"  ></Icon>
                                 Über uns
                             </Button>
+                           </Link>
                         </div>
                     </div>
                     <div className='grid grid-cols-2 gap-6'>

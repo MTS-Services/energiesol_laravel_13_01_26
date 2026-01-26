@@ -1,7 +1,8 @@
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
 import { cn } from "@/lib/utils";
+import { Link } from "@inertiajs/react";
 
 interface Props {
     slogan?: string | null;
@@ -17,7 +18,15 @@ interface Props {
     } | null;
     description?: string | null;
     image?: string | null;
-    btn?: { label: string | null; href: string | null } | null,
+    btn?: { 
+         label: string|null;
+            href: string|null;
+            buttonClassName?: string|null,
+            iconClassName?: string|null,
+            iconParentClassName?: string|null,
+            iconNode?: LucideIcon | null;
+            iconVariant?: "cricle" | "default" | "cirlce-transparent" | null ;
+    } | null,
     children?: React.ReactNode,
     className?: string | null
     order?: boolean | null
@@ -82,10 +91,13 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn, chil
 
                 {btn && (
                     <div className="mt-10">
-                        <Button>
-                            <Icon iconNode={ArrowRight} variant="circle"></Icon>
-                            {btn.label ?? 'Konfigurator'}
-                        </Button>
+                       <Link href={btn.href ?? '#'}>
+                            <Button variant={btn?.buttonVariant ?? 'default'}>
+                                <Icon iconNode={btn?.iconNode ?? ArrowRight}  className={btn?.iconParentClassName ?? ''} iconClassName={btn?.iconClassName ?? ''} variant={btn?.iconVariant ?? 'circle'} />
+                                {btn.label ?? 'Konfigurator'}
+                             
+                            </Button>
+                       </Link>
                     </div>
                 )}
 

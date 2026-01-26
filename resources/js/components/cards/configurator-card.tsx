@@ -2,6 +2,8 @@ import { ArrowRight } from "lucide-react"
 import { Button } from "@/components/ui/button"
 import { Input } from "@/components/ui/input"
 import { Icon } from "../ui/icon"
+import { useState } from "react"
+import { router } from "@inertiajs/react"
 
 interface Props {
     item?: {
@@ -10,6 +12,16 @@ interface Props {
 }
 
 function ConfiguratorCard({ item }: Props) {
+
+    const [inputValue, setInputValue] = useState<number | ''>('')
+
+    const handleConfigure = () => {
+        if (inputValue !== '') {
+            sessionStorage.setItem('area', inputValue.toString())
+           
+            router.visit(route('configurator.step2'))
+        }
+    }
     return (
         <div className='grid lg:grid-cols-2 grid-cols-1 gap-6 lg:gap-9'>
 
@@ -38,10 +50,16 @@ function ConfiguratorCard({ item }: Props) {
 
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center overflow-hidden">
                     <div>
-                        <Input type='number' className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4 py-6' placeholder='80' />
+                        <Input 
+                            type='number' 
+                            className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4 py-6' 
+                            placeholder='80'
+                            value={inputValue}
+                            onChange={(e) => setInputValue(e.target.value ? Number(e.target.value) : '')}
+                        />
                     </div>
                     <div>
-                        <Button className='text-sm lg:text-base w-full sm:w-auto!' variant={'default'}>
+                        <Button className='text-sm lg:text-base w-full sm:w-auto!' variant={'default'}  onClick={handleConfigure} disabled={!inputValue}>
                             <Icon iconNode={ArrowRight} variant="circle" className="bg-primary!" iconClassName="text-secondary"></Icon>
                             Jetzt konfigurieren
                         </Button>

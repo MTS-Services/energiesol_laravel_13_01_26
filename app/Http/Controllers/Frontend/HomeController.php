@@ -6,13 +6,21 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
+use App\Services\FeatureService;
 
 class HomeController extends Controller
 {
+    public function __construct(protected FeatureService $featureService)
+    {
+        //
+    }
 
     public function home(Request $request): Response
     {
-        return Inertia::render('frontend/home');
+        $features = $this->featureService->latest();
+        return Inertia::render('frontend/home', [
+            'features' => $features,
+        ]);
     }
     public function service(Request $request): Response
     {

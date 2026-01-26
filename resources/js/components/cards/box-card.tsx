@@ -11,6 +11,7 @@ interface ItemProps{
         slogan?: string | null;
         title?: string | null;
         description?: string | null;
+
         btn?: {
             label: string|null;
             href: string|null;
@@ -27,6 +28,7 @@ interface ItemProps{
      children?: React.ReactNode,
      className?: string|null,
 }
+
 function BoxCard({item, className, children}: ItemProps) {
     const changeOrder = item?.changeOrder ?? false;
   return (
