@@ -54,15 +54,15 @@ export default function banner() {
                         <div className="flex items-center gap-4 py-8">
                             <div className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
                                 <Avatar>
-                                    <AvatarImage src="#" alt="@shadcn" />
+                                    <AvatarImage src="https://github.com/shadcn.png" alt="@shadcn" alt="@shadcn" />
                                     <AvatarFallback>CN</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src="#" alt="@maxleiter" />
+                                    <AvatarImage src="https://github.com/evilrabbit.png" alt="@maxleiter" />
                                     <AvatarFallback>LR</AvatarFallback>
                                 </Avatar>
                                 <Avatar>
-                                    <AvatarImage src="#" alt="@evilrabbit" />
+                                    <AvatarImage src="https://github.com/shadcn.png" alt="@evilrabbit" />
                                     <AvatarFallback>ER</AvatarFallback>
                                 </Avatar>
                             </div>

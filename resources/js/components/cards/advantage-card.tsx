@@ -11,14 +11,14 @@ interface Item {
 function AdvantageCard({ item }: Item) {
   if (!item) return null;
 
-  const IconComponent = item.icon;
+ 
 
   return (
     <div className="why-choose-item rounded-md bg-gradient-to-r from-btn-primary/5 to-info/5 p-6">
       <div>
         <div className="flex h-12 w-12 items-center justify-center rounded-sm bg-primary/70">
-          {IconComponent && (
-            <IconComponent className="h-6 w-6 stroke-btn-primary" />
+          {item.icon && (
+            <img src={item?.icon} alt="" className="h-6 w-6" />
           )}
         </div>
 

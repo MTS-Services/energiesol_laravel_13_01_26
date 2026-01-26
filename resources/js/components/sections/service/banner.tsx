@@ -18,7 +18,7 @@ export default function banner() {
         image: '/images/service-banner.png',
         btn: {
             label: 'Meine Konfiguration starten',
-            href: '#',
+            href: route('configurator'),
             iconParentClassName: 'bg-primary!',
             iconClassName: 'text-secondary!',
             iconNode: ArrowRight,
