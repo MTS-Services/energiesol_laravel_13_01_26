@@ -13,24 +13,35 @@ class ServiceSeeder extends Seeder
     public function run(): void
     {
         Service::create([
-            'title' => 'Solar Panel Installation',
-            'sub_title' => 'Professional installation of solar panels for homes and businesses.',
-            'image' => 'services/images/solar_installation.jpg',
-            'description' => 'Our expert team provides seamless and efficient solar panel installation services, ensuring optimal performance and energy savings. We handle everything from design to final setup, using high-quality materials and industry best practices.',
+            'title' => 'Umfassende Solarexpertise.',
+            'sub_title' => 'VOLLSERVICEANSATZ',
+            'image' => '/images/service1.jpg',
+            'description' => 'Als Ihr Komplettanbieter für Solarenergie unterstützen wir Sie in jedem Schritt –
+von der ersten Beratung bis zur finalen Inbetriebnahme und dem Netzanschluss. Unser digitaler Prozess sorgt für Klarheit, Komfort und volle Transparenz.',
         ]);
 
         Service::create([
-            'title' => 'Solar Panel Maintenance',
-            'sub_title' => 'Regular maintenance and cleaning to maximize solar panel efficiency.',
-            'image' => 'services/images/solar_maintenance.jpg',
-            'description' => 'Keep your solar panels running at peak efficiency with our comprehensive maintenance services. We offer cleaning, inspection, and repair to ensure your system performs optimally year-round, extending its lifespan and saving you money.',
+            'title' => 'Nahtloses Projektmanagement',
+            'sub_title' => 'PROJEKTDURCHFÜHRUNG',
+            'image' => '/images/service2.jpg',
+            'description' => 'Wir übernehmen die komplette Umsetzung Ihrer Solaranlage – von der Beschaffung hochwertiger Komponenten bis zur Koordination der professionellen Installation –
+und gewährleisten so ein reibungsloses und zuverlässiges Erlebnis.',
         ]);
 
         Service::create([
-            'title' => 'Battery Storage Solutions',
-            'sub_title' => 'Integrate battery storage with your solar system for uninterrupted power.',
-            'image' => 'services/images/battery_storage.jpg',
-            'description' => 'Enhance your energy independence with our advanced battery storage solutions. Store excess solar energy for use during outages or at night, reducing your reliance on the grid and providing a reliable power supply.',
+            'title' => 'Maximale Planungs-Effizienz',
+            'sub_title' => 'SYSTEMPLANUNG',
+            'image' => '/images/service3.jpg',
+            'description' => 'Unsere datengestützte Planung gewährleistet durch präzise Dachanalyse und intelligentes Systemdesign eine optimale Paneelplatzierung und langfristige Leistungsfähigkeit.
+
+So sichern wir Ihnen maximale Energieerträge und eine nachhaltige Rendite über die gesamte Lebensdauer Ihrer Anlage.',
+        ]);
+        Service::create([
+            'title' => 'Problemloser Netzanschluss',
+            'sub_title' => 'Netzanschluss',
+            'image' => '/images/service4.png',
+            'description' => 'Wir übernehmen sämtliche Genehmigungsverfahren, die technische Abstimmung sowie die komplette Dokumentation, um Ihre Anlage reibungslos und sicher an das lokale Stromnetz anzuschließen.
+Dabei kümmern wir uns um alle bürokratischen Details, damit Sie sich entspannt auf Ihre eigene saubere Energie freuen können.',
         ]);
     }
 }

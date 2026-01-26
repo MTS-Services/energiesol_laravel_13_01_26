@@ -103,8 +103,8 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn, chil
 
             </div>
             {image && (
-                <div className="hidden  lg:block ">
-                    <img src={image} alt="" className="w-full h-full" />
+                <div className="hidden  lg:block  ">
+                    <img src={image} alt="" className="w-full! h-full!" />
                 </div>
             )}
         </div>

@@ -3,14 +3,14 @@ import React from 'react'
 
  function VisionCard() {
   const item = {
-        slogan: 'SOLAR SOLUTIONS',
+        slogan: 'Energie für morgen',
         title: {
-            initial: 'ENERGIE SOLUTION NORD - powering your future.',
+            initial: 'Unsere Vision',
         },
         image: '/images/vission-card.png',
         btn: {
-            label: 'Start my estimate',
-            href: '#',
+            label: 'Angebot einholen',
+            href: route('configurator'),
         }
     };
 
@@ -25,9 +25,9 @@ import React from 'react'
             >
                 <div>
                     <p className='text-base lg:text-lg font-montserrat mb-3 text-secondary/70'>
-                       We are dedicated to providing the current generation with a comprehensive and sustainable supply of renewable energy.</p>
+                      Wir setzen uns dafür ein, der heutigen Generation eine umfassende und nachhaltige Versorgung mit erneuerbaren Energien zu bieten.</p>
                     <p className='text-base lg:text-lg font-montserrat mb-3 text-secondary/70'>
-                        Our long-term goal is to achieve 100% energy independence for every private household. While our core expertise lies in high-performance solar technology, we remain at the forefront of innovation—exploring diverse renewable energy sources to ensure a resilient and clean power future for families today and for generations to come. 
+                       Unser langfristiges Ziel ist es, jedem Privathaushalt eine 100%ige Energieunabhängigkeit zu ermöglichen. Während unsere Kernkompetenz in der Hochleistungs-Solartechnologie liegt, bleiben wir ein Vorreiter für Innovationen – wir erforschen vielfältige erneuerbare Energiequellen, um eine krisenfeste und saubere Energiezukunft für Familien heute এবং für kommende Generationen zu sichern. 
                     </p>
                 </div>
             </DefaultCardComp>

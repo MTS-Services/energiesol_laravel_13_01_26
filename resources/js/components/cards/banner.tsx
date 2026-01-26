@@ -1,6 +1,7 @@
 import { ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
+import { Link } from "@inertiajs/react";
 
 interface Props {
     slogan?: string | null,
@@ -73,10 +74,12 @@ function Banner({ item }: Props) {
                             </p>
                         </div>
                         <div>
-                            <Button size="default" variant={item?.btn?.buttonVariant || "default"} className={item?.btn?.buttonClassName || ""}>
+                           <Link href={item?.btn?.href || "#"}>
+                             <Button size="default" variant={item?.btn?.buttonVariant || "default"} className={item?.btn?.buttonClassName || ""}>
                                 <Icon iconNode={item?.btn?.iconNode || ArrowRight} variant={item?.btn?.iconVariant || "circle"} className={item?.btn?.iconParentClassName || ""} iconClassName={item?.btn?.iconClassName || ""} />
-                                Meine Konfiguration starten
+                                {item?.btn?.label || "Meine Konfiguration starten"}
                             </Button>
+                           </Link>
                         </div>
 
 

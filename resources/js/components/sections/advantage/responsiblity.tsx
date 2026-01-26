@@ -3,17 +3,17 @@ import { DefaultCardComp } from '@/components/cards/default-card-comp';
 
 export default function Resposiblity() {
     const item = {
-        slogan: 'SOLAR SOLUTIONS',
+        slogan: 'ZUKUNFT',
         title: {
-            initial: 'Your Home, Our ',
-            middle: 'Responsibility',
+            initial: 'Ihr Zuhause, unsere ',
+            middle: 'Verantwortung.',
         },
        
-        description: 'At Energiesol, we believe energy is more than just electricity; it’s about protecting the environment for the next generation. We take full responsibility for powering your home with clean, renewable solar energy. Our mission is to provide you with peace of mind through sustainable solutions that contribute to a brighter and greener tomorrow for your family.',
+        description: 'Bei Energiesol glauben wir, dass Energie mehr ist als nur Strom – es geht darum, die Umwelt für die nächste Generation zu schützen. Wir übernehmen die volle Verantwortung dafür, Ihr Zuhause mit sauberer, erneuerbarer Solarenergie zu versorgen. Unsere Mission ist es, Ihnen durch nachhaltige Lösungen ein gutes Gefühl zu geben und gemeinsam zu einer helleren und grüneren Zukunft für Ihre Familie beizutragen.',
         image: '/images/responsiblity.png',
         btn: {
-            label: 'Start configurator',
-            href: '#',
+            label: 'Konfigurator starten',
+            href: route('configurator') ,
         }
     };
 

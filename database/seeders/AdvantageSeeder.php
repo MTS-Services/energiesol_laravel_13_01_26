@@ -14,34 +14,34 @@ class AdvantageSeeder extends Seeder
     {
         Advantage::insert([
             [
-                'title' => 'High Efficiency',
-                'description' => 'Our solar panels offer high efficiency and performance in various weather conditions.',
-                'icon' => 'solar-panel-icon.png',
+                'title' => 'Individuelle Beratung',
+                'description' => 'Erhalten Sie maßgeschneiderte Lösungen von unseren Experten, die genau auf Ihre individuellen Bedürfnisse eingehen.',
+                'icon' => '/images/advantage1.png',
             ],
             [
-                'title' => 'Durability',
-                'description' => 'Built to last, our solar panels are designed to withstand harsh environmental factors.',
-                'icon' => 'durability-icon.png',
+                'title' => 'Sofortige Preistransparenz',
+                'description' => 'Kein wochenlanges Warten mehr. Berechnen Sie Ihre Solar-Investition sofort mit unserem transparenten Online-Konfigurator.',
+                'icon' => '/images/advantage2.png',
             ],
             [
-                'title' => 'Cost Savings',
-                'description' => 'Save on energy bills with our affordable and efficient solar solutions.',
-                'icon' => 'cost-savings-icon.png',
+                'title' => 'Beste Qualität. Besserer Preis.',
+                'description' => 'Wir kombinieren digitale Effizienz mit hochwertigen Komponenten, um das beste Preis-Leistungs-Verhältnis für Ihre Investition zu bieten.',
+                'icon' => '/images/advantage3.png',
             ],
             [
-                'title' => 'Eco-Friendly',
-                'description' => 'Reduce your carbon footprint with our environmentally friendly solar panels.',
-                'icon' => 'eco-friendly-icon.png',
+                'title' => 'Sofortige Preistransparenz',
+                'description' => 'Profitieren Sie von unserer langjährigen Erfahrung und der starken Rückendeckung führender Energiegruppen – für langfristige Zuverlässigkeit.',
+                'icon' => '/images/advantage4.png',
             ],
             [
-                'title' => 'Easy Installation',
-                'description' => 'Our solar panels are designed for quick and easy installation.',
-                'icon' => 'easy-installation-icon.png',
+                'title' => 'Innovative Systemlösungen',
+                'description' => 'Unsere smarten Energiemanagementsysteme lassen sich nahtlos in Elektrofahrzeuge und moderne Hausautomation integrieren.',
+                'icon' => '/images/advantage5.png',
             ],
             [
-                'title' => 'Longevity',
-                'description' => 'Enjoy long-term performance with our durable solar panels.',
-                'icon' => 'longevity-icon.png',
+                'title' => 'Rundum-Sorglos-Service',
+                'description' => 'Von der ersten Standortanalyse und Planung bis hin zur finalen Installation und laufenden Wartung – wir übernehmen alles für Sie.',
+                'icon' => '/images/advantage6.png',
             ],
         ]);
     }

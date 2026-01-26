@@ -47,4 +47,9 @@ class ServiceService
 
         return $service->delete();
     }
+
+    public function latest(int $limit = 6)
+    {
+        return $this->model->latest()->limit($limit)->get();
+    }
 }

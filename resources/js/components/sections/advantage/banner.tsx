@@ -3,21 +3,21 @@ import { Banner } from '@/components/cards/banner';
 
 export default function banner() {
     const BannerData = {
-        slogan: 'SMART SOLAR SOLUTIONS',
+        slogan: 'Intelligente Solarlösungen',
         title: {
-            initial: 'Generate Your Own ',
-            middle: 'clean',
-            last: 'Energy Effortlessly',
+            
+            middle: 'Nachhaltige Energie',
+            last: 'für Ihr Zuhause. Ganz einfach.',
             breakPoint: {
-                before: true, 
+                after: false, 
             }
         },
 
-        description: 'High-performance solar solutions for a smarter, independent energy future.',
+        description: 'Hocheffiziente Solarsysteme für maximale Ersparnis und eine grünere, unabhängige Zukunft.',
         image: '/images/advantage-banner.png',
         btn: {
-            label: ' Start My Configuration',
-            href: '#',
+            label: 'Konfiguration starten',
+            href: route('configurator'),
             iconParentClassName: 'bg-primary',
             iconClassName: 'text-secondary',
         }

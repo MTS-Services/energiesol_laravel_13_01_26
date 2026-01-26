@@ -13,27 +13,22 @@ class ValueSeeder extends Seeder
     public function run(): void
     {
         Value::create([
-            'title' => 'Our Mission',
-            'description' => 'To accelerate the transition to sustainable energy by providing reliable and affordable solar solutions.',
-            'image' => 'mission_image.png',
-            'action_text' => 'Learn More',
-            'action_url' => '/about-us',
+            'title' => 'Ein Partner, auf den Sie zählen können.',
+            'description' => 'Bei Energiesol bieten wir mehr als nur Solarmodule Von Ihrer ersten Anfrage bis zur finalen professionellen Installation begleitet Sie ein persönlicher Experte durch jeden technischen Schritt. > Unser Ziel ist es,
+die Komplexität von Planung und Montage für Sie zu übernehmen, damit Sie einen reibungslosen, transparenten und stressfreien Wechsel zu sauberer Energie genießen können.',
+            'image' => '/images/values1.png',
+            'action_text' => 'Konfigurator starten',
+            'action_url' => route('configurator'),
         ]);
 
         Value::create([
-            'title' => 'Our Vision',
-            'description' => 'A world where clean energy is accessible to everyone, powering a brighter, more sustainable future.',
-            'image' => 'vision_image.png',
-            'action_text' => 'Join Us',
-            'action_url' => '/careers',
+            'title' => 'Moderne Technologie, schnell geliefert.',
+            'description' => 'Dank unserer effizienten digitalen Prozesse vermeiden wir unnötige Verzögerungen. Wir führen keine alten Lagerbestände – stattdessen stellen wir sicher,
+dass Ihr System immer die neuesten und fortschrittlichsten Solarmodule und Komponenten erhält, die aktuell auf dem Markt verfügbar sind.',
+            'image' => '/images/values2.png',
+            'action_text' => 'Konfigurator starten',
+            'action_url' => route('configurator'),
         ]);
 
-        Value::create([
-            'title' => 'Our Commitment',
-            'description' => 'We are committed to quality, innovation, and customer satisfaction, ensuring every project meets the highest standards.',
-            'image' => 'commitment_image.png',
-            'action_text' => 'Our Projects',
-            'action_url' => '/projects',
-        ]);
     }
 }

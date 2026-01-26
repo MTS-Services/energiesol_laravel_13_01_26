@@ -7,10 +7,18 @@ use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
 use App\Services\FeatureService;
+use App\Services\ServiceService;
+use App\Services\AdvantageService;
+use App\Services\ValueService;
 
 class HomeController extends Controller
 {
-    public function __construct(protected FeatureService $featureService)
+    public function __construct(
+        protected FeatureService $featureService,
+        protected ServiceService $serviceService,
+        protected AdvantageService $advantageService,
+        protected ValueService $valueService,
+     )
     {
         //
     }
@@ -24,12 +32,22 @@ class HomeController extends Controller
     }
     public function service(Request $request): Response
     {
-        return Inertia::render('frontend/service');
+        $services = $this->serviceService->latest();
+        $advantages = $this->advantageService->latest();
+        return Inertia::render('frontend/service', [
+            'services' => $services,
+            'advantages' => $advantages,
+        ]);
     }
 
     public function advantage(Request $request): Response
     {
-        return Inertia::render('frontend/advantage');
+        $advantages = $this->advantageService->latest();
+        $values = $this->valueService->latest();
+        return Inertia::render('frontend/advantage', [
+            'advantages' => $advantages,
+            'values' => $values,
+        ]);
     }
 
     public function about(Request $request): Response

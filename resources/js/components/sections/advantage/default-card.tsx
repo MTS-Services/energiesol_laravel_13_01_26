@@ -2,12 +2,15 @@ import { DefaultCardComp } from '@/components/cards/default-card-comp';
 
 export default function DefaultCard() {
     const item = {
-        slogan: 'SOLAR SOLUTIONS',
+        slogan: 'SOLARLÖSUNGEN',
         title: {
-            initial: 'ENERGIE SOLUTION NORD - powering your future.',
+            initial: 'ENERGIE SOLUTION NORD – ',
+            middle: 'Energie für Ihre Zukunft.',
+            breakPoint: {
+                before: true,
+            }
         },
-        subtitle:
-            'Empowering lives with sustainable energy and innovative technology for a greener tomorrow.',
+        subtitle:'Lebensqualität stärken durch nachhaltige Energie und innovative Technologien – für ein grüneres Morgen.',
 
         image: '/images/group-house.png',
     };
@@ -33,31 +36,31 @@ export default function DefaultCard() {
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Cutting-Edge Technology:</span> We use the latest solar panels and smart energy systems to maximize efficiency.
+                            <span className='font-normal text-secondary font-open-sans'>Spitzentechnologie:</span> Wir verwenden modernste Solarmodule und smarte Energiesysteme, um Ihre Effizienz zu maximieren.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Expert Consultation:</span> Our team provides personalized guidance to help you find the perfect energy setup.
+                            <span className='font-normal text-secondary font-open-sans'>Expertenberatung:</span>  Unser Team bietet Ihnen eine persönliche Beratung, um das perfekte Energiesystem für Sie zu finden.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Seamless Installation:</span>  Hassle-free and professional setup by our certified technicians.
+                            <span className='font-normal text-secondary font-open-sans'>Seamless Installation:</span>Problemlose und professionelle Einrichtung durch unsere zertifizierten Techniker.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Transparent Pricing:</span> No hidden costs—just honest service from start to The finish.
+                            <span className='font-normal text-secondary font-open-sans'>Reibungslose Installation:</span>Stressfreie und professionelle Montage durch unsere zertifizierten Techniker.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>24/7 Support: </span>Continuous monitoring and support to ensure your power never goes out.
+                            <span className='font-normal text-secondary font-open-sans'>24/7 Kundensupport: </span>Kontinuierliche Überwachung und Unterstützung, um sicherzustellen, dass Ihre Stromversorgung niemals ausfällt.
                         </p>
                     </div>
                 </div>

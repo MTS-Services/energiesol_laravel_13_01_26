@@ -10,13 +10,13 @@ import Resposiblity from '@/components/sections/advantage/responsiblity'
 import StartConfigurator from '@/components/sections/advantage/start-configurator'
 
 
-export default function advantage() {
+export default function advantage({advantages, values}: {advantages: any, values: any}) {
   return (
    <FrontendLayout>
         <Banner />
-        <WhyChoose />
+        <WhyChoose advantages={advantages} />
         <DefaultCard />
-        <Values />
+        <Values values={values} />
         <Review />
         <Resposiblity />
 

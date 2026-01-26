@@ -1,15 +1,9 @@
 import { BoxCard } from "@/components/cards/box-card";
 import { SectionHeader } from "@/components/cards/section-header";
+import { buttonVariants } from "@/components/ui/button";
 
-export default function Values() {
-    type ServiceItem = {
-    slogan?: string|null;
-    image: string;
-    title: string;
-    description: string;
-    btn?: {label: string|null; href: string|null}|null;
-    changeOrder?: boolean|null;
-    };
+export default function Values({values}: {values: any}) {
+    
     const items: ServiceItem[] = [
     {
 
@@ -35,11 +29,12 @@ export default function Values() {
   ];
 
   const sectionHeaderData = {
-    slogan: "CORE VALUES",
+    slogan: "UNSERE WERTE",
     title: {
-      initial: "What Makes Us Different!",
+      initial: "Was uns ",
+      middle: "auszeichnet!",
     },
-    description: "We blend advanced solar innovation with professional support to ensure your switch to clean energy is effortless and honest.",
+    description: "Wir verbinden modernste Solar-Innovation mit professioneller Betreuung, um Ihren Wechsel zu sauberer Energie so einfach und ehrlich wie möglich zu gestalten.",
   };
 
     return (
@@ -52,12 +47,23 @@ export default function Values() {
 
 
                         {
-                            items.map((item, index)=>(
-                              <BoxCard key={index} item={item} className={'grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} />
-                                
-                                // <ServiceCard slogan={item.slogan} image={item.image} title={item.title} description={item.description} order={index % 2 === 0} className={`mt-20 ${index === items.length - 1 ? 'border-none' : ''}`} btn={item.btn} />
-                            ))
+                            values?.map((item, index)=> {
+                              const newItem = {
+                                ...item,
+                                 btn: {
+                                label: item.action_text,
+                                buttonClassName: 'bg-btn-primary!',
+                                href: item.action_url || '#',
+                                iconVariant: 'circle',
+                                iconParentClassName: 'bg-primary!',
+                                iconClassName: 'text-secondary!', 
+                               },
+                               changeOrder: index % 2 === 1,
+                              }
+                            return  (<BoxCard key={index} item={newItem} className={'grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} /> )
+                            })
                         }
+                        
                     
                 </div>
             </div>

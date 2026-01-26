@@ -5,18 +5,18 @@ export default function review() {
                 <div className="mb-3 flex flex-row items-center justify-start lg:justify-center gap-3">
                     <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
                     <p className="mt-1 text-sm font-normal uppercase md:text-base md:text-secondary">
-                        Client Stories
+                       Kundengeschichten
                     </p>
                 </div>
                 <div className="flex flex-col items-start justify-start lg:items-center lg:justify-center">
                     <h2 className="font-montserrat text-3xl font-semibold lg:text-[40px]">
-                        Our clients love to{' '}
+                       Unsere Kunden  
                     </h2>
                     <h2 className="font-montserrat text-3xl font-semibold text-secondary italic lg:text-[40px]">
                         <span className="font-playfair-display font-semibold text-info italic">
-                            Recommend
+                          empfehlen
                         </span>{' '}
-                        us
+                      uns sehr gerne weiter.
                     </h2>
                 </div>
 

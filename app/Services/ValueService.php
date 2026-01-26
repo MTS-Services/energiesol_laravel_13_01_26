@@ -38,4 +38,9 @@ class ValueService
 
         return $value;
     }
+
+    public function latest(int $limit = 6)
+    {
+        return $this->model->latest()->limit($limit)->get();
+    }
 }
