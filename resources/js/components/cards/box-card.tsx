@@ -32,7 +32,7 @@ interface ItemProps{
 function BoxCard({item, className, children}: ItemProps) {
     const changeOrder = item?.changeOrder ?? false;
   return (
-     <div className={cn('box-item p-3 pb-12! lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md grid grid-cols-1 gap-2  ', className)}>
+     <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md grid grid-cols-1 gap-2  ', className)}>
       
         { item?.image && (
 

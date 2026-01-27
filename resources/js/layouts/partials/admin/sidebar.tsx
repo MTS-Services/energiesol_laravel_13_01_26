@@ -62,6 +62,35 @@ const adminNavItems: NavItemType[] = [
     //         },
     //     ],
     // },
+    
+    {
+        title: 'Features',
+        href: route('admin.features.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-features',
+        permission: 'view features',
+    },
+    {
+        title: 'Services',
+        href: route('admin.services.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-services',
+        permission: 'view services',
+    },
+    {
+        title: 'Advantages',
+        href: route('admin.advantages.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-advantages',
+        permission: 'view advantages',
+    },
+    {
+        title: 'Values',
+        href: route('admin.values.index'),
+        icon: LayoutGrid, // Using LayoutGrid icon
+        slug: 'admin-values',
+        permission: 'view advantages',
+    },
     {
         title: 'Solar Panels',
         href: route('admin.solar-panels.index'),
@@ -101,34 +130,6 @@ const adminNavItems: NavItemType[] = [
         href: route('admin.partners.index'),
         icon: BarChart,
         permission: 'view analytics',
-    },
-    {
-        title: 'Features',
-        href: route('admin.features.index'),
-        icon: LayoutGrid, // Using LayoutGrid icon
-        slug: 'admin-features',
-        permission: 'view features',
-    },
-    {
-        title: 'Services',
-        href: route('admin.services.index'),
-        icon: LayoutGrid, // Using LayoutGrid icon
-        slug: 'admin-services',
-        permission: 'view services',
-    },
-    {
-        title: 'Advantages',
-        href: route('admin.advantages.index'),
-        icon: LayoutGrid, // Using LayoutGrid icon
-        slug: 'admin-advantages',
-        permission: 'view advantages',
-    },
-    {
-        title: 'Values',
-        href: route('admin.values.index'),
-        icon: LayoutGrid, // Using LayoutGrid icon
-        slug: 'admin-values',
-        permission: 'view advantages',
     },
     // {
     //     title: 'Analytics',
@@ -189,7 +190,7 @@ export const AdminSidebar = React.memo<AdminSidebarProps>(({ isCollapsed, active
                     {isCollapsed ? (
                         <LayoutGrid className="h-6 w-6 text-primary" />
                     ) : (
-                        <AppLogo />
+                        <AppLogo className='text-base!'/>
                     )}
                 </Link>
             </div>
