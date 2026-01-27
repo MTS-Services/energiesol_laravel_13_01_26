@@ -10,15 +10,17 @@ Route::group([], function () {
     Route::get('/about-us', [HomeController::class, 'about'])->name('about');
     Route::get('/contact', [HomeController::class, 'contact'])->name('contact');
     Route::get('/configurator', [HomeController::class, 'configurator'])->name('configurator');
-    Route::get('/configurator/step-2', [HomeController::class, 'configuratorStep2'])->name('configurator.step2');
-    Route::get('/configurator/step-3', [HomeController::class, 'configuratorStep3'])->name('configurator.step3');
-    Route::get('/configurator/step-4', [HomeController::class, 'configuratorStep4'])->name('configurator.step4');
-    Route::get('/configurator/step-5', [HomeController::class, 'configuratorStep5'])->name('configurator.step5');
-    Route::get('/configurator/step-6', [HomeController::class, 'configuratorStep6'])->name('configurator.step6');
+    Route::get('/configurator/step-2/{area?}', [HomeController::class, 'configuratorStep2'])->name('configurator.step2');
+    Route::get('/configurator/step-3/{area?}/{solar_id?}', [HomeController::class, 'configuratorStep3'])->name('configurator.step3');
+    Route::get('/configurator/step-4/{area?}/{solar_id?}/{inverter_id?}', [HomeController::class, 'configuratorStep4'])->name('configurator.step4');
+    Route::get('/configurator/step-5/{area?}/{solar_id?}/{inverter_id?}/{battery?}', [HomeController::class, 'configuratorStep5'])->name('configurator.step5');
+    Route::get('/configurator/step-6/{area?}/{solar_id?}/{inverter_id?}/{battery?}/{charger?}', [HomeController::class, 'configuratorStep6'])->name('configurator.step6');
 
     Route::get('/products', [HomeController::class, 'products'])->name('products');
 
 
     Route::get('/order/success', [HomeController::class, 'orderSuccess'])->name('order.success');
+
+    Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');
     
 });

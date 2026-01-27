@@ -37,4 +37,13 @@ class SolarPanelService
         
         return $solarPanel;
     }
+    public function latest(int $limit = 6)
+    {
+        return $this->model->latest()->limit($limit)->orderBy('id', 'asc')->get();
+    }
+
+    public function all($sort_by = 'id', $sort_order = 'asc')
+    {
+        return $this->model->orderBy($sort_by, $sort_order)->get();
+    }   
 }

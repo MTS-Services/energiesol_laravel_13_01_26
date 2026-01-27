@@ -17,9 +17,9 @@ function ConfiguratorCard({ item }: Props) {
 
     const handleConfigure = () => {
         if (inputValue !== '') {
-            sessionStorage.setItem('area', inputValue.toString())
            
-            router.visit(route('configurator.step2'))
+           
+            router.visit(route('configurator.step2', {area:inputValue}))
         }
     }
     return (

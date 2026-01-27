@@ -1,11 +1,12 @@
 import type { ComponentType, MouseEventHandler, SVGProps } from "react";
 import { cn } from "@/lib/utils"; 
+import { router } from "@inertiajs/react";
 
 type IconComponent = ComponentType<{ className?: string }> | ComponentType<SVGProps<SVGSVGElement>>;
 
 interface Configurator1CardProps {
   title?: string;
-  area?: string;
+  area?: number;
   icon?: IconComponent;
   selected?: boolean;
   disabled?: boolean;
@@ -15,7 +16,7 @@ interface Configurator1CardProps {
 
 export default function Configurator1Card({
   title = "",
-  area = "",
+  area = 0,
   icon: Icon,
   selected = false,
   disabled = false,
@@ -26,9 +27,9 @@ export default function Configurator1Card({
     <button
       type="button"
       disabled={disabled}
-      onClick={onClick}
+      onClick={()=>router.visit(route('configurator.step2', {area:area}))}
       className={cn(
-        "group relative w-full  overflow-hidden rounded-2xl  bg-linear-to-br from-slate-50 to-emerald-50 px-6 py-9 text-center shadow-sm transition-all",
+        "group relative w-full  overflow-hidden rounded-2xl  bg-linear-to-br cursor-pointer from-slate-50 to-emerald-50 px-6 py-9 text-center shadow-sm transition-all",
         "hover:-translate-y-0.5 hover:shadow-md",
         selected && "ring-2 ring-white ring-offset-2",
         disabled && "cursor-not-allowed opacity-60 hover:translate-y-0 hover:shadow-sm",
@@ -46,15 +47,11 @@ export default function Configurator1Card({
         <div className="text-lg font-semibold text-slate-900">{title}</div>
 
         <div className="mt-2 text-sm text-slate-500">
-          Area: <span className="font-medium">{area}</span>
+          Fläche: <span className="font-medium">{area}m<sup>2</sup></span>
         </div>
       </div>
     </button>
   );
 }
 
-/**
- * If you don't have cn() in "@/lib/utils", use this instead:
- *
- * const cn = (...classes) => classes.filter(Boolean).join(" ");
- */
+

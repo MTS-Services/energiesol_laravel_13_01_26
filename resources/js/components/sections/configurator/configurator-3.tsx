@@ -5,19 +5,23 @@ import { ArrowLeft, BadgeCheck, DollarSign, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Configurator3CardProps {
+    id?: number,
+    area?: number,
+    solar_id?: number,
     title: string;
+    brand_title?: string;
+    note?: string;
     description: string;
     image: string;
-    meta: string;
     selected?: boolean;
     onClick?: () => void;
 }
 
-function Configurator3Card({ title, description, image, meta, selected = false, onClick }: Configurator3CardProps) {
+function Configurator3Card({ title, description, image, note, selected = false, onClick, area, solar_id ,id  }: Configurator3CardProps) {
     return (
         <button
             type="button"
-            onClick={onClick}
+            onClick={()=>router.visit(route("configurator.step4", {area: area, solar_id: solar_id, inverter_id: id}))}
             className={cn(
                 "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear p-3 text-left shadow-sm transition-all",
                 "hover:-translate-y-0.5 hover:shadow-md hover:cursor-pointer",
@@ -33,48 +37,17 @@ function Configurator3Card({ title, description, image, meta, selected = false, 
                 <p className="mt-2 text-sm md:text-base lg:text-xl leading-relaxed text-slate-600">{description}</p>
 
                 <div className="mt-3 flex items-center gap-3">
-                    <p className="text-base text-slate-500">{meta}</p>
+                    <p className="text-base text-slate-500">{note}</p>
                 </div>
             </div>
         </button>
     );
 }
 
-export default function Configurator3() {
-    const cards = useMemo(
-        () => [
-            {
-                id: "complete_solution",
-                title: "Complete solution",
-                description: "Enjoy up to 2300W AC output, easily powering high-demand appliances.",
-                image: "/images/configurator/singenergy.png",
-                meta: "EcoFlow STREAM Ultra X"
-            },
-            {
-                id: "price_performance",
-                title: "Price-performance",
-                description: "Get superior power output with the best return on your investment.",
-                image: "/images/configurator/huawei.png",
-                meta: "HUAWEI Smart PV Global"
-            },
-            {
-                id: "performance",
-                title: "Performance",
-                description: "Unmatched quality that offers the best value for your investment.",
-                image: "/images/configurator/ecoflow.png",
-                meta: "Zig Energy Vertex S+ 455Wp (Glass-Glass)"
-            },
-        ],
-        []
-    );
+export default function Configurator3({area, solar_id, solarInverterService }: any) {
+    
 
 
-    const [selectedId, setSelectedId] = useState(cards[0].id);
-
-    const handleCardSelect = (id: string) => {
-        setSelectedId(id);
-        router.visit(route("configurator.step4"));
-    };
 
     return (
         <div className="bg-white py-20 sm:py-28 lg:py-32">
@@ -84,7 +57,7 @@ export default function Configurator3() {
                     <Link href={route("configurator.step2")}>
                         <Button variant="ghost" className="hover:cursor-pointer">
                             <ArrowLeft className="mr-2 h-5 w-5" />
-                            Back
+                            Zurück
                         </Button>
                     </Link>
                 </div>
@@ -92,21 +65,21 @@ export default function Configurator3() {
                 {/* Title */}
                 <div className="mx-auto  text-center">
                     <h2 className="text-2xl font-montserrat font-semibold leading-tight text-secondary sm:text-3xl md:text-4xl">
-                        Excellent! How much support would you like from our team?
+                     Perfekt! Was ist Ihre oberste Priorität bei Solarenergie?
                     </h2>
 
                     <p className="mt-3 text-sm text-slate-500 sm:text-base">
-                        Choose the service style that matches your expectations. You can always adjust this later.
+                      Wählen Sie eine Kategorie, die Ihren Bedürfnissen entspricht. Diese kann jederzeit angepasst werden.
                     </p>
 
                     {/* Cards */}
                     <div className="mt-10 grid gap-6 md:gap-8 lg:grid-cols-3 sm:grid-cols-2">
-                        {cards.map((card) => (
+                        {solarInverterService.map((card) => (
                             <Configurator3Card
                                 key={card.id}
-                                selected={selectedId === card.id}
-                                onClick={() => handleCardSelect(card.id)}
                                 {...card}
+                                area={area}
+                                solar_id={solar_id}
                             />
                         ))}
                     </div>

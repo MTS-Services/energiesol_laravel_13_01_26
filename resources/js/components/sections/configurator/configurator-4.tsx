@@ -5,18 +5,22 @@ import { ArrowLeft, BadgeCheck, DollarSign, Info, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
 
 interface Configurator4CardProps {
+    inverter_id?: number
+    area: number;
+    solar_id: number;
     title: string;
     image: string;
     titleColor?: string;
     selected?: boolean;
+    id?: boolean
     onClick?: () => void;
 }
 
-function Configurator4Card({ title, image, titleColor, selected = false, onClick }: Configurator4CardProps) {
+function Configurator4Card({ title, image, titleColor, selected = false, onClick, area, solar_id, id , inverter_id }: Configurator4CardProps) {
     return (
         <button
             type="button"
-            onClick={onClick}
+            onClick={() => router.visit(route("configurator.step5", { area: area, solar_id: solar_id, inverter_id: inverter_id,  battery: id }))}
             className={cn(
                 "group relative flex h-full flex-col overflow-hidden rounded-2xl bg-linear p-3 text-left shadow-sm transition-all",
                 "hover:-translate-y-0.5 hover:shadow-md hover:cursor-pointer",
@@ -34,30 +38,21 @@ function Configurator4Card({ title, image, titleColor, selected = false, onClick
     );
 }
 
-export default function Configurator4() {
-    const cards = useMemo(
-        () => [
-            {
-                id: "yes",
-                title: "Yes!",
-                image: "/images/configurator/bettery.png",
-            },
-            {
-                id: "no",
-                title: "No!",
-                image: "/images/configurator/bettery.png",
-                titleColor: "text-red-600",
-            }
-        ],
-        []
-    );
+export default function Configurator4({ solarInverter, area, solar_id, inverter_id }: { solarInverter: any, area: any, solar_id: any, inverter_id: any }) {
+    const cards = useMemo(() => [
+        {
+            id: true,
+            title: "Ja!",
+            image: solarInverter.battery_image,
+        },
+        {
+            id: false,
+            title: "NEIN!",
+            image: solarInverter.battery_image,
+            titleColor: "text-red-600",
+        }
+    ], [solarInverter]);
 
-    const [selectedId, setSelectedId] = useState(cards[0].id);
-
-    const handleCardSelect = (id: string) => {
-        setSelectedId(id);
-        router.visit(route("configurator.step5"));
-    };
 
     return (
         <div className="bg-bg-primary py-20 sm:py-28 lg:py-32">
@@ -86,11 +81,12 @@ export default function Configurator4() {
 
                     {/* Cards */}
                     <div className="mt-10 grid gap-6 md:gap-8 sm:grid-cols-2">
-                        {cards.map((card) => (
+                        {cards.map((card, index) => (
                             <Configurator4Card
-                                key={card.id}
-                                selected={selectedId === card.id}
-                                onClick={() => handleCardSelect(card.id)}
+                                key={index}
+                                area={area}
+                                solar_id={solar_id}
+                                inverter_id={inverter_id}
                                 {...card}
                             />
                         ))}

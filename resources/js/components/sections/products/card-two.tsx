@@ -5,53 +5,55 @@ import { Link } from '@inertiajs/react'
 
 function CardTwo() {
     const item = {
-        slogan: 'SOLAR PANELS',
+        slogan: 'SOLARMODULE',
         title: {
-            middle: 'High-Efficiency',
-            last: 'Solar Panels'
+            middle: 'Hocheffiziente ',
+            last: 'Solarmodule'
+
         },
     }
   return (
     <div className='bg-linear-to-r from-btn-primary/15 to-info/5'>
-        <div className="z-10 mx-auto max-w-7xl px-6 py-10  lg:px-0 lg:py-20">
+        <div className="z-10 mx-auto max-w-7xl px-6 py-0  lg:px-0 lg:py-0">
         <DefaultCardComp slogan={item.slogan} title={item.title} className={'grid-cols-1!'} >
             <div>
                 <p className='font-normal font-montserrat text-secondary/70 mb-3'>
-                    At <span className='font-bold font-montserrat text-secondary'>Energiesol</span>, we believe in providing solar solutions that are perfectly aligned with your unique needs and priorities. We offer a diverse range of solar modules designed to meet various requirements, from aesthetic preferences to specific engineering standards.
+                    At <span className='font-bold font-montserrat text-secondary'>Bei Energiesol</span>,  ist es unser Anspruch, Solarlösungen anzubieten, die perfekt auf Ihre individuellen Bedürfnisse und Prioritäten abgestimmt sind. Wir bieten eine breite Auswahl an Solarmodulen, die unterschiedlichsten Anforderungen gerecht werden – von ästhetischen Vorlieben bis hin zu spezifischen technischen Standards.
                 </p>
                 <p className='font-normal font-montserrat text-secondary/70'>
-                   Whether you prioritize German-engineered precision and sophisticated design or you are looking for the ultimate cost-performance ratio, Energiesol delivers high-quality solutions that never compromise on efficiency.
+                 Egal ob Sie Wert auf deutsche Ingenieurskunst und anspruchsvolles Design legen oder das ultimative Preis-Leistungs-Verhältnis suchen – Energiesol liefert erstklassige Lösungen, die bei der Effizienz keine Kompromisse eingehen.
                 </p>
             </div>
 
             <div className='mt-7'>
-                <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Innovation Meets Performance</h3>
+                <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Innovation trifft Leistung</h3>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-                   Whether you prioritize German-engineered precision and sophisticated design or you are looking for the ultimate cost-performance ratio, Energiesol delivers high-quality solutions that never compromise on efficiency.
+                  Unsere Solarmodule vereinen modernste Technologie mit außergewöhnlicher Langlebigkeit. Entwickelt für Spitzenleistungen selbst unter schwierigen Bedingungen – wie zum Beispiel bei schwachem Licht – bieten unsere Produkte eine perfekte Kombination aus Sicherheit, Nachhaltigkeit und moderner Ästhetik.Whether you prioritize German-engineered precision and sophisticated design or you are looking for the ultimate cost-performance ratio, Energiesol delivers high-quality solutions that never compromise on efficiency.
                 </p>
             </div>
 
             <div className='mt-7'>
-                <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Explore Our Premium Selection</h3>
+                <h3 className='text-secondary text-2xl font-semibold '>Entdecken Sie unsere Premium-Auswahl</h3>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-                  From residential rooftops to large-scale commercial installations, the Energiesol expert advisory team is here to guide you. We focus on variety and quality to ensure your energy transition is seamless and successful.
-                </p>
-            </div>
-
-
-            <div className='mt-7'>
-                <h3 className='text-secondary text-2xl font-semibold '>Expert Guidance for Every Project</h3>
-                <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-                Detailed technical specifications are available in our downloadable product sheets. Discover the right fit for your project:
+              Detaillierte technische Daten finden Sie in unseren Produktdatenblättern zum Download. Entdecken Sie die passende Lösung für Ihr Projekt:
                 </p>
                 <div>
-                    <Link href={route('products')} className='mt-3 block text-[#FF383C] lg:text-lg text-base ' >Aiko Solar Modules Trina Solar Modules</Link>
-                    <Link href={route('products')} className='block text-[#FF383C] lg:text-lg text-base' >Aiko Solar Modules Trina Solar Modules</Link>
+                    <Link href={route('products')} className='mt-3 block text-[#FF383C] lg:text-lg text-base ' >Spitzentechnologie für maximale Effizienz</Link>
+                    <Link href={route('products')} className='block text-[#FF383C] lg:text-lg text-base' >Leistungsstark, zuverlässig und zukunftssicher</Link>
                 </div>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-               Our expert advisors will guide you in making the right choice – whether for small systems or larger projects. We focus on quality, variety, and solutions that perfectly match your requirements.
+                Unsere Experten beraten Sie gerne bei der richtigen Wahl – egal ob für kleine Anlagen oder Großprojekte. Wir setzen auf Qualität, Vielfalt und Lösungen, die exakt auf Ihre Anforderungen zugeschnitten sind.
+                 </p>
+            </div>
+            
+
+            <div className='mt-7'>
+                <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Expertenberatung für jedes Projekt</h3>
+                <p className='font-normal font-montserrat text-secondary/70 mt-3'>
+                 Von privaten Hausdächern bis hin zu gewerblichen Großanlagen – das Expertenteam von Energiesol steht Ihnen beratend zur Seite. Wir setzen auf Vielfalt und Qualität, um sicherzustellen, dass Ihr Energiewechsel reibungslos und erfolgreich verläuft.
                 </p>
             </div>
+
 
         </DefaultCardComp>
     </div>
