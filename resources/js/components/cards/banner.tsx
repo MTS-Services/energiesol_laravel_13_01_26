@@ -86,7 +86,7 @@ function Banner({ item }: Props) {
                     </div>
 
                 </div>
-                <div className="absolute top-0 right-0 bottom-0 w-2/5 overflow-hidden opacity-70">
+                <div className="absolute top-0 right-0 bottom-0 w-2/9 overflow-hidden opacity-60">
                     <div
                         className="absolute inset-0 z-0 scale-x-[-1] bg-cover bg-center bg-no-repeat"
                         style={{

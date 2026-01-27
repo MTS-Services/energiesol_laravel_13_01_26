@@ -9,7 +9,12 @@ use Inertia\Response;
 use App\Services\FeatureService;
 use App\Services\ServiceService;
 use App\Services\AdvantageService;
+use App\Services\ContactService;
 use App\Services\ValueService;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Support\Facades\Redirect;
+use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
 {
@@ -18,6 +23,7 @@ class HomeController extends Controller
         protected ServiceService $serviceService,
         protected AdvantageService $advantageService,
         protected ValueService $valueService,
+        protected ContactService $contactService,
      )
     {
         //
@@ -99,5 +105,43 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/order-success');
     }
+
+    public function store(Request $request): RedirectResponse
+    {
+
+
+
+     $request->validate([
+            'first_name' => 'required',
+            'last_name' => 'required',
+            'email' => 'required',
+            'phone_number' => 'required',
+            'message' => 'required',
+        ],[
+            'first_name.required' => 'Bitte geben Sie Ihren Vornamen ein.',
+            'last_name.required' => 'Bitte geben Sie Ihren Nachnamen ein.',
+            'email.required' => 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
+            'phone_number.required' => 'Bitte geben Sie Ihre Telefonnummer ein.',
+            'message.required' => 'Bitte geben Sie Ihre Nachricht ein.',
+        ]); 
+
+        $key = 'contact-form:' . $request->ip();
+        $limit = 10;
+        $duration = 60;
+        
+        if (RateLimiter::tooManyAttempts($key, $limit)) {
+            throw ValidationException::withMessages([
+                'limitMessage' => 'Zu viele Versuche. Bitte versuchen Sie es in einer Stunde erneut.',
+            ]);
+        }
+
+        RateLimiter::hit($key, $duration);
+
+        $contact = $this->contactService->create($request->all());
+
+        return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
+
+    }
+
 
 }

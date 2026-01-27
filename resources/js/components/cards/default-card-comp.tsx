@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { Link } from "@inertiajs/react";
 
 interface Props {
+
     slogan?: string | null;
     subtile?: string | null;
     title?: {
@@ -28,13 +29,14 @@ interface Props {
             iconVariant?: "cricle" | "default" | "cirlce-transparent" | null ;
     } | null,
     children?: React.ReactNode,
-    className?: string | null
-    order?: boolean | null
+    className?: string | null,
+    boxClassName?: string | null,
+    order?: boolean | null,
 }
-function DefaultCardComp({ slogan, title, description, subtile, image, btn, children, className, order }: Props) {
+function DefaultCardComp({ slogan, title, description, subtile, image, btn, children, className, boxClassName, order }: Props) {
     return (
         <div className={cn('relative z-10 mx-auto grid grid-cols-1 lg:grid-cols-2 max-w-7xl flex-row gap-7 px-6 py-5 lg:px-0 lg:py-10 ', className)}>
-            <div className={`w-full py-18.5 ${!order ? 'order-first' : 'order-last'}`}>
+            <div className={cn(`w-full py-18.5 ${!order ? 'order-first' : 'order-last'}`, boxClassName)}>
 
                 {slogan && (
                     <div className="mb-3 flex flex-row items-center justify-start gap-3">
@@ -80,7 +82,7 @@ function DefaultCardComp({ slogan, title, description, subtile, image, btn, chil
                 {
                     children && (
 
-                        <div className="flex flex-col mt-6">
+                        <div className="flex flex-col">
 
                             {children}
 
