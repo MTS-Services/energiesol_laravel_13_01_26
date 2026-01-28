@@ -3,6 +3,7 @@ import { Link, router } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BadgeCheck, DollarSign, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ConfiguratorBadge } from "@/components/cards/configurator-badge";
 
 interface Configurator3CardProps {
     id?: number,
@@ -85,58 +86,20 @@ export default function Configurator3({area, solar_id, solarInverterService }: a
                     </div>
 
                     {/* Under-card notes */}
-                    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+                 <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+
                         <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <DollarSign className="h-4 w-4 text-blue-600" />
-                            <span>100% Free and Non-Binding Consult.</span>
+                            <span>100 % kostenlose und unverbindliche Beratung</span>
                         </div>
                         <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <Lock className="h-4 w-4 text-blue-600" />
-                            <span>Your Data Is Fully Secure and Protected</span>
+                            <span>Ihre Daten sind vollständig sicher und geschützt</span>
                         </div>
                     </div>
 
                     {/* Bottom badges */}
-                    <div className="mt-40 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 max-w-4xl mx-auto">
-                        {/* Card 1 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/local-teams.png"
-                                    alt="Local professional teams"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Nationwide installation by local
-                                <br />
-                                professional teams
-                            </p>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl">
-                                <BadgeCheck className="h-full w-full text-emerald-600" />
-                            </div>
-                            <p className="text-left text-xs text-secondary">Certified Expert</p>
-                        </div>
-
-
-                        {/* Card 3 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/craftsmanship.png"
-                                    alt="Craftsmanship since 2018"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Professional Craftsmanship since 2018
-                            </p>
-                        </div>
-                    </div>
+                    <ConfiguratorBadge />
                 </div>
             </div>
         </div>

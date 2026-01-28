@@ -10,6 +10,7 @@ use App\Services\FeatureService;
 use App\Services\ServiceService;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
+use App\Services\EstimateService;
 use App\Services\SolarInverterService;
 use App\Services\SolarPanelService;
 use App\Services\ValueService;
@@ -28,6 +29,7 @@ class HomeController extends Controller
         protected ContactService $contactService,
         protected SolarPanelService $solarPanelService,
         protected SolarInverterService $solarInverterService,
+        protected EstimateService $estimateService,
      )
     {
         //
@@ -161,9 +163,18 @@ class HomeController extends Controller
         return Inertia::render('frontend/products');
     }
 
-    public function orderSuccess(Request $request): Response
+    public function orderSuccess(int $estimate_id): Response | RedirectResponse
     {
-        return Inertia::render('frontend/order-success');
+        $estimate = $this->estimateService->find($estimate_id);
+        if(! $estimate ){
+           return redirect()->route('configurator');
+        }
+        $estimate->load('solarPanel', 'solarInverter');
+        
+        return Inertia::render('frontend/order-success', [
+            'estimate' => $estimate ,
+            'is_valid_order' => $estimate->is_valid_order,
+        ]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -201,6 +212,42 @@ class HomeController extends Controller
 
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
 
+    }
+
+   public function storeEstimate(Request $request)
+    {
+        $request->validate([
+            'first_name' => 'required|string|max:255',
+            'last_name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'phone' => 'required|string|max:20',
+            'consent' => 'required|boolean',
+        ], [
+            'first_name.required' => 'Bitte geben Sie Ihren Vornamen ein.',
+            'last_name.required' => 'Bitte geben Sie Ihren Nachnamen ein.',
+            'email.required' => 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
+            'email.email' => 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
+            'phone.required' => 'Bitte geben Sie Ihre Telefonnummer ein.',
+            'consent.required' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
+            'consent.accepted' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
+        ]); 
+
+        // dd($request->all());
+        $key = 'estimate-form:' . $request->ip();
+        $limit = 10;
+        $duration = 60;
+        
+        if (RateLimiter::tooManyAttempts($key, $limit)) {
+            throw ValidationException::withMessages([
+                'limitMessage' => 'Zu viele Versuche. Bitte versuchen Sie es in einer Stunde erneut.',
+            ]);
+        }
+
+        RateLimiter::hit($key, $duration);
+
+        $estimate = $this->estimateService->create($request->all());
+
+        return redirect()->route('order.success', ['estimate_id' => $estimate->id]);
     }
 
 

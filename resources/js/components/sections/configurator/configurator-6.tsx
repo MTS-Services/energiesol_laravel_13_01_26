@@ -5,6 +5,8 @@ import { Input } from '@/components/ui/input';
 import { Link, router, useForm } from '@inertiajs/react';
 import { ArrowLeft, ArrowRight, Check, CircleCheckBig } from 'lucide-react';
 import { FormEvent, useMemo } from 'react';
+import { storeEstimate } from '@/actions/App/Http/Controllers/Frontend/HomeController'
+import InputError from '@/components/input-error';
 
 export default function Configurator6({
     area,
@@ -23,13 +25,12 @@ export default function Configurator6({
         area: area,
         solar_id: solar_id,
         inverter_id: inverter_id,
-        battery: battery,
-        charger: charger,
+        battery: Boolean(battery),
+        charger: Boolean(charger),
         first_name: '',
         last_name: '',
         email: '',
         phone: '',
-        notes: '',
         consent: false,
     });
 
@@ -43,9 +44,13 @@ export default function Configurator6({
         [],
     );
 
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        router.visit(route('contact'));
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+          post(route('store.estimate'), {
+            onSuccess: () => {
+              reset()
+            }
+          })
     };
 
     return (
@@ -87,6 +92,9 @@ export default function Configurator6({
                                 }
                                 className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.first_name && (
+                                <InputError message={errors.first_name} className='mt-2' />
+                            )}
                         </div>
                         <div>
                             <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
@@ -101,7 +109,10 @@ export default function Configurator6({
                                 }
                                 className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
-                        </div>
+                            {errors.last_name && (
+                                <InputError message={errors.last_name} className='mt-2' />
+                            )}
+                            </div>
                         <div>
                             <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
                                E-Mail-Adresse <span className="text-red-600">*</span>
@@ -115,6 +126,9 @@ export default function Configurator6({
                                 }
                                 className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.email && (
+                                <InputError message={errors.email} className='mt-2' />
+                            )}
                         </div>
                         <div>
                             <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
@@ -129,6 +143,10 @@ export default function Configurator6({
                                 }
                                 className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.phone && (
+                                <InputError message={errors.phone} className='mt-2' />
+                            )}
+
                         </div>
                     </div>
 
@@ -158,12 +176,18 @@ export default function Configurator6({
                         </label>
                     </div>
 
-                    <div className="mt-8 flex justify-start">
-                        <Button variant={'default'}>
-                            <Icon iconNode={ArrowRight} variant={'circle'} className='bg-primary!' iconClassName='text-secondary!' />
-                            Holen Sie sich Ihr Kostenangebot
-                        </Button>
-                    </div>
+                   <div className="mt-8 flex justify-start">
+                    <Button 
+                        variant={'default'}
+                        disabled={!data.consent}
+                        className="disabled:opacity-50 disabled:cursor-not-allowed"
+                        type='submit'
+                    >
+                        <Icon iconNode={ArrowRight} variant={'circle'} className='bg-primary!' iconClassName='text-secondary!' />
+                        Holen Sie sich Ihr Kostenangebot
+                    </Button>
+                   
+                </div>
                 </form>
 
                 <div className="mt-10 p-6 sm:p-10">

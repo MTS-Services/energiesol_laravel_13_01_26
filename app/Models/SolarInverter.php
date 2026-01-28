@@ -25,4 +25,11 @@ class SolarInverter extends Model
         'created_at',
         'updated_at',
     ];
+
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
+    }
 }
+
+

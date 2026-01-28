@@ -19,4 +19,11 @@ class SolarPanel extends Model
         'created_at',
         'updated_at',
     ];
+
+    // Relations
+    public function estimates()
+    {
+        return $this->hasMany(Estimate::class);
+    }
+
 }

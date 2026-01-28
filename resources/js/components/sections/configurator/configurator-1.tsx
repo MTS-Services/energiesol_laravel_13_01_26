@@ -1,11 +1,11 @@
 import Configurator1Card from '@/components/cards/configurator-1-card';
+import { ConfiguratorBadge } from '@/components/cards/configurator-badge';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { Link, router } from '@inertiajs/react';
 import {
     ArrowLeft,
     ArrowRight,
-    BadgeCheck,
     Droplet,
     Home,
     ShieldCheck,
@@ -152,46 +152,7 @@ export default function Configurator1() {
                     </div>
 
                     {/* Bottom badges */}
-                    <div className="mx-auto mt-60 grid max-w-4xl grid-cols-3 items-center justify-center gap-6 sm:flex-row">
-                        {/* Card 1 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
-                            <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/local-teams.png"
-                                    alt="Local professional teams"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Nationwide installation by local professional
-                                teams
-                            </p>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
-                            <div className="flex h-9 w-9 items-center justify-center rounded-xl">
-                                <BadgeCheck className="h-full w-full text-emerald-600" />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Certified Expert
-                            </p>
-                        </div>
-
-                        {/* Card 3 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
-                            <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/craftsmanship.png"
-                                    alt="Craftsmanship since 2018"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Professional Craftsmanship since 2018
-                            </p>
-                        </div>
-                    </div>
+                   <ConfiguratorBadge/>
                 </div>
             </div>
         </div>

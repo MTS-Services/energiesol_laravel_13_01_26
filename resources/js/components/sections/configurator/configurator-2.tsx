@@ -1,3 +1,4 @@
+import { ConfiguratorBadge } from '@/components/cards/configurator-badge';
 import { Button } from '@/components/ui/button';
 import { cn } from '@/lib/utils';
 import { Link, router } from '@inertiajs/react';
@@ -110,63 +111,20 @@ export default function Configurator2({ solarPanels, area }: { solarPanels: any[
                     </div>
 
                     {/* Under-card notes */}
-                    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
-                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
+                 <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <DollarSign className="h-4 w-4 text-blue-600" />
-                            <span>
-                                100 % kostenlose und unverbindliche Beratung
-                            </span>
+                            <span>100 % kostenlose und unverbindliche Beratung</span>
                         </div>
-                        <div className="inline-flex items-center gap-2 text-center sm:text-left">
+                        <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <Lock className="h-4 w-4 text-blue-600" />
-                            <span>
-                                100 % kostenlose und unverbindliche Beratung
-                            </span>
+                            <span>Ihre Daten sind vollständig sicher und geschützt</span>
                         </div>
                     </div>
 
                     {/* Bottom badges */}
-                    <div className="mx-auto mt-40 grid max-w-4xl grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6">
-                        {/* Card 1 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl px-4 py-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/local-teams.png"
-                                    alt="Local professional teams"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Nationwide installation by local
-                                <br />
-                                professional teams
-                            </p>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl px-4 py-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl">
-                                <BadgeCheck className="h-full w-full text-emerald-600" />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Certified Expert
-                            </p>
-                        </div>
-
-                        {/* Card 3 */}
-                        <div className="bg-linear flex items-center gap-3 rounded-2xl px-4 py-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/craftsmanship.png"
-                                    alt="Craftsmanship since 2018"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Professional Craftsmanship since 2018
-                            </p>
-                        </div>
-                    </div>
+                   <ConfiguratorBadge/>
                 </div>
             </div>
         </div>
