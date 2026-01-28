@@ -7,14 +7,14 @@ import FrontendLayout from "@/layouts/frontend-layout";
 
 
 
- function OrderSuccess({estimate, is_valid_order}: {estimate: any, is_valid_order: boolean}) {
-   
+ function OrderSuccess({estimate, is_valid_order, monitoringSystem}: {estimate: any, is_valid_order: boolean, monitoringSystem: any}) {
+  
   return (
         <FrontendLayout>
 
            <HeadingSection />
 
-           <CartDetails is_valid_order={is_valid_order} />
+           <CartDetails is_valid_order={is_valid_order} estimate={estimate} monitoringSystem={monitoringSystem} />
 
           <CartPrice is_valid_order={is_valid_order}  />
   

@@ -32,4 +32,8 @@ class MonitoringSystemService
 
         return $monitoringSystem;
     }
+
+    public function monitor(){
+        return $this->model->all()->first();
+    }
 }

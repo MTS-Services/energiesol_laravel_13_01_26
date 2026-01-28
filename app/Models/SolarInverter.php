@@ -24,6 +24,20 @@ class SolarInverter extends Model
         'status',
         'created_at',
         'updated_at',
+        'charger_title',
+        'charger_description',
+        'charger_brand_title',
+        'charger_brand_logo',
+        'charger_note',
+        'battery_title',
+        'battery_description',
+        'battery_brand_title',
+        'battery_brand_logo',
+        'battery_note',
+        'battery_price',
+        'warranty_years',
+        'efficiency',
+
     ];
 
     public function estimates()
