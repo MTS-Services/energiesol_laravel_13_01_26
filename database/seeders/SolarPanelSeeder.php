@@ -15,24 +15,24 @@ class SolarPanelSeeder extends Seeder
         //
 
         SolarPanel::create([
-            'brand_title' => 'TrinaSolar',
-            'brand_logo' => 'solartec_logo.png',
-            'title' => 'Budget-Friendly Excellence',
-            'image' => 'solartec_x100.png',
-            'description' => 'Get superior power output with the best return on your investment.',
+            'brand_title' => 'Trina',
+            'brand_logo' => '/images/solartec_logo.png',
+            'title' => 'Preisbewusste Exzellenz',
+            'image' => '/images/solar-panel1.png',
+            'description' => 'Erzielen Sie überlegene Leistung bei der besten Rendite Ihrer Investition.',
             'price' => 299.99,
-            'note' => 'Trina V ertex s+ 455Wp (Glass-Glass',
+            'note' => 'Vertex S+ TSM-NEG9R.2',
             'status' => true,
         ]);
 
         SolarPanel::create([
-            'brand_title' => 'EcoPower',
-            'brand_logo' => 'ecopower_logo.png',
-            'title' => 'Ultimate Power Output',
-            'image' => 'ecopower_pro.png',
-            'description' => 'Advanced technology engineered for the highest possible energy generation.',
+            'brand_title' => 'Aiko',
+            'brand_logo' => '/images/ecopower_logo.png',
+            'title' => 'Maximale Leistungsausgabe',
+            'image' => '/images/solar-panel2.png',
+            'description' => 'Fortschrittliche Technologie für die höchstmögliche Energieerzeugung entwickelt.',
             'price' => 349.99,
-            'note' => 'Aiko V ertex s+ 455Wp (Glass-Glass}',
+            'note' => 'Neostar 35+',
             'status' => true,
         ]);
     }
