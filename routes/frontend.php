@@ -16,10 +16,12 @@ Route::group([], function () {
     Route::get('/configurator/step-5/{area?}/{solar_id?}/{inverter_id?}/{battery?}', [HomeController::class, 'configuratorStep5'])->name('configurator.step5');
     Route::get('/configurator/step-6/{area?}/{solar_id?}/{inverter_id?}/{battery?}/{charger?}', [HomeController::class, 'configuratorStep6'])->name('configurator.step6');
 
+    Route::post('/store-estimate', [HomeController::class, 'storeEstimate'])->name('store.estimate');
+
     Route::get('/products', [HomeController::class, 'products'])->name('products');
 
 
-    Route::get('/order/success', [HomeController::class, 'orderSuccess'])->name('order.success');
+    Route::get('/order/success/{estimate_id}', [HomeController::class, 'orderSuccess'])->name('order.success');
 
     Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');
     

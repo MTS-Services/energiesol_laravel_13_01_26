@@ -6,7 +6,7 @@ import { Icon } from '@/components/ui/icon';
 import { Link } from '@inertiajs/react';
 import { CircleCheckBig, Download, RefreshCcw } from 'lucide-react';
 
-function CartDetails() {
+function CartDetails({ is_valid_order }: { is_valid_order: boolean }) {
     const items = [
         {
             title: 'Preiswerte Spitzenqualität',
@@ -40,20 +40,24 @@ function CartDetails() {
         },
     ];
     return (
-        <div className="relative z-10 mx-auto max-w-7xl rounded-lg  mb-5 lg:mb-10 bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
+        <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
                 <AppLogo />
             </div>
-            <SectionHeader
-            >
-                <h2 className='text-center text-3xl text-secondary text-[40px] mb-2'>Ihre Kostenschätzung</h2>
-                <p className="px-0 lg:px-50 text-center font-open-sans text-base text-secondary/70 lg:text-lg">
+            <SectionHeader>
+                <h2 className="mb-2 text-center text-3xl text-[40px] text-secondary">
+                    Ihre Kostenschätzung
+                </h2>
+                <p className="px-0 text-center font-open-sans text-base text-secondary/70 lg:px-50 lg:text-lg">
                     {' '}
                     {`description: "Basierend auf einer verfügbaren Installationsfläche von ca. 44 m² besteht die Systemkonfiguration aus 21 Photovoltaikmodulen mit einer erwarteten Leistung von rund 9,0 kWp und umfasst folgende Komponenten:"`}
                 </p>
             </SectionHeader>
 
-            <div className="mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-2 ">
+            <div className="relative z-10 mt-10 grid grid-cols-1 items-start gap-6 lg:grid-cols-2">
+                {!is_valid_order && (
+                    <div className="absolute inset-0 top-0 left-0 z-20 h-full w-full bg-linear-to-r from-info/5 to-btn-primary/5 backdrop-blur-3xl"></div>
+                )}
                 {items.map((item, index) => (
                     <BoxCard key={index} item={item} className={'pb-6!'}>
                         <p className="pt-3 text-secondary/70">
@@ -65,119 +69,127 @@ function CartDetails() {
                     </BoxCard>
                 ))}
             </div>
-            <div className="mt-10">
+            <div className="relative z-10 mt-10">
                 <h2 className="py-4 font-montserrat text-3xl text-[40px] font-semibold text-secondary lg:py-8">
                     Dienstleistungen
                 </h2>
+                <div className="relative z-10">
+                    {!is_valid_order && (
+                        <div className="absolute inset-0 top-0 left-0 z-20 h-full w-full bg-linear-to-r from-info/5 to-btn-primary/5 backdrop-blur-3xl"></div>
+                    )}
 
-                <div className="">
-                    <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-                        <span className="h-7.5 w-7.5">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="text-secondary"
-                            />
-                        </span>
-                        Professionelle Installation & Netzeinbindung
-                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="w-4 h-4 text-primary"
-                                className="p-1"
-                            />{' '}
-                            Inklusive
-                        </span>
-                    </h2>
-                    <p className="text-xs lg:text-base flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
-                        Unsere Expertentechniker übernehmen die komplette
-                        Montage und Elektroinstallation, sorgen für nahtlose
-                        Netzanbindung und verwenden ausschließlich hochwertige
-                        Materialien.
-                    </p>
-                </div>
-                <div className="mt-4">
-                    <h2 className="flex justify-center items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-                        <span className="h-7.5 w-7.5">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="text-secondary"
-                            />
-                        </span>
-                        Professionelle Installation & Netzeinbindung
-                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="w-4 h-4 text-primary"
-                                className="p-1"
-                            />{' '}
-                            Inklusive
-                        </span>
-                    </h2>
-                    <p className="text-xs lg:text-base  flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
-                        Unsere Expertentechniker übernehmen die komplette
-                        Montage und Elektroinstallation, sorgen für nahtlose
-                        Netzanbindung und verwenden ausschließlich hochwertige
-                        Materialien.
-                    </p>
-                </div>
-                <div className="mt-4">
-                    <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-                        <span className="h-7.5 w-7.5">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="text-secondary"
-                            />
-                        </span>
-                        Professionelle Installation & Netzeinbindung
-                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="w-4 h-4 text-primary"
-                                className="p-1"
-                            />{' '}
-                            Inklusive
-                        </span>
-                    </h2>
-                    <p className="flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
-                        Unsere Expertentechniker übernehmen die komplette
-                        Montage und Elektroinstallation, sorgen für nahtlose
-                        Netzanbindung und verwenden ausschließlich hochwertige
-                        Materialien.
-                    </p>
-                </div>
-                <div className="mt-4">
-                    <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-                        <span className="h-7.5 w-7.5">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="text-secondary"
-                            />
-                        </span>
-                        Professionelle Installation & Netzeinbindung
-                        <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                            <Icon
-                                iconNode={CircleCheckBig}
-                                iconClassName="w-4 h-4 text-primary"
-                                className="p-1"
-                            />{' '}
-                            Inklusive
-                        </span>
-                    </h2>
-                    <p className="flex gap-2 pt-2 pr-0 lg:pr-120 pl-9 font-open-sans font-normal text-secondary/70">
-                        Unsere Expertentechniker übernehmen die komplette
-                        Montage und Elektroinstallation, sorgen für nahtlose
-                        Netzanbindung und verwenden ausschließlich hochwertige
-                        Materialien.
-                    </p>
+                    <div className="">
+                        <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                            <span className="h-7.5 w-7.5">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="text-secondary"
+                                />
+                            </span>
+                            Professionelle Installation & Netzeinbindung
+                            <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="w-4 h-4 text-primary"
+                                    className="p-1"
+                                />{' '}
+                                Inklusive
+                            </span>
+                        </h2>
+                        <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans text-xs font-normal text-secondary/70 lg:pr-120 lg:text-base">
+                            Unsere Expertentechniker übernehmen die komplette
+                            Montage und Elektroinstallation, sorgen für nahtlose
+                            Netzanbindung und verwenden ausschließlich
+                            hochwertige Materialien.
+                        </p>
+                    </div>
+                    <div className="mt-4">
+                        <h2 className="flex items-center justify-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                            <span className="h-7.5 w-7.5">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="text-secondary"
+                                />
+                            </span>
+                            Professionelle Installation & Netzeinbindung
+                            <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="w-4 h-4 text-primary"
+                                    className="p-1"
+                                />{' '}
+                                Inklusive
+                            </span>
+                        </h2>
+                        <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans text-xs font-normal text-secondary/70 lg:pr-120 lg:text-base">
+                            Unsere Expertentechniker übernehmen die komplette
+                            Montage und Elektroinstallation, sorgen für nahtlose
+                            Netzanbindung und verwenden ausschließlich
+                            hochwertige Materialien.
+                        </p>
+                    </div>
+                    <div className="mt-4">
+                        <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                            <span className="h-7.5 w-7.5">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="text-secondary"
+                                />
+                            </span>
+                            Professionelle Installation & Netzeinbindung
+                            <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="w-4 h-4 text-primary"
+                                    className="p-1"
+                                />{' '}
+                                Inklusive
+                            </span>
+                        </h2>
+                        <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans font-normal text-secondary/70 lg:pr-120">
+                            Unsere Expertentechniker übernehmen die komplette
+                            Montage und Elektroinstallation, sorgen für nahtlose
+                            Netzanbindung und verwenden ausschließlich
+                            hochwertige Materialien.
+                        </p>
+                    </div>
+                    <div className="mt-4">
+                        <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                            <span className="h-7.5 w-7.5">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="text-secondary"
+                                />
+                            </span>
+                            Professionelle Installation & Netzeinbindung
+                            <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
+                                <Icon
+                                    iconNode={CircleCheckBig}
+                                    iconClassName="w-4 h-4 text-primary"
+                                    className="p-1"
+                                />{' '}
+                                Inklusive
+                            </span>
+                        </h2>
+                        <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans font-normal text-secondary/70 lg:pr-120">
+                            Unsere Expertentechniker übernehmen die komplette
+                            Montage und Elektroinstallation, sorgen für nahtlose
+                            Netzanbindung und verwenden ausschließlich
+                            hochwertige Materialien.
+                        </p>
+                    </div>
                 </div>
             </div>
-          <div className="mt-10">
+            <div className="mt-10">
                 <h2 className="py-4 font-montserrat text-2xl text-[40px] font-semibold text-secondary lg:py-8">
                     Ihre Investition
                 </h2>
 
-                <div>
-                    <p className="mb-3 flex justify-between px-0 lg:px-15 font-open-sans text-base lg:text-lg">
+                <div className="relative z-10">
+                    {!is_valid_order && (
+                        <div className="absolute inset-0 top-0 left-0 z-20 h-full w-full bg-linear-to-r from-info/5 to-btn-primary/5 backdrop-blur-3xl"></div>
+                    )}
+                    <p className="mb-3 flex justify-between px-0 font-open-sans text-base lg:px-15 lg:text-lg">
                         <span className="font-normal text-secondary/70">
                             Ihre Investition
                         </span>{' '}
@@ -185,7 +197,7 @@ function CartDetails() {
                             18,345.87 €
                         </span>
                     </p>
-                    <p className="mb-3 flex justify-between px-0 lg:px-15 pr-0 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
                         <span className="font-normal text-secondary/70">
                             0 % MwSt.
                         </span>{' '}
@@ -193,81 +205,87 @@ function CartDetails() {
                             18,345.87 €
                         </span>
                     </p>
-                    <p className="mb-3 flex justify-between border-b border-secondary/10 px-0 lg:px-15 pr-0 font-open-sans text-base lg:text-lg">
+                    <p className="mb-3 flex justify-between border-b border-secondary/10 px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
                         <span className="font-semibold text-secondary">
                             Summe
                         </span>{' '}
-                        <span className="lg:text-[40px] font-semibold text-secondary">
+                        <span className="font-semibold text-secondary lg:text-[40px]">
                             18,345.87 €
                         </span>
                     </p>
 
-                    <p className="mb-3 flex justify-between px-0 lg:px-15 font-open-sans text-base lg:text-lg">
-                        <span className="font-normal text-xs lg:text-base text-secondary/70">
+                    <p className="mb-3 flex justify-between px-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                        <span className="text-xs font-normal text-secondary/70 lg:text-base">
                             Spezifische Kosten pro kWp (gemäß den jährlichen
                             Steuerbestimmungen 2022){' '}
                         </span>{' '}
-                        <span className="font-semibold text-secondary text-sm lg:text-base">
+                        <span className="text-sm font-semibold text-secondary lg:text-base">
                             18,345.87 €
                         </span>
                     </p>
                 </div>
             </div>
 
-            <div className="mt-10 rounded-md bg-primary p-10">
-                <p className="pb-4 font-montserrat text-lg font-normal text-secondary/70 lg:text-2xl">
-                    <span className="font-semibold text-secondary">
-                        WICHTIG:
-                    </span>{' '}
-                    Diese Zahlen sind nur Richtwerte. Individuelle Einsparungen
-                    und Projekt-Rabatte werden noch angewendet.
-                </p>
+            <div className='relative z-10'>
+                {!is_valid_order && (
+                    <div className="absolute inset-0 top-0 left-0 z-20 h-full w-full bg-linear-to-r from-info/5 to-btn-primary/5 backdrop-blur-3xl"></div>
+                )}
+                <div className="mt-10 rounded-md bg-primary p-10">
+                    <p className="pb-4 font-montserrat text-lg font-normal text-secondary/70 lg:text-2xl">
+                        <span className="font-semibold text-secondary">
+                            WICHTIG:
+                        </span>{' '}
+                        Diese Zahlen sind nur Richtwerte. Individuelle
+                        Einsparungen und Projekt-Rabatte werden noch angewendet.
+                    </p>
 
-                <p className="pb-4 font-montserrat text-lg font-normal text-secondary lg:text-2xl">
-                    Um den besten Wert zu gewährleisten, erstellen wir
-                    endgültige Angebote erst nach einem persönlichen Gespräch
-                    über Ihre individuellen Bedürfnisse. Sie können jetzt einen{' '}
-                    <span className="text-btn-primary">Termin buchen</span> oder
-                    unser Team wird sich innerhalb der nächsten 24 Stunden bei
-                    Ihnen melden.
-                </p>
-            </div>
-   
-            <div className="mt-8 ">
-                <div className="flex  flex-col lg:flex-row items-center justify-center gap-4">
-                    <Link href="/booking">
-                        <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
-                            <Icon
-                                iconNode={Download}
-                                variant="circle"
-                                className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                                iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                            />
-                            Kostenvoranschlag herunterladen
-                        </Button>
-                    </Link>
-
-                    <Link href="/booking">
-                        <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
-                            <Icon
-                                iconNode={Download}
-                                variant="circle"
-                                className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                                iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                            />
-                            Wirtschaftsanalyse herunterladen
-                        </Button>
-                    </Link>
+                    <p className="pb-4 font-montserrat text-lg font-normal text-secondary lg:text-2xl">
+                        Um den besten Wert zu gewährleisten, erstellen wir
+                        endgültige Angebote erst nach einem persönlichen
+                        Gespräch über Ihre individuellen Bedürfnisse. Sie können
+                        jetzt einen{' '}
+                        <span className="text-btn-primary">Termin buchen</span>{' '}
+                        oder unser Team wird sich innerhalb der nächsten
+                        24 Stunden bei Ihnen melden.
+                    </p>
                 </div>
 
-                <div className="flex items-center justify-center pt-21">
-                    <Link className="inline-flex items-center gap-3 text-secondary/70">
-                        <Icon
-                            iconNode={RefreshCcw}
-                            iconClassName="text-secondary/70 w-4 h-4"
-                        />
-                        Konfigurator neu starten
-                    </Link>
+                <div className="mt-8">
+                    <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
+                        <Link href="/booking">
+                            <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
+                                <Icon
+                                    iconNode={Download}
+                                    variant="circle"
+                                    className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                                    iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+                                />
+                                Kostenvoranschlag herunterladen
+                            </Button>
+                        </Link>
+
+                        <Link href="/booking">
+                            <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
+                                <Icon
+                                    iconNode={Download}
+                                    variant="circle"
+                                    className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                                    iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+                                />
+                                Wirtschaftsanalyse herunterladen
+                            </Button>
+                        </Link>
+                    </div>
+
+                    <div className="flex items-center justify-center pt-21">
+                        <Link className="inline-flex items-center gap-3 text-secondary/70">
+                            <Icon
+                                iconNode={RefreshCcw}
+                                iconClassName="text-secondary/70 w-4 h-4"
+                            />
+                            Konfigurator neu starten
+                        </Link>
+                    </div>
                 </div>
             </div>
         </div>

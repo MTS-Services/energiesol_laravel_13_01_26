@@ -3,6 +3,7 @@ import { Link, router } from "@inertiajs/react";
 import { Button } from "@/components/ui/button";
 import { ArrowLeft, BadgeCheck, DollarSign, Info, Lock } from "lucide-react";
 import { cn } from "@/lib/utils";
+import { ConfiguratorBadge } from "@/components/cards/configurator-badge";
 
 interface Configurator4CardProps {
     inverter_id?: number
@@ -39,6 +40,8 @@ function Configurator4Card({ title, image, titleColor, selected = false, onClick
 }
 
 export default function Configurator4({ solarInverter, area, solar_id, inverter_id }: { solarInverter: any, area: any, solar_id: any, inverter_id: any }) {
+   
+   console.log(solarInverter);
     const cards = useMemo(() => [
         {
             id: true,
@@ -52,6 +55,8 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
             titleColor: "text-red-600",
         }
     ], [solarInverter]);
+
+    
 
 
     return (
@@ -71,11 +76,11 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
                 <div className="mx-auto text-center">
                     <div className="max-w-5xl mx-auto">
                         <h2 className="text-2xl font-montserrat font-semibold leading-tight text-secondary sm:text-3xl md:text-4xl lg:text-[40px] ">
-                            Would you like to add a battery storage system to your solar setup?
+                          Möchten Sie Ihr Solarsystem um ein Batteriespeichersystem erweitern?
                         </h2>
 
                         <p className="mt-3 text-sm text-slate-500 sm:text-base lg:text-lg xl:text-xl">
-                            A solar battery system captures the extra energy produced during the day, allowing you to power your home even at night or during outages.
+                           Ein Solarbatteriesystem speichert die tagsüber erzeugte überschüssige Energie und ermöglicht es Ihnen, Ihr Haus auch nachts oder bei Stromausfällen mit Strom zu versorgen.
                         </p>
                     </div>
 
@@ -95,63 +100,25 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
                         <div className="inline-flex w-full max-w-6xl items-center gap-3 rounded-lg bg-linear px-6 py-4 text-sm text-slate-600 shadow-sm sm:text-base">
                             <Info className="h-5 w-5 text-secondary" />
                             <p>
-                                A solar battery system captures the extra energy produced during the day, allowing you to power your home even at night or during outages.
+                              Ein Solarspeicher nutzt Tagesüberschuss, um Ihr Zuhause auch nachts oder bei Ausfällen zu versorgen.
                             </p>
                         </div>
                     </div>
                     {/* Under-card notes */}
-                    <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
+                 <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
 
                         <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <DollarSign className="h-4 w-4 text-blue-600" />
-                            <span>100% Free and Non-Binding Consult.</span>
+                            <span>100 % kostenlose und unverbindliche Beratung</span>
                         </div>
                         <div className="inline-flex items-center gap-2 text-center sm:text-left text-base md:text-lg lg:text-xl">
                             <Lock className="h-4 w-4 text-blue-600" />
-                            <span>Your Data Is Fully Secure and Protected</span>
+                            <span>Ihre Daten sind vollständig sicher und geschützt</span>
                         </div>
                     </div>
 
                     {/* Bottom badges */}
-                    <div className="mt-40 grid grid-cols-1 gap-4 sm:grid-cols-2 lg:grid-cols-3 lg:gap-6 max-w-4xl mx-auto">
-                        {/* Card 1 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/local-teams.png"
-                                    alt="Local professional teams"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Nationwide installation by local
-                                <br />
-                                professional teams
-                            </p>
-                        </div>
-
-                        {/* Card 2 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center rounded-xl">
-                                <BadgeCheck className="h-full w-full text-emerald-600" />
-                            </div>
-                            <p className="text-left text-xs text-secondary">Certified Expert</p>
-                        </div>
-
-                        {/* Card 3 */}
-                        <div className="flex items-center gap-3 rounded-2xl bg-linear py-4 px-4 shadow-sm">
-                            <div className="flex h-10 w-10 items-center justify-center overflow-hidden">
-                                <img
-                                    src="/images/configurator/craftsmanship.png"
-                                    alt="Craftsmanship since 2018"
-                                    className="h-full w-full object-contain"
-                                />
-                            </div>
-                            <p className="text-left text-xs text-secondary">
-                                Professional Craftsmanship since 2018
-                            </p>
-                        </div>
-                    </div>
+                    <ConfiguratorBadge />
                 </div>
             </div>
         </div>

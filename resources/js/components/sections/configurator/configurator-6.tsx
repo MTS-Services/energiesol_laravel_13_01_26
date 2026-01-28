@@ -1,151 +1,208 @@
-import React, { FormEvent, useMemo, useState } from "react";
-import { Link, router } from "@inertiajs/react";
-import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
-import { Checkbox } from "@/components/ui/checkbox";
-import { Textarea } from "@/components/ui/textarea";
-import { ArrowLeft, ArrowRight, Check, Shield } from "lucide-react";
+import { Button } from '@/components/ui/button';
+import { Checkbox } from '@/components/ui/checkbox';
+import { Icon } from '@/components/ui/icon';
+import { Input } from '@/components/ui/input';
+import { Link, router, useForm } from '@inertiajs/react';
+import { ArrowLeft, ArrowRight, Check, CircleCheckBig } from 'lucide-react';
+import { FormEvent, useMemo } from 'react';
+import { storeEstimate } from '@/actions/App/Http/Controllers/Frontend/HomeController'
+import InputError from '@/components/input-error';
 
-export default function Configurator6() {
-    const [formData, setFormData] = useState({
-        firstName: "John",
-        lastName: "Doe",
-        email: "example@gmail.com",
-        phone: "(406) 555-0120",
-        notes: "",
-        consentEmail: false,
-        consentPhone: false,
+export default function Configurator6({
+    area,
+    solar_id,
+    inverter_id,
+    battery,
+    charger,
+}: {
+    area: number;
+    solar_id: number;
+    inverter_id: number;
+    battery: boolean;
+    charger: boolean;
+}) {
+    const { data, setData, post, processing, errors, reset } = useForm({
+        area: area,
+        solar_id: solar_id,
+        inverter_id: inverter_id,
+        battery: Boolean(battery),
+        charger: Boolean(charger),
+        first_name: '',
+        last_name: '',
+        email: '',
+        phone: '',
+        consent: false,
     });
 
     const benefits = useMemo(
         () => [
-            "Detailed and transparent cost breakdown covering every installation cost.",
-            "Instantly available results with no registration, login, or commitment required.",
-            "Clear insights into yearly energy savings and system amortization timeline.",
-            "Quick access to your personalized results delivered in real time.",
+            'Klare Kostenaufstellung – alle Installationskosten inklusive.',
+            'Sofortige Ergebnisse – ohne Anmeldung, Login oder Verpflichtung.',
+            'Übersicht über Energieeinsparungen und Amortisation.',
+            'Schneller, nahtloser Zugriff auf Ihre Ergebnisse in Echtzeit.',
         ],
-        []
+        [],
     );
 
-    const handleChange = (field: keyof typeof formData, value: string | boolean) => {
-        setFormData((prev) => ({ ...prev, [field]: value }));
-    };
-
-    const handleSubmit = (event: FormEvent<HTMLFormElement>) => {
-        event.preventDefault();
-        router.visit(route("contact"));
+    const handleSubmit = (e: React.FormEvent) => {
+        e.preventDefault()
+          post(route('store.estimate'), {
+            onSuccess: () => {
+              reset()
+            }
+          })
     };
 
     return (
-        <div className="bg-white py-16 sm:py-20 lg:py-24">
+        <div className="mx-auto max-w-7xl py-16 sm:py-20 lg:py-24">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-10">
-                    <Link href={route("configurator.step5")}>
-                        <Button variant="ghost" >
+                    <Link href={route('configurator.step5')}>
+                        <Button variant="ghost">
                             <ArrowLeft className="mr-2 h-5 w-5" />
-                            Back
+                            Zurück
                         </Button>
                     </Link>
                 </div>
 
-                <div className="text-center ">
-                    <h1 className="mx-auto max-w-7xl text-2xl font-montserrat font-semibold text-secondary sm:text-3xl md:text-4xl lg:text-[40px]">
-                        Energie Solution Nord — Your Trusted Partner for Sustainable Energy Solutions.
+                <div className="text-center">
+                    <h1 className="px-7 font-montserrat text-3xl font-semibold text-secondary lg:px-15 lg:text-[40px]">
+                        Energie Solution Nord – Ihr vertrauenswürdiger Partner
+                        für nachhaltige Energielösungen.
                     </h1>
-                    <p className="mx-auto mt-3 max-w-4xl text-sm  sm:text-base md:text-lg lg:text-xl">
-                        Complete the form below to receive your personalized energy estimate directly in your inbox.
+                    <p className="mx-auto mt-3 px-20 text-base lg:px-28 lg:text-xl">
+                        Füllen Sie das untenstehende Formular aus, um Ihre
+                        persönliche Energiekostenabschätzung direkt in Ihrem
+                        Posteingang zu erhalten.
                     </p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="mt-20 px-10">
                     <div className="grid gap-6 md:grid-cols-2">
                         <div>
-                            <label className="text-sm md:text-base lg:text-lg xl:text-2xl font-montserrat font-semibold text-secondary">First name*</label>
+                            <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
+                               Vorname{' '}
+                                <span className="text-red-600">*</span>
+                            </label>
                             <Input
-                                value={formData.firstName}
-                                onChange={(e) => handleChange("firstName", e.target.value)}
-                                className="mt-2 h-12 rounded-2xl border-slate-200 bg-bg-primary/60 shadow-md text-secondary"
+                                placeholder="John"
+                                value={data.first_name}
+                                onChange={(e) =>
+                                    setData('first_name', e.target.value)
+                                }
+                                className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.first_name && (
+                                <InputError message={errors.first_name} className='mt-2' />
+                            )}
                         </div>
                         <div>
-                            <label className="text-sm md:text-base lg:text-lg xl:text-2xl font-montserrat font-semibold text-secondary">Last name*</label>
+                            <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
+                                Nachname{' '}
+                                <span className="text-red-600">*</span>
+                            </label>
                             <Input
-                                value={formData.lastName}
-                                onChange={(e) => handleChange("lastName", e.target.value)}
-                                className="mt-2 h-12 rounded-2xl border-slate-200 bg-bg-primary/60 shadow-md text-secondary"
+                                placeholder="Doe"
+                                value={data.last_name}
+                                onChange={(e) =>
+                                    setData('last_name', e.target.value)
+                                }
+                                className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
-                        </div>
+                            {errors.last_name && (
+                                <InputError message={errors.last_name} className='mt-2' />
+                            )}
+                            </div>
                         <div>
-                            <label className="text-sm md:text-base lg:text-lg xl:text-2xl font-montserrat font-semibold text-secondary">Email*</label>
+                            <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
+                               E-Mail-Adresse <span className="text-red-600">*</span>
+                            </label>
                             <Input
                                 type="email"
-                                value={formData.email}
-                                onChange={(e) => handleChange("email", e.target.value)}
-                                className="mt-2 h-12 rounded-2xl border-slate-200 bg-bg-primary/60 shadow-md text-secondary"
+                                placeholder="example@gmail.com"
+                                value={data.email}
+                                onChange={(e) =>
+                                    setData('email', e.target.value)
+                                }
+                                className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.email && (
+                                <InputError message={errors.email} className='mt-2' />
+                            )}
                         </div>
                         <div>
-                            <label className="text-sm md:text-base lg:text-lg xl:text-2xl font-montserrat font-semibold text-secondary">Number*</label>
+                            <label className="mb-4 inline-block font-montserrat text-base font-semibold text-secondary lg:text-xl">
+                                Telefonnummer <span className="text-red-600">*</span>
+                            </label>
                             <Input
                                 type="tel"
-                                value={formData.phone}
-                                onChange={(e) => handleChange("phone", e.target.value)}
-                                className="mt-2 h-12 rounded-2xl border-slate-200 bg-bg-primary/60 shadow-md text-secondary"
+                                placeholder="(406) 555-0120"
+                                value={data.phone}
+                                onChange={(e) =>
+                                    setData('phone', e.target.value)
+                                }
+                                className="block! h-auto! rounded-xl border border-white/30 px-6! py-4! font-montserrat text-base text-secondary shadow-[0_10px_30px_rgba(0,0,0,0.12)] placeholder:text-secondary/50"
                             />
+                            {errors.phone && (
+                                <InputError message={errors.phone} className='mt-2' />
+                            )}
+
                         </div>
                     </div>
 
                     <div className="mt-6 space-y-4 text-sm text-slate-600">
-                        <label className="flex items-start gap-3">
+                        <label className=" items-start gap-3 flex flex-row">
                             <Checkbox
-                                checked={formData.consentEmail}
-                                onCheckedChange={(checked) => handleChange("consentEmail", !!checked)}
-                                className="mt-1 border border-slate-200"
+                                checked={data.consent}
+                                onCheckedChange={(checked) =>
+                                    setData('consent', checked ? true : false)
+                                }
+                                className="w-6 h-6 border border-secondary mt-2"
                             />
-                            <div className="space-y-2 text-base font-open-sans leading-relaxed">
-                                <p>
-                                    I agree to receive the results generated by this solar configurator as well as additional information related to my inquiry (such as appointment
-                                    confirmations) from energiesol via email, based on the details I have provided.
+                            <div className="ml-3 font-open-sans text-base leading-relaxed">
+                                <p className='mb-6'>
+                                   Ich bin damit einverstanden, die Ergebnisse dieses Solarkonfigurators sowie zusätzliche Informationen zu meiner Anfrage (z. B. Terminbestätigungen) von energiesol per E-Mail zu erhalten, basierend auf den von mir angegebenen Daten.
+                                </p>
+                                <p className='mb-6'>
+                                    Ich bin außerdem damit einverstanden, telefonisch kontaktiert zu werden, um erste Fragen zu klären, gegebenenfalls einen Vor-Ort-Termin zu vereinbaren und an Kundenzufriedenheitsumfragen per E-Mail teilzunehmen.
+                                </p>
+                                <p className='mb-6'>
+                                   Sie können Ihre Einwilligung jederzeit ohne Angabe von Gründen widerrufen, indem Sie energiesol per E-Mail oder schriftlich kontaktieren.
                                 </p>
                                 <p>
-                                    I also consent to being contacted by telephone for the purpose of clarifying initial questions, arranging an on-site appointment if required, and
-                                    participating in customer satisfaction surveys conducted via email.
-                                </p>
-                                <p>
-                                    You may withdraw your consent at any time without providing a reason by contacting energiesol via email or written communication.
-                                </p>
-                                <p>
-                                    Further details regarding the processing of your personal data and your rights as a data subject are available in our Privacy Policy.
+                                   Weitere Einzelheiten zur Verarbeitung Ihrer personenbezogenen Daten und zu Ihren Rechten als betroffene Person finden Sie in unserer Datenschutzerklärung.
                                 </p>
                             </div>
                         </label>
                     </div>
 
-                    <div className="mt-8 flex justify-start">
-                        <Button
-                            type="submit"
-                            size="lg"
-                            className="group flex items-center gap-3 rounded-full bg-btn-primary  py-6 text-base font-semibold text-white shadow-md transition hover:translate-x-0.5"
-                        >
-                            <span className="flex h-8 w-8 items-center justify-center rounded-full bg-white/90 text-btn-primary transition group-hover:translate-x-0.5">
-                                <ArrowRight className="h-4 w-4" />
-                            </span>
-                            Get Your Cost Estimate
-
-                        </Button>
-                    </div>
+                   <div className="mt-8 flex justify-start">
+                    <Button 
+                        variant={'default'}
+                        disabled={!data.consent}
+                        className="disabled:opacity-50 disabled:cursor-not-allowed"
+                        type='submit'
+                    >
+                        <Icon iconNode={ArrowRight} variant={'circle'} className='bg-primary!' iconClassName='text-secondary!' />
+                        Holen Sie sich Ihr Kostenangebot
+                    </Button>
+                   
+                </div>
                 </form>
 
                 <div className="mt-10 p-6 sm:p-10">
                     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                         <div className="flex flex-col justify-center">
-                            <h3 className="text-2xl font-montserrat font-semibold text-secondary sm:text-3xl">Your Personalized Cost Estimate</h3>
-                            <ul className="mt-8 space-y-4 text-base text-secondary/80">
+                            <h3 className="font-montserrat text-2xl font-semibold text-secondary sm:text-3xl">
+                                Your Personalized Cost Estimate
+                            </h3>
+                            <ul className="mt-3 space-y-4 text-base text-secondary font-open-sans font-normal  ">
                                 {benefits.map((item) => (
-                                    <li key={item} className="flex items-start gap-3">
-                                        <span className="mt-0.5 flex h-9 w-9 items-center justify-center rounded-full border-2 border-[#2dd36f] bg-white text-[#2dd36f] shadow-[0_6px_18px_rgba(45,211,111,0.25)]">
-                                            <Check className="h-5 w-5" />
-                                        </span>
+                                    <li
+                                        key={item}
+                                        className="flex items-start gap-3"
+                                    >
+                                        <Icon iconNode={CircleCheckBig} variant={'default'}  iconClassName='text-info!' />
                                         <span>{item}</span>
                                     </li>
                                 ))}
@@ -156,9 +213,8 @@ export default function Configurator6() {
                                 <img
                                     src="/images/configurator/energie-solution.png"
                                     alt="Energie Solution Nord"
-                                    className=" w-full object-cover sm:h-72 lg:h-full"
+                                    className="w-full object-cover sm:h-72 lg:h-full"
                                 />
-
                             </div>
                         </div>
                     </div>
