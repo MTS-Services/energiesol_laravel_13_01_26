@@ -3,6 +3,8 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\EstimateMailJob;
+use App\Mail\EstimateMail;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -11,10 +13,13 @@ use App\Services\ServiceService;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
+use App\Services\MonitoringSystemService;
 use App\Services\SolarInverterService;
 use App\Services\SolarPanelService;
 use App\Services\ValueService;
 use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Validation\ValidationException;
@@ -30,6 +35,7 @@ class HomeController extends Controller
         protected SolarPanelService $solarPanelService,
         protected SolarInverterService $solarInverterService,
         protected EstimateService $estimateService,
+        protected MonitoringSystemService $monitoringSystemService,
      )
     {
         //
@@ -166,15 +172,37 @@ class HomeController extends Controller
     public function orderSuccess(int $estimate_id): Response | RedirectResponse
     {
         $estimate = $this->estimateService->find($estimate_id);
+
+        $monitoringSystem = $this->monitoringSystemService->monitor();
         if(! $estimate ){
            return redirect()->route('configurator');
         }
         $estimate->load('solarPanel', 'solarInverter');
         
+
         return Inertia::render('frontend/order-success', [
             'estimate' => $estimate ,
             'is_valid_order' => $estimate->is_valid_order,
+            'monitoringSystem' => $monitoringSystem,
+            ]);
+    }
+
+    public function orderSuccessVerify($encrypted_estimate_id){
+
+        $id = decrypt($encrypted_estimate_id);
+
+         
+
+       $estimated = $this->estimateService->update($id, ['is_valid_order' => true]);
+       
+    $monitoringSystem = $this->monitoringSystemService->monitor();
+
+        return Inertia::render('frontend/order-success', [
+            'estimate' => $estimated ,
+            'is_valid_order' => $estimated->is_valid_order,
+            'monitoringSystem' => $monitoringSystem,
         ]);
+
     }
 
     public function store(Request $request): RedirectResponse
@@ -246,6 +274,17 @@ class HomeController extends Controller
         RateLimiter::hit($key, $duration);
 
         $estimate = $this->estimateService->create($request->all());
+
+        try {
+
+            // Mail::to($estimate->email)->send(new EstimateMail(route('order.success.verify', [encrypt($estimate->id)])));
+            EstimateMailJob::dispatch(route('order.success.verify', [encrypt($estimate->id)]), $estimate->email);
+
+        } catch (\Exception $e) {
+
+            Log::error('Error sending email: ' . $e->getMessage());
+
+        }
 
         return redirect()->route('order.success', ['estimate_id' => $estimate->id]);
     }

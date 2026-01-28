@@ -6,39 +6,65 @@ import { Icon } from '@/components/ui/icon';
 import { Link } from '@inertiajs/react';
 import { CircleCheckBig, Download, RefreshCcw } from 'lucide-react';
 
-function CartDetails({ is_valid_order }: { is_valid_order: boolean }) {
+function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_order: boolean, estimate: any, monitoringSystem: any }) {
+  
+   
     const items = [
+
         {
-            title: 'Preiswerte Spitzenqualität',
+            title: estimate?.solar_panel?.title,
             description:
-                'Erzielen Sie eine überragende Leistung bei optimaler Rendite Ihrer Investition.',
-            image: '/images/product-image-1.png',
+                estimate?.solar_panel?.description,
+            image: estimate?.solar_panel?.image,
             short_info: {
-                title: 'Trina  ',
-                description: 'V ertex s+ 455Wp (Glass-Glass)',
+                title: estimate?.solar_panel?.brand_title,
+                description: estimate?.solar_panel?.note
             },
         },
         {
-            title: 'Komplettlösung',
+            title: estimate?.solar_inverter?.title,
             description:
-                'Genießen Sie bis zu 2300 W AC-Leistung und betreiben Sie mühelos Geräte mit hohem Strombedarf.',
-            image: '/images/product-image-2.png',
+                estimate?.solar_inverter?.description,
+            image: estimate?.solar_inverter?.image,
             short_info: {
-                title: 'EcoFlow',
-                description: 'STREAM Ultra X',
-            },
-        },
-        {
-            title: 'Komplettlösung',
-            description:
-                'Genießen Sie bis zu 2300 W AC-Leistung und betreiben Sie mühelos Geräte mit hohem Strombedarf.',
-            image: '/images/product-image-2.png',
-            short_info: {
-                title: 'GSL Energy',
-                description: '20 kWh (oder 15 kWh) Lithium-Batteriestapel',
+                title: estimate?.solar_inverter?.brand_title,
+                description: estimate?.solar_inverter?.note
             },
         },
     ];
+
+    if (estimate?.charger == true) {
+        items.push({
+            title: estimate?.solar_inverter?.charger_title,
+            description: estimate?.solar_inverter?.charger_description,
+            image: estimate?.solar_inverter?.charger_image,
+            short_info: {
+                title: estimate?.solar_inverter?.charger_brand_title,
+                description: estimate?.solar_inverter?.charger_note,
+            },
+        });
+    }
+    if (estimate?.battery == true) {
+        items.push({
+            title: monitoringSystem?.title,
+            description: monitoringSystem?.description,
+            image: monitoringSystem?.image,
+            short_info: {
+                title: '',
+                description: monitoringSystem?.sub_title,
+            },
+        });
+    }
+
+    items.push({
+         title: estimate?.solar_inverter?.battery_title,
+            description: estimate?.solar_inverter?.battery_description,
+            image: estimate?.solar_inverter?.battery_image,
+            short_info: {
+                title: estimate?.solar_inverter?.battery_brand_title,
+                description: estimate?.solar_inverter?.battery_note,
+            },
+    });
     return (
         <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
@@ -104,7 +130,7 @@ function CartDetails({ is_valid_order }: { is_valid_order: boolean }) {
                         </p>
                     </div>
                     <div className="mt-4">
-                        <h2 className="flex items-center justify-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
+                        <h2 className="flex items-center  gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
                             <span className="h-7.5 w-7.5">
                                 <Icon
                                     iconNode={CircleCheckBig}

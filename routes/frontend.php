@@ -22,6 +22,7 @@ Route::group([], function () {
 
 
     Route::get('/order/success/{estimate_id}', [HomeController::class, 'orderSuccess'])->name('order.success');
+    Route::get('/order/success/verify/{estimate_id}', [HomeController::class, 'orderSuccessVerify'])->name('order.success.verify');
 
     Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');
     

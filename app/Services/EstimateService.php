@@ -23,4 +23,17 @@ class EstimateService
     {
         return $this->model->where($column, $id)->first();
     }
+    public function update($id, $data)
+    {
+        $storedData = $this->model->find($id);
+
+        if(!$storedData){
+
+          abort(404);
+          
+        }
+        $storedData->update($data);
+
+        return $storedData->refresh();
+    }
 }
