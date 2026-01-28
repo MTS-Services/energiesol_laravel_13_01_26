@@ -113,8 +113,9 @@ class HomeController extends Controller
         }
 
          $solarInverter =  $this->solarInverterService->find($inverter_id);
+        
         return Inertia::render('frontend/configurator-step4', [
-            'solarInverterService' => $solarInverter,
+            'solarInverter' => $solarInverter,
             'area' => $area,
             'solar_id' => $solar_id,
             'inverter_id' => $inverter_id
@@ -144,9 +145,15 @@ class HomeController extends Controller
         if(!$area || !$solar_id || !$inverter_id ){
             return redirect()->route('configurator');
         }
-        dd($area, $solar_id, $inverter_id, $battery, $charger);
+       
 
-        // return Inertia::render('frontend/configurator-step6');
+        return Inertia::render('frontend/configurator-step6', [
+            'area' => $area,
+            'solar_id' => $solar_id,
+            'inverter_id' => $inverter_id,
+            'battery' => $battery,
+            'charger' => $charger
+        ]);
     }
     
     public function products(Request $request): Response

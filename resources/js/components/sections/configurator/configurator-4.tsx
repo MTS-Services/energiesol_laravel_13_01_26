@@ -39,6 +39,8 @@ function Configurator4Card({ title, image, titleColor, selected = false, onClick
 }
 
 export default function Configurator4({ solarInverter, area, solar_id, inverter_id }: { solarInverter: any, area: any, solar_id: any, inverter_id: any }) {
+   
+   console.log(solarInverter);
     const cards = useMemo(() => [
         {
             id: true,
@@ -52,6 +54,8 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
             titleColor: "text-red-600",
         }
     ], [solarInverter]);
+
+    
 
 
     return (
