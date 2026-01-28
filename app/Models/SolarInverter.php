@@ -25,7 +25,7 @@ class SolarInverter extends Model
         'created_at',
         'updated_at',
         'charger_title',
-        'charger-description',
+        'charger_description',
         'charger_brand_title',
         'charger_brand_logo',
         'charger_note',
@@ -35,6 +35,8 @@ class SolarInverter extends Model
         'battery_brand_logo',
         'battery_note',
         'battery_price',
+        'warranty_years',
+        'efficiency',
 
     ];
 
