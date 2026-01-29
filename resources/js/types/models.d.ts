@@ -96,7 +96,7 @@ interface Inquiry {
     solar_inverter?: SolarInverters; // Optional, for eager loading
 }
 
-export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact, Inquiry };
+
 
 interface Service {
     id: number;
@@ -119,3 +119,16 @@ interface Values {
     created_at: string;
     updated_at: string;
 }
+
+interface Booking {
+    id: number;
+    first_name: string;
+    last_name: string;
+    email: string;
+    phone_number: string | null;
+    status: boolean;
+    created_at: string;
+    updated_at: string;
+}
+
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact, Inquiry, Booking };

@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\CalendlyWebhookController;
 use App\Http\Controllers\Frontend\HomeController;
+use Illuminate\Foundation\Http\Middleware\VerifyCsrfToken;
 use Illuminate\Support\Facades\Route;
 
 Route::group([], function () {
@@ -25,5 +27,24 @@ Route::group([], function () {
     Route::get('/order/success/verify/{estimate_id}', [HomeController::class, 'orderSuccessVerify'])->name('order.success.verify');
 
     Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');
+
+
+
+
+
+
+
+
+
+
+    // WebHook Route for Calendly
+
+    Route::post('/calendly/webhook', [CalendlyWebhookController::class, 'handle'])
+     ->withoutMiddleware([VerifyCsrfToken::class]);
+
+
+
+
+
     
 });
