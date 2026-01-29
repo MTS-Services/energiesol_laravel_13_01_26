@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\AdvantageController;
+use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ValueController;
 use App\Http\Controllers\Admin\MonitoringSystemController;
 use App\Http\Controllers\Admin\ContactController;
@@ -19,6 +20,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('users', UserController::class)->names('users');
     Route::resource('solar-panels', SolarPanelController::class)->names('solar-panels');
     Route::resource('solar-inverters', SolarInverterController::class)->names('solar-inverters');
+    Route::resource('bookings', BookingController::class)->only(['index', 'show', 'destroy'])->names('booking');
 
     Route::get('monitoring-system/edit', [MonitoringSystemController::class, 'edit'])->name('monitoring-system.edit');
     Route::put('monitoring-system', [MonitoringSystemController::class, 'update'])->name('monitoring-system.update');

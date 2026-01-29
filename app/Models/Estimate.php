@@ -35,4 +35,9 @@ class Estimate extends Model
     {
         return $this->belongsTo(SolarInverter::class, 'inverter_id', 'id');
     }
+
+    public function booking()
+    {
+        return $this->hasOne(Booking::class);
+    }
 }
