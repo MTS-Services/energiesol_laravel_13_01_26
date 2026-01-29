@@ -6,12 +6,13 @@ import { ArrowLeft, BadgeCheck, DollarSign, Lock } from 'lucide-react';
 import { useState } from 'react';
 
 interface Configurator2CardProps {
+    
     area?: number,
     id?: number;
     brand_title?: string;
     title?: string;
     description: string;
-    image: string;
+    image_url: string;
     selected?: boolean;
     onClick?: () => void;
 }
@@ -21,7 +22,7 @@ function Configurator2Card({
     id,
     title,
     description,
-    image,
+    image_url,
     selected = false,
     onClick,
 }: Configurator2CardProps) {
@@ -37,7 +38,7 @@ function Configurator2Card({
         >
             <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white px-4 py-6">
                 <img
-                    src={image}
+                    src={image_url}
                     alt={title}
                     className="h-full max-h-82 w-auto object-contain"
                 />
@@ -102,6 +103,7 @@ export default function Configurator2({ solarPanels, area }: { solarPanels: any[
                     {/* Cards */}
                     <div className="mt-10 grid gap-6 hover:cursor-pointer sm:grid-cols-2 md:gap-8">
                         {solarPanels.map((card, index) => (
+                          
                             <Configurator2Card
                                 key={index}
                                 {...card}

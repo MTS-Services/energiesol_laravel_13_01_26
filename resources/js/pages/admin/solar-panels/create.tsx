@@ -9,6 +9,7 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Textarea } from '@/components/ui/textarea';
 import InputError from '@/components/input-error';
+import FileUpload from '@/components/file-upload';
 
 export default function CreateSolarPanel() {
   const { data, setData, post, processing, errors } = useForm({
@@ -51,7 +52,7 @@ export default function CreateSolarPanel() {
               <InputError message={errors.brand_title} />
             </div>
 
-            <div className="grid gap-2">
+            {/* <div className="grid gap-2">
               <Label htmlFor="brand_logo">Brand Logo</Label>
               <Input
                 id="brand_logo"
@@ -60,6 +61,12 @@ export default function CreateSolarPanel() {
                 onChange={(e) => setData('brand_logo', e.target.files?.[0] || null)}
                 required
               />
+              <InputError message={errors.brand_logo} />
+            </div> */}
+
+               <div className="grid gap-2">
+              <Label htmlFor="brand_logo">Brand Logo</Label>
+               <FileUpload onChange={(file) => setData('brand_logo', file as File)} accept="image/*" />
               <InputError message={errors.brand_logo} />
             </div>
 
@@ -74,7 +81,7 @@ export default function CreateSolarPanel() {
               />
               <InputError message={errors.title} />
             </div>
-
+{/* 
             <div className="grid gap-2">
               <Label htmlFor="image">Image</Label>
               <Input
@@ -85,7 +92,16 @@ export default function CreateSolarPanel() {
                 required
               />
               <InputError message={errors.image} />
+            </div> */}
+
+
+            <div className="grid gap-2">
+              <Label htmlFor="image">Image</Label>
+               <FileUpload onChange={(file) => setData('image', file as File)} accept="image/*" />
+              <InputError message={errors.image} />
             </div>
+
+           
 
             <div className="grid gap-2">
               <Label htmlFor="description">Description</Label>
