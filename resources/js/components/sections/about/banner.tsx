@@ -5,8 +5,8 @@ export default function banner() {
     const BannerData = {
         slogan: 'INTELIGENTE SOLARLÖSUNGEN',
         title: {
-            initial: 'Professionelle  ',
-            middle: 'Energielösungen',
+            initial: 'Innovative Energie',
+            middle: ' – getragen von Erfahrung',
         },
 
         description: 'Als Ihr spezialisierter Full-Service-Solaranbieter bieten wir bundesweite Unterstützung von Anfang bis Ende. Unsere Experten begleiten Sie auf dem gesamten Weg – von Ihrer ersten Anfrage bis zur finalen Aktivierung Ihres maßgeschneiderten Energiesystems.',

@@ -23,7 +23,7 @@ export function FrontendHeader() {
         { name: 'Heim', href: route('home'), slug: '/' },
         { name: 'Service', href: route('service'), slug: '/service' },
         { name: 'Vorteile', href: route('advantage'), slug: '/advantage' },
-        { name: 'Über uns', href: route('about'), slug: '/about-us' },
+        { name: 'Geschichte', href: route('about'), slug: '/about-us' },
         { name: 'Kontakt', href: route('contact'), slug: '/contact' },
         { name: 'Unsere Produkte', href: route('products'), slug: '/products' },
     ];

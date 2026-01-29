@@ -34,9 +34,6 @@ class SolarInverter extends Model
         'battery_brand_title',
         'battery_brand_logo',
         'battery_note',
-        'battery_price',
-        'warranty_years',
-        'efficiency',
 
     ];
 
