@@ -19,7 +19,7 @@ export default function Configurator1() {
             {
                 id: 'semi_detached',
                 title: 'Einfamilienhaus',
-                area: 40,
+                area: 32,
                 icon: Warehouse,
             },
             { id: 'single_family', title: 'Doppelhaus', area: 50, icon: Home },
