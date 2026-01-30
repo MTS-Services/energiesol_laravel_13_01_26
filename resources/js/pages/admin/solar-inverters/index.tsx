@@ -4,7 +4,6 @@ import { useDataTable } from '@/hooks/use-data-table';
 import AdminLayout from '@/layouts/admin-layout';
 import { ActionConfig, ColumnConfig, PaginationData } from '@/types/data-table.types';
 import { SolarInverters } from '@/types/models';
-import { Button } from '@/components/ui/button';
 import { Head, router, Link } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import {  Eye, Pencil, Plus, Trash2 } from 'lucide-react';
