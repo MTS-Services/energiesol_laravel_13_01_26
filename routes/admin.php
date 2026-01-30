@@ -22,6 +22,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('solar-inverters', SolarInverterController::class)->names('solar-inverters');
     Route::resource('bookings', BookingController::class)->only(['index', 'show', 'destroy'])->names('booking');
 
+    Route::get('monitoring-system', [MonitoringSystemController::class, 'show'])->name('monitoring-system.show');
     Route::get('monitoring-system/edit', [MonitoringSystemController::class, 'edit'])->name('monitoring-system.edit');
     Route::put('monitoring-system', [MonitoringSystemController::class, 'update'])->name('monitoring-system.update');
     Route::resource('partners', PartnerController::class)->names('partners');

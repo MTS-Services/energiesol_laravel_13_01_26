@@ -1,26 +1,25 @@
 import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AdminLayout from '@/layouts/admin-layout';
-import { Service } from '@/types/models';
+import { MonitoringSystem } from '@/types/models';
 import { Head } from '@inertiajs/react';
-import { ArrowLeft, SquarePen } from 'lucide-react';
-import { index, edit } from '@/actions/App/Http/Controllers/Admin/ServiceController';
+import { SquarePen } from 'lucide-react';
+import { show, edit } from '@/actions/App/Http/Controllers/Admin/MonitoringSystemController';
 
 interface Props {
-    service: Service;
+    monitoringSystem: MonitoringSystem;
 }
 
-export default function ShowService({ service }: Props) {
+export default function ShowMonitoringSystem({ monitoringSystem }: Props) {
     return (
         <AdminLayout>
-            <Head title="Service Details" />
+            <Head title="Monitoring System Details" />
 
             <div className="container mx-auto py-6">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-2xl font-bold">Service Details</h1>
+                    <h1 className="text-2xl font-bold">Monitoring System Details</h1>
                     <div className="flex gap-2">
-                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to services</ActionButton>
-                        <ActionButton IconNode={SquarePen} href={edit.url(service.id)}>Edit</ActionButton>
+                        <ActionButton IconNode={SquarePen} href={edit.url(monitoringSystem.id)}>Edit</ActionButton>
                     </div>
                 </div>
 
@@ -32,7 +31,7 @@ export default function ShowService({ service }: Props) {
                                 <CardTitle>Title</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg text-muted-foreground">{service.title}</p>
+                                <p className="text-lg text-muted-foreground">{monitoringSystem.title}</p>
                             </CardContent>
                         </Card>
 
@@ -42,7 +41,18 @@ export default function ShowService({ service }: Props) {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground">
-                                    {service.sub_title}
+                                    {monitoringSystem.sub_title}
+                                </p>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Description</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {monitoringSystem.description}
                                 </p>
                             </CardContent>
                         </Card>
@@ -52,26 +62,15 @@ export default function ShowService({ service }: Props) {
                                 <CardTitle>Image</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                {service.image ? (
+                                {monitoringSystem.image ? (
                                     <img
-                                        src={`/storage/${service.image}`}
-                                        alt={service.title}
+                                        src={`/storage/${monitoringSystem.image}`}
+                                        alt={monitoringSystem.title}
                                         className="max-w-md w-full h-auto object-contain border rounded"
                                     />
                                 ) : (
                                     <p className="text-muted-foreground">No image uploaded</p>
                                 )}
-                            </CardContent>
-                        </Card>
-
-                        <Card>
-                            <CardHeader>
-                                <CardTitle>Description</CardTitle>
-                            </CardHeader>
-                            <CardContent>
-                                <p className="text-muted-foreground whitespace-pre-wrap">
-                                    {service.description || 'No description provided'}
-                                </p>
                             </CardContent>
                         </Card>
                     </div>
@@ -87,13 +86,13 @@ export default function ShowService({ service }: Props) {
                                     <p className="text-sm text-muted-foreground">
                                         Created At
                                     </p>
-                                    <p className="font-medium">{new Date(service.created_at).toLocaleDateString()}</p>
+                                    <p className="font-medium">{new Date(monitoringSystem.created_at).toLocaleDateString()}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">
                                       Updated At
                                     </p>
-                                    <p className="font-medium">{ service.updated_at ? new Date(service.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                    <p className="font-medium">{ monitoringSystem.updated_at ? new Date(monitoringSystem.updated_at).toLocaleDateString() : 'N/A' }</p>
                                 </div>
                             </CardContent>
                         </Card>

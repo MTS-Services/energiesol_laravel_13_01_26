@@ -1,156 +1,178 @@
-import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { index, edit } from '@/actions/App/Http/Controllers/Admin/SolarInverterController';
-import AdminLayout from '@/layouts/admin-layout';
+import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import AdminLayout from '@/layouts/admin-layout';
 import { SolarInverters } from '@/types/models';
-
+import { Head } from '@inertiajs/react';
+import { ArrowLeft, SquarePen } from 'lucide-react';
+import { index, edit } from '@/actions/App/Http/Controllers/Admin/SolarInverterController';
 
 interface Props {
-  solarInverter: SolarInverters;
+    solarInverter: SolarInverters;
 }
 
 export default function ShowSolarInverter({ solarInverter }: Props) {
-  return (
-    <AdminLayout activeSlug="solar-inverters">
-      <Head title={`Solar Inverter: ${solarInverter.title}`} />
+    return (
+        <AdminLayout>
+            <Head title="Solar Inverter Details" />
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Solar Inverter Details</CardTitle>
-          <Link href={index.url()}>
-            <Button variant="outline">Back to Solar Inverters</Button>
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{solarInverter.id}</span>
-          </div>
+            <div className="container mx-auto py-6">
+                <div className="mb-6 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">Solar Inverter Details</h1>
+                    <div className="flex gap-2">
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to solar inverters</ActionButton>
+                        <ActionButton IconNode={SquarePen} href={edit.url(solarInverter.id)}>Edit</ActionButton>
+                    </div>
+                </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Brand</span>
-            <span>{solarInverter.brand_title}</span>
-          </div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {/* Left Column */}
+                    <div className="space-y-6 lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Title</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{solarInverter.title}</p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Brand Logo</span>
-            {solarInverter.brand_logo ? (
-              <img 
-                src={solarInverter.brand_logo} 
-                alt={`${solarInverter.brand_title} logo`}
-                className="h-24 w-24 object-contain border rounded p-2"
-              />
-            ) : (
-              <span className="text-gray-400">No logo uploaded</span>
-            )}
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Description</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {solarInverter.description}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Title</span>
-            <span>{solarInverter.title}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Solar Inverter Image</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <img src={solarInverter.image} alt={solarInverter.title} className="w-1/4 h-auto rounded-lg" />
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Image</span>
-            {solarInverter.image ? (
-              <img 
-                src={solarInverter.image} 
-                alt={solarInverter.title}
-                className="max-w-md w-full h-auto object-contain border rounded"
-              />
-            ) : (
-              <span className="text-gray-400">No image uploaded</span>
-            )}
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Brand Title & Information</CardTitle>
+                            </CardHeader>
+                            <CardContent className='flex gap-2'>
+                               <p className="text-muted-foreground font-semibold ">
+                                    {solarInverter.brand_title} :
+                                </p><p className="text-muted-foreground">
+                                    {solarInverter.note}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Description</span>
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {solarInverter.description || 'No description provided'}
-            </p>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Brand Logo </CardTitle>
+                            </CardHeader>
+                            <CardContent >
+                              {
+                                solarInverter.brand_logo ?  (
+                                  <img src={solarInverter.brand_logo} alt={solarInverter.brand_title} className="w-1/4 h-auto rounded-lg" />
+                                ) : (
+                                  <p className="text-muted-foreground">No brand logo</p>
+                                )
+                              }
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Price</span>
-            <span className="text-lg font-medium">
-              ${solarInverter.price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Charger Details</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{solarInverter.charger_title}</p>
+                                <p className="text-muted-foreground">
+                                    {solarInverter.charger_description}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {solarInverter.charger_brand_title}
+                                </p>
+                                <img src={solarInverter.charger_brand_logo} alt={solarInverter.charger_brand_title} className="w-1/4 h-auto rounded-lg" />
+                                <p className="text-muted-foreground">
+                                    {solarInverter.charger_note}
+                                </p>
+                                <img src={solarInverter.charger_image} alt={solarInverter.charger_title} className="w-1/4 h-auto rounded-lg" />
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Note</span>
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {solarInverter.note || 'No notes'}
-            </p>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Battery Details</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{solarInverter.battery_title}</p>
+                                <p className="text-muted-foreground">
+                                    {solarInverter.battery_description}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {solarInverter.battery_brand_title}
+                                </p>
+                                <img src={solarInverter.battery_brand_logo} alt={solarInverter.battery_brand_title} className="w-1/4 h-auto rounded-lg" />
+                                <p className="text-muted-foreground">
+                                    {solarInverter.battery_note}
+                                </p>
+                                <img src={solarInverter.battery_image} alt={solarInverter.battery_title} className="w-1/4 h-auto rounded-lg" />
+                            </CardContent>
+                        </Card>
+                    </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Charger Price</span>
-            <span className="text-lg font-medium">
-              ${solarInverter.charger_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Battery Price</span>
-            <span className="text-lg font-medium">
-              ${solarInverter.battery_price.toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 })}
-            </span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Charger Image</span>
-            {solarInverter.charger_image ? (
-              <img 
-                src={solarInverter.charger_image} 
-                alt={`${solarInverter.title} charger image`}
-                className="max-w-md w-full h-auto object-contain border rounded"
-              />
-            ) : (
-              <span className="text-gray-400">No charger image uploaded</span>
-            )}
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Battery Image</span>
-            {solarInverter.battery_image ? (
-              <img 
-                src={solarInverter.battery_image} 
-                alt={`${solarInverter.title} battery image`}
-                className="max-w-md w-full h-auto object-contain border rounded"
-              />
-            ) : (
-              <span className="text-gray-400">No battery image uploaded</span>
-            )}
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Status</span>
-            <Badge variant={solarInverter.status ? 'default' : 'secondary'}>
-              {solarInverter.status ? 'Active' : 'Inactive'}
-            </Badge>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(solarInverter.created_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(solarInverter.updated_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex gap-2 mt-6">
-            <Link href={edit.url(solarInverter.id)}>
-              <Button>Edit</Button>
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
-    </AdminLayout>
-  );
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Insights</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Created At
+                                    </p>
+                                    <p className="font-medium">{new Date(solarInverter.created_at).toLocaleDateString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Updated At
+                                    </p>
+                                    <p className="font-medium">{ solarInverter.updated_at ? new Date(solarInverter.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Status
+                                    </p>
+                                    <p className="font-medium"> {solarInverter.status ? 'Active' : 'Inactive'}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Price
+                                    </p>
+                                    <p className="font-medium">{ solarInverter.price ? `${solarInverter.price} €` : 'N/A' }</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Charger Price
+                                    </p>
+                                    <p className="font-medium">{ solarInverter.charger_price ? `${solarInverter.charger_price} €` : 'N/A' }</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Battery Price
+                                    </p>
+                                    <p className="font-medium">{ solarInverter.battery_price ? `${solarInverter.battery_price} €` : 'N/A' }</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </AdminLayout>
+    );
 }

@@ -1,65 +1,98 @@
-import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { index } from '@/actions/App/Http/Controllers/Admin/ContactController';
-import AdminLayout from '@/layouts/admin-layout';
+import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import AdminLayout from '@/layouts/admin-layout';
 import { Contact } from '@/types/models';
-
+import { Head } from '@inertiajs/react';
+import { ArrowLeft } from 'lucide-react';
+import { index } from '@/actions/App/Http/Controllers/Admin/ContactController';
 
 interface Props {
-  contact: Contact;
+    contact: Contact;
 }
 
 export default function ShowContact({ contact }: Props) {
-  return (
-    <AdminLayout activeSlug="admin-contacts">
-      <Head title={`Contact: ${contact.first_name} ${contact.last_name}`} />
+    return (
+        <AdminLayout>
+            <Head title="Contact Details" />
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Contact Details</CardTitle>
-          <Link href={index.url()}>
-            <Button variant="outline">Back to Contacts</Button>
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{contact.id}</span>
-          </div>
+            <div className="container mx-auto py-6">
+                <div className="mb-6 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">Contact Details</h1>
+                    <div className="flex gap-2">
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to contacts</ActionButton>
+                    </div>
+                </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">First Name</span>
-            <span>{contact.first_name}</span>
-          </div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {/* Left Column */}
+                    <div className="space-y-6 lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Name</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{contact.first_name} {contact.last_name}</p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Last Name</span>
-            <span>{contact.last_name}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Email</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {contact.email}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Email</span>
-            <span>{contact.email}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Phone Number</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {contact.phone_number}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Phone Number</span>
-            <span>{contact.phone_number || 'N/A'}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Message</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {contact.message}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(contact.created_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(contact.updated_at).toLocaleString()}</span>
-          </div>
-        </CardContent>
-      </Card>
-    </AdminLayout>
-  );
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Insights</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Created At
+                                    </p>
+                                    <p className="font-medium">{new Date(contact.created_at).toLocaleDateString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Updated At
+                                    </p>
+                                    <p className="font-medium">{ contact.updated_at ? new Date(contact.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </AdminLayout>
+    );
 }

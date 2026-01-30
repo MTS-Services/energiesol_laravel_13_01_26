@@ -75,6 +75,7 @@ const adminNavItems: NavItemType[] = [
         href: route('admin.solar-inverters.index'),
         icon: BarChart,
         permission: 'view analytics',
+        
     },
     {
         title: 'Monitoring System',

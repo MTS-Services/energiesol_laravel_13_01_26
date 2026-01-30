@@ -1,102 +1,108 @@
-import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { index } from '@/actions/App/Http/Controllers/Admin/InquiryController';
-import AdminLayout from '@/layouts/admin-layout';
+import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import AdminLayout from '@/layouts/admin-layout';
 import { Inquiry } from '@/types/models';
-import { Badge } from '@/components/ui/badge';
-
+import { Head } from '@inertiajs/react';
+import { ArrowLeft } from 'lucide-react';
+import { index } from '@/actions/App/Http/Controllers/Admin/InquiryController';
 
 interface Props {
-  inquiry: Inquiry;
+    inquiry: Inquiry;
 }
 
 export default function ShowInquiry({ inquiry }: Props) {
-  return (
-    <AdminLayout activeSlug="admin-inquiries">
-      <Head title={`Inquiry: ${inquiry.first_name} ${inquiry.last_name}`} />
+    return (
+        <AdminLayout>
+            <Head title="Inquiry Details" />
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Inquiry Details</CardTitle>
-          <Link href={index.url()}>
-            <Button variant="outline">Back to Inquiries</Button>
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{inquiry.id}</span>
-          </div>
+            <div className="container mx-auto py-6">
+                <div className="mb-6 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">Inquiry Details</h1>
+                    <div className="flex gap-2">
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to inquiries</ActionButton>
+                    </div>
+                </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">First Name</span>
-            <span>{inquiry.first_name}</span>
-          </div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {/* Left Column */}
+                    <div className="space-y-6 lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Name</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{inquiry.first_name} {inquiry.last_name}</p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Last Name</span>
-            <span>{inquiry.last_name}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Contact</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {inquiry.email}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {inquiry.phone_number}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Email</span>
-            <span>{inquiry.email}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Installation Details</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    Area: {inquiry.area}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    Solar Panel: {inquiry.solar_panel?.title}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    Solar Inverter: {inquiry.solar_inverter?.title}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    Battery: {inquiry.has_battery ? 'Yes' : 'No'}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    Charger: {inquiry.has_charger ? 'Yes' : 'No'}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Phone Number</span>
-            <span>{inquiry.phone_number || 'N/A'}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Area</span>
-            <span>{inquiry.area}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Solar Panel</span>
-            <span>{inquiry.solar_panel?.title || 'N/A'}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Solar Inverter</span>
-            <span>{inquiry.solar_inverter?.title || 'N/A'}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Has Battery</span>
-            <Badge variant={inquiry.has_battery ? 'default' : 'secondary'}>
-              {inquiry.has_battery ? 'Yes' : 'No'}
-            </Badge>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Has Charger</span>
-            <Badge variant={inquiry.has_charger ? 'default' : 'secondary'}>
-              {inquiry.has_charger ? 'Yes' : 'No'}
-            </Badge>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Status</span>
-            <Badge variant={inquiry.status ? 'default' : 'secondary'}>
-              {inquiry.status ? 'Completed' : 'Pending'}
-            </Badge>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(inquiry.created_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(inquiry.updated_at).toLocaleString()}</span>
-          </div>
-        </CardContent>
-      </Card>
-    </AdminLayout>
-  );
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Insights</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Created At
+                                    </p>
+                                    <p className="font-medium">{new Date(inquiry.created_at).toLocaleDateString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Updated At
+                                    </p>
+                                    <p className="font-medium">{ inquiry.updated_at ? new Date(inquiry.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Status
+                                    </p>
+                                    <p className="font-medium"> {inquiry.status ? 'Completed' : 'Pending'}</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </AdminLayout>
+    );
 }
