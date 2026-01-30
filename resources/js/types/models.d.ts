@@ -17,16 +17,46 @@ interface SolarPanels {
 
 interface SolarInverters {
     id: number;
+    
+    // Solar Inverter Fields
     brand_title: string;
     brand_logo: string;
+    brand_logo_url?: string;
     title: string;
     image: string;
+    image_url?: string;
     description: string;
     price: number;
     note: string;
     status: boolean;
+    
+    // Battery Fields
+    battery_title?: string;
+    battery_description?: string;
+    battery_price?: number;
+    battery_image?: string;
+    battery_image_url?: string;
+    battery_brand_title?: string;
+    battery_brand_logo?: string;
+    battery_brand_logo_url?: string;
+    battery_note?: string;
+    
+    // Charger Fields
+    charger_title?: string;
+    charger_description?: string;
+    charger_price?: number;
+    charger_image?: string;
+    charger_image_url?: string;
+    charger_brand_title?: string;
+    charger_brand_logo?: string;
+    charger_brand_logo_url?: string;
+    charger_note?: string;
+    
+    // Timestamps
     created_at: string;
     updated_at: string;
+    
+    // Allow additional properties
     [key: string]: unknown;
 }
 

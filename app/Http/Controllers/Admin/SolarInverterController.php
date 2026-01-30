@@ -63,20 +63,45 @@ class SolarInverterController extends Controller
     /**
      * Store a newly created resource in storage.
      */
-    public function store(StoreSolarInverterRequest $request)
-    {
+public function store(StoreSolarInverterRequest $request)
+{
+    $data = $request->all();
 
-        $data = $request->all();
-        if($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs('solar-inverters/images', $request->file('image')->getClientOriginalName());
-        }
-        if($request->hasFile('brand_logo')) {
-            $data['brand_logo'] = $request->file('brand_logo')->storeAs('solar-inverters/brand-logos', $request->file('brand_logo')->getClientOriginalName());
-        }
-        $this->solarInverterService->create($data);
-
-        return redirect()->route('admin.solar-inverters.index')->with('success', 'Solar inverter created successfully.');
+    // Solar Inverter Image
+    if($request->hasFile('image')) {
+        $data['image'] = $request->file('image')->storeAs('solar-inverters/images', $request->file('image')->getClientOriginalName(), 'public');
     }
+
+    // Solar Inverter Brand Logo
+    if($request->hasFile('brand_logo')) {
+        $data['brand_logo'] = $request->file('brand_logo')->storeAs('solar-inverters/brand-logos', $request->file('brand_logo')->getClientOriginalName(), 'public');
+    }
+
+    // Battery Image
+    if($request->hasFile('battery_image')) {
+        $data['battery_image'] = $request->file('battery_image')->storeAs('solar-inverters/battery-images', $request->file('battery_image')->getClientOriginalName(), 'public');
+    }
+
+    // Battery Brand Logo
+    if($request->hasFile('battery_brand_logo')) {
+        $data['battery_brand_logo'] = $request->file('battery_brand_logo')->storeAs('solar-inverters/battery-brand-logos', $request->file('battery_brand_logo')->getClientOriginalName(), 'public');
+    }
+
+    // Charger Image
+    if($request->hasFile('charger_image')) {
+        $data['charger_image'] = $request->file('charger_image')->storeAs('solar-inverters/charger-images', $request->file('charger_image')->getClientOriginalName(), 'public');
+    }
+
+    // Charger Brand Logo
+    if($request->hasFile('charger_brand_logo')) {
+        $data['charger_brand_logo'] = $request->file('charger_brand_logo')->storeAs('solar-inverters/charger-brand-logos', $request->file('charger_brand_logo')->getClientOriginalName(), 'public');
+    }
+
+
+    $this->solarInverterService->create($data);
+
+    return redirect()->route('admin.solar-inverters.index')->with('success', 'Solar inverter created successfully.');
+}
 
     /**
      * Display the specified resource.
@@ -101,25 +126,98 @@ class SolarInverterController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(UpdateSolarInverterRequest $request, SolarInverter $solarInverter)
-    {
-        $data = $request->all();
-        if($request->hasFile('image')) {
-            if($solarInverter->image) {
-                Storage::delete($solarInverter->image);
-            }
-            $data['image'] = $request->file('image')->storeAs('solar-inverters/images', $request->file('image')->getClientOriginalName());
-        }
-        if($request->hasFile('brand_logo')) {
-            if($solarInverter->brand_logo) {
-                Storage::delete($solarInverter->brand_logo);
-            }
-            $data['brand_logo'] = $request->file('brand_logo')->storeAs('solar-inverters/brand-logos', $request->file('brand_logo')->getClientOriginalName());
-        }
-        $this->solarInverterService->update($solarInverter->id, $data);
+public function update(UpdateSolarInverterRequest $request, SolarInverter $solarInverter)
+{
+    $data = $request->all();
 
-        return redirect()->route('admin.solar-inverters.index')->with('success', 'Solar inverter updated successfully.');
+    // Solar Inverter Image
+    if($request->hasFile('image')) {
+        if($solarInverter->image) {
+            Storage::delete($solarInverter->image);
+        }
+        $data['image'] = $request->file('image')->storeAs('solar-inverters/images', $request->file('image')->getClientOriginalName(), 'public');
     }
+
+    if($request->delete_existing_image && !$request->image) {
+        $data['image'] = null;
+        unset($data['delete_existing_image']);
+        Storage::delete($solarInverter->image);
+    }
+
+    // Solar Inverter Brand Logo
+    if($request->hasFile('brand_logo')) {
+        if($solarInverter->brand_logo) {
+            Storage::delete($solarInverter->brand_logo);
+        }
+        $data['brand_logo'] = $request->file('brand_logo')->storeAs('solar-inverters/brand-logos', $request->file('brand_logo')->getClientOriginalName(), 'public');
+    }
+
+    if($request->delete_existing_brand_logo && !$request->brand_logo) {
+        $data['brand_logo'] = null;
+        unset($data['delete_existing_brand_logo']);
+        Storage::delete($solarInverter->brand_logo);
+    }
+
+    // Battery Image
+    if($request->hasFile('battery_image')) {
+        if($solarInverter->battery_image) {
+            Storage::delete($solarInverter->battery_image);
+        }
+        $data['battery_image'] = $request->file('battery_image')->storeAs('solar-inverters/battery-images', $request->file('battery_image')->getClientOriginalName(), 'public');
+    }
+
+    if($request->delete_existing_battery_image && !$request->battery_image) {
+        $data['battery_image'] = null;
+        unset($data['delete_existing_battery_image']);
+        Storage::delete($solarInverter->battery_image);
+    }
+
+    // Battery Brand Logo
+    if($request->hasFile('battery_brand_logo')) {
+        if($solarInverter->battery_brand_logo) {
+            Storage::delete($solarInverter->battery_brand_logo);
+        }
+        $data['battery_brand_logo'] = $request->file('battery_brand_logo')->storeAs('solar-inverters/battery-brand-logos', $request->file('battery_brand_logo')->getClientOriginalName(), 'public');
+    }
+
+    if($request->delete_existing_battery_brand_logo && !$request->battery_brand_logo) {
+        $data['battery_brand_logo'] = null;
+        unset($data['delete_existing_battery_brand_logo']);
+        Storage::delete($solarInverter->battery_brand_logo);
+    }
+
+    // Charger Image
+    if($request->hasFile('charger_image')) {
+        if($solarInverter->charger_image) {
+            Storage::delete($solarInverter->charger_image);
+        }
+        $data['charger_image'] = $request->file('charger_image')->storeAs('solar-inverters/charger-images', $request->file('charger_image')->getClientOriginalName(), 'public');
+    }
+
+    if($request->delete_existing_charger_image && !$request->charger_image) {
+        $data['charger_image'] = null;
+        unset($data['delete_existing_charger_image']);
+        Storage::delete($solarInverter->charger_image);
+    }
+
+    // Charger Brand Logo
+    if($request->hasFile('charger_brand_logo')) {
+        if($solarInverter->charger_brand_logo) {
+            Storage::delete($solarInverter->charger_brand_logo);
+        }
+        $data['charger_brand_logo'] = $request->file('charger_brand_logo')->storeAs('solar-inverters/charger-brand-logos', $request->file('charger_brand_logo')->getClientOriginalName(), 'public');
+    }
+
+    if($request->delete_existing_charger_brand_logo && !$request->charger_brand_logo) {
+        $data['charger_brand_logo'] = null;
+        unset($data['delete_existing_charger_brand_logo']);
+        Storage::delete($solarInverter->charger_brand_logo);
+    }
+
+    $this->solarInverterService->update($solarInverter->id, $data);
+
+    return redirect()->route('admin.solar-inverters.index')->with('success', 'Solar inverter updated successfully.');
+}
     
       
     /*
@@ -127,7 +225,7 @@ class SolarInverterController extends Controller
      */
     public function destroy(SolarInverter $solarInverter)
     {
-        $solarInverter->delete();
+        $this->solarInverterService->delete($solarInverter->id);
 
         return redirect()->back()->with('success', 'Solar inverter deleted successfully');
     }

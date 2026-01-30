@@ -98,6 +98,8 @@ class SolarInverterService
         $this->deleteImage($solarInverter->image);
         $this->deleteImage($solarInverter->charger_image);
         $this->deleteImage($solarInverter->battery_image);
+        $this->deleteImage($solarInverter->charger_brand_logo);
+        $this->deleteImage($solarInverter->battery_brand_logo);
     }
 
     private function deleteImage(?string $path): void
