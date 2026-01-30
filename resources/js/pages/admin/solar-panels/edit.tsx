@@ -38,8 +38,8 @@ export default function EditSolarPanel({ solarPanel }: Props) {
         status: solarPanel.status,
         price: solarPanel.price || 0,
         note: solarPanel.note || '',
-        existing_brand_logo: false,
-        existing_image: false,
+        delete_existing_brand_logo: false,
+        delete_existing_image: false,
         _method: 'PUT',
     });
 
@@ -84,7 +84,7 @@ export default function EditSolarPanel({ solarPanel }: Props) {
             )
         ) {
             setBrandLogo([]);
-           setData('existing_brand_logo', true);
+           setData('delete_existing_brand_logo', true);
         }
     };
     
@@ -95,7 +95,7 @@ export default function EditSolarPanel({ solarPanel }: Props) {
             )
         ) {
             setImage([]);
-           setData('existing_image', true);
+           setData('delete_existing_image', true);
         }
     };
     return (
@@ -156,18 +156,7 @@ export default function EditSolarPanel({ solarPanel }: Props) {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
-                                    {solarPanel.image && (
-                                        <div className="mb-2">
-                                            <img
-                                                src={solarPanel.image}
-                                                alt="Current image"
-                                                className="h-48 w-auto rounded border object-contain"
-                                            />
-                                            <p className="mt-1 text-sm text-gray-500">
-                                                Current image
-                                            </p>
-                                        </div>
-                                    )}
+                                 
                                     <div className="grid gap-2">
                                         <FileUpload
                                             value={data.image}
@@ -236,18 +225,7 @@ export default function EditSolarPanel({ solarPanel }: Props) {
                                     </CardTitle>
                                 </CardHeader>
                                 <CardContent className="space-y-4">
-                                    {solarPanel.brand_logo && (
-                                        <div className="mb-2">
-                                            <img
-                                                src={solarPanel.brand_logo}
-                                                alt="Current brand logo"
-                                                className="h-20 w-20 rounded border object-contain"
-                                            />
-                                            <p className="mt-1 text-sm text-gray-500">
-                                                Current logo
-                                            </p>
-                                        </div>
-                                    )}
+                                    
                                     <div className="grid gap-2">
                                         <FileUpload
                                             id="brand_logo"

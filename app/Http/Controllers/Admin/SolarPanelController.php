@@ -107,20 +107,37 @@ class SolarPanelController extends Controller
     public function update(UpdateSolarPanelRequest $request, SolarPanel $solarPanel)
     {
 
-        dd($request->all());
+       
         $data = $request->all();
+
         if($request->hasFile('image')) {
             if($solarPanel->image) {
                 Storage::delete($solarPanel->image);
             }
-            $data['image'] = $request->file('image')->storeAs('/images//', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
         }
+
+
         if($request->hasFile('brand_logo')) {
             if($solarPanel->brand_logo) {
                 Storage::delete($solarPanel->brand_logo);
             }
-            $data['brand_logo'] = $request->file('brand_logo')->storeAs('solar-panels/brand-logos', $request->file('brand_logo')->getClientOriginalName());
+            $data['brand_logo'] = $request->file('brand_logo')->storeAs('images', $request->file('brand_logo')->getClientOriginalName(), 'public');
         }
+
+        if($request->delete_existing_brand_logo && !$request->brand_logo) {
+            $data['brand_logo'] = null;
+            unset($data['delete_existing_brand_logo']);
+            Storage::delete($solarPanel->brand_logo);
+        }
+
+            
+        if($request->delete_existing_image && !$request->image) {
+            $data['image'] = null;
+            unset($data['delete_existing_image']);
+            Storage::delete($solarPanel->image);
+        }
+
         $this->solarPanelService->update($solarPanel->id, $data);
 
         return redirect()->route('admin.solar-panels.index')->with('success', 'Solar panel updated successfully.');
