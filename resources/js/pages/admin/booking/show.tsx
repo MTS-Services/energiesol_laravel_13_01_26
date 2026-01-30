@@ -1,26 +1,25 @@
 import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import AdminLayout from '@/layouts/admin-layout';
-import { User } from '@/types/models';
+import { Booking } from '@/types/models';
 import { Head } from '@inertiajs/react';
-import { ArrowLeft, SquarePen } from 'lucide-react';
-import { index, edit } from '@/actions/App/Http/Controllers/Admin/UserController';
+import { ArrowLeft } from 'lucide-react';
+import { index } from '@/actions/App/Http/Controllers/Admin/BookingController';
 
 interface Props {
-    user: User;
+    booking: Booking;
 }
 
-export default function ShowUser({ user }: Props) {
+export default function ShowBooking({ booking }: Props) {
     return (
-        <AdminLayout >
-            <Head title="User Details" />
+        <AdminLayout>
+            <Head title="Booking Details" />
 
             <div className="container mx-auto py-6">
                 <div className="mb-6 flex items-center justify-between">
-                    <h1 className="text-2xl font-bold">User Details</h1>
+                    <h1 className="text-2xl font-bold">Booking Details</h1>
                     <div className="flex gap-2">
-                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to users</ActionButton>
-                        <ActionButton IconNode={SquarePen} href={edit.url(user.id)}>Edit</ActionButton>
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to bookings</ActionButton>
                     </div>
                 </div>
 
@@ -32,17 +31,31 @@ export default function ShowUser({ user }: Props) {
                                 <CardTitle>Name</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg text-muted-foreground">{user.name}</p>
+                                <p className="text-lg text-muted-foreground">{booking.name}</p>
                             </CardContent>
                         </Card>
 
                         <Card>
                             <CardHeader>
-                                <CardTitle>Email</CardTitle>
+                                <CardTitle>Contact</CardTitle>
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground">
-                                    {user.email}
+                                    {booking.email}
+                                </p>
+                                <p className="text-muted-foreground">
+                                    {booking.phone}
+                                </p>
+                            </CardContent>
+                        </Card>
+
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Message</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {booking.message}
                                 </p>
                             </CardContent>
                         </Card>
@@ -59,19 +72,25 @@ export default function ShowUser({ user }: Props) {
                                     <p className="text-sm text-muted-foreground">
                                         Created At
                                     </p>
-                                    <p className="font-medium">{new Date(user.created_at).toLocaleDateString()}</p>
+                                    <p className="font-medium">{new Date(booking.created_at).toLocaleDateString()}</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">
                                       Updated At
                                     </p>
-                                    <p className="font-medium">{ user.updated_at ? new Date(user.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                    <p className="font-medium">{ booking.updated_at ? new Date(booking.updated_at).toLocaleDateString() : 'N/A' }</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">
-                                        Role
+                                        Status
                                     </p>
-                                    <p className="font-medium"> {user.is_admin ? 'Admin' : 'User'}</p>
+                                    <p className="font-medium"> {booking.status}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Booking Date
+                                    </p>
+                                    <p className="font-medium"> {booking.booking_date ? new Date(booking.booking_date).toLocaleDateString() : 'N/A'}</p>
                                 </div>
                             </CardContent>
                         </Card>

@@ -1,68 +1,88 @@
-import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { index, edit } from '@/actions/App/Http/Controllers/Admin/AdvantageController';
-import AdminLayout from '@/layouts/admin-layout';
+import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import AdminLayout from '@/layouts/admin-layout';
 import { Advantage } from '@/types/models';
-
+import { Head } from '@inertiajs/react';
+import { ArrowLeft, SquarePen } from 'lucide-react';
+import { index, edit } from '@/actions/App/Http/Controllers/Admin/AdvantageController';
 
 interface Props {
-  advantage: Advantage;
+    advantage: Advantage;
 }
 
 export default function ShowAdvantage({ advantage }: Props) {
-  return (
-    <AdminLayout activeSlug="admin-advantages">
-      <Head title={`Advantage: ${advantage.title}`} />
+    return (
+        <AdminLayout>
+            <Head title="Advantage Details" />
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Advantage Details</CardTitle>
-          <Link href={index.url()}>
-            <Button variant="outline">Back to Advantages</Button>
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{advantage.id}</span>
-          </div>
+            <div className="container mx-auto py-6">
+                <div className="mb-6 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">Advantage Details</h1>
+                    <div className="flex gap-2">
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to advantages</ActionButton>
+                        <ActionButton IconNode={SquarePen} href={edit.url(advantage.id)}>Edit</ActionButton>
+                    </div>
+                </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Title</span>
-            <span>{advantage.title}</span>
-          </div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {/* Left Column */}
+                    <div className="space-y-6 lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Title</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{advantage.title}</p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Description</span>
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {advantage.description || 'No description provided'}
-            </p>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Description</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {advantage.description}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Icon</span>
-            <span>{advantage.icon || 'No icon provided'}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Icon</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {advantage.icon}
+                                </p>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(advantage.created_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(advantage.updated_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex gap-2 mt-6">
-            <Link href={edit.url(advantage.id)}>
-              <Button>Edit</Button>
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
-    </AdminLayout>
-  );
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Insights</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Created At
+                                    </p>
+                                    <p className="font-medium">{new Date(advantage.created_at).toLocaleDateString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Updated At
+                                    </p>
+                                    <p className="font-medium">{ advantage.updated_at ? new Date(advantage.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </AdminLayout>
+    );
 }

@@ -70,16 +70,16 @@ export default function Index({Bookings, pagination, offset, filters, search, so
     {
       label: 'View',
       icon: <Eye className="h-4 w-4" />,
-      onClick: (advantage) => {
-        router.visit(show.url(advantage.id));
+      onClick: (booking) => {
+        router.visit(show.url(booking.id));
       },
     },
     {
       label: 'Delete',
       icon: <Trash2 className="h-4 w-4" />,
-      onClick: (advantage) => {
-        if (confirm(`Are you sure you want to delete ${advantage.title}?`)) { // Changed `solarPanel.name` to `advantage.title`
-          router.delete(destroy.url(advantage.id));
+      onClick: (booking) => {
+        if (confirm(`Are you sure you want to delete this data?`)) { // Changed `solarPanel.name` to `advantage.title`
+          router.delete(destroy.url(booking.id));
         }
       },
       variant: 'destructive',
@@ -87,14 +87,10 @@ export default function Index({Bookings, pagination, offset, filters, search, so
   ];
 
    return (
-    <AdminLayout activeSlug="admin-advantages"> {/* Changed activeSlug */}
-      <Head title="Advantages" /> {/* Changed title */}
+    <AdminLayout activeSlug="admin-booking"> {/* Changed activeSlug */}
+      <Head title="Booking" /> {/* Changed title */}
 
-      <div className="flex justify-end mb-6">
-        <Link href={create.url()}>
-          <Button>Create Advantage</Button> {/* Changed button text */}
-        </Link>
-      </div>
+      
 
       <div className="mx-auto">
         <DataTable

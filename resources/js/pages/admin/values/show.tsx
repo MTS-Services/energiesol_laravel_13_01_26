@@ -1,86 +1,108 @@
-import React from 'react';
-import { Head, Link } from '@inertiajs/react';
-import { index, edit } from '@/actions/App/Http/Controllers/Admin/ValueController';
-import AdminLayout from '@/layouts/admin-layout';
+import { ActionButton } from '@/components/ui/action-button';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
-import { Button } from '@/components/ui/button';
+import AdminLayout from '@/layouts/admin-layout';
 import { Values } from '@/types/models';
-
+import { Head } from '@inertiajs/react';
+import { ArrowLeft, SquarePen } from 'lucide-react';
+import { index, edit } from '@/actions/App/Http/Controllers/Admin/ValueController';
 
 interface Props {
-  value: Values;
+    value: Values;
 }
 
 export default function ShowValue({ value }: Props) {
-  return (
-    <AdminLayout activeSlug="values">
-      <Head title={`Value: ${value.title}`} />
+    return (
+        <AdminLayout>
+            <Head title="Value Details" />
 
-      <Card>
-        <CardHeader className="flex flex-row items-center justify-between">
-          <CardTitle>Value Details</CardTitle>
-          <Link href={index.url()}>
-            <Button variant="outline">Back to Values</Button>
-          </Link>
-        </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{value.id}</span>
-          </div>
+            <div className="container mx-auto py-6">
+                <div className="mb-6 flex items-center justify-between">
+                    <h1 className="text-2xl font-bold">Value Details</h1>
+                    <div className="flex gap-2">
+                        <ActionButton IconNode={ArrowLeft} href={index.url()}>Back to values</ActionButton>
+                        <ActionButton IconNode={SquarePen} href={edit.url(value.id)}>Edit</ActionButton>
+                    </div>
+                </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Title</span>
-            <span>{value.title}</span>
-          </div>
+                <div className="grid grid-cols-1 gap-6 lg:grid-cols-3">
+                    {/* Left Column */}
+                    <div className="space-y-6 lg:col-span-2">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Title</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-lg text-muted-foreground">{value.title}</p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Image</span>
-            {value.image ? (
-              <img 
-                src={value.image} 
-                alt={value.title}
-                className="max-w-md w-full h-auto object-contain border rounded"
-              />
-            ) : (
-              <span className="text-gray-400">No image uploaded</span>
-            )}
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Description</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                <p className="text-muted-foreground">
+                                    {value.description}
+                                </p>
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Description</span>
-            <p className="text-gray-700 whitespace-pre-wrap">
-              {value.description || 'No description provided'}
-            </p>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Image</CardTitle>
+                            </CardHeader>
+                            <CardContent>
+                                {value.image ? (
+                                    <img
+                                        src={value.image}
+                                        alt={value.title}
+                                        className="max-w-md w-full h-auto object-contain border rounded"
+                                    />
+                                ) : (
+                                    <p className="text-muted-foreground">No image uploaded</p>
+                                )}
+                            </CardContent>
+                        </Card>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Action Text</span>
-            <span>{value.action_text || 'N/A'}</span>
-          </div>
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Action</CardTitle>
+                            </CardHeader>
+                            <CardContent className='flex gap-2'>
+                               <p className="text-muted-foreground font-semibold ">
+                                    {value.action_text}
+                                </p>
+                                <a href={value.action_url} className="text-muted-foreground underline">
+                                    {value.action_url}
+                                </a>
+                            </CardContent>
+                        </Card>
+                    </div>
 
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Action URL</span>
-            <span>{value.action_url || 'N/A'}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(value.created_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(value.updated_at).toLocaleString()}</span>
-          </div>
-
-          <div className="flex gap-2 mt-6">
-            <Link href={edit.url(value.id)}>
-              <Button>Edit</Button>
-            </Link>
-          </div>
-        </CardContent>
-      </Card>
-    </AdminLayout>
-  );
+                    {/* Right Column */}
+                    <div className="space-y-6">
+                        <Card>
+                            <CardHeader>
+                                <CardTitle>Insights</CardTitle>
+                            </CardHeader>
+                            <CardContent className="space-y-3">
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                        Created At
+                                    </p>
+                                    <p className="font-medium">{new Date(value.created_at).toLocaleDateString()}</p>
+                                </div>
+                                <div>
+                                    <p className="text-sm text-muted-foreground">
+                                      Updated At
+                                    </p>
+                                    <p className="font-medium">{ value.updated_at ? new Date(value.updated_at).toLocaleDateString() : 'N/A' }</p>
+                                </div>
+                            </CardContent>
+                        </Card>
+                    </div>
+                </div>
+            </div>
+        </AdminLayout>
+    );
 }

@@ -18,6 +18,18 @@ class MonitoringSystemController extends Controller
     }
 
     /**
+     * Display the specified resource.
+     */
+    public function show(): Response
+    {
+        $monitoringSystem = MonitoringSystem::firstOrFail();
+
+        return Inertia::render('admin/monitoring-system/show', [
+            'monitoringSystem' => $monitoringSystem,
+        ]);
+    }
+
+    /**
      * Show the form for editing the specified resource, or create if not exists.
      */
     public function edit(): Response

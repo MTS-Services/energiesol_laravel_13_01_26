@@ -128,7 +128,7 @@ export function DataTable<T extends Record<string, any>>({
                     onClick={() => onPageChange && onPageChange(i)}
                     variant={i === pagination.current_page ? 'default' : 'outline'}
                     size="sm"
-                    className="datatable-pagination-number"
+                    className={`datatable-pagination-number ${i === pagination.current_page ? 'flex items-center justify-center': ''}`}
                 >
                     {i}
                 </Button>
