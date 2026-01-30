@@ -52,7 +52,7 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
                                 <CardTitle>Solar Inverter Image</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <img src={solarInverter.image} alt={solarInverter.title} className="w-1/4 h-auto rounded-lg" />
+                                <img src={solarInverter.image_url || ''} alt={solarInverter.title} className="w-1/4 h-auto rounded-lg" />
                             </CardContent>
                         </Card>
 
@@ -75,8 +75,8 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
                             </CardHeader>
                             <CardContent >
                               {
-                                solarInverter.brand_logo ?  (
-                                  <img src={solarInverter.brand_logo} alt={solarInverter.brand_title} className="w-1/4 h-auto rounded-lg" />
+                                solarInverter.brand_logo_url ?  (
+                                  <img src={solarInverter.brand_logo_url} alt={solarInverter.brand_title} className="w-1/4 h-auto rounded-lg" />
                                 ) : (
                                   <p className="text-muted-foreground">No brand logo</p>
                                 )
@@ -96,11 +96,11 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
                                 <p className="text-muted-foreground">
                                     {solarInverter.charger_brand_title}
                                 </p>
-                                <img src={solarInverter.charger_brand_logo} alt={solarInverter.charger_brand_title} className="w-1/4 h-auto rounded-lg" />
+                                <img src={solarInverter.charger_brand_logo_url || ''} alt={solarInverter.charger_brand_title} className="w-1/4 h-auto rounded-lg" />
                                 <p className="text-muted-foreground">
                                     {solarInverter.charger_note}
                                 </p>
-                                <img src={solarInverter.charger_image} alt={solarInverter.charger_title} className="w-1/4 h-auto rounded-lg" />
+                                <img src={solarInverter.charger_image_url || ''} alt={solarInverter.charger_title} className="w-1/4 h-auto rounded-lg" />
                             </CardContent>
                         </Card>
 
@@ -109,18 +109,18 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
                                 <CardTitle>Battery Details</CardTitle>
                             </CardHeader>
                             <CardContent>
-                                <p className="text-lg text-muted-foreground">{solarInverter.battery_title}</p>
-                                <p className="text-muted-foreground">
+                                <p className="text-lg text-muted-foreground mb-1">{solarInverter.battery_title}</p>
+                                <p className="text-muted-foreground mb-1">
                                     {solarInverter.battery_description}
                                 </p>
-                                <p className="text-muted-foreground">
+                                <p className="text-muted-foreground mb-1">
                                     {solarInverter.battery_brand_title}
                                 </p>
-                                <img src={solarInverter.battery_brand_logo} alt={solarInverter.battery_brand_title} className="w-1/4 h-auto rounded-lg" />
-                                <p className="text-muted-foreground">
+                                <img src={solarInverter.battery_brand_logo_url   || ''} alt={solarInverter.battery_brand_title} className="w-1/4 h-auto rounded-lg" />
+                                <p className="text-muted-foreground mb-1">
                                     {solarInverter.battery_note}
                                 </p>
-                                <img src={solarInverter.battery_image} alt={solarInverter.battery_title} className="w-1/4 h-auto rounded-lg" />
+                                <img src={solarInverter.battery_image_url || ''} alt={solarInverter.battery_title} className="w-1/4 h-auto rounded-lg" />
                             </CardContent>
                         </Card>
                     </div>
