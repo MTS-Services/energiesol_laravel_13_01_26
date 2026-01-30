@@ -106,6 +106,8 @@ class SolarPanelController extends Controller
      */
     public function update(UpdateSolarPanelRequest $request, SolarPanel $solarPanel)
     {
+
+        dd($request->all());
         $data = $request->all();
         if($request->hasFile('image')) {
             if($solarPanel->image) {
