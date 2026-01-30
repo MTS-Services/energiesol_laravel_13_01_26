@@ -13,7 +13,7 @@ interface Props {
 
 export default function ShowSolarPanel({ solarPanel }: Props) {
     return (
-        <AdminLayout>
+        <AdminLayout activeSlug={'admin-solar-panels'}>
             <Head title="Solar Panel Details" />
 
             <div className="container mx-auto py-6">

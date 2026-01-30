@@ -12,7 +12,7 @@ interface Props {
 
 export default function ShowUser({ user }: Props) {
     return (
-        <AdminLayout>
+        <AdminLayout >
             <Head title="User Details" />
 
             <div className="container mx-auto py-6">
