@@ -117,7 +117,7 @@ export default function Index({solarInverters, pagination, offset, filters, sear
   ];
 
    return (
-    <AdminLayout activeSlug="admin/solar-inverters/create">
+    <AdminLayout activeSlug="admin-solar-inverters">
       <Head title="Solar Inverters" />
 
       <div className="flex justify-end mb-6">

@@ -178,7 +178,7 @@ export const NavItem = React.memo<NavItemProps>(({
                 'w-full',
                 isCollapsed ? 'justify-center px-2' : '',
                 level > 0 && !isCollapsed && 'ml-4',
-                itemIsActive && 'bg-primary/10 text-secondary hover:bg-primary/15 hover:text-secondary',
+                itemIsActive && 'bg-secondary/10 text-secondary hover:bg-primary/15 hover:text-secondary',
                 item.disabled && 'opacity-50 cursor-not-allowed pointer-events-none',
                 item.className
             )}

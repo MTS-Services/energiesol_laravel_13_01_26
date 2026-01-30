@@ -12,7 +12,7 @@ interface Props {
 
 export default function ShowSolarInverter({ solarInverter }: Props) {
     return (
-        <AdminLayout>
+        <AdminLayout activeSlug="admin-solar-inverters">
             <Head title="Solar Inverter Details" />
 
             <div className="container mx-auto py-6">

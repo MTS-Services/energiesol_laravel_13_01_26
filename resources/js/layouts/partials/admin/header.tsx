@@ -83,36 +83,9 @@ export function AdminHeader({ isCollapsed, setIsCollapsed }: AdminHeaderProps) {
 
             <div className="ml-auto flex items-center space-x-2">
                 <div className="relative flex items-center space-x-1">
-                    <Button
-                        variant="ghost"
-                        size="icon"
-                        className="group h-9 w-9 cursor-pointer"
-                    >
-                        <Search className="size-5! opacity-80 group-hover:opacity-100" />
-                    </Button>
+                 
                     <Separator orientation="vertical"/>
-                    <AppearanceToggleDropdown />
-                    <div className="hidden lg:flex">
-                        <TooltipProvider
-                            key="notification"
-                            delayDuration={0}
-                        >
-                            <Tooltip>
-                                <TooltipTrigger>
-                                    <Button
-                                        variant="ghost"
-                                        size="icon"
-                                        className="group h-9 w-9 cursor-pointer"
-                                    >
-                                        <BellIcon className="size-5! opacity-80 group-hover:opacity-100" />
-                                    </Button>
-                                </TooltipTrigger>
-                                <TooltipContent>
-                                    <p>Notification</p>
-                                </TooltipContent>
-                            </Tooltip>
-                        </TooltipProvider>
-                    </div>
+              
                 </div>
                 <DropdownMenu>
                     <DropdownMenuTrigger asChild>
