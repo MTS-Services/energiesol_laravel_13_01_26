@@ -7,8 +7,10 @@ import { SolarPanels } from '@/types/models';
 import { Button } from '@/components/ui/button';
 import { Head, router, Link } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
-import {  Eye, Pencil, Trash2 } from 'lucide-react';
+import {  Eye, Pencil, Plus, Trash2 } from 'lucide-react';
 import React from 'react'
+import { Icon } from '@/components/ui/icon';
+import { ActionButton } from '@/components/ui/action-button';
 
 
 interface Props {
@@ -120,9 +122,7 @@ export default function Index({solarPanels, pagination, offset, filters, search,
       <Head title="Solar Panels" />
 
       <div className="flex justify-end mb-6">
-        <Link href={create.url()}>
-          <Button>Create Solar Panel</Button>
-        </Link>
+       <ActionButton href={create.url()} IconNode={Plus} />
       </div>
 
       <div className="mx-auto">

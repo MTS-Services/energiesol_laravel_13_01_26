@@ -23,39 +23,49 @@ export default function ShowUser({ user }: Props) {
             <Button variant="outline">Back to Users</Button>
           </Link>
         </CardHeader>
-        <CardContent className="space-y-4">
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">ID</span>
-            <span>{user.id}</span>
-          </div>
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Name</span>
-            <span>{user.name}</span>
-          </div>
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Email</span>
-            <span>{user.email}</span>
-          </div>
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Is Admin</span>
-            <Badge variant={user.is_admin ? 'default' : 'secondary'}>
-              {user.is_admin ? 'Yes' : 'No'}
-            </Badge>
-          </div>
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Created At</span>
-            <span>{new Date(user.created_at).toLocaleString()}</span>
-          </div>
-          <div className="flex flex-col space-y-1">
-            <span className="font-semibold">Updated At</span>
-            <span>{new Date(user.updated_at).toLocaleString()}</span>
+
+        {/* Grid layout: 1 column on mobile, 2 on desktop */}
+        <CardContent className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          {/* Left column */}
+          <div className="space-y-4">
+            <div>
+              <span className="font-semibold">ID</span>
+              <p>{user.id}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Name</span>
+              <p>{user.name}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Email</span>
+              <p>{user.email}</p>
+            </div>
+            <div>
+              <span className="font-semibold">Is Admin</span>
+              <Badge variant={user.is_admin ? 'default' : 'secondary'}>
+                {user.is_admin ? 'Yes' : 'No'}
+              </Badge>
+            </div>
           </div>
 
-            <div className="flex gap-2 mt-6">
-                <Link href={edit.url(user.id)}>
-                    <Button>Edit</Button>
-                </Link>
+          {/* Right column */}
+          <div className="space-y-4">
+            <div>
+              <span className="font-semibold">Created At</span>
+              <p>{new Date(user.created_at).toLocaleString()}</p>
             </div>
+            <div>
+              <span className="font-semibold">Updated At</span>
+              <p>{new Date(user.updated_at).toLocaleString()}</p>
+            </div>
+          </div>
+
+          {/* Actions row spanning both columns */}
+          <div className="col-span-1 md:col-span-2 flex gap-2 mt-6">
+            <Link href={edit.url(user.id)}>
+              <Button>Edit</Button>
+            </Link>
+          </div>
         </CardContent>
       </Card>
     </AdminLayout>

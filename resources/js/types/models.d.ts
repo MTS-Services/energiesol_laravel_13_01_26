@@ -11,6 +11,8 @@ interface SolarPanels {
     created_at: string;
     updated_at: string;
     [key: string]: unknown;
+    image_url: string;
+    brand_logo_url: string;
 }
 
 interface SolarInverters {
