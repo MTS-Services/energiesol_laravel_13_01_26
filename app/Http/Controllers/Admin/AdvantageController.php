@@ -90,13 +90,21 @@ class AdvantageController extends Controller
      */
     public function update(UpdateAdvantageRequest $request, Advantage $advantage)
     {
-        $data = $request->validated();
-        if ($request->hasFile('icon')) {
-            if ($advantage->icon) {
+        $data = $request->all();
+
+        if($request->hasFile('icon')) {
+            if($advantage->icon) {
                 Storage::delete($advantage->icon);
             }
-            $data['icon'] = $request->file('icon')->storeAs('advantages/icons', $request->file('icon')->getClientOriginalName());
+            $data['icon'] = $request->file('icon')->storeAs('images/', $request->file('icon')->getClientOriginalName(), 'public');
         }
+            
+        if($request->delete_existing_icon && !$request->icon) {
+            $data['icon'] = null;
+            unset($data['delete_existing_icon']);
+            Storage::delete($advantage->icon);
+        }
+
         $this->advantageService->update($advantage->id, $data);
 
         return redirect()->route('admin.advantages.index')->with('success', 'Advantage updated successfully.');

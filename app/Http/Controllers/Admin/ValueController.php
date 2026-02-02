@@ -92,12 +92,20 @@ class ValueController extends Controller
     public function update(UpdateValueRequest $request, Value $value)
     {
         $data = $request->all();
-        if ($request->hasFile('image')) {
-            if ($value->image) {
+
+        if($request->hasFile('image')) {
+            if($value->image) {
                 Storage::delete($value->image);
             }
-            $data['image'] = $request->file('image')->storeAs('values/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
         }
+            
+        if($request->delete_existing_image && !$request->image) {
+            $data['image'] = null;
+            unset($data['delete_existing_image']);
+            Storage::delete($value->image);
+        }
+
         $this->valueService->update($value->id, $data);
 
         return redirect()->route('admin.values.index')->with('success', 'Value updated successfully.');

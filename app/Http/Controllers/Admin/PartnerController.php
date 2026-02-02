@@ -90,13 +90,21 @@ class PartnerController extends Controller
      */
     public function update(UpdatePartnerRequest $request, Partner $partner)
     {
-        $data = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($partner->image) {
+        $data = $request->all();
+
+        if($request->hasFile('image')) {
+            if($partner->image) {
                 Storage::delete($partner->image);
             }
-            $data['image'] = $request->file('image')->storeAs('partners/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
         }
+            
+        if($request->delete_existing_image && !$request->image) {
+            $data['image'] = null;
+            unset($data['delete_existing_image']);
+            Storage::delete($partner->image);
+        }
+
         $this->partnerService->update($partner->id, $data);
 
         return redirect()->route('admin.partners.index')->with('success', 'Partner updated successfully.');

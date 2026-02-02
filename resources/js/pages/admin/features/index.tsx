@@ -9,6 +9,7 @@ import { Head, router, Link } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
 import React from 'react'
+import { ActionButton } from '@/components/ui/action-button';
 
 
 interface Props {
@@ -120,9 +121,12 @@ export default function Index({features, pagination, offset, filters, search, so
       <Head title="Features" />
 
       <div className="flex justify-end mb-6">
-        <Link href={create.url()}>
+        {/* <Link href={create.url()}>
           <Button>Create Feature</Button>
-        </Link>
+        </Link> */}
+        <ActionButton  href={create.url()}>
+           Create New
+        </ActionButton>
       </div>
 
       <div className="mx-auto">

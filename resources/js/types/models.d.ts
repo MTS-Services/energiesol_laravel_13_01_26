@@ -64,6 +64,7 @@ interface Partners {
     id: number;
     name: string;
     image: string;
+    image_url: string;
     created_at: string;
     updated_at: string;
     [key: string]: unknown;
@@ -76,6 +77,7 @@ interface Feature {
     image: string | null;
     action_text: string | null;
     action_url: string | null;
+    image_url: string;
     created_at: string;
     updated_at: string;
 }
@@ -136,6 +138,7 @@ interface Service {
     title: string;
     sub_title: string;
     image: string | null;
+    image_url: string;
     description: string;
     created_at: string;
     updated_at: string;
@@ -147,6 +150,7 @@ interface Values {
     title: string;
     description: string | null;
     image: string | null;
+    image_url: string;
     action_text: string | null;
     action_url: string | null;
     created_at: string;
@@ -164,4 +168,15 @@ interface Booking {
     updated_at: string;
 }
 
-export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact, Inquiry, Booking };
+interface Advantage {
+    id: number;
+    title: string;
+    description: string;
+    icon: string;
+    icon_url: string;
+    created_at: string;
+    updated_at: string;
+    [key: string]: unknown;
+}
+
+export type { SolarPanels, SolarInverters, Partners, Feature, Service, Values, BatteryWithChargers, MonitoringSystem, Contact, Inquiry, Booking, Advantage };
