@@ -46,14 +46,25 @@ class MonitoringSystemController extends Controller
      */
     public function update(UpdateMonitoringSystemRequest $request)
     {
+        
         $monitoringSystem = MonitoringSystem::firstOrCreate([]);
+
         $data = $request->all();
+
         if ($request->hasFile('image')) {
             if ($monitoringSystem->image) {
                 Storage::delete($monitoringSystem->image);
             }
-            $data['image'] = $request->file('image')->storeAs('monitoring-systems/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
+
+        if(!$request->hasFile('image') && $request->delete_existing_image){
+            if ($monitoringSystem->image) {
+                Storage::delete($monitoringSystem->image);
+            }
+            $data['image'] = null;
+        } 
+
         $this->monitoringSystemService->update($monitoringSystem->id, $data);
 
         return redirect()->back()->with('success', 'Monitoring System updated successfully.');
