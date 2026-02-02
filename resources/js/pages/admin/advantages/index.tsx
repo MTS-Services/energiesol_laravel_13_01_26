@@ -1,4 +1,4 @@
-import { create, destroy, edit, show } from '@/actions/App/Http/Controllers/Admin/AdvantageController';
+import { create, destroy, edit, index, show } from '@/actions/App/Http/Controllers/Admin/AdvantageController';
 import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
 import AdminLayout from '@/layouts/admin-layout';
@@ -6,8 +6,9 @@ import { ActionConfig, ColumnConfig, PaginationData } from '@/types/data-table.t
 import { Advantage } from '@/types/models'; // Assuming Advantage model type exists
 import { Button } from '@/components/ui/button';
 import { Head, router, Link } from '@inertiajs/react';
-import { Eye, Pencil, Trash2 } from 'lucide-react';
+import { ArrowLeft, Eye, Pencil, Trash2 } from 'lucide-react';
 import React from 'react'
+import { ActionButton } from '@/components/ui/action-button';
 
 
 interface Props {
@@ -109,9 +110,12 @@ export default function Index({advantages, pagination, offset, filters, search, 
       <Head title="Advantages" /> {/* Changed title */}
 
       <div className="flex justify-end mb-6">
-        <Link href={create.url()}>
-          <Button>Create Advantage</Button> {/* Changed button text */}
-        </Link>
+        {/* <Link href={create.url()}>
+          <Button>Create Advantage</Button> 
+        </Link> */}
+        <ActionButton  href={create.url()}>
+           Create New
+        </ActionButton>
       </div>
 
       <div className="mx-auto">
