@@ -58,7 +58,7 @@ class FeatureController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs('features/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName());
         }
         $this->featureService->create($data);
 
@@ -90,13 +90,21 @@ class FeatureController extends Controller
      */
     public function update(UpdateFeatureRequest $request, Feature $feature)
     {
-        $data = $request->validated();
-        if ($request->hasFile('image')) {
-            if ($feature->image) {
+        $data = $request->all();
+
+        if($request->hasFile('image')) {
+            if($feature->image) {
                 Storage::delete($feature->image);
             }
-            $data['image'] = $request->file('image')->storeAs('features/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
         }
+            
+        if($request->delete_existing_image && !$request->image) {
+            $data['image'] = null;
+            unset($data['delete_existing_image']);
+            Storage::delete($feature->image);
+        }
+
         $this->featureService->update($feature->id, $data);
 
         return redirect()->route('admin.features.index')->with('success', 'Feature updated successfully.');

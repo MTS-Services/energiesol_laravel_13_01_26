@@ -74,8 +74,10 @@ interface Feature {
     title: string;
     description: string | null;
     image: string | null;
+    image_url: string;
     action_text: string | null;
     action_url: string | null;
+    image_url: string;
     created_at: string;
     updated_at: string;
 }
