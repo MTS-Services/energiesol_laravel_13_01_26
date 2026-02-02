@@ -97,18 +97,19 @@ class ServiceController extends Controller
      */
     public function update(UpdateServiceRequest $request, Service $service)
     {
-        $data = $request->validated();
+        $data = $request->all();
 
-        if ($request->hasFile('image')) {
-            if ($service->image) {
+        if($request->hasFile('image')) {
+            if($service->image) {
                 Storage::delete($service->image);
             }
-            $data['image'] = $request->file('image')->storeAs('services/images', $request->file('image')->getClientOriginalName());
-        } elseif ($request->boolean('remove_image')) {
-            if ($service->image) {
-                Storage::delete($service->image);
-            }
+            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
+        }
+            
+        if($request->delete_existing_image && !$request->image) {
             $data['image'] = null;
+            unset($data['delete_existing_image']);
+            Storage::delete($service->image);
         }
 
         $this->serviceService->update($service->id, $data);
