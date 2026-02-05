@@ -125,6 +125,15 @@ class SolarPanelController extends Controller
             $data['brand_logo'] = $request->file('brand_logo')->storeAs('images', $request->file('brand_logo')->getClientOriginalName(), 'public');
         }
 
+         if(!$request->delete_existing_brand_logo && !$request->brand_logo) {
+           unset($data['brand_logo']);
+        }
+
+            
+        if(!$request->delete_existing_image && !$request->image) {
+          unset($data['image']);
+        }
+
         if($request->delete_existing_brand_logo && !$request->brand_logo) {
             $data['brand_logo'] = null;
             unset($data['delete_existing_brand_logo']);

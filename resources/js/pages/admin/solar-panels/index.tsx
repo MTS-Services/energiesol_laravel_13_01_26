@@ -67,6 +67,22 @@ export default function Index({solarPanels, pagination, offset, filters, search,
       ),
     },
     {
+  key: 'image',
+  label: 'Image',
+  sortable: true,
+  render: (solarPanel) => 
+    solarPanel.image_url ? (
+      <img 
+        src={solarPanel.image_url} 
+        alt="Solar Panel" 
+        className="max-w-30 h-10 lg:h-17" 
+      />
+    ) : (
+      <span className="text-gray-500">No Image</span>
+    ),
+}
+,
+    {
         key: 'status',
         label: 'Status',
         sortable: false,
