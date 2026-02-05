@@ -38,7 +38,7 @@ export default function EditValue({ value }: Props) {
             forceFormData: true,
         });
     }
-
+ console.log(value);
     const [image, setImage] = useState<any[]>([]);
     useEffect(() => {
         if (value.image_url) {

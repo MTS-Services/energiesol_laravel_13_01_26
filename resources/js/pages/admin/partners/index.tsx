@@ -46,7 +46,7 @@ export default function Index({ partners, pagination, offset, filters, search, s
       label: "Logo",
       render: (partner) => (
         partner.image_url
-          ? <img src={partner.image_url} alt="Partner Logo" className="w-full h-10 lg:h-17" />
+          ? <img src={partner.image_url} alt="Partner Logo" className="m-w-30  h-10 lg:h-17" />
           : <span className="text-gray-500">No Image</span>
       ),
     },

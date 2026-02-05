@@ -65,6 +65,9 @@ class MonitoringSystemController extends Controller
             $data['image'] = null;
         } 
 
+          if(!$request->hasFile('image') && !$request->delete_existing_image){
+            unset($data['image']);
+        } 
         $this->monitoringSystemService->update($monitoringSystem->id, $data);
 
         return redirect()->back()->with('success', 'Monitoring System updated successfully.');

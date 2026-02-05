@@ -21,7 +21,8 @@ class Estimate extends Model
         'charger',
         'created_at',
         'updated_at',
-        'is_valid_order'
+        'is_valid_order',
+        'status',
     ];
 
 

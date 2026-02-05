@@ -144,6 +144,11 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         Storage::delete($solarInverter->image);
     }
 
+    if(!$request->delete_existing_image && !$request->image) {
+         unset($data['image']);
+    }
+
+
     // Solar Inverter Brand Logo
     if($request->hasFile('brand_logo')) {
         if($solarInverter->brand_logo) {
@@ -156,6 +161,11 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         $data['brand_logo'] = null;
         unset($data['delete_existing_brand_logo']);
         Storage::delete($solarInverter->brand_logo);
+    }
+    if(!$request->delete_existing_brand_logo && !$request->brand_logo) {
+
+        unset($data['brand_logo']);
+
     }
 
     // Battery Image
@@ -170,6 +180,11 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         $data['battery_image'] = null;
         unset($data['delete_existing_battery_image']);
         Storage::delete($solarInverter->battery_image);
+    }
+     if(!$request->delete_existing_battery_image && !$request->battery_image) {
+
+       unset($data['battery_image']);
+
     }
 
     // Battery Brand Logo
@@ -186,6 +201,11 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         Storage::delete($solarInverter->battery_brand_logo);
     }
 
+    
+    if(!$request->delete_existing_battery_brand_logo && !$request->battery_brand_logo) {
+       unset($data['battery_brand_logo']);
+    }
+
     // Charger Image
     if($request->hasFile('charger_image')) {
         if($solarInverter->charger_image) {
@@ -198,6 +218,10 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         $data['charger_image'] = null;
         unset($data['delete_existing_charger_image']);
         Storage::delete($solarInverter->charger_image);
+    }
+    if(!$request->delete_existing_charger_image && !$request->charger_image) {
+
+        unset($data['charger_image']);
     }
 
     // Charger Brand Logo
@@ -212,6 +236,11 @@ public function update(UpdateSolarInverterRequest $request, SolarInverter $solar
         $data['charger_brand_logo'] = null;
         unset($data['delete_existing_charger_brand_logo']);
         Storage::delete($solarInverter->charger_brand_logo);
+    }
+
+    if(!$request->delete_existing_charger_brand_logo && !$request->charger_brand_logo) {
+
+        unset($data['charger_brand_logo']);;
     }
 
     $this->solarInverterService->update($solarInverter->id, $data);

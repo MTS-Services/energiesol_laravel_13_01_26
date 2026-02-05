@@ -58,8 +58,9 @@ class AdvantageController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('icon')) {
-            $data['icon'] = $request->file('icon')->storeAs('advantages/icons', $request->file('icon')->getClientOriginalName());
+            $data['icon'] = $request->file('icon')->storeAs('images', $request->file('icon')->getClientOriginalName(), 'public');
         }
+      
         $this->advantageService->create($data);
 
         return redirect()->route('admin.advantages.index')->with('success', 'Advantage created successfully.');
@@ -103,6 +104,11 @@ class AdvantageController extends Controller
             $data['icon'] = null;
             unset($data['delete_existing_icon']);
             Storage::delete($advantage->icon);
+        }
+
+              
+        if(!$request->delete_existing_icon && !$request->icon) {
+           unset($data['icon']);
         }
 
         $this->advantageService->update($advantage->id, $data);

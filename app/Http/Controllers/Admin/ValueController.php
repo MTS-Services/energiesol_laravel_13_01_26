@@ -59,7 +59,7 @@ class ValueController extends Controller
 
         $data = $request->all();
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs('values/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
         $this->valueService->create($data);
 
@@ -97,13 +97,17 @@ class ValueController extends Controller
             if($value->image) {
                 Storage::delete($value->image);
             }
-            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
             
         if($request->delete_existing_image && !$request->image) {
             $data['image'] = null;
             unset($data['delete_existing_image']);
             Storage::delete($value->image);
+        }
+
+        if(!$request->delete_existing_image && !$request->image) {
+            unset($data['image']);
         }
 
         $this->valueService->update($value->id, $data);

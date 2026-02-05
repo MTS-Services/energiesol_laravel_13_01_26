@@ -60,7 +60,7 @@ export default function EditMonitoringSystem({ monitoringSystem }: Props) {
     }, [monitoringSystem]);
 
    return (
-        <AdminLayout activeSlug="monitoring-system">
+        <AdminLayout activeSlug="admin-monitoring-systems">
             <Head title={`Edit: ${monitoringSystem.title}`} />
 
             <CardHeader className="flex flex-row items-center justify-between">
