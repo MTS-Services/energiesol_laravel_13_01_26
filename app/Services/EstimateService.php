@@ -23,6 +23,20 @@ class EstimateService
     {
         return $this->model->where($column, $id)->first();
     }
+
+    public function toggleStatus(int $estimate_id): Estimate|bool
+    {
+        $estimate = $this->model->findOrFail($estimate_id);
+
+        if (!$estimate) {
+            return false;
+        }
+
+        $estimate->status = !$estimate->status;
+        $estimate->save();
+
+        return $estimate;
+    }
     public function update($id, $data)
     {
         $storedData = $this->model->find($id);

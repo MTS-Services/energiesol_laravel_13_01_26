@@ -4,8 +4,10 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Inquiry\StoreInquiryRequest;
+use App\Models\Estimate;
 use App\Models\Inquiry;
 use App\Services\DataTableService;
+use App\Services\EstimateService;
 use App\Services\InquiryService;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -13,7 +15,7 @@ use Inertia\Response;
 
 class InquiryController extends Controller
 {
-    public function __construct(private DataTableService $dataTableService, protected InquiryService $inquiryService)
+    public function __construct(private DataTableService $dataTableService, protected InquiryService $inquiryService, protected EstimateService $estimateService)
     {
         //
     }
@@ -23,7 +25,7 @@ class InquiryController extends Controller
      */
     public function index(Request $request): Response
     {
-        $query = Inquiry::query()->with(['solarPanel', 'solarInverter']);
+        $query = Estimate::query()->with(['solarPanel', 'solarInverter']);
 
         $result = $this->dataTableService->process($query, $request, [
             'searchable' => ['first_name', 'last_name', 'email', 'phone_number', 'area'],
@@ -63,7 +65,11 @@ class InquiryController extends Controller
      */
     public function store(StoreInquiryRequest $request)
     {
-        $this->inquiryService->create($request->validated());
+       try {
+            $this->inquiryService->create($request->validated());
+        } catch (\Exception $e) {
+            return response()->json(['message' => 'Error creating inquiry.'], 500);
+        }
 
         return response()->json(['message' => 'Inquiry created successfully.'], 201);
     }
@@ -82,9 +88,9 @@ class InquiryController extends Controller
     /**
      * Toggle the status of the specified inquiry.
      */
-    public function toggleStatus(Inquiry $inquiry)
+    public function toggleStatus(Estimate $estimate)
     {
-        $this->inquiryService->toggleStatus($inquiry->id);
+        $this->estimateService->toggleStatus($estimate->id);
 
         return redirect()->back()->with('success', 'Inquiry status updated successfully.');
     }

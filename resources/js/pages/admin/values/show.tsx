@@ -54,7 +54,7 @@ export default function ShowValue({ value }: Props) {
                             <CardContent>
                                 {value.image ? (
                                     <img
-                                        src={value.image}
+                                        src={value.image_url}
                                         alt={value.title}
                                         className="max-w-md w-full h-auto object-contain border rounded"
                                     />
