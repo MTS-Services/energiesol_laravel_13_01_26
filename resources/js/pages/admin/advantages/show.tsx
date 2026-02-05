@@ -53,7 +53,9 @@ export default function ShowAdvantage({ advantage }: Props) {
                             </CardHeader>
                             <CardContent>
                                 <p className="text-muted-foreground">
-                                    {advantage.icon}
+                                    {advantage.icon && (
+                                        <img src={advantage.icon_url} alt={advantage.title} className="w-auto h-10 bg-cover" />
+                                    )}
                                 </p>
                             </CardContent>
                         </Card>

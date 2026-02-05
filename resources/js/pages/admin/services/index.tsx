@@ -8,6 +8,7 @@ import { Button } from '@/components/ui/button';
 import { Head, router, Link } from '@inertiajs/react';
 import { Eye, Pencil, Trash2 } from 'lucide-react';
 import React from 'react';
+import { ActionButton } from '@/components/ui/action-button';
 
 interface Props {
   services: Service[];
@@ -115,9 +116,12 @@ export default function Index({ services, pagination, offset, filters, search, s
       <Head title="Services" />
 
       <div className="flex justify-end mb-6">
-        <Link href={create.url()}>
-          <Button>Create Service</Button>
-        </Link>
+       
+       <ActionButton href={create.url()}>
+          Create Service
+        </ActionButton>
+       
+     
       </div>
 
       <div className="mx-auto">
