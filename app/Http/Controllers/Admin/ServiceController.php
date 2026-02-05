@@ -10,7 +10,6 @@ use App\Services\DataTableService;
 use App\Services\ServiceService;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\Validation\Rules\In;
 use Inertia\Inertia;
 use Inertia\Response;
 
@@ -112,6 +111,9 @@ class ServiceController extends Controller
             Storage::delete($service->image);
         }
 
+        if(!$request->delete_existing_image && !$request->image) {
+            unset($data['image']);
+        }
         $this->serviceService->update($service->id, $data);
 
         return redirect()->route('admin.services.index')->with('success', 'Service updated successfully.');
