@@ -2,6 +2,7 @@ import * as React from 'react';
 import { AdminSidebar } from '@/layouts/partials/admin/sidebar';
 import { AdminHeader } from '@/layouts/partials/admin/header';
 import { AdminFooter } from './partials/admin/footer';
+import { useAppearance } from '@/hooks/use-appearance';
 
 interface AdminLayoutProps {
     children: React.ReactNode;
@@ -18,6 +19,11 @@ export default function AdminLayout({ children, activeSlug }: AdminLayoutProps) 
         return false;
     });
 
+     const {appearance, updateAppearance} = useAppearance();
+    
+        React.useEffect(() => {
+           if(appearance != 'light') updateAppearance('light');
+        }, [appearance])
     // Save sidebar state to localStorage
     React.useEffect(() => {
         if (typeof window !== 'undefined') {
