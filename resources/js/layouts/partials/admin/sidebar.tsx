@@ -82,7 +82,7 @@ const adminNavItems: NavItemType[] = [
         href: route('admin.monitoring-system.edit'),
         icon: BarChart,
         permission: 'view analytics',
-        slug: 'admin-monitoring-system-edit',
+        slug: 'admin-monitoring-systems',
     },
 
     {
@@ -135,11 +135,11 @@ const adminNavItems: NavItemType[] = [
         slug: 'admin-contacts',
     },
     {
-        title: 'Inquiries',
-        href: route('admin.inquiries.index'),
-        icon: BarChart, // Using BarChart as a placeholder, can be changed
+        title: 'Estimates',
+        href: route('admin.estimates.index'),
+        icon: Users, // Can be changed
         permission: 'view analytics', // Assuming similar permission structure
-        slug: 'admin-inquiries',
+        slug: 'admin-estimates',
     },
 ];
 

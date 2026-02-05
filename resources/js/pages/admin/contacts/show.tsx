@@ -12,7 +12,7 @@ interface Props {
 
 export default function ShowContact({ contact }: Props) {
     return (
-        <AdminLayout>
+        <AdminLayout activeSlug={'admin-contacts'}>
             <Head title="Contact Details" />
 
             <div className="container mx-auto py-6">

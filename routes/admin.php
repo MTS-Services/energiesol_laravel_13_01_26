@@ -2,16 +2,16 @@
 
 use App\Http\Controllers\Admin\AdvantageController;
 use App\Http\Controllers\Admin\BookingController;
-use App\Http\Controllers\Admin\ValueController;
-use App\Http\Controllers\Admin\MonitoringSystemController;
 use App\Http\Controllers\Admin\ContactController;
 use App\Http\Controllers\Admin\FeatureController;
-use App\Http\Controllers\Admin\InquiryController; // Added this line
+use App\Http\Controllers\Admin\EstimateController;
+use App\Http\Controllers\Admin\MonitoringSystemController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServiceController;
 use App\Http\Controllers\Admin\SolarInverterController;
 use App\Http\Controllers\Admin\SolarPanelController;
 use App\Http\Controllers\Admin\UserController;
+use App\Http\Controllers\Admin\ValueController;
 use Illuminate\Support\Facades\Route;
 
 Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'verified', 'admin']], function () {
@@ -31,8 +31,7 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('advantages', AdvantageController::class)->names('advantages');
     Route::resource('values', ValueController::class)->names('values');
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'store', 'destroy'])->names('contacts');
-    
-    Route::resource('inquiries', InquiryController::class)->only(['index', 'show', 'store', 'destroy'])->names('inquiries');
-    Route::put('inquiries/{inquiry}/toggle-status', [InquiryController::class, 'toggleStatus'])->name('inquiries.toggle-status');
-});
 
+    Route::resource('estimates', EstimateController::class)->names('estimates');
+    Route::put('estimates/{estimate}/toggle-status', [EstimateController::class, 'toggleStatus'])->name('estimates.toggle-status');
+});

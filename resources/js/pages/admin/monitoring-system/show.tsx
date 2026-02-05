@@ -12,7 +12,7 @@ interface Props {
 
 export default function ShowMonitoringSystem({ monitoringSystem }: Props) {
     return (
-        <AdminLayout>
+        <AdminLayout activeSlug={'admin-monitoring-systems'}>
             <Head title="Monitoring System Details" />
 
             <div className="container mx-auto py-6">
