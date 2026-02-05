@@ -56,22 +56,21 @@ export default function Index({features, pagination, offset, filters, search, so
       ),
     },
     {
-      key: 'action_text',
-      label: 'Action Text',
+      key: 'image',
+      label: 'Image',
       sortable: true,
       render: (feature) => (
         <div className="text-gray-600 dark:text-gray-400">
-          {feature.action_text}
-        </div>
-      ),
-    },
-    {
-      key: 'action_url',
-      label: 'Action URL',
-      sortable: true,
-      render: (feature) => (
-        <div className="text-gray-600 dark:text-gray-400">
-          {feature.action_url}
+          {feature.image_url ? (
+            <img
+              src={feature.image_url}
+              alt={feature.title}
+              className="w-16 h-16 object-cover"
+            />
+          ):(
+            <span className="text-gray-600 dark:text-gray-400">No image</span>
+          )
+          }
         </div>
       ),
     },

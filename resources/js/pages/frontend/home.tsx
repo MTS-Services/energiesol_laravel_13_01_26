@@ -8,15 +8,15 @@ import DeliveryEnergy from "@/components/sections/home/delivery-energy";
 import Generation from "@/components/sections/home/generation";
 import StartConfigurator from "@/components/sections/home/start-configurator";
 
-export default function Home({ features }: { features: any[] }) {
+export default function Home({ features, partners }: { features: any[], partners: any[] }) {
   return (
     <FrontendLayout>
 
     <Banner />
     
-    <Partner />
+    <Partner partners={partners}  />
 
-    <Feature features={features} />
+    <Feature features={features}  />
 
     <OptionalBanner />
    

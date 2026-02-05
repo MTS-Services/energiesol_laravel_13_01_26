@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Frontend;
 use App\Http\Controllers\Controller;
 use App\Jobs\EstimateMailJob;
 use App\Mail\EstimateMail;
+use App\Models\Partner;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -14,6 +15,7 @@ use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
 use App\Services\MonitoringSystemService;
+use App\Services\PartnerService;
 use App\Services\SolarInverterService;
 use App\Services\SolarPanelService;
 use App\Services\ValueService;
@@ -36,6 +38,7 @@ class HomeController extends Controller
         protected SolarInverterService $solarInverterService,
         protected EstimateService $estimateService,
         protected MonitoringSystemService $monitoringSystemService,
+        protected PartnerService $partnerService,
      )
     {
         //
@@ -44,8 +47,10 @@ class HomeController extends Controller
     public function home(Request $request): Response
     {
         $features = $this->featureService->latest();
+        $partners = $this->partnerService->latest();
         return Inertia::render('frontend/home', [
             'features' => $features,
+            'partners' => $partners
         ]);
     }
     public function service(Request $request): Response
