@@ -6,7 +6,7 @@ interface Props {
         | {
               title?: string | null;
               description?: string | null;
-              image?: string | null;
+              image_url?: string | null;
               action_text?: string | null;
               action_url?: string | null;
           }[]

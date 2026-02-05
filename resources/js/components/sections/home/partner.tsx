@@ -1,29 +1,30 @@
 import { PartnerCard } from '@/components/cards/partner-card'
+import { PartnerSlider } from '@/components/cards/partner-slider'
+
 import React from 'react'
 
-export default function partner() {
-  const items = [
-    {
-      image: '/images/logo1.png'
-    },
-    {
-      image: '/images/logo2.png'
-    },
-    {
-      image: '/images/logo3.png'
-    },
-    {
-      image: '/images/logo4.png'
-    }
-  ]
+interface partner {
+  image_url?: string
+}
+interface PartnerProps {
+  partners?: partner[]
+}
+export default function partner({partners}:PartnerProps) {
   return (
     <div className="bg-linear-to-r from-btn-primary/15 to-info/15 justify-around rounded-md">
-      <div className='relative z-10 mx-auto max-w-7xl py-10 lg:py-15 grid grid-cols-2 px-4 lg:px-0 lg:grid-cols-4 gap-4 lg:gap-6 place-items-center'>
-        {
+      <div className='relative z-10 mx-auto max-w-7xl py-10 lg:py-1 px-4 lg:px-0  gap-4 lg:gap-6 place-items-center'>
+        {/* {
           items.map((item, index) => (
             <PartnerCard key={index} image={item.image} />
           ))
-        }
+        } */}
+
+        <div className="features grid grid-cols-1 gap-6">
+
+                    <PartnerSlider sliders={partners} perView={3} className='bg-transparent' />
+
+                </div>
+
       </div>
     </div>
   )
