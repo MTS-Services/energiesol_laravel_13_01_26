@@ -141,6 +141,14 @@ const adminNavItems: NavItemType[] = [
         permission: 'view analytics', // Assuming similar permission structure
         slug: 'admin-estimates',
     },
+    
+    {
+        title: 'System Settings',
+        href: route('admin.system-setting.edit'),
+        icon: BarChart,
+        permission: 'view analytics',
+        slug: 'admin-system-settings',
+    },
 ];
 
 interface AdminSidebarProps {
