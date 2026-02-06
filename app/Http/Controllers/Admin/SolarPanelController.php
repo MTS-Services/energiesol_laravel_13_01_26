@@ -114,7 +114,7 @@ class SolarPanelController extends Controller
             if($solarPanel->image) {
                 Storage::delete($solarPanel->image);
             }
-            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
 
 

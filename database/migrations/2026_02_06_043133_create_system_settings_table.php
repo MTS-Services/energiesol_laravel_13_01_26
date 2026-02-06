@@ -11,13 +11,11 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('monitoring_systems', function (Blueprint $table) {
+        Schema::create('system_settings', function (Blueprint $table) {
             $table->id();
-            $table->string('title')->index();
-            $table->string('sub_title')->index();
-            $table->text('description')->nullable();
-            $table->string('image')->nullable();
-            $table->float('price', 15, 2);
+            $table->float('vat')->default(0);
+            $table->float('discount')->default(0);
+            $table->float('module_unit_in_meter')->default(2.1);
             $table->timestamps();
         });
     }
@@ -27,6 +25,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('monitoring_systems');
+        Schema::dropIfExists('system_settings');
     }
 };

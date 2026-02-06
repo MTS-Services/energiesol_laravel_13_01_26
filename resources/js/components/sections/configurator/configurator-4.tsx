@@ -46,12 +46,12 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
         {
             id: true,
             title: "Ja!",
-            image: solarInverter.battery_image,
+            image: solarInverter.battery_image_url,
         },
         {
             id: false,
             title: "NEIN!",
-            image: solarInverter.battery_image,
+            image: solarInverter.battery_image_url,
             titleColor: "text-red-600",
         }
     ], [solarInverter]);

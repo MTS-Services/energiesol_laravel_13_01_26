@@ -31,6 +31,7 @@ class DatabaseSeeder extends Seeder
             ValueSeeder::class,
             MonitoringSystemSeeder::class,
             ContactSeeder::class,
+            SystemSettingSeeder::class,
         ]);
     }
 }

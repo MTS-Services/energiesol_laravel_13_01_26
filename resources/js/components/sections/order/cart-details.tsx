@@ -3,19 +3,23 @@ import { BoxCard } from '@/components/cards/box-card';
 import { SectionHeader } from '@/components/cards/section-header';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
-import { Link } from '@inertiajs/react';
+import { SharedData } from '@/types';
+import { Link, usePage , router} from '@inertiajs/react';
 import { CircleCheckBig, Download, RefreshCcw } from 'lucide-react';
+import { useState } from 'react';
 
 function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_order: boolean, estimate: any, monitoringSystem: any }) {
   
-   
+    const { SystemSetting } = usePage<SharedData>().props;
+     
+
     const items = [
 
         {
             title: estimate?.solar_panel?.title,
             description:
                 estimate?.solar_panel?.description,
-            image: estimate?.solar_panel?.image,
+            image_url: estimate?.solar_panel?.image_url,
             short_info: {
                 title: estimate?.solar_panel?.brand_title,
                 description: estimate?.solar_panel?.note
@@ -25,7 +29,7 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
             title: estimate?.solar_inverter?.title,
             description:
                 estimate?.solar_inverter?.description,
-            image: estimate?.solar_inverter?.image,
+            image_url: estimate?.solar_inverter?.image_url,
             short_info: {
                 title: estimate?.solar_inverter?.brand_title,
                 description: estimate?.solar_inverter?.note
@@ -37,34 +41,86 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
         items.push({
             title: estimate?.solar_inverter?.charger_title,
             description: estimate?.solar_inverter?.charger_description,
-            image: estimate?.solar_inverter?.charger_image,
+            image_url: estimate?.solar_inverter?.charger_image_url,
             short_info: {
                 title: estimate?.solar_inverter?.charger_brand_title,
                 description: estimate?.solar_inverter?.charger_note,
             },
         });
     }
+    
     if (estimate?.battery == true) {
         items.push({
-            title: monitoringSystem?.title,
-            description: monitoringSystem?.description,
-            image: monitoringSystem?.image,
-            short_info: {
-                title: '',
-                description: monitoringSystem?.sub_title,
-            },
-        });
-    }
-
-    items.push({
-         title: estimate?.solar_inverter?.battery_title,
+            title: estimate?.solar_inverter?.battery_title,
             description: estimate?.solar_inverter?.battery_description,
-            image: estimate?.solar_inverter?.battery_image,
+            image_url: estimate?.solar_inverter?.battery_image_url,
             short_info: {
                 title: estimate?.solar_inverter?.battery_brand_title,
                 description: estimate?.solar_inverter?.battery_note,
             },
+        });
+    }
+  
+    items.push({
+        title: monitoringSystem?.title,
+        description: monitoringSystem?.description,
+        image_url: monitoringSystem?.image_url,
+        short_info: {
+            title: '',
+            description: monitoringSystem?.sub_title,
+        },
     });
+
+
+     const investment = () => {
+        const solar_panel_price = Number(estimate.solar_panel.price) *
+            Math.ceil(Number(estimate.area) / Number(SystemSetting?.module_unit_in_meter));
+
+        const solar_inverter_price =  Number(estimate.solar_inverter.price ?? 0);
+        const charger_price = estimate.charger == true ?  Number(estimate.solar_inverter.charger_price ?? 0) : 0;
+        const battery_price =  estimate.battery == true ? Number(estimate.solar_inverter.battery_price ?? 0) : 0;
+        const monitoring_system_price = Number(monitoringSystem?.price ?? 0);
+
+        const total =
+            solar_panel_price +
+            solar_inverter_price +
+            charger_price +
+            battery_price +
+            monitoring_system_price;
+
+        return total; // ← this is now a NUMBER
+    };
+    const calculateVat = () => {
+
+    return (investment() * SystemSetting?.vat / 100)
+
+    };
+
+    const calculateDiscount = ()=>{
+        return (investment() * SystemSetting?.discount / 100)
+    }
+
+    const calculateTotal = () => {
+        return (investment() + calculateVat() - calculateDiscount())
+    };
+
+    //  href={route('order.download', { id: estimate?.id })} method='post' onClick={e=> e.preventDefault()}
+const [processing, setProcessing] = useState(false);
+
+function handlePdfDownload(e) {
+
+    e.preventDefault();
+    setProcessing(true); // start
+    router.post(route('order.download', { id: estimate?.id }), {
+        onSuccess: () => {
+            setProcessing(false); 
+        },
+        onError: () => {
+            setProcessing(false); // reset on error
+        }
+    });
+}
+ 
     return (
         <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
@@ -206,6 +262,8 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                     </div>
                 </div>
             </div>
+
+
             <div className="mt-10">
                 <h2 className="py-4 font-montserrat text-2xl text-[40px] font-semibold text-secondary lg:py-8">
                     Ihre Investition
@@ -220,23 +278,36 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                             Ihre Investition
                         </span>{' '}
                         <span className="font-semibold text-secondary">
-                            18,345.87 €
+                          { investment() } €
                         </span>
                     </p>
                     <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
                         <span className="font-normal text-secondary/70">
-                            0 % MwSt.
+                          {SystemSetting?.vat} % MwSt.
                         </span>{' '}
                         <span className="font-semibold text-secondary">
-                            18,345.87 €
+                           { calculateVat() } €
                         </span>
                     </p>
+                    {
+                        SystemSetting?.discount > 0 && (
+                            <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                                <span className="font-normal text-secondary/70">
+                                  {SystemSetting?.discount} % Sonderrabatt.
+                                </span>{' '}
+                                <span className="font-semibold text-secondary">
+                                   { calculateDiscount() } €
+                                </span>
+                            </p>
+                        )
+                    }
+
                     <p className="mb-3 flex justify-between border-b border-secondary/10 px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
                         <span className="font-semibold text-secondary">
                             Summe
                         </span>{' '}
                         <span className="font-semibold text-secondary lg:text-[40px]">
-                            18,345.87 €
+                           {calculateTotal()} €
                         </span>
                     </p>
 
@@ -246,11 +317,13 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                             Steuerbestimmungen 2022){' '}
                         </span>{' '}
                         <span className="text-sm font-semibold text-secondary lg:text-base">
-                            18,345.87 €
+                           {calculateTotal()} €
                         </span>
                     </p>
                 </div>
             </div>
+
+
 
             <div className='relative z-10'>
                 {!is_valid_order && (
@@ -278,17 +351,17 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
 
                 <div className="mt-8">
                     <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
-                        <Link href="/booking">
-                            <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
+
+                            <Button  onClick={ handlePdfDownload } className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
                                 <Icon
                                     iconNode={Download}
                                     variant="circle"
                                     className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
                                     iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
                                 />
-                                Kostenvoranschlag herunterladen
+                              { processing ? 'Genereating PDF' : '  Kostenvoranschlag herunterladen' }
                             </Button>
-                        </Link>
+
 
                         <Link href="/booking">
                             <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">

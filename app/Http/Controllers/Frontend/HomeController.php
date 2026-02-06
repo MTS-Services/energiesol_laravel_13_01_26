@@ -18,12 +18,14 @@ use App\Services\MonitoringSystemService;
 use App\Services\PartnerService;
 use App\Services\SolarInverterService;
 use App\Services\SolarPanelService;
+use App\Services\SystemSettingService;
 use App\Services\ValueService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Support\Facades\Redirect;
+use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 
 class HomeController extends Controller
@@ -39,8 +41,8 @@ class HomeController extends Controller
         protected EstimateService $estimateService,
         protected MonitoringSystemService $monitoringSystemService,
         protected PartnerService $partnerService,
-     )
-    {
+        protected SystemSettingService $systemSettingService,
+    ) {
         //
     }
 
@@ -82,7 +84,7 @@ class HomeController extends Controller
     {
         return Inertia::render('frontend/contact');
     }
-    
+
     public function configurator(Request $request): Response
     {
         return Inertia::render('frontend/configurator');
@@ -90,12 +92,13 @@ class HomeController extends Controller
 
     public function configuratorStep2($area = null)
     {
-        if(!$area){
+        if (!$area) {
             return redirect()->route('configurator');
         }
 
 
         $solarPanels = $this->solarPanelService->all();
+
         return Inertia::render('frontend/configurator-step2', [
             'solarPanels' => $solarPanels,
             'area' => $area
@@ -106,11 +109,11 @@ class HomeController extends Controller
     {
 
 
-        if(!$area || !$solar_id){
+        if (!$area || !$solar_id) {
             return redirect()->route('configurator');
         }
 
-       $solarInverterService =  $this->solarInverterService->all();
+        $solarInverterService =  $this->solarInverterService->all();
         return Inertia::render('frontend/configurator-step3', [
             'solarInverterService' => $solarInverterService,
             'area' => $area,
@@ -120,13 +123,13 @@ class HomeController extends Controller
 
     public function configuratorStep4($area, $solar_id, $inverter_id)
     {
-        if(!$area || !$solar_id || !$inverter_id){
-            
+        if (!$area || !$solar_id || !$inverter_id) {
+
             return redirect()->route('configurator');
         }
 
-         $solarInverter =  $this->solarInverterService->find($inverter_id);
-        
+        $solarInverter =  $this->solarInverterService->find($inverter_id);
+
         return Inertia::render('frontend/configurator-step4', [
             'solarInverter' => $solarInverter,
             'area' => $area,
@@ -135,13 +138,12 @@ class HomeController extends Controller
         ]);
     }
 
-    public function configuratorStep5($area, $solar_id, $inverter_id, $battery):  Response | RedirectResponse
+    public function configuratorStep5($area, $solar_id, $inverter_id, $battery): Response | RedirectResponse
     {
 
-        if(!$area || !$solar_id || !$inverter_id){
+        if (!$area || !$solar_id || !$inverter_id) {
 
             return redirect()->route('configurator');
-
         }
         $solarInverter =  $this->solarInverterService->find($inverter_id);
         return Inertia::render('frontend/configurator-step5', [
@@ -155,10 +157,10 @@ class HomeController extends Controller
 
     public function configuratorStep6($area = null, $solar_id = null, $inverter_id = null, $battery = null, $charger = null): Response | RedirectResponse
     {
-        if(!$area || !$solar_id || !$inverter_id ){
+        if (!$area || !$solar_id || !$inverter_id) {
             return redirect()->route('configurator');
         }
-       
+
 
         return Inertia::render('frontend/configurator-step6', [
             'area' => $area,
@@ -168,7 +170,7 @@ class HomeController extends Controller
             'charger' => $charger
         ]);
     }
-    
+
     public function products(Request $request): Response
     {
         return Inertia::render('frontend/products');
@@ -179,35 +181,35 @@ class HomeController extends Controller
         $estimate = $this->estimateService->find($estimate_id);
 
         $monitoringSystem = $this->monitoringSystemService->monitor();
-        if(! $estimate ){
-           return redirect()->route('configurator');
+        if (! $estimate) {
+            return redirect()->route('configurator');
         }
         $estimate->load('solarPanel', 'solarInverter');
-        
+
 
         return Inertia::render('frontend/order-success', [
-            'estimate' => $estimate ,
+            'estimate' => $estimate,
             'is_valid_order' => $estimate->is_valid_order,
             'monitoringSystem' => $monitoringSystem,
-            ]);
+        ]);
     }
 
-    public function orderSuccessVerify($encrypted_estimate_id){
+    public function orderSuccessVerify($encrypted_estimate_id)
+    {
 
         $id = decrypt($encrypted_estimate_id);
 
-         
 
-       $estimated = $this->estimateService->update($id, ['is_valid_order' => true]);
-       
-    $monitoringSystem = $this->monitoringSystemService->monitor();
+
+        $estimated = $this->estimateService->update($id, ['is_valid_order' => true]);
+
+        $monitoringSystem = $this->monitoringSystemService->monitor();
 
         return Inertia::render('frontend/order-success', [
-            'estimate' => $estimated ,
+            'estimate' => $estimated,
             'is_valid_order' => $estimated->is_valid_order,
             'monitoringSystem' => $monitoringSystem,
         ]);
-
     }
 
     public function store(Request $request): RedirectResponse
@@ -215,24 +217,24 @@ class HomeController extends Controller
 
 
 
-     $request->validate([
+        $request->validate([
             'first_name' => 'required',
             'last_name' => 'required',
             'email' => 'required',
             'phone_number' => 'required',
             'message' => 'required',
-        ],[
+        ], [
             'first_name.required' => 'Bitte geben Sie Ihren Vornamen ein.',
             'last_name.required' => 'Bitte geben Sie Ihren Nachnamen ein.',
             'email.required' => 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
             'phone_number.required' => 'Bitte geben Sie Ihre Telefonnummer ein.',
             'message.required' => 'Bitte geben Sie Ihre Nachricht ein.',
-        ]); 
+        ]);
 
         $key = 'contact-form:' . $request->ip();
         $limit = 10;
         $duration = 60;
-        
+
         if (RateLimiter::tooManyAttempts($key, $limit)) {
             throw ValidationException::withMessages([
                 'limitMessage' => 'Zu viele Versuche. Bitte versuchen Sie es in einer Stunde erneut.',
@@ -244,10 +246,9 @@ class HomeController extends Controller
         $contact = $this->contactService->create($request->all());
 
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
-
     }
 
-   public function storeEstimate(Request $request)
+    public function storeEstimate(Request $request)
     {
         $request->validate([
             'first_name' => 'required|string|max:255',
@@ -263,13 +264,13 @@ class HomeController extends Controller
             'phone.required' => 'Bitte geben Sie Ihre Telefonnummer ein.',
             'consent.required' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
             'consent.accepted' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
-        ]); 
+        ]);
 
         // dd($request->all());
         $key = 'estimate-form:' . $request->ip();
         $limit = 10;
         $duration = 60;
-        
+
         if (RateLimiter::tooManyAttempts($key, $limit)) {
             throw ValidationException::withMessages([
                 'limitMessage' => 'Zu viele Versuche. Bitte versuchen Sie es in einer Stunde erneut.',
@@ -284,15 +285,85 @@ class HomeController extends Controller
 
             // Mail::to($estimate->email)->send(new EstimateMail(route('order.success.verify', [encrypt($estimate->id)])));
             EstimateMailJob::dispatch(route('order.success.verify', [encrypt($estimate->id)]), $estimate->email);
-
         } catch (\Exception $e) {
 
             Log::error('Error sending email: ' . $e->getMessage());
-
         }
 
         return redirect()->route('order.success', ['estimate_id' => $estimate->id]);
     }
 
+    public function orderDownloadPdf($estimate_id)
+    {
+        $estimate = $this->estimateService->find($estimate_id);
+        $saystemSetting = $this->systemSettingService->getSystemSettings();
+        $monitoringSystem = $this->monitoringSystemService->monitor();
+        if (!$estimate) {
+            abort(404);
+        }
+        $estimate->load('solarPanel', 'solarInverter');
 
+        $data = [
+            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),  
+            'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
+            'solar_inverter_price' => $estimate->solarInverter->price, 
+        ];
+        if($estimate->battery) {
+            $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
+        }else{
+            $data['solar_inverter_battery_price'] = 0;
+        }
+        if($estimate->charger) {
+            $data['solar_inverter_charger_price'] = $estimate->solarInverter->charger_price;
+        }else{
+            $data['solar_inverter_charger_price'] = 0;
+        }
+       $data['vat'] = $saystemSetting->vat ?? 0;
+       $data['discount'] = $saystemSetting->discount ?? 0;
+       $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
+       
+       $data['sub_total'] = $data['solar_panel_price'] + $data['solar_inverter_price'] + $data['solar_inverter_battery_price'] + $data['solar_inverter_charger_price'] + $data['monitoring_system_price'];
+       $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100) ;
+       $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100) ;
+       $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'];
+
+
+        $solarPanel = $estimate->solarPanel;
+        $solarInverter = $estimate->solarInverter;
+
+
+     
+
+
+
+        // If invoice doesn't exist, generate it
+        if (!$estimate->invoice) {
+
+            $pdf = new \Mpdf\Mpdf([
+                'format' => 'A4',
+                'margin_top' => 10,
+                'margin_bottom' => 10,
+                'margin_left' => 10,
+                'margin_right' => 10
+            ]);
+
+            $html = view('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
+
+            $pdf->WriteHTML($html);
+
+            $content = $pdf->Output('', 'S');
+
+            $filename = 'estimate-' . $estimate_id . '-' . now()->format('YmdHis') . '.pdf';
+
+            Storage::disk('public')->put('estimates/' . $filename, $content);
+
+            $estimate->update([
+                'invoice' => 'estimates/' . $filename
+            ]);
+        }
+
+        return Storage::disk('public')->download($estimate->invoice);
+
+
+    }
 }

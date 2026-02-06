@@ -14,11 +14,12 @@ interface Configurator3CardProps {
     note?: string;
     description: string;
     image: string;
+    image_url: string;
     selected?: boolean;
     onClick?: () => void;
 }
 
-function Configurator3Card({ title, description, image, note, selected = false, onClick, area, solar_id ,id  }: Configurator3CardProps) {
+function Configurator3Card({ title, description, image,  image_url, brand_title, note, selected = false, onClick, area, solar_id ,id  }: Configurator3CardProps) {
     return (
         <button
             type="button"
@@ -30,7 +31,7 @@ function Configurator3Card({ title, description, image, note, selected = false, 
             )}
         >
             <div className="relative flex min-h-82 w-full flex-1 items-center justify-center rounded-2xl bg-white px-4 py-6">
-                <img src={image} alt={title} className="h-full max-h-82 w-auto object-contain" />
+                <img src={image_url} alt={title} className="h-full max-h-82 w-auto object-contain" />
             </div>
 
             <div className="pt-4 p-2">
@@ -38,7 +39,7 @@ function Configurator3Card({ title, description, image, note, selected = false, 
                 <p className="mt-2 text-sm md:text-base lg:text-xl leading-relaxed text-slate-600">{description}</p>
 
                 <div className="mt-3 flex items-center gap-3">
-                    <p className="text-base text-slate-500">{note}</p>
+                    <p className="text-xs text-slate-500"> <span className='font-bold'> { brand_title } </span> {note}</p>
                 </div>
             </div>
         </button>

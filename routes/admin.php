@@ -3,8 +3,8 @@
 use App\Http\Controllers\Admin\AdvantageController;
 use App\Http\Controllers\Admin\BookingController;
 use App\Http\Controllers\Admin\ContactController;
-use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\EstimateController;
+use App\Http\Controllers\Admin\FeatureController;
 use App\Http\Controllers\Admin\MonitoringSystemController;
 use App\Http\Controllers\Admin\PartnerController;
 use App\Http\Controllers\Admin\ServiceController;
@@ -25,6 +25,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::get('monitoring-system', [MonitoringSystemController::class, 'show'])->name('monitoring-system.show');
     Route::get('monitoring-system/edit', [MonitoringSystemController::class, 'edit'])->name('monitoring-system.edit');
     Route::put('monitoring-system', [MonitoringSystemController::class, 'update'])->name('monitoring-system.update');
+
+    Route::get('system-setting/edit', [\App\Http\Controllers\Admin\SystemSettingController::class, 'edit'])->name('system-setting.edit');
+    Route::put('system-setting', [\App\Http\Controllers\Admin\SystemSettingController::class, 'update'])->name('system-setting.update');
+
     Route::resource('partners', PartnerController::class)->names('partners');
     Route::resource('features', FeatureController::class)->names('features');
     Route::resource('services', ServiceController::class)->names('services');

@@ -14,6 +14,7 @@ class MonitoringSystem extends Model
         'sub_title',
         'description',
         'image',
+        'price',
     ];
 
     protected $appends = [
