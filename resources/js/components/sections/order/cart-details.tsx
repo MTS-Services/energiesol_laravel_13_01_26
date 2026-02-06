@@ -377,7 +377,7 @@ function handlePdfDownload(e) {
                     </div>
 
                     <div className="flex items-center justify-center pt-21">
-                        <Link className="inline-flex items-center gap-3 text-secondary/70">
+                        <Link href={route('configurator')} className="inline-flex items-center gap-3 text-secondary/70">
                             <Icon
                                 iconNode={RefreshCcw}
                                 iconClassName="text-secondary/70 w-4 h-4"
