@@ -23,6 +23,7 @@ class Estimate extends Model
         'updated_at',
         'is_valid_order',
         'status',
+        'invoice',
     ];
 
 

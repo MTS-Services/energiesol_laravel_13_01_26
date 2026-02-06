@@ -18,6 +18,7 @@ class MonitoringSystemSeeder extends Seeder
             'sub_title' => 'Real-time Data Tracking',
             'description' => 'Our monitoring system provides real-time data tracking and analytics for optimal performance.',
             'image' => 'images/monitoring_system.png',
+            'price' => 499.99,
         ]);
     }
 }

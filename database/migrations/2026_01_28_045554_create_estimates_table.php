@@ -25,6 +25,7 @@ return new class extends Migration
             $table->boolean('charger');
             $table->boolean('is_valid_order')->default(false);
             $table->boolean('status')->default(false);
+            $table->string('invoice')->nullable();
             $table->timestamps();
 
 

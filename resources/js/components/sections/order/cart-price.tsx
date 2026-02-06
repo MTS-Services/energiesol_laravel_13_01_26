@@ -1,7 +1,7 @@
 import { SectionHeader } from '@/components/cards/section-header';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
-import { Link } from '@inertiajs/react';
+import { Link, usePage } from '@inertiajs/react';
 import { Download, RefreshCcw } from 'lucide-react';
 interface Props {
     is_valid_order: boolean,
@@ -10,6 +10,39 @@ interface Props {
 }
 function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
 
+   const { SystemSetting } = usePage<SharedData>().props;
+    const investment = () => {
+        const solar_panel_price = Number(estimate.solar_panel.price) *
+            Math.ceil(Number(estimate.area) / Number(SystemSetting?.module_unit_in_meter));
+
+        const solar_inverter_price =  Number(estimate.solar_inverter.price ?? 0);
+        const charger_price = estimate.charger == true ?  Number(estimate.solar_inverter.charger_price ?? 0) : 0;
+        const battery_price =  estimate.battery == true ? Number(estimate.solar_inverter.battery_price ?? 0) : 0;
+        const monitoring_system_price = Number(monitoringSystem?.price ?? 0);
+
+        const total =
+            solar_panel_price +
+            solar_inverter_price +
+            charger_price +
+            battery_price +
+            monitoring_system_price;
+
+        return total; // ← this is now a NUMBER
+    };
+
+    const calculateVat = () => {
+
+    return Math.ceil(investment() * SystemSetting?.vat / 100)
+
+    };
+
+    const calculateDiscount = ()=>{
+        return Math.ceil(investment() * SystemSetting?.discount / 100)
+    }
+
+    const calculateTotal = () => {
+        return Math.ceil(investment() + calculateVat() - calculateDiscount())
+    };
 
     return (
         <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-8 lg:py-40">
@@ -28,7 +61,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                 )}
                 <div className="mt-10">
                     <div>
-                        <p className="mb-3 flex justify-between pl-0 font-open-sans text-base lg:pl-15 lg:text-lg">
+                        <p className="mb-3 flex justify-between px-0 font-open-sans text-base lg:px-15 lg:text-lg">
                             <p className="font-open-sans text-lg font-normal text-secondary/80 lg:text-2xl">
                                 Gesamtinvestition
                                 <span className="block text-sm font-normal text-secondary/70 lg:text-base">
@@ -36,7 +69,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 </span>{' '}
                             </p>
                             <span className="font-semibold text-secondary">
-                                18,345.87 €
+                              { calculateTotal() } €
                             </span>
                         </p>
                         <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
@@ -56,7 +89,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                             </span>
                         </p>
 
-                        <p className="mb-3 flex items-center justify-between pl-0 font-open-sans text-base lg:pl-15 lg:text-lg">
+                        <p className="mb-3 flex items-center justify-between px-0 font-open-sans text-base lg:px-15 lg:text-lg">
                             <p>
                                 <span className="font-semibold text-secondary">
                                     Rendite
