@@ -23,6 +23,7 @@ export default function EditMonitoringSystem({ monitoringSystem }: Props) {
     title: monitoringSystem.title || '',
     sub_title: monitoringSystem.sub_title || '',
     description: monitoringSystem.description || '',
+    price: monitoringSystem.price || '',
     delete_existing_image: false, 
     
     image: null as File | null,
@@ -173,6 +174,17 @@ export default function EditMonitoringSystem({ monitoringSystem }: Props) {
                                                   ).toLocaleDateString()
                                                 : 'N/A'}
                                         </p>
+                                    </div>
+
+                                    
+
+                                    <div>
+                                        <Label className="text-sm text-muted-foreground">
+                                           Price
+                                        </Label>
+                                        <Input type='number' min={0} 
+                                        value={data.price}
+                                        onChange={(e) => setData('price', e.target.value)} />
                                     </div>
 
                                 </CardContent>
