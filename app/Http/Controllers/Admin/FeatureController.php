@@ -58,7 +58,7 @@ class FeatureController extends Controller
     {
         $data = $request->validated();
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(),'public');
         }
         $this->featureService->create($data);
 
@@ -103,6 +103,7 @@ class FeatureController extends Controller
         if(!$request->image && !$request->delete_existing_image) {
             unset($data['image']);
         }
+        
         if($request->delete_existing_image && !$request->image) {
             $data['image'] = null;
             unset($data['delete_existing_image']);
