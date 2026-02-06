@@ -46,12 +46,12 @@ export default function Configurator5({ solarInverter, area, solar_id, inverter_
             {
                 id: true,
                title: "Ja!",
-                image: solarInverter.charger_image,
+                image: solarInverter.charger_image_url,
             },
             {
                 id: false,
                 title: "NEIN!",
-                image: solarInverter.charger_image,
+                image: solarInverter.charger_image_url,
                 titleColor: "text-red-600",
             }
         ],

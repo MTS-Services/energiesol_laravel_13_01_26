@@ -14,6 +14,7 @@ interface Configurator2CardProps {
     description: string;
     image_url: string;
     selected?: boolean;
+    note?: string;
     onClick?: () => void;
 }
 
@@ -23,7 +24,9 @@ function Configurator2Card({
     title,
     description,
     image_url,
+    note,
     selected = false,
+    brand_title,
     onClick,
 }: Configurator2CardProps) {
     return (
@@ -44,16 +47,16 @@ function Configurator2Card({
                 />
             </div>
 
-            <div className="p-6">
-                <h3 className="mt-2 font-montserrat text-xl font-semibold text-secondary">
+            <div className="py-6">
+                <h3 className="mt-2 font-montserrat text-3xl font-semibold text-secondary">
                     {title}
                 </h3>
-                <p className="mt-2 text-sm leading-relaxed text-slate-600">
+                <p className="mt-2 text-lg leading-relaxed text-slate-600 font-normal ">
                     {description}
                 </p>
 
                 <div className="mt-5 flex items-center gap-3">
-                    <p className="text-xs text-slate-500">{title}</p>
+                    <p className="text-xs text-slate-500"> <span className='font-bold'> { brand_title } </span> {note}</p>
                 </div>
             </div>
         </button>

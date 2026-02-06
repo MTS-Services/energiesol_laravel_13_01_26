@@ -3,8 +3,14 @@ import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
 import { Link } from '@inertiajs/react';
 import { Download, RefreshCcw } from 'lucide-react';
+interface Props {
+    is_valid_order: boolean,
+    estimate: any,
+    monitoringSystem: any
+}
+function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
 
-function CartPrice({ is_valid_order }: { is_valid_order: boolean }) {
+
     return (
         <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-6 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-8 lg:py-40">
             <SectionHeader>

@@ -17,7 +17,7 @@ class MonitoringSystemSeeder extends Seeder
             'title' => 'Advanced Monitoring System',
             'sub_title' => 'Real-time Data Tracking',
             'description' => 'Our monitoring system provides real-time data tracking and analytics for optimal performance.',
-            'image' => 'monitoring_system.png',
+            'image' => 'images/monitoring_system.png',
         ]);
     }
 }

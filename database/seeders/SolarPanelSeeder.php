@@ -16,9 +16,9 @@ class SolarPanelSeeder extends Seeder
 
         SolarPanel::create([
             'brand_title' => 'Trina',
-            'brand_logo' => '/images/solartec_logo.png',
+            'brand_logo' => 'images/solartec_logo.png',
             'title' => 'Preisbewusste Exzellenz',
-            'image' => '/images/solar-panel1.png',
+            'image' => 'images/solar-panel1.png',
             'description' => 'Erzielen Sie überlegene Leistung bei der besten Rendite Ihrer Investition.',
             'price' => 299.99,
             'note' => 'Vertex S+ TSM-NEG9R.2',
@@ -27,9 +27,9 @@ class SolarPanelSeeder extends Seeder
 
         SolarPanel::create([
             'brand_title' => 'Aiko',
-            'brand_logo' => '/images/ecopower_logo.png',
+            'brand_logo' => 'images/ecopower_logo.png',
             'title' => 'Maximale Leistungsausgabe',
-            'image' => '/images/solar-panel2.png',
+            'image' => 'images/solar-panel2.png',
             'description' => 'Fortschrittliche Technologie für die höchstmögliche Energieerzeugung entwickelt.',
             'price' => 349.99,
             'note' => 'Neostar 35+',

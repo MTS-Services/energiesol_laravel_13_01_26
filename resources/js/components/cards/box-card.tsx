@@ -30,6 +30,7 @@ interface ItemProps{
 }
 
 function BoxCard({item, className, children}: ItemProps) {
+    console.log(item.image_url);
     const changeOrder = item?.changeOrder ?? false;
   return (
      <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md grid grid-cols-1 gap-2  ', className)}>
@@ -37,7 +38,7 @@ function BoxCard({item, className, children}: ItemProps) {
         { item?.image_url && (
 
             <div className={`h-auto overflow-hidden rounded-md ${ !changeOrder ? 'order-first' : 'order-last'}`}>
-            <img src={item?.image_url ?? '/images/feature1.png'} alt="Feature image"  className='w-full! h-auto'/>
+            <img src={item?.image_url ?? '/images/feature1.png'} alt="Feature image"  className='w-full! h-auto '/>
              </div>
         )}
 

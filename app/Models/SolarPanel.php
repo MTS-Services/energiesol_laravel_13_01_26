@@ -22,7 +22,7 @@ class SolarPanel extends Model
         'updated_at',
     ];
 
-        protected $appends = [
+    protected $appends = [
         'image_url','brand_logo_url',
     ];
 

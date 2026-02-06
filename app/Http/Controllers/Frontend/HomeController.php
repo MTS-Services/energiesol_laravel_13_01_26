@@ -96,6 +96,7 @@ class HomeController extends Controller
 
 
         $solarPanels = $this->solarPanelService->all();
+
         return Inertia::render('frontend/configurator-step2', [
             'solarPanels' => $solarPanels,
             'area' => $area

@@ -15,7 +15,7 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
             title: estimate?.solar_panel?.title,
             description:
                 estimate?.solar_panel?.description,
-            image: estimate?.solar_panel?.image,
+            image_url: estimate?.solar_panel?.image_url,
             short_info: {
                 title: estimate?.solar_panel?.brand_title,
                 description: estimate?.solar_panel?.note
@@ -25,7 +25,7 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
             title: estimate?.solar_inverter?.title,
             description:
                 estimate?.solar_inverter?.description,
-            image: estimate?.solar_inverter?.image,
+            image_url: estimate?.solar_inverter?.image_url,
             short_info: {
                 title: estimate?.solar_inverter?.brand_title,
                 description: estimate?.solar_inverter?.note
@@ -37,34 +37,57 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
         items.push({
             title: estimate?.solar_inverter?.charger_title,
             description: estimate?.solar_inverter?.charger_description,
-            image: estimate?.solar_inverter?.charger_image,
+            image_url: estimate?.solar_inverter?.charger_image_url,
             short_info: {
                 title: estimate?.solar_inverter?.charger_brand_title,
                 description: estimate?.solar_inverter?.charger_note,
             },
         });
     }
+    
     if (estimate?.battery == true) {
         items.push({
-            title: monitoringSystem?.title,
-            description: monitoringSystem?.description,
-            image: monitoringSystem?.image,
-            short_info: {
-                title: '',
-                description: monitoringSystem?.sub_title,
-            },
-        });
-    }
-
-    items.push({
-         title: estimate?.solar_inverter?.battery_title,
+            title: estimate?.solar_inverter?.battery_title,
             description: estimate?.solar_inverter?.battery_description,
-            image: estimate?.solar_inverter?.battery_image,
+            image_url: estimate?.solar_inverter?.battery_image_url,
             short_info: {
                 title: estimate?.solar_inverter?.battery_brand_title,
                 description: estimate?.solar_inverter?.battery_note,
             },
+        });
+    }
+  
+    items.push({
+        title: monitoringSystem?.title,
+        description: monitoringSystem?.description,
+        image_url: monitoringSystem?.image_url,
+        short_info: {
+            title: '',
+            description: monitoringSystem?.sub_title,
+        },
     });
+
+
+const investment = () => {
+    const solar_panel_price = Number(estimate.solar_panel.price) *
+        Math.ceil(Number(estimate.area) / 2.1);
+
+    const solar_inverter_price = Number(estimate.solar_inverter.price ?? 0);
+    const charger_price = Number(estimate.solar_inverter.charger_price ?? 0);
+    const battery_price = Number(estimate.solar_inverter.battery_price ?? 0);
+    const monitoring_system_price = Number(monitoringSystem?.price ?? 0);
+
+    const total =
+        solar_panel_price +
+        solar_inverter_price +
+        charger_price +
+        battery_price +
+        monitoring_system_price;
+
+    return total; // ← this is now a NUMBER
+};
+
+ 
     return (
         <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
             <div className="flex items-center justify-center pb-10">
@@ -206,6 +229,8 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                     </div>
                 </div>
             </div>
+
+
             <div className="mt-10">
                 <h2 className="py-4 font-montserrat text-2xl text-[40px] font-semibold text-secondary lg:py-8">
                     Ihre Investition
@@ -220,7 +245,7 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                             Ihre Investition
                         </span>{' '}
                         <span className="font-semibold text-secondary">
-                            18,345.87 €
+                          { investment() } €
                         </span>
                     </p>
                     <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
@@ -251,6 +276,8 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
                     </p>
                 </div>
             </div>
+
+
 
             <div className='relative z-10'>
                 {!is_valid_order && (
