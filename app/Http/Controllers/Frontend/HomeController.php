@@ -304,35 +304,35 @@ class HomeController extends Controller
         $estimate->load('solarPanel', 'solarInverter');
 
         $data = [
-            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),  
+            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),
             'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
-            'solar_inverter_price' => $estimate->solarInverter->price, 
+            'solar_inverter_price' => $estimate->solarInverter->price,
         ];
-        if($estimate->battery) {
+        if ($estimate->battery) {
             $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
-        }else{
+        } else {
             $data['solar_inverter_battery_price'] = 0;
         }
-        if($estimate->charger) {
+        if ($estimate->charger) {
             $data['solar_inverter_charger_price'] = $estimate->solarInverter->charger_price;
-        }else{
+        } else {
             $data['solar_inverter_charger_price'] = 0;
         }
-       $data['vat'] = $saystemSetting->vat ?? 0;
-       $data['discount'] = $saystemSetting->discount ?? 0;
-       $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
-       
-       $data['sub_total'] = $data['solar_panel_price'] + $data['solar_inverter_price'] + $data['solar_inverter_battery_price'] + $data['solar_inverter_charger_price'] + $data['monitoring_system_price'];
-       $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100) ;
-       $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100) ;
-       $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'];
+        $data['vat'] = $saystemSetting->vat ?? 0;
+        $data['discount'] = $saystemSetting->discount ?? 0;
+        $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
+
+        $data['sub_total'] = $data['solar_panel_price'] + $data['solar_inverter_price'] + $data['solar_inverter_battery_price'] + $data['solar_inverter_charger_price'] + $data['monitoring_system_price'];
+        $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
+        $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
+        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'];
 
 
         $solarPanel = $estimate->solarPanel;
         $solarInverter = $estimate->solarInverter;
 
 
-     
+
 
 
 
@@ -362,8 +362,8 @@ class HomeController extends Controller
             ]);
         }
 
-        return Storage::disk('public')->download($estimate->invoice);
+        $path = storage_path('app/public/' . $estimate->invoice);
 
-
+        return response()->download($path);
     }
 }
