@@ -3,7 +3,6 @@ import FrontendLayout from "@/layouts/frontend-layout";
 
 export default function ConfiguratorStep2Page({ solarPanels , area}: { solarPanels: any[] , area?: number}) {
 
-    console.log(solarPanels);
     return (
         <FrontendLayout>
             <div className="flex-1">
