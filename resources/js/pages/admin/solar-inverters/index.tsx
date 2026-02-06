@@ -65,6 +65,23 @@ export default function Index({solarInverters, pagination, offset, filters, sear
       ),
     },
     {
+      key: 'image',
+      label: 'Description',
+      sortable: false,
+      render: (solarInverter) => (
+
+        solarInverter.image_url ? (
+          <><img src={solarInverter.image_url} className="w-16 h-16" /></>
+        ) : 
+        (
+          <>
+            <span className="text-gray-500">No Image</span>
+          </>
+        )
+
+      ),
+    },
+    {
         key: 'status',
         label: 'Status',
         sortable: false,

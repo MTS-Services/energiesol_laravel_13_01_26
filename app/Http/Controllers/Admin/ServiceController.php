@@ -63,7 +63,7 @@ class ServiceController extends Controller
         $data = $request->validated();
 
         if ($request->hasFile('image')) {
-            $data['image'] = $request->file('image')->storeAs('services/images', $request->file('image')->getClientOriginalName());
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
 
         $this->serviceService->create($data);
@@ -102,7 +102,7 @@ class ServiceController extends Controller
             if($service->image) {
                 Storage::delete($service->image);
             }
-            $data['image'] = $request->file('image')->storeAs('images/', $request->file('image')->getClientOriginalName(), 'public');
+            $data['image'] = $request->file('image')->storeAs('images', $request->file('image')->getClientOriginalName(), 'public');
         }
             
         if($request->delete_existing_image && !$request->image) {

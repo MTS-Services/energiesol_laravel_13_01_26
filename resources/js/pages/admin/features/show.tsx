@@ -53,7 +53,7 @@ export default function ShowFeature({ feature }: Props) {
                             </CardHeader>
                             <CardContent>
                                 {feature.image && (
-                                    <img src={`/storage/${feature.image}`} alt={feature.title} className="w-1/4 h-auto rounded-lg" />
+                                    <img src={feature.image_url} alt={feature.title} className="w-1/4 h-auto rounded-lg" />
                                 )}
                             </CardContent>
                         </Card>

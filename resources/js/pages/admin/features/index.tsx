@@ -3,7 +3,7 @@ import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
 import AdminLayout from '@/layouts/admin-layout';
 import { ActionConfig, ColumnConfig, PaginationData } from '@/types/data-table.types';
-import { Features } from '@/types/models';
+import { Feature } from '@/types/models';
 import { Button } from '@/components/ui/button';
 import { Head, router, Link } from '@inertiajs/react';
 import { Badge } from '@/components/ui/badge';
@@ -13,7 +13,7 @@ import { ActionButton } from '@/components/ui/action-button';
 
 
 interface Props {
-  features: Features[];
+  features: Feature[];
   pagination: PaginationData;
   offset: number;
   filters: Record<string, string | number>;
