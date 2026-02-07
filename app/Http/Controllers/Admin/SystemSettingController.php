@@ -40,6 +40,9 @@ class SystemSettingController extends Controller
 
         $this->systemSettingService->update($systemSetting->id, $data);
 
-        return redirect()->back()->with('success', 'System Settings updated successfully.');
+
+       return Inertia::flash([
+            'success' => 'System Settings updated successfully',
+        ])->back();
     }
 }

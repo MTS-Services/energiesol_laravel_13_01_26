@@ -16,6 +16,10 @@ return new class extends Migration
             $table->float('vat')->default(0);
             $table->float('discount')->default(0);
             $table->float('module_unit_in_meter')->default(2.1);
+            $table->float('wallbox_price')->default(1950.00);
+            $table->float('evu_fees')->default(1950.00)->comment('Registration fees with Electric Supply company');
+            $table->float('delivery_fees')->default(249);
+            $table->float('service_charge')->default(1850.00);
             $table->timestamps();
         });
     }
