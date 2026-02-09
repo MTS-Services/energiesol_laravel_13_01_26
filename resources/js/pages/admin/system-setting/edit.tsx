@@ -9,6 +9,8 @@ import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import InputError from '@/components/input-error';
 import { SystemSetting } from '@/types/models';
 import { Save } from 'lucide-react';
+import { toast } from 'sonner';
+
 
 interface Props {
   systemSetting: SystemSetting;
@@ -19,12 +21,23 @@ export default function EditSystemSetting({ systemSetting }: Props) {
     vat: systemSetting.vat || '',
     discount: systemSetting.discount || '',
     module_unit_in_meter: systemSetting.module_unit_in_meter || '',
+    wallbox_price: systemSetting.wallbox_price || '',
+    evu_fees: systemSetting.evu_fees || '',
+    delivery_fees: systemSetting.delivery_fees || '',
+    service_charge: systemSetting.service_charge || '',
     _method: 'PUT',
   });
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
-    post(update.url());
+    post(update.url(), {
+        onSuccess: () => {
+            toast.success('System Settings updated successfully');
+        },
+        onError: () => {
+            toast.error('Something went wrong');
+        },
+    });
   }
 
    return (
@@ -43,7 +56,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="vat"
                                     type="number"
-                                    value={data.vat}
+                                    value={data.vat == 0 ? 0 : data.vat}
                                     onChange={(e) =>
                                         setData('vat', e.target.value)
                                     }
@@ -56,7 +69,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="discount"
                                     type="number"
-                                    value={data.discount}
+                                    value={data.discount == 0 ? 0 : data.discount}
                                     onChange={(e) =>
                                         setData('discount', e.target.value)
                                     }
@@ -76,6 +89,54 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     }
                                 />
                                 <InputError message={errors.module_unit_in_meter} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="wallbox_price">Wallbox Price</Label>
+                                <Input
+                                    id="wallbox_price"
+                                    type="number"
+                                    value={data.wallbox_price}
+                                    onChange={(e) =>
+                                        setData('wallbox_price', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.wallbox_price} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="evu_fees">EVU Fees</Label>
+                                <Input
+                                    id="evu_fees"
+                                    type="number"
+                                    value={data.evu_fees}
+                                    onChange={(e) =>
+                                        setData('evu_fees', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.evu_fees} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="delivery_fees">Delivery Fees</Label>
+                                <Input
+                                    id="delivery_fees"
+                                    type="number"
+                                    value={data.delivery_fees}
+                                    onChange={(e) =>
+                                        setData('delivery_fees', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.delivery_fees} />
+                            </div>
+                            <div className="grid gap-2">
+                                <Label htmlFor="service_charge">Service Charge</Label>
+                                <Input
+                                    id="service_charge"
+                                    type="number"
+                                    value={data.service_charge}
+                                    onChange={(e) =>
+                                        setData('service_charge', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.service_charge} />
                             </div>
                         </div>
 

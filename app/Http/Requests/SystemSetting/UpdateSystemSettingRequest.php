@@ -25,6 +25,10 @@ class UpdateSystemSettingRequest extends FormRequest
             'vat' => ['required', 'numeric'],
             'discount' => ['required', 'numeric'],
             'module_unit_in_meter' => ['required', 'numeric'],
+            'wallbox_price' => ['required', 'numeric'],
+            'evu_fees' => ['required', 'numeric'],
+            'delivery_fees' => ['required', 'numeric'],
+            'service_charge' => ['required', 'numeric'],
         ];
     }
 }

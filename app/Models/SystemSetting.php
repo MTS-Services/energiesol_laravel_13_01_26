@@ -12,5 +12,9 @@ class SystemSetting extends Model
         'vat',
         'discount',
         'module_unit_in_meter',
+        'wallbox_price',
+        'evu_fees',
+        'delivery_fees',
+        'service_charge',
     ];
 }

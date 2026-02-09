@@ -17,4 +17,8 @@ export interface SystemSetting {
     module_unit_in_meter: string;
     created_at: string;
     updated_at: string;
+    wallbox_price: number;
+    evu_fees: number;
+    delivery_fees: number;
+    service_charge: number;
 }

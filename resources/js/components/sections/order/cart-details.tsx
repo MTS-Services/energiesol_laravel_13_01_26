@@ -100,8 +100,24 @@ function CartDetails({ is_valid_order, estimate, monitoringSystem }: { is_valid_
         return (investment() * SystemSetting?.discount / 100)
     }
 
+    const wallBoxPrice =  () => {
+      return Number(SystemSetting?.wallbox_price ?? 0)
+    }
+
+    const evuFees =  () => {
+      return Number(SystemSetting?.evu_fees ?? 0)
+    }
+
+    const deliveryFees =  () => {
+      return Number(SystemSetting?.delivery_fees ?? 0)
+    }
+
+    const serviceCharge =  () => {
+      return Number(SystemSetting?.service_charge ?? 0)
+    }
+
     const calculateTotal = () => {
-        return (investment() + calculateVat() - calculateDiscount())
+        return (investment() + calculateVat() - calculateDiscount() + wallBoxPrice() + evuFees() + deliveryFees() + serviceCharge())
     };
 
     //  href={route('order.download', { id: estimate?.id })} method='post' onClick={e=> e.preventDefault()}
@@ -289,6 +305,45 @@ function handlePdfDownload(e) {
                            { calculateVat() } €
                         </span>
                     </p>
+                    
+            
+                        <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                            <span className="font-normal text-secondary/70">
+                                WallBox 
+                            </span>{' '}
+                            <span className="font-semibold text-secondary">
+                                { wallBoxPrice() } €
+                            </span>
+                        </p>
+                        <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                            <span className="font-normal text-secondary/70">
+                                EVU Fees 
+                            </span>{' '}
+                            <span className="font-semibold text-secondary">
+                                { evuFees() } €
+                            </span>
+                        </p>
+
+
+                        <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                            <span className="font-normal text-secondary/70">
+                                Delivery Fees 
+                            </span>{' '}
+                            <span className="font-semibold text-secondary">
+                                { deliveryFees() } €
+                            </span>
+                        </p>
+
+                        <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
+                            <span className="font-normal text-secondary/70">
+                                Service Charge 
+                            </span>{' '}
+                            <span className="font-semibold text-secondary">
+                                { serviceCharge() } €
+                            </span>
+                        </p>
+
+
                     {
                         SystemSetting?.discount > 0 && (
                             <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
