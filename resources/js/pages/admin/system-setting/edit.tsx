@@ -18,16 +18,16 @@ interface Props {
 
 export default function EditSystemSetting({ systemSetting }: Props) {
   const { data, setData, post, processing, errors } = useForm({
-    vat: systemSetting.vat || '',
-    discount: systemSetting.discount || '',
-    module_unit_in_meter: systemSetting.module_unit_in_meter || '',
-    wallbox_price: systemSetting.wallbox_price || '',
-    evu_fees: systemSetting.evu_fees || '',
-    delivery_fees: systemSetting.delivery_fees || '',
-    service_charge: systemSetting.service_charge || '',
-    generate_electricity_per_module: systemSetting.generate_electricity_per_module || '',
-    unit_price: systemSetting.unit_price || '',
-    wallbox_boost_electricity: systemSetting.wallbox_boost_electricity || '',
+    vat: systemSetting.vat ?? 0,
+    discount: systemSetting.discount ?? 0,
+    module_unit_in_meter: systemSetting.module_unit_in_meter ?? 0,
+    wallbox_price: systemSetting.wallbox_price ?? 0,
+    evu_fees: systemSetting.evu_fees ?? 0,
+    delivery_fees: systemSetting.delivery_fees ?? 0,
+    service_charge: systemSetting.service_charge ?? 0,
+    generate_electricity_per_module: systemSetting.generate_electricity_per_module ?? 0,
+    unit_price: systemSetting.unit_price ?? 0,
+    wallbox_boost_electricity: systemSetting.wallbox_boost_electricity ?? 0,
     _method: 'PUT',
   });          
 
@@ -38,7 +38,8 @@ export default function EditSystemSetting({ systemSetting }: Props) {
         onSuccess: () => {
             toast.success('System Settings updated successfully');
         },
-        onError: () => {
+        onError: (resposne) => {
+            console.log(resposne);
             toast.error('Something went wrong');
         },
     });

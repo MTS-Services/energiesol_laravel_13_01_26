@@ -37,12 +37,9 @@ class SystemSettingController extends Controller
         $systemSetting = SystemSetting::firstOrCreate([]);
 
         $data = $request->all();
-
-        dd($data);
         $this->systemSettingService->update($systemSetting->id, $data);
 
-
-       return Inertia::flash([
+        return Inertia::flash([
             'success' => 'System Settings updated successfully',
         ])->back();
     }

@@ -31,7 +31,7 @@ class UpdateSystemSettingRequest extends FormRequest
             'service_charge' => ['required', 'numeric', 'min:0'],
             'generate_electricity_per_module' => ['required', 'numeric', 'min:0'],
             'unit_price' => ['required', 'numeric', 'min:0'],
-            'minimum_order' => ['required', 'numeric', 'min:0'],
+            // 'minimum_order' => ['required', 'numeric', 'min:0'],
         ];
     }
 }
