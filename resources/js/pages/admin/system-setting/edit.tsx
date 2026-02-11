@@ -60,7 +60,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="vat"
                                     type="number"
-                                    value={data.vat == 0 ? 0 : data.vat}
+                                    value={ data.vat}
                                     onChange={(e) =>
                                         setData('vat', e.target.value)
                                     }
@@ -73,7 +73,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="discount"
                                     type="number"
-                                    value={data.discount == 0 ? 0 : data.discount}
+                                    value={data.discount}
                                     onChange={(e) =>
                                         setData('discount', e.target.value)
                                     }

@@ -38,6 +38,7 @@ class SystemSettingController extends Controller
 
         $data = $request->all();
 
+        dd($data);
         $this->systemSettingService->update($systemSetting->id, $data);
 
 
