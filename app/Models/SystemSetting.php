@@ -16,5 +16,9 @@ class SystemSetting extends Model
         'evu_fees',
         'delivery_fees',
         'service_charge',
+        'generate_electricity_per_module',
+        'unit_price',
+        'wallbox_boost_electricity',
+
     ];
 }

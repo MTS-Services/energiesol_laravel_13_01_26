@@ -22,13 +22,16 @@ class UpdateSystemSettingRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'vat' => ['required', 'numeric'],
-            'discount' => ['required', 'numeric'],
-            'module_unit_in_meter' => ['required', 'numeric'],
-            'wallbox_price' => ['required', 'numeric'],
-            'evu_fees' => ['required', 'numeric'],
-            'delivery_fees' => ['required', 'numeric'],
-            'service_charge' => ['required', 'numeric'],
+            'vat' => ['required', 'numeric', 'min:0'],
+            'discount' => ['required', 'numeric', 'min:0'],
+            'module_unit_in_meter' => ['required', 'numeric', 'min:0'],
+            'wallbox_price' => ['required', 'numeric', 'min:0'],
+            'evu_fees' => ['required', 'numeric', 'min:0'],
+            'delivery_fees' => ['required', 'numeric', 'min:0'],
+            'service_charge' => ['required', 'numeric', 'min:0'],
+            'generate_electricity_per_module' => ['required', 'numeric', 'min:0'],
+            'unit_price' => ['required', 'numeric', 'min:0'],
+            // 'minimum_order' => ['required', 'numeric', 'min:0'],
         ];
     }
 }

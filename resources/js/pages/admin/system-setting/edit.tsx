@@ -18,15 +18,19 @@ interface Props {
 
 export default function EditSystemSetting({ systemSetting }: Props) {
   const { data, setData, post, processing, errors } = useForm({
-    vat: systemSetting.vat || '',
-    discount: systemSetting.discount || '',
-    module_unit_in_meter: systemSetting.module_unit_in_meter || '',
-    wallbox_price: systemSetting.wallbox_price || '',
-    evu_fees: systemSetting.evu_fees || '',
-    delivery_fees: systemSetting.delivery_fees || '',
-    service_charge: systemSetting.service_charge || '',
+    vat: systemSetting.vat ?? 0,
+    discount: systemSetting.discount ?? 0,
+    module_unit_in_meter: systemSetting.module_unit_in_meter ?? 0,
+    wallbox_price: systemSetting.wallbox_price ?? 0,
+    evu_fees: systemSetting.evu_fees ?? 0,
+    delivery_fees: systemSetting.delivery_fees ?? 0,
+    service_charge: systemSetting.service_charge ?? 0,
+    generate_electricity_per_module: systemSetting.generate_electricity_per_module ?? 0,
+    unit_price: systemSetting.unit_price ?? 0,
+    wallbox_boost_electricity: systemSetting.wallbox_boost_electricity ?? 0,
     _method: 'PUT',
-  });
+  });          
+
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault();
@@ -34,7 +38,8 @@ export default function EditSystemSetting({ systemSetting }: Props) {
         onSuccess: () => {
             toast.success('System Settings updated successfully');
         },
-        onError: () => {
+        onError: (resposne) => {
+            console.log(resposne);
             toast.error('Something went wrong');
         },
     });
@@ -56,7 +61,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="vat"
                                     type="number"
-                                    value={data.vat == 0 ? 0 : data.vat}
+                                    value={ data.vat}
                                     onChange={(e) =>
                                         setData('vat', e.target.value)
                                     }
@@ -69,7 +74,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                 <Input
                                     id="discount"
                                     type="number"
-                                    value={data.discount == 0 ? 0 : data.discount}
+                                    value={data.discount}
                                     onChange={(e) =>
                                         setData('discount', e.target.value)
                                     }
@@ -137,6 +142,48 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     }
                                 />
                                 <InputError message={errors.service_charge} />
+                            </div>
+
+                            
+                            <div className="grid gap-2">
+                            <Label htmlFor="wallbox_boost_electricity">Wallbox Boost Electricity</Label>
+                                <Input
+                                    id="wallbox_boost_electricity"
+                                    type="number"
+                                    value={data.wallbox_boost_electricity}
+                                    onChange={(e) =>
+                                        setData('wallbox_boost_electricity', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.wallbox_boost_electricity} />
+                            </div>
+
+                            
+                            <div className="grid gap-2">
+                            <Label htmlFor="generate_electricity_per_module">Generate Electricy per Module (/Year)</Label>
+                                <Input
+                                    id="generate_electricity_per_module"
+                                    type="number"
+                                    value={data.generate_electricity_per_module}
+                                    onChange={(e) =>
+                                        setData('generate_electricity_per_module', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.generate_electricity_per_module} />
+                            </div>
+
+                            
+                            <div className="grid gap-2">
+                            <Label htmlFor="unit_price">Unit Price (Euro)</Label>
+                                <Input
+                                    id="unit_price"
+                                    type="number"
+                                    value={data.unit_price}
+                                    onChange={(e) =>
+                                        setData('unit_price', e.target.value)
+                                    }
+                                />
+                                <InputError message={errors.unit_price} />
                             </div>
                         </div>
 

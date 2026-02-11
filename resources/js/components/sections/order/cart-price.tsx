@@ -1,8 +1,9 @@
 import { SectionHeader } from '@/components/cards/section-header';
 import { Button } from '@/components/ui/button';
 import { Icon } from '@/components/ui/icon';
-import { Link, usePage } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import { Download, RefreshCcw } from 'lucide-react';
+import { useState } from 'react';
 interface Props {
     is_valid_order: boolean,
     estimate: any,
@@ -12,36 +13,92 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
 
    const { SystemSetting } = usePage<SharedData>().props;
     const investment = () => {
-        const solar_panel_price = Number(estimate.solar_panel.price) *
-            Math.ceil(Number(estimate.area) / Number(SystemSetting?.module_unit_in_meter));
+    const solar_panel_price = Number(estimate.solar_panel.price)
+      * Math.ceil(Number(estimate.area) / Number(SystemSetting?.module_unit_in_meter));
 
-        const solar_inverter_price =  Number(estimate.solar_inverter.price ?? 0);
-        const charger_price = estimate.charger == true ?  Number(estimate.solar_inverter.charger_price ?? 0) : 0;
-        const battery_price =  estimate.battery == true ? Number(estimate.solar_inverter.battery_price ?? 0) : 0;
-        const monitoring_system_price = Number(monitoringSystem?.price ?? 0);
+    const solar_inverter_price = Number(estimate.solar_inverter.price ?? 0);
+    const charger_price = estimate.charger == true ? Number(estimate.solar_inverter.charger_price ?? 0) : 0;
+    const battery_price = estimate.battery == true ? Number(estimate.solar_inverter.battery_price ?? 0) : 0;
+    const monitoring_system_price = Number(monitoringSystem?.price ?? 0);
 
-        const total =
-            solar_panel_price +
-            solar_inverter_price +
-            charger_price +
-            battery_price +
-            monitoring_system_price;
+    const total = solar_panel_price
+      + solar_inverter_price
+      + charger_price
+      + battery_price
+      + monitoring_system_price +  wallBoxPrice() + evuFees();
 
-        return total; // ← this is now a NUMBER
-    };
+    return total; // ← this is now a NUMBER
+  };
+  const calculateVat = () => {
+    return (investment() * SystemSetting?.vat / 100);
+  };
 
-    const calculateVat = () => {
+  const calculateDiscount = () => {
+    return (investment() * SystemSetting?.discount / 100);
+  };
 
-    return Math.ceil(investment() * SystemSetting?.vat / 100)
+  const wallBoxPrice = () => {
+    return Number(SystemSetting?.wallbox_price ?? 0);
+  };
 
-    };
+  const evuFees = () => {
+    return Number(SystemSetting?.evu_fees ?? 0);
+  };
 
-    const calculateDiscount = ()=>{
-        return Math.ceil(investment() * SystemSetting?.discount / 100)
+  const deliveryFees = () => {
+    return Number(SystemSetting?.delivery_fees ?? 0);
+  };
+
+  const serviceCharge = () => {
+    return Number(SystemSetting?.service_charge ?? 0);
+  };
+
+  const calculateTotal = () => {
+    return (investment() + calculateVat() - calculateDiscount()  + deliveryFees()
+      + serviceCharge());
+  };
+
+  const capExpenditure = () => {
+    const module = Math.ceil(Number(estimate.area) / Number(SystemSetting?.module_unit_in_meter));
+    const sub_genereted_electricity = module * SystemSetting?.generate_electricity_per_module; // Yearly Generated Electricty per year
+    const grand_total_electricity = sub_genereted_electricity * SystemSetting?.wallbox_boost_electricity ; // Yearly Generated Electricty per year
+    const inKWh = Math.ceil(grand_total_electricity / 1000);
+    return Math.ceil(inKWh * SystemSetting?.unit_price); // Return of the value of total consumed electicity in year in Euro
+  };
+
+  const returnInvestmentInYears = () => {
+    const years = (calculateTotal() / capExpenditure()).toFixed(2);
+    return years;
+  }
+
+
+    const [processing, setProcessing] = useState(false);
+
+  
+    function handlePdfDownload(e) {
+      e.preventDefault();
+      setProcessing(true); // start
+      router.post(route("order.download", { id: estimate?.id }), {
+        onSuccess: () => {
+          setProcessing(false);
+        },
+        onError: () => {
+          setProcessing(false); // reset on error
+        },
+      });
     }
-
-    const calculateTotal = () => {
-        return Math.ceil(investment() + calculateVat() - calculateDiscount())
+    const [processingAnalysis, setProcessingAnalysis] = useState(false);
+    const handlePdfDownloadForAnalysis = (e) => {
+      e.preventDefault();
+      setProcessing(true); // start
+      router.post(route("order.download.analysis", { id: estimate?.id }), {
+        onSuccess: () => {
+          setProcessingAnalysis(false);
+        },
+        onError: () => {
+          setProcessingAnalysis(false); // reset on error
+        },
+      });
     };
 
     return (
@@ -69,7 +126,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 </span>{' '}
                             </p>
                             <span className="font-semibold text-secondary">
-                              { calculateTotal() } €
+                              { calculateTotal().toFixed(4) } €
                             </span>
                         </p>
                         <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
@@ -77,7 +134,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 Amortisation
                             </span>{' '}
                             <span className="font-semibold text-secondary">
-                                9 Years
+                                { returnInvestmentInYears() } Years
                             </span>
                         </p>
                         <p className="mb-2 flex justify-between border-b border-secondary/10 px-0 pr-0 font-open-sans text-lg lg:px-15 lg:text-2xl">
@@ -85,7 +142,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 Stromerzeugungskosten
                             </span>{' '}
                             <span className="text-lg font-semibold text-secondary lg:text-2xl">
-                                0.1341€kWh
+                                {SystemSetting?.unit_price}€kWh
                             </span>
                         </p>
 
@@ -103,36 +160,39 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 </span>
                             </p>
                             <span className="font-semibold text-secondary">
-                                30,123.19€
+                                {(capExpenditure() * 20).toFixed(2)} €
                             </span>
                         </p>
                     </div>
                 </div>
                 <div className="mt-10">
                     <div className="flex flex-col items-center justify-center gap-4 lg:flex-row">
-                        <Link href="/booking">
-                            <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
-                                <Icon
-                                    iconNode={Download}
-                                    variant="circle"
-                                    className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                                    iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                                />
-                                Kostenvoranschlag herunterladen
-                            </Button>
-                        </Link>
+                         <Button
+                            onClick={handlePdfDownload}
+                            className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white"
+                            >
+                            <Icon
+                                iconNode={Download}
+                                variant="circle"
+                                className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                                iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+                            />
+                            {processing ? "Genereating PDF" : "  Kostenvoranschlag herunterladen"}
+                        </Button>
 
-                        <Link href="/booking">
-                            <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
-                                <Icon
-                                    iconNode={Download}
-                                    variant="circle"
-                                    className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                                    iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                                />
-                                Wirtschaftsanalyse herunterladen
-                            </Button>
-                        </Link>
+
+                          <Button
+                        onClick={handlePdfDownloadForAnalysis}
+                        className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white"
+                        >
+                        <Icon
+                            iconNode={Download}
+                            variant="circle"
+                            className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                            iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+                        />
+                        {processingAnalysis ? "Genereating PDF" : "Wirtschaftsanalyse herunterladen"}
+                        </Button>
                     </div>
 
                     <div className="flex items-center justify-center pt-21">

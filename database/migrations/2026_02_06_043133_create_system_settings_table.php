@@ -20,6 +20,9 @@ return new class extends Migration
             $table->float('evu_fees')->default(1950.00)->comment('Registration fees with Electric Supply company');
             $table->float('delivery_fees')->default(249);
             $table->float('service_charge')->default(1850.00);
+            $table->float('generate_electricity_per_module')->default(167);
+            $table->float('unit_price')->default(0.4696);
+            $table->float('wallbox_boost_electricity')->default(3000);
             $table->timestamps();
         });
     }

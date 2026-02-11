@@ -171,100 +171,82 @@
     </div>
 
     <!-- Items List -->
+    <h2>Econmic Analysis With Wallbox</h2>
     <table class="items-table">
         <tr>
             <td class="title">
-               <span>Solar Panel: </span> {{ $solarPanel->title }}
+               <span>Total Investment: </span> 
             </td>
-            <td class="price">({{  $data['solar_panel_module']}} {{ "module"}} )    {{ $data['solar_panel_price'] }} €.</td>
+            <td class="price">{{ number_format( $data['grand_total'], 2) }} €.</td>
         </tr>
         <tr>
-            <td class="title">Solar Inverter: {{ $solarInverter->title }}</td>
-            <td class="price">{{ $data['solar_inverter_price']}} €.</td>
+            <td class="title">Energy Generated ( {{ $data['module']}} modules )</td>
+            <td class="price">{{ number_format(($data['module'] * $data['generated_electricity_per_module']) /1000, 2) }} Kwh </td>
         </tr>
-        @if($data['solar_inverter_charger_price'] > 0)
-        <tr>
-            <td class="title">Charger</td>
-            <td class="price">{{ $data['solar_inverter_charger_price']}} €.</td>
-        </tr>
-        @endif
 
-        @if($data['solar_inverter_battery_price'] > 0)
         <tr>
-            <td class="title">Battery</td>
-            <td class="price">{{ $data['solar_inverter_battery_price']}} €.</td>
+            <td class="title">Walbox</td>
+            <td class="price">{{ $data['wallbox_electricity_generate']}} Kwh</td>
         </tr>
-        @endif
+
+
         <tr>
-            <td class="title">Monitoring System</td>
-            <td class="price">{{ $data['monitoring_system_price']}} €.</td>
-        </tr>
-        <tr>
-            <td class="title">Wallbox </td>
-            <td class="price">{{ $data['wallbox']}} €.</td>
+            <td class="title">Unit Price</td>
+            <td class="price">{{ $data['unit_price']}} €.</td>
         </tr>
         <tr>
-            <td class="title">EVU </td>
-            <td class="price">{{ $data['evu_fees']}} €.</td>
+            <td class="title">Return in year </td>
+            <td class="price">{{ number_format((((($data['module'] * $data['generated_electricity_per_module']) /1000) + $data['wallbox_electricity_generate']) * $data['unit_price']), 2)  }} €.</td>
+        </tr>
+        <tr>
+            <td class="title">Amortisation </td>
+            <td class="price">{{ number_format($data['grand_total'] /  (((($data['module'] * $data['generated_electricity_per_module']) /1000) + $data['wallbox_electricity_generate']) * $data['unit_price']), 2) }} Years</td>
+        </tr>
+
+         <tr>
+            <td class="title">Return Of Investment (20 Jahre) </td>
+            <td class="price">{{ number_format(20 * (((($data['module'] * $data['generated_electricity_per_module']) /1000) + $data['wallbox_electricity_generate']) * $data['unit_price']), 2) }} €.</td>
         </tr>
 
     </table>
 
-    <!-- Summary Section -->
-    <div class="summary">
-
-        <table class="items-table">
+    
+    <!-- Items List -->
+    <h2>Econmic Analysis Without Wallbox</h2>
+    <table class="items-table">
         <tr>
             <td class="title">
-               <span>Subtotal </span> 
+               <span>Total Investment: </span> 
             </td>
-            <td class="price"> {{ $data['sub_total'] }} €.</td>
+            <td class="price">{{ number_format($data['grand_total'] - $data['wallbox'] , 2)}} €.</td>
         </tr>
         <tr>
-            <td class="title">VAT ({{ $data['vat'] }}%) </td>
-            <td class="price">{{ $data['vat_amount'] }} €.</td>
+            <td class="title">Energy Generated ( {{ $data['module']}} modules )</td>
+            <td class="price">{{ number_format(($data['module'] * $data['generated_electricity_per_module']) /1000, 2) }} Kwh </td>
         </tr>
-        
-        <tr>
-            <td class="title">Delivery Charge</td>
-            <td class="price">{{ $data['delivery_fees'] }} €.</td>
-        </tr>
-        
-        <tr>
-            <td class="title">Service Charge </td>
-            <td class="price">{{ $data['service_charge'] }} €.</td>
-        </tr>
-        <tr>
-            <td class="title">Discount ({{ $data['discount'] }}%) </td>
-            <td class="price">{{ $data['discount_amount'] }} €.</td>
-        </tr>
-        </table>
-    
-    </div>
 
-    <!-- Summary Section -->
-    <div class="summary">
 
-        <table class="items-table">
-            <tr>
-                <td class="title">
-                <span style="font-weight: 700">Grand Total </span> 
-                </td>
-                <td class="price " style="font-weight: 700">{{ $data['grand_total'] }} €.</td>
-            </tr>
-         </table>
-    </div>
 
-    <!-- Signature & Date -->
-    <div class="footer">
-        <div class="signature-block">
-            <div class="signature-box"></div>
-            <div class="signature-label">Date</div>
-        </div>
-        <div class="signature-block">
-            <div class="signature-box"></div>
-            <div class="signature-label">Signature</div>
-        </div>
-    </div>
+        <tr>
+            <td class="title">Unit Price</td>
+            <td class="price">{{ $data['unit_price']}} €. Kwh</td>
+        </tr>
+        <tr>
+            <td class="title">Return in year </td>
+            <td class="price">{{ number_format((((($data['module'] * $data['generated_electricity_per_module']) /1000) ) * $data['unit_price']), 2)  }} €.</td>
+        </tr>
+        <tr>
+            <td class="title">Amortisation </td>
+            <td class="price">{{ number_format(($data['grand_total'] - $data['wallbox']) /  (((($data['module'] * $data['generated_electricity_per_module']) /1000) ) * $data['unit_price']), 2) }} Years</td>
+        </tr>
+
+         <tr>
+            <td class="title">Return Of Investment (20 Jahre) </td>
+            <td class="price">{{ number_format(20 * (((($data['module'] * $data['generated_electricity_per_module']) /1000)) * $data['unit_price']), 2) }} €.</td>
+        </tr>
+
+    </table>
+
+
 </body>
 </html>
