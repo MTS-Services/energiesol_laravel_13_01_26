@@ -164,8 +164,9 @@
     <!-- Header -->
     <div class="header">
         <div class="header-right">
-            <h1>Solar Energy Solutions</h1>
-            <p>Dhaka, Bangladesh</p>
+            <h1>Energy Solution Nord</h1>
+            <p>Hauptstraße 24, 22885 </p>
+            <p>Barsbüttel, Deutschland</p>
         </div>
     </div>
 
@@ -198,6 +199,15 @@
             <td class="title">Monitoring System</td>
             <td class="price">{{ $data['monitoring_system_price']}} €.</td>
         </tr>
+        <tr>
+            <td class="title">Wallbox </td>
+            <td class="price">{{ $data['wallbox']}} €.</td>
+        </tr>
+        <tr>
+            <td class="title">EVU </td>
+            <td class="price">{{ $data['evu_fees']}} €.</td>
+        </tr>
+
     </table>
 
     <!-- Summary Section -->
@@ -213,6 +223,16 @@
         <tr>
             <td class="title">VAT ({{ $data['vat'] }}%) </td>
             <td class="price">{{ $data['vat_amount'] }} €.</td>
+        </tr>
+        
+        <tr>
+            <td class="title">Delivery Charge</td>
+            <td class="price">{{ $data['delivery_fees'] }} €.</td>
+        </tr>
+        
+        <tr>
+            <td class="title">Service Charge </td>
+            <td class="price">{{ $data['service_charge'] }} €.</td>
         </tr>
         <tr>
             <td class="title">Discount ({{ $data['discount'] }}%) </td>

@@ -307,6 +307,10 @@ class HomeController extends Controller
             'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),
             'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
             'solar_inverter_price' => $estimate->solarInverter->price,
+            'wallbox' => $saystemSetting->wallbox_price , 
+            'evu_fees' => $saystemSetting->evu_fees,
+            'delivery_fees' => $saystemSetting->delivery_fees,
+            'service_charge' => $saystemSetting->service_charge,
         ];
         if ($estimate->battery) {
             $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
@@ -318,14 +322,26 @@ class HomeController extends Controller
         } else {
             $data['solar_inverter_charger_price'] = 0;
         }
+
+
         $data['vat'] = $saystemSetting->vat ?? 0;
         $data['discount'] = $saystemSetting->discount ?? 0;
         $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
 
-        $data['sub_total'] = $data['solar_panel_price'] + $data['solar_inverter_price'] + $data['solar_inverter_battery_price'] + $data['solar_inverter_charger_price'] + $data['monitoring_system_price'];
+        $data['sub_total'] = ( 
+            $data['solar_panel_price'] + 
+            $data['solar_inverter_price'] + 
+            $data['solar_inverter_battery_price'] + 
+            $data['solar_inverter_charger_price'] + 
+            $data['monitoring_system_price'] +
+            $data['wallbox'] +
+            $data['evu_fees']
+            );
         $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
+
         $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
-        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'];
+
+        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
 
 
         $solarPanel = $estimate->solarPanel;

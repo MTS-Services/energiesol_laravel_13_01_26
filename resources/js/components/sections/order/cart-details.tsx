@@ -81,7 +81,7 @@ function CartDetails(
       + solar_inverter_price
       + charger_price
       + battery_price
-      + monitoring_system_price;
+      + monitoring_system_price +  wallBoxPrice() + evuFees();
 
     return total; // ← this is now a NUMBER
   };
@@ -110,7 +110,7 @@ function CartDetails(
   };
 
   const calculateTotal = () => {
-    return (investment() + calculateVat() - calculateDiscount() + wallBoxPrice() + evuFees() + deliveryFees()
+    return (investment() + calculateVat() - calculateDiscount()  + deliveryFees()
       + serviceCharge());
   };
 
@@ -345,7 +345,7 @@ function CartDetails(
               Summe
             </span>{" "}
             <span className="font-semibold text-secondary lg:text-[40px]">
-              {calculateTotal()} €
+              {calculateTotal().toFixed(4)} €
             </span>
           </p>
 
@@ -354,7 +354,7 @@ function CartDetails(
               Spezifische Kosten pro kWp (gemäß den jährlichen Steuerbestimmungen 2022){" "}
             </span>{" "}
             <span className="text-sm font-semibold text-secondary lg:text-base">
-              {calculateTotal()} €
+              {calculateTotal().toFixed(4)} €
             </span>
           </p>
         </div>
