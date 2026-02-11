@@ -130,6 +130,21 @@ function CartDetails(
     });
   }
 
+
+    const [processingAnalysis, setProcessingAnalysis] = useState(false);
+    const handlePdfDownloadForAnalysis = (e) => {
+      e.preventDefault();
+      setProcessing(true); // start
+      router.post(route("order.download.analysis", { id: estimate?.id }), {
+        onSuccess: () => {
+          setProcessingAnalysis(false);
+        },
+        onError: () => {
+          setProcessingAnalysis(false); // reset on error
+        },
+      });
+    };
+
   return (
     <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
       <div className="flex items-center justify-center pb-10">
@@ -396,17 +411,19 @@ function CartDetails(
               {processing ? "Genereating PDF" : "  Kostenvoranschlag herunterladen"}
             </Button>
 
-            <Link href="/booking">
-              <Button className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white">
-                <Icon
-                  iconNode={Download}
-                  variant="circle"
-                  className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                  iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                />
-                Wirtschaftsanalyse herunterladen
-              </Button>
-            </Link>
+          
+                          <Button
+                        onClick={handlePdfDownloadForAnalysis}
+                        className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white"
+                        >
+                        <Icon
+                            iconNode={Download}
+                            variant="circle"
+                            className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                            iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+                        />
+                        {processingAnalysis ? "Genereating PDF" : "Wirtschaftsanalyse herunterladen"}
+                        </Button>
           </div>
 
           <div className="flex items-center justify-center pt-21">
