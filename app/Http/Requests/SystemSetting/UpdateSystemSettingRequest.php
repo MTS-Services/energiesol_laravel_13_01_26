@@ -29,6 +29,9 @@ class UpdateSystemSettingRequest extends FormRequest
             'evu_fees' => ['required', 'numeric'],
             'delivery_fees' => ['required', 'numeric'],
             'service_charge' => ['required', 'numeric'],
+            'generate_electricity_per_module' => ['required', 'numeric'],
+            'unit_price' => ['required', 'numeric'],
+            'minimum_order' => ['required', 'numeric'],
         ];
     }
 }

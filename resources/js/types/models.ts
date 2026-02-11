@@ -21,4 +21,7 @@ export interface SystemSetting {
     evu_fees: number;
     delivery_fees: number;
     service_charge: number;
+    generate_electricity_per_module: number;
+    unit_price: number;
+    wallbox_boost_electricity: number;
 }
