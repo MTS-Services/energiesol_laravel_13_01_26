@@ -14,6 +14,7 @@ export default function banner() {
                         backgroundImage: "url('/images/banner.png')",
                         backgroundSize: 'cover',
                         backgroundPosition: 'center center',
+                        opacity: '0.6',
                     }}
                 ></div>
                 {/* <div className="absolute inset-y-0 left-0 z-[1] w-[30%] bg-gradient-to-r from-white/30 via-white/20 to-transparent backdrop-blur-sm"></div> */}
