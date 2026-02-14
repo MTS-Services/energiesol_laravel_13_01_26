@@ -32,7 +32,7 @@ export default function Feature({ features }: Props) {
                     className={'px-0 lg:px-50'}
                 />
 
-                <div className="features grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 lg:grid-cols-3 lg:pt-10">
+                <div className="features grid grid-cols-1 gap-6 pt-6 sm:grid-cols-2 lg:grid-cols-3 lg:pt-10 ">
                     {features?.map((item, index) => {
                         const enhancedItem = {
                             ...item,

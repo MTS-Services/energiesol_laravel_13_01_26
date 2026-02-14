@@ -9,6 +9,7 @@ import Generation from "@/components/sections/home/generation";
 import StartConfigurator from "@/components/sections/home/start-configurator";
 
 export default function Home({ features, partners }: { features: any[], partners: any[] }) {
+  console.log(partners);
   return (
     <FrontendLayout>
 

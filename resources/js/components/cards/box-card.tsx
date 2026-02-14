@@ -30,16 +30,38 @@ interface ItemProps{
 }
 
 function BoxCard({item, className, children}: ItemProps) {
-    console.log(item.image_url);
-    const changeOrder = item?.changeOrder ?? false;
-  return (
-     <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md grid grid-cols-1 gap-2  ', className)}>
-      
-        { item?.image_url && (
 
-            <div className={`h-auto overflow-hidden rounded-md ${ !changeOrder ? 'order-first' : 'order-last'}`}>
-            <img src={item?.image_url ?? '/images/feature1.png'} alt="Feature image"  className='w-full! h-auto '/>
-             </div>
+    const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, 150) ?? null);
+
+    const expandDescription = () => {
+        if (item?.description) {
+            setDescription(item?.description);
+        }
+    }
+    const collapseDescription = () => {
+        if (item?.description) {
+            setDescription(item?.description?.substring(0, 150));
+        }
+    }
+
+    const changeOrder = item?.changeOrder ?? false;
+
+  return (
+     <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md  gap-2  ', className)}>
+      
+        {item?.image_url && (
+        <div
+            className={`overflow-hidden rounded-md flex items-center  w-full ${
+            !changeOrder ? "order-first" : "order-last"
+            }`}
+            style={{ height: "300px" }}
+        >
+            <img
+            src={item?.image_url ?? "/images/feature1.png"}
+            alt="Feature image"
+            className="max-h-75 w-auto object-contain object-center mx-auto rounded-md"
+            />
+        </div>
         )}
 
 
@@ -66,7 +88,27 @@ function BoxCard({item, className, children}: ItemProps) {
            
            {
             item?.description && (
-                <p className=' dark:text-gray-400 text-base font-open-sans text-secondary/70'>{item.description}</p>
+                <p className=' dark:text-gray-400 text-base font-open-sans text-secondary/70'>
+                    {description}
+
+                 {
+                    item?.description?.length > 150 && item?.description?.length != description?.length && (
+                        <span className='text-info cursor-pointer' onClick={expandDescription}>...Read more</span>
+                    )
+                 }
+                {
+                item?.description?.length === description?.length &&
+                item?.description?.length > 150 && (
+                    <span
+                    className="text-info cursor-pointer"
+                    onClick={collapseDescription}
+                    >
+                    ...Read less
+                    </span>
+                )
+                }
+                 
+                 </p>
             )
            }
 

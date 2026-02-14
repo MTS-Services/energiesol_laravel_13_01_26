@@ -54,10 +54,10 @@ export default function Configurator6({
     };
 
     return (
-        <div className="mx-auto max-w-7xl py-16 sm:py-20 lg:py-24">
+           <div className="pt-20 pb-10 md:pt-40">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 <div className="mb-10">
-                    <Link href={route('configurator.step5')}>
+                    <Link href={route('configurator.step5', { area: area, solar_id: solar_id, inverter_id: inverter_id, battery:battery})}>
                         <Button variant="ghost">
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             Zurück

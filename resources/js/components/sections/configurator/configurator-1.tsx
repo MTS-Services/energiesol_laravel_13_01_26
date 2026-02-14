@@ -35,7 +35,7 @@ export default function Configurator1() {
 
 
     return (
-        <div className="py-40">
+        <div className="pt-20 pb-10 md:pt-40">
             <div className="container mx-auto w-full px-6">
                 {/* Back */}
                 <div>

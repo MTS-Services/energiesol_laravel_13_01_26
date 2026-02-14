@@ -2,7 +2,7 @@ import { BadgeCheck } from "lucide-react";
 
 function ConfiguratorBadge() {
     return (
-        <div className="mx-auto mt-60 grid max-w-4xl grid-cols-3 items-center justify-center gap-6 sm:flex-row">
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3 items-center justify-center gap-6 sm:flex-row">
             {/* Card 1 */}
             <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
                 <div className="flex h-9 w-9 items-center justify-center overflow-hidden">

@@ -52,11 +52,11 @@ export default function Configurator3({area, solar_id, solarInverterService }: a
 
 
     return (
-        <div className="bg-white py-20 sm:py-28 lg:py-32">
+            <div className="pt-20 pb-10 md:pt-40">
             <div className="container mx-auto px-4 sm:px-6 lg:px-8">
                 {/* Back */}
                 <div className="mb-10">
-                    <Link href={route("configurator.step2")}>
+                    <Link href={route("configurator.step2", {area:area})}>
                         <Button variant="ghost" className="hover:cursor-pointer">
                             <ArrowLeft className="mr-2 h-5 w-5" />
                             Zurück
