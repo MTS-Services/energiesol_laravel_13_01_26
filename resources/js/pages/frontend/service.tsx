@@ -5,7 +5,11 @@ import WhyChoose from '@/components/sections/service/why-choose'
 import StartConfigurator from '@/components/sections/service/start-configurator'
 
 interface ServiceItem {
-  
+  'slogan': string,
+  'title': string,
+  'description': string
+  'image': string
+  'image_url': string
 }
 
 interface AdvantageItem{

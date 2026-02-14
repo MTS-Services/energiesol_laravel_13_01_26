@@ -11,6 +11,7 @@ interface ItemProps{
         slogan?: string | null;
         title?: string | null;
         description?: string | null;
+        description_length?: number | null;
 
         btn?: {
             label: string|null;
@@ -31,8 +32,9 @@ interface ItemProps{
 
 function BoxCard({item, className, children}: ItemProps) {
 
-    const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, 150) ?? null);
-
+    const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, item.description_length ?? 250) ?? null);
+    
+    console.log(item?.image_url, item);
     const expandDescription = () => {
         if (item?.description) {
             setDescription(item?.description);
@@ -40,7 +42,7 @@ function BoxCard({item, className, children}: ItemProps) {
     }
     const collapseDescription = () => {
         if (item?.description) {
-            setDescription(item?.description?.substring(0, 150));
+            setDescription(item?.description?.substring(0, item.description_length ?? 250));
         }
     }
 
@@ -92,13 +94,13 @@ function BoxCard({item, className, children}: ItemProps) {
                     {description}
 
                  {
-                    item?.description?.length > 150 && item?.description?.length != description?.length && (
+                    item?.description?.length > (item.description_length ?? 250) && item?.description?.length != description?.length && (
                         <span className='text-info cursor-pointer' onClick={expandDescription}>...Read more</span>
                     )
                  }
                 {
                 item?.description?.length === description?.length &&
-                item?.description?.length > 150 && (
+                item?.description?.length > (item.description_length ?? 250) && (
                     <span
                     className="text-info cursor-pointer"
                     onClick={collapseDescription}

@@ -62,6 +62,7 @@ class HomeController extends Controller
         $services = $this->serviceService->latest();
         $advantages = $this->advantageService->latest();
 
+      
         return Inertia::render('frontend/service', [
             'services' => $services,
             'advantages' => $advantages,

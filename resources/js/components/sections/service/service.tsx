@@ -9,6 +9,7 @@ export default function Service({ services }: { services?: any[] | null }) {
     title: string;
     description: string;
     changeOrder?: boolean | null
+    image_url?: string
   };
 
   const SectionHeaderData = {
@@ -38,8 +39,10 @@ export default function Service({ services }: { services?: any[] | null }) {
                   image: item.image,
                   description: item.description,
                   changeOrder: index % 2 === 1,
+                  image_url: item.image_url,
+                  descrittion_length: 1000,
                 }
-                return (<BoxCard key={index} item={newItem} className={`grid-cols-2 gap-10 from-transparent to-transparent ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} />)
+                return (<BoxCard key={index} item={newItem} className={`grid-cols-2 gap-10 from-transparent to-transparent grid  ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} />)
              
               })
             }
