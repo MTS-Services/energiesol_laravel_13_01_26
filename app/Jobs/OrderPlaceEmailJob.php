@@ -30,6 +30,14 @@ class OrderPlaceEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new OrderPlaceEmail($this->url));
+        try {
+            Mail::to($this->email)->send(new OrderPlaceEmail($this->url));
+        } catch (\Exception $e) {
+            \Log::error('OrderPlaceEmailJob failed: '.$e->getMessage(), [
+                'email' => $this->email,
+                'url' => $this->url,
+                'exception' => $e,
+            ]);
+        }
     }
 }

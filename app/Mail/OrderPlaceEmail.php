@@ -26,7 +26,7 @@ class OrderPlaceEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'A Order has been placed',
+            subject: 'Bitte bestätigen Sie Ihre E-Mail-Adresse',
         );
     }
 
