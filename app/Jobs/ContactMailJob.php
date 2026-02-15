@@ -29,7 +29,7 @@ class ContactMailJob implements ShouldQueue
     public function handle(): void
     {
         try {
-            Mail::to(config('mail.from.address'))->send(new ContactMail);
+            Mail::to(config('app.admin_mail_address'))->send(new ContactMail);
             Log::info('Contact Mail Send successfully to admin.');
         } catch (\Exception $e) {
             Log::error('ContactMailJob failed: '.$e->getMessage(), [

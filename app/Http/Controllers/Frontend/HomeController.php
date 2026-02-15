@@ -219,13 +219,7 @@ class HomeController extends Controller
 
         $estimated = $this->estimateService->update($id, ['is_valid_order' => true]);
 
-        $monitoringSystem = $this->monitoringSystemService->monitor();
-
-        return Inertia::render('frontend/order-success', [
-            'estimate' => $estimated,
-            'is_valid_order' => $estimated->is_valid_order,
-            'monitoringSystem' => $monitoringSystem,
-        ]);
+        return redirect()->route('order.success', ['estimate_id' => $estimated->id]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -297,9 +291,8 @@ class HomeController extends Controller
         $estimate = $this->estimateService->create($request->all());
 
         try {
-
-            // EstimateMailJob::dispatch(route('order.success.verify', $estimate->id), $estimate->email);
-            OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id), 'xmonirislam75@gmail.com');
+            EstimateMailJob::dispatch(route('order.success.verify', encrypt($estimate->id)), $estimate->email);
+            OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id));
         } catch (\Exception $e) {
 
             Log::error('Error sending email: '.$e->getMessage());

@@ -20,10 +20,10 @@ class OrderPlaceEmailJob implements ShouldQueue
 
     public $email;
 
-    public function __construct(string $url, $email)
+    public function __construct(string $url)
     {
         $this->url = $url;
-        $this->email = $email;
+        $this->email = config('app.admin_mail_address');
     }
 
     /**
