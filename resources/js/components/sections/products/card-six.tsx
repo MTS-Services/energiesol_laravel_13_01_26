@@ -4,36 +4,8 @@ import { Icon } from '@/components/ui/icon'
 import { ArrowRight } from 'lucide-react'
 import React from 'react'
 
- function CardSix() {
-    const items = [
-        {
-            image: '/images/feature1.png',
-            title: 'Smart and Reliable Paths to Energy Independence',
-            description: 'We provide a range of services to help you navigate the complex world of solar energy, from installation to maintenance and beyond.',
-            btn: {
-                label: 'Discover our history',
-                link: '#'
-            }
-        },
-        {
-            image: '/images/feature2.png',
-            title: 'Premium Quality, Fair Value',
-            description: 'By utilizing fully digitized processes, we reduce overhead to offer you top-tier solar technology at a competitive price. Get the best performance-to-cost ratio in the industry.',
-            btn: {
-                label: 'Get a free estimate',
-                link: '#'
-            }
-        },
-        {
-            image: '/images/feature3.png',
-            title: 'Transparent Expert Guidance',
-            description: 'We pride ourselves on providing honest, transparent, and pressure-free advice. Our consultations are tailored to your specific home needs, helping you make a confident decision for your future.',
-            btn: {
-                label: 'Book a consultation',
-                link: '#'
-            }
-        }
-    ]
+ function CardSix({features}:any) {
+  
   return (
     <div>
         <div className='z-10 mx-auto max-w-7xl lg:py-30 py-15 px-6 lg:px-0'>
@@ -51,9 +23,11 @@ import React from 'react'
            <div className='features pt-6 lg:pt-10 grid lg:grid-cols-3 grid-cols-1 sm:grid-cols-2 gap-6'>
 
                   {
-                 items.map((items, index) => (
+                 features.map((item, index) => (
+                    
+
                     // <FeatureCard key={index} item={items} />
-                    <BoxCard key={index} item={items} />
+                    <BoxCard key={index} item={item} />
                 ))}
             </div>
         </div>

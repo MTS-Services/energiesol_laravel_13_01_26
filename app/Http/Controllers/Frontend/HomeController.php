@@ -181,7 +181,10 @@ class HomeController extends Controller
 
     public function products(Request $request): Response
     {
-        return Inertia::render('frontend/products');
+        $features = $this->featureService->latest();
+        return Inertia::render('frontend/products', [
+            'features' => $features,
+        ]);
     }
 
     public function orderSuccess(int $estimate_id): Response|RedirectResponse

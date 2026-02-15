@@ -9,8 +9,9 @@ import { CardFive } from '@/components/sections/products/card-five'
 import StartConfigurator from '@/components/sections/products/start-configurator'
 import { CardSeven } from '@/components/sections/products/card-seven'
 import { CardSix } from '@/components/sections/products/card-six'
+import { features } from 'process'
 
-export default function products() {
+export default function products({features}:any) {
   return (
   <FrontendLayout>
     <Banner />
@@ -18,7 +19,12 @@ export default function products() {
     <CardTwo />
     <CardThree />
     <CardFour />
-    <CardSix />
+  {/* Features item */}
+
+    <CardSix features={features} />
+
+    {/* Features item */}
+
     <CardSeven />
     <CardFive />
  
