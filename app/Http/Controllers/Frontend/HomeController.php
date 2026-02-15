@@ -18,6 +18,7 @@ use App\Services\SolarInverterService;
 use App\Services\SolarPanelService;
 use App\Services\SystemSettingService;
 use App\Services\ValueService;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
@@ -62,7 +63,7 @@ class HomeController extends Controller
         $services = $this->serviceService->latest();
         $advantages = $this->advantageService->latest();
 
-      
+
         return Inertia::render('frontend/service', [
             'services' => $services,
             'advantages' => $advantages,
@@ -230,7 +231,7 @@ class HomeController extends Controller
             'message.required' => 'Bitte geben Sie Ihre Nachricht ein.',
         ]);
 
-        $key = 'contact-form:'.$request->ip();
+        $key = 'contact-form:' . $request->ip();
         $limit = 10;
         $duration = 60;
 
@@ -266,7 +267,7 @@ class HomeController extends Controller
         ]);
 
         // dd($request->all());
-        $key = 'estimate-form:'.$request->ip();
+        $key = 'estimate-form:' . $request->ip();
         $limit = 10;
         $duration = 60;
 
@@ -287,7 +288,7 @@ class HomeController extends Controller
             OrderPlaceEmailJob::dispatch(route('order.success', $estimate->id), 'xmonirislam75@gmail.com');
         } catch (\Exception $e) {
 
-            Log::error('Error sending email: '.$e->getMessage());
+            Log::error('Error sending email: ' . $e->getMessage());
         }
 
         return redirect()->route('order.success', ['estimate_id' => $estimate->id]);
@@ -359,9 +360,9 @@ class HomeController extends Controller
 
         $content = $pdf->Output('', 'S');
 
-        $filename = 'estimate-'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
+        $filename = 'estimate-' . $estimate_id . '-' . now()->format('YmdHis') . '.pdf';
 
-        Storage::disk('public')->put('estimates/'.$filename, $content);
+        Storage::disk('public')->put('estimates/' . $filename, $content);
 
         // $pdf = new \Mpdf\Mpdf([
         //     'format' => 'A4',
@@ -384,84 +385,74 @@ class HomeController extends Controller
 
     }
 
-    public function orderDownloadPdfAnalysis($estimate_id)
-    {
-        $estimate = $this->estimateService->find($estimate_id);
-
-        $saystemSetting = $this->systemSettingService->getSystemSettings();
-
-        $monitoringSystem = $this->monitoringSystemService->monitor();
-
-        if (! $estimate) {
-            abort(404);
-        }
-        $estimate->load('solarPanel', 'solarInverter');
-
-        $data = [
-            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),
-            'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
-            'solar_inverter_price' => $estimate->solarInverter->price,
-            'wallbox' => $saystemSetting->wallbox_price,
-            'evu_fees' => $saystemSetting->evu_fees,
-            'delivery_fees' => $saystemSetting->delivery_fees,
-            'service_charge' => $saystemSetting->service_charge,
-        ];
-        if ($estimate->battery) {
-            $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
-        } else {
-            $data['solar_inverter_battery_price'] = 0;
-        }
-        if ($estimate->charger) {
-            $data['solar_inverter_charger_price'] = $estimate->solarInverter->charger_price;
-        } else {
-            $data['solar_inverter_charger_price'] = 0;
-        }
-
-        $data['vat'] = $saystemSetting->vat ?? 0;
-        $data['discount'] = $saystemSetting->discount ?? 0;
-        $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
-
-        $data['sub_total'] = (
-            $data['solar_panel_price'] +
-            $data['solar_inverter_price'] +
-            $data['solar_inverter_battery_price'] +
-            $data['solar_inverter_charger_price'] +
-            $data['monitoring_system_price'] +
-            $data['wallbox'] +
-            $data['evu_fees']
-        );
-        $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
-
-        $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
-
-        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
-
-        $data['module'] = ceil($estimate->area / $saystemSetting->module_unit_in_meter);
-        $data['wallbox_electricity_generate'] = $saystemSetting->wallbox_boost_electricity;
-        $data['generated_electricity_per_module'] = $saystemSetting->generate_electricity_per_module;
-        $data['unit_price'] = $saystemSetting->unit_price;
-
-        // If invoice doesn't exist, generate it
-
-        $pdf = new \Mpdf\Mpdf([
-            'format' => 'A4',
-            'margin_top' => 10,
-            'margin_bottom' => 10,
-            'margin_left' => 10,
-            'margin_right' => 10,
-        ]);
-
-        $html = view('invoice.generate-invoice-analysis', compact('data'))->render();
-
-        $pdf->WriteHTML($html);
-
-        // $content = $pdf->Output('', 'S');
-        $pdf->Output("analysis.pdf", "D");
-
-        // $filename = 'estimate-econimic'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
-
-        // $path = Storage::disk('public')->put('estimates/'.$filename, $content);
-
-        return true; 
+   public function orderDownloadPdfAnalysis($estimate_id)
+{
+    $estimate = $this->estimateService->find($estimate_id);
+    
+    if (!$estimate) {
+        abort(404);
     }
+    
+    $estimate->load('solarPanel', 'solarInverter');
+    
+    if (!$estimate->solarPanel || !$estimate->solarInverter) {
+        abort(422, 'Missing solar panel or inverter data');
+    }
+    
+    $systemSetting = $this->systemSettingService->getSystemSettings();
+    $monitoringSystem = $this->monitoringSystemService->monitor();
+    
+    if (!$systemSetting) {
+        abort(500, 'System settings not configured');
+    }
+    
+    $moduleCount = ceil($estimate->area / $systemSetting->module_unit_in_meter);
+    
+    $data = [
+        'solar_panel_module' => $moduleCount,
+        'solar_panel_price' => $moduleCount * $estimate->solarPanel->price,
+        'solar_inverter_price' => $estimate->solarInverter->price,
+        'wallbox' => $systemSetting->wallbox_price,
+        'evu_fees' => $systemSetting->evu_fees,
+        'delivery_fees' => $systemSetting->delivery_fees,
+        'service_charge' => $systemSetting->service_charge,
+        'solar_inverter_battery_price' => $estimate->battery ? $estimate->solarInverter->battery_price : 0,
+        'solar_inverter_charger_price' => $estimate->charger ? $estimate->solarInverter->charger_price : 0,
+        'vat' => $systemSetting->vat ?? 0,
+        'discount' => $systemSetting->discount ?? 0,
+        'monitoring_system_price' => $monitoringSystem?->price ?? 0,
+        'module' => $moduleCount,
+        'wallbox_electricity_generate' => $systemSetting->wallbox_boost_electricity,
+        'generated_electricity_per_module' => $systemSetting->generate_electricity_per_module,
+        'unit_price' => $systemSetting->unit_price,
+    ];
+    
+    $data['sub_total'] = array_sum([
+        $data['solar_panel_price'],
+        $data['solar_inverter_price'],
+        $data['solar_inverter_battery_price'],
+        $data['solar_inverter_charger_price'],
+        $data['monitoring_system_price'],
+        $data['wallbox'],
+        $data['evu_fees'],
+    ]);
+    
+    $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
+    $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
+    $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
+    
+    $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice-analysis', compact('data'));
+    
+    // Set proper headers and force download
+    return response()->streamDownload(
+    function () use ($pdf) {
+        echo $pdf->output();
+    },
+    'your-analysis.pdf',
+    [
+        'Content-Type' => 'application/pdf',
+        'Content-Disposition' => 'attachment; filename="your-analysis.pdf"'
+    ]
+);
+}
 }
