@@ -280,7 +280,6 @@ class HomeController extends Controller
 
         try {
 
-            // Mail::to($estimate->email)->send(new EstimateMail(route('order.success.verify', [encrypt($estimate->id)])));
             EstimateMailJob::dispatch(route('order.success.verify', $estimate->id), $estimate->email);
             OrderPlaceEmailJob::dispatch(route('order.success', $estimate->id), 'xmonirislam75@gmail.com');
         } catch (\Exception $e) {

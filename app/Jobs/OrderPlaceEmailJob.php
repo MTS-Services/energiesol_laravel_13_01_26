@@ -6,6 +6,7 @@ use App\Mail\OrderPlaceEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class OrderPlaceEmailJob implements ShouldQueue
@@ -33,7 +34,7 @@ class OrderPlaceEmailJob implements ShouldQueue
         try {
             Mail::to($this->email)->send(new OrderPlaceEmail($this->url));
         } catch (\Exception $e) {
-            \Log::error('OrderPlaceEmailJob failed: '.$e->getMessage(), [
+            Log::error('OrderPlaceEmailJob failed: '.$e->getMessage(), [
                 'email' => $this->email,
                 'url' => $this->url,
                 'exception' => $e,
