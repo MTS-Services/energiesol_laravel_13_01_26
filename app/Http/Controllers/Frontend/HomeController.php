@@ -455,12 +455,13 @@ class HomeController extends Controller
 
         $pdf->WriteHTML($html);
 
-        $content = $pdf->Output('', 'S');
+        // $content = $pdf->Output('', 'S');
+        $pdf->Output("analysis.pdf", "D");
 
-        $filename = 'estimate-econimic'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
+        // $filename = 'estimate-econimic'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
 
-        $path = Storage::disk('public')->put('estimates/'.$filename, $content);
+        // $path = Storage::disk('public')->put('estimates/'.$filename, $content);
 
-        // return response()->download($path);
+        return true; 
     }
 }
