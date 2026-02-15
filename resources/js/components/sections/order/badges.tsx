@@ -4,7 +4,7 @@ function Badges() {
     return (
         <div>
             {/* Bottom badges */}
-            <div className="mx-auto py-15 pt-11 lg:py-30 lg:pt-22 grid max-w-4xl grid-cols-1 lg:grid-cols-3 items-center justify-center gap-6">
+            <div className="mx-auto  grid max-w-4xl grid-cols-1 lg:grid-cols-3 items-center justify-center gap-6">
                 {/* Card 1 */}
                 <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
                     <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden">
