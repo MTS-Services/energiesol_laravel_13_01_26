@@ -364,25 +364,6 @@ class HomeController extends Controller
 
         Storage::disk('public')->put('estimates/' . $filename, $content);
 
-        // $pdf = new \Mpdf\Mpdf([
-        //     'format' => 'A4',
-        //     'margin_top' => 10,
-        //     'margin_bottom' => 10,
-        //     'margin_left' => 10,
-        //     'margin_right' => 10
-        // ]);
-
-        // $html = view('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
-
-        // $pdf->WriteHTML($html);
-
-        // $filename = 'estimate-' . $estimate_id . '-' . now()->format('YmdHis') . '.pdf';
-
-        // return response($pdf->Output('', 'S'), 200, [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'attachment; filename="' . $filename . '"'
-        // ]);
-
     }
 
    public function orderDownloadPdfAnalysis($estimate_id)
