@@ -80,7 +80,7 @@ export default function banner() {
 
                         <div className="flex">
                             <div className="flex items-center gap-4 rounded-full bg-primary px-2 py-2">
-                                <Link>
+                                <Link href={route('home')}>
                                     {' '}
                                     <img
                                         src="/images/facebook.png"
