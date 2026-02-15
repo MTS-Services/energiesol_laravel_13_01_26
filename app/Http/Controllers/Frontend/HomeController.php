@@ -366,15 +366,14 @@ class HomeController extends Controller
             'margin_right' => 10,
         ]);
 
-        $html = view('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
 
-        $pdf->WriteHTML($html);
+        //  $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'));
 
-        $content = $pdf->Output('', 'S');
+        $html = view()->make('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
 
-        $filename = 'estimate-'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
+         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
 
-        Storage::disk('public')->put('estimates/'.$filename, $content);
+        return $pdf->download('estimate.pdf');
 
     }
 
@@ -434,18 +433,12 @@ class HomeController extends Controller
         $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
         $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
 
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice-analysis', compact('data'));
+        $html = view()->make('invoice.generate-invoice-analysis', compact('data'))->render();
 
-        // Set proper headers and force download
-        return response()->streamDownload(
-            function () use ($pdf) {
-                echo $pdf->output();
-            },
-            'your-analysis.pdf',
-            [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="your-analysis.pdf"',
-            ]
-        );
+         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
+
+        return $pdf->download('estimate.pdf');
+
     }
+    
 }

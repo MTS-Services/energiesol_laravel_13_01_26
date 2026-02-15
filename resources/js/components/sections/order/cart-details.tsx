@@ -408,7 +408,7 @@ function CartDetails(
                 className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
                 iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
               />
-              {processing ? "Genereating PDF" : "  Kostenvoranschlag herunterladen"}
+              {processing ? "Donwloading PDF" : "  Kostenvoranschlag herunterladen"}
             </Button>
 
           
@@ -422,7 +422,7 @@ function CartDetails(
                             className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
                             iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
                         />
-                        {processingAnalysis ? "Genereating PDF" : "Wirtschaftsanalyse herunterladen"}
+                        {processingAnalysis ? "Downloading PDF" : "Wirtschaftsanalyse herunterladen"}
                         </Button>
           </div>
 
