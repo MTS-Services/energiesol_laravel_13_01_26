@@ -40,6 +40,7 @@ export default function Feature({ features }: Props) {
                                 label: item.action_text,
                                 href: item.action_url || '#',
                             },
+                             descrittion_length: 100,
                         };
 
                         return <BoxCard key={index} item={enhancedItem} />;
