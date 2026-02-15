@@ -42,7 +42,8 @@ export default function banner() {
                             </p>
                         </div>
                         <div>
-                            <Button size="default" className="">
+                           <Link href={route('configurator')}>
+                             <Button size="default" className="">
                                 <Icon
                                     iconNode={ArrowRight}
                                     variant="circle"
@@ -51,6 +52,7 @@ export default function banner() {
                                 />
                                 Konfigurator
                             </Button>
+                           </Link>
                         </div>
                         <div className="flex items-center gap-4 py-8">
                             <div className="flex -space-x-2 *:data-[slot=avatar]:ring-2 *:data-[slot=avatar]:ring-background *:data-[slot=avatar]:grayscale">
