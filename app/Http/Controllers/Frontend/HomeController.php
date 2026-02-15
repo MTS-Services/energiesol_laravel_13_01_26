@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ContactMailJob;
 use App\Jobs\EstimateMailJob;
 use App\Jobs\OrderPlaceEmailJob;
-use App\Mail\EstimateMail;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
 use App\Services\FeatureService;
+use App\Services\GoogleReviewService;
 use App\Services\MonitoringSystemService;
 use App\Services\PartnerService;
 use App\Services\ServiceService;
@@ -42,6 +42,7 @@ class HomeController extends Controller
         protected MonitoringSystemService $monitoringSystemService,
         protected PartnerService $partnerService,
         protected SystemSettingService $systemSettingService,
+        protected GoogleReviewService $googleReviewService,
     ) {
         //
     }
@@ -50,10 +51,14 @@ class HomeController extends Controller
     {
         $features = $this->featureService->latest();
         $partners = $this->partnerService->latest();
+        $reviews = $this->googleReviewService->getReviews();
+
+    
 
         return Inertia::render('frontend/home', [
             'features' => $features,
             'partners' => $partners,
+            'reviews' => $reviews
         ]);
     }
 
@@ -364,15 +369,14 @@ class HomeController extends Controller
             'margin_right' => 10,
         ]);
 
-        $html = view('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
 
-        $pdf->WriteHTML($html);
+        //  $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'));
 
-        $content = $pdf->Output('', 'S');
+        $html = view()->make('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
 
-        $filename = 'estimate-'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
+         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
 
-        Storage::disk('public')->put('estimates/'.$filename, $content);
+        return $pdf->download('estimate.pdf');
 
     }
 
@@ -432,18 +436,12 @@ class HomeController extends Controller
         $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
         $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
 
-        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice-analysis', compact('data'));
+        $html = view()->make('invoice.generate-invoice-analysis', compact('data'))->render();
 
-        // Set proper headers and force download
-        return response()->streamDownload(
-            function () use ($pdf) {
-                echo $pdf->output();
-            },
-            'your-analysis.pdf',
-            [
-                'Content-Type' => 'application/pdf',
-                'Content-Disposition' => 'attachment; filename="your-analysis.pdf"',
-            ]
-        );
+         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
+
+        return $pdf->download('estimate.pdf');
+
     }
+    
 }

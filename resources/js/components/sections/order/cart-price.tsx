@@ -177,7 +177,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                                 className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
                                 iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
                             />
-                            {processing ? "Genereating PDF" : "  Kostenvoranschlag herunterladen"}
+                            {processing ? "Downloading PDF" : "  Kostenvoranschlag herunterladen"}
                         </Button>
 
 
@@ -191,7 +191,7 @@ function CartPrice({ is_valid_order , estimate, monitoringSystem }: Props) {
                             className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
                             iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
                         />
-                        {processingAnalysis ? "Genereating PDF" : "Wirtschaftsanalyse herunterladen"}
+                        {processingAnalysis ? "Downloading PDF" : "Wirtschaftsanalyse herunterladen"}
                         </Button>
                     </div>
 
