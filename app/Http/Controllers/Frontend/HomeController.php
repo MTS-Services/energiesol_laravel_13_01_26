@@ -6,11 +6,11 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ContactMailJob;
 use App\Jobs\EstimateMailJob;
 use App\Jobs\OrderPlaceEmailJob;
-use App\Mail\EstimateMail;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
 use App\Services\FeatureService;
+use App\Services\GoogleReviewService;
 use App\Services\MonitoringSystemService;
 use App\Services\PartnerService;
 use App\Services\ServiceService;
@@ -42,6 +42,7 @@ class HomeController extends Controller
         protected MonitoringSystemService $monitoringSystemService,
         protected PartnerService $partnerService,
         protected SystemSettingService $systemSettingService,
+        protected GoogleReviewService $googleReviewService,
     ) {
         //
     }
@@ -50,10 +51,14 @@ class HomeController extends Controller
     {
         $features = $this->featureService->latest();
         $partners = $this->partnerService->latest();
+        $reviews = $this->googleReviewService->getReviews();
+
+    
 
         return Inertia::render('frontend/home', [
             'features' => $features,
             'partners' => $partners,
+            'reviews' => $reviews
         ]);
     }
 
