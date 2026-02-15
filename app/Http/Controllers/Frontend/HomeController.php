@@ -3,10 +3,10 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ContactMailJob;
 use App\Jobs\EstimateMailJob;
 use App\Jobs\OrderPlaceEmailJob;
 use App\Mail\EstimateMail;
-use App\Models\Estimate;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
@@ -62,7 +62,6 @@ class HomeController extends Controller
         $services = $this->serviceService->latest();
         $advantages = $this->advantageService->latest();
 
-      
         return Inertia::render('frontend/service', [
             'services' => $services,
             'advantages' => $advantages,
@@ -197,6 +196,22 @@ class HomeController extends Controller
         ]);
     }
 
+    public function OrderSuccessAdminView($estimate_id){
+         $estimate = $this->estimateService->find($estimate_id);
+
+        $monitoringSystem = $this->monitoringSystemService->monitor();
+        if (! $estimate) {
+            return redirect()->route('configurator');
+        }
+        $estimate->load('solarPanel', 'solarInverter');
+
+        return Inertia::render('frontend/order-success-admin-view', [
+            'estimate' => $estimate,
+            'is_valid_order' => $estimate->is_valid_order,
+            'monitoringSystem' => $monitoringSystem,
+        ]);
+    }
+
     public function orderSuccessVerify($encrypted_estimate_id)
     {
 
@@ -204,13 +219,7 @@ class HomeController extends Controller
 
         $estimated = $this->estimateService->update($id, ['is_valid_order' => true]);
 
-        $monitoringSystem = $this->monitoringSystemService->monitor();
-
-        return Inertia::render('frontend/order-success', [
-            'estimate' => $estimated,
-            'is_valid_order' => $estimated->is_valid_order,
-            'monitoringSystem' => $monitoringSystem,
-        ]);
+        return redirect()->route('order.success', ['estimate_id' => $estimated->id]);
     }
 
     public function store(Request $request): RedirectResponse
@@ -244,6 +253,7 @@ class HomeController extends Controller
 
         $contact = $this->contactService->create($request->all());
 
+        if($contact) ContactMailJob::dispatch();
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
     }
 
@@ -281,10 +291,8 @@ class HomeController extends Controller
         $estimate = $this->estimateService->create($request->all());
 
         try {
-
-            // Mail::to($estimate->email)->send(new EstimateMail(route('order.success.verify', [encrypt($estimate->id)])));
-            EstimateMailJob::dispatch(route('order.success.verify', [encrypt($estimate->id)]), $estimate->email);
-            OrderPlaceEmailJob::dispatch(route('order.success', $estimate->id), 'xmonirislam75@gmail.com');
+            EstimateMailJob::dispatch(route('order.success.verify', encrypt($estimate->id)), $estimate->email);
+            OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id));
         } catch (\Exception $e) {
 
             Log::error('Error sending email: '.$e->getMessage());
@@ -363,104 +371,76 @@ class HomeController extends Controller
 
         Storage::disk('public')->put('estimates/'.$filename, $content);
 
-        // $pdf = new \Mpdf\Mpdf([
-        //     'format' => 'A4',
-        //     'margin_top' => 10,
-        //     'margin_bottom' => 10,
-        //     'margin_left' => 10,
-        //     'margin_right' => 10
-        // ]);
-
-        // $html = view('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
-
-        // $pdf->WriteHTML($html);
-
-        // $filename = 'estimate-' . $estimate_id . '-' . now()->format('YmdHis') . '.pdf';
-
-        // return response($pdf->Output('', 'S'), 200, [
-        //     'Content-Type' => 'application/pdf',
-        //     'Content-Disposition' => 'attachment; filename="' . $filename . '"'
-        // ]);
-
     }
 
     public function orderDownloadPdfAnalysis($estimate_id)
     {
         $estimate = $this->estimateService->find($estimate_id);
 
-        $saystemSetting = $this->systemSettingService->getSystemSettings();
-
-        $monitoringSystem = $this->monitoringSystemService->monitor();
-
         if (! $estimate) {
             abort(404);
         }
+
         $estimate->load('solarPanel', 'solarInverter');
 
+        if (! $estimate->solarPanel || ! $estimate->solarInverter) {
+            abort(422, 'Missing solar panel or inverter data');
+        }
+
+        $systemSetting = $this->systemSettingService->getSystemSettings();
+        $monitoringSystem = $this->monitoringSystemService->monitor();
+
+        if (! $systemSetting) {
+            abort(500, 'System settings not configured');
+        }
+
+        $moduleCount = ceil($estimate->area / $systemSetting->module_unit_in_meter);
+
         $data = [
-            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),
-            'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
+            'solar_panel_module' => $moduleCount,
+            'solar_panel_price' => $moduleCount * $estimate->solarPanel->price,
             'solar_inverter_price' => $estimate->solarInverter->price,
-            'wallbox' => $saystemSetting->wallbox_price,
-            'evu_fees' => $saystemSetting->evu_fees,
-            'delivery_fees' => $saystemSetting->delivery_fees,
-            'service_charge' => $saystemSetting->service_charge,
+            'wallbox' => $systemSetting->wallbox_price,
+            'evu_fees' => $systemSetting->evu_fees,
+            'delivery_fees' => $systemSetting->delivery_fees,
+            'service_charge' => $systemSetting->service_charge,
+            'solar_inverter_battery_price' => $estimate->battery ? $estimate->solarInverter->battery_price : 0,
+            'solar_inverter_charger_price' => $estimate->charger ? $estimate->solarInverter->charger_price : 0,
+            'vat' => $systemSetting->vat ?? 0,
+            'discount' => $systemSetting->discount ?? 0,
+            'monitoring_system_price' => $monitoringSystem?->price ?? 0,
+            'module' => $moduleCount,
+            'wallbox_electricity_generate' => $systemSetting->wallbox_boost_electricity,
+            'generated_electricity_per_module' => $systemSetting->generate_electricity_per_module,
+            'unit_price' => $systemSetting->unit_price,
         ];
-        if ($estimate->battery) {
-            $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
-        } else {
-            $data['solar_inverter_battery_price'] = 0;
-        }
-        if ($estimate->charger) {
-            $data['solar_inverter_charger_price'] = $estimate->solarInverter->charger_price;
-        } else {
-            $data['solar_inverter_charger_price'] = 0;
-        }
 
-        $data['vat'] = $saystemSetting->vat ?? 0;
-        $data['discount'] = $saystemSetting->discount ?? 0;
-        $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
-
-        $data['sub_total'] = (
-            $data['solar_panel_price'] +
-            $data['solar_inverter_price'] +
-            $data['solar_inverter_battery_price'] +
-            $data['solar_inverter_charger_price'] +
-            $data['monitoring_system_price'] +
-            $data['wallbox'] +
-            $data['evu_fees']
-        );
-        $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
-
-        $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
-
-        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
-
-        $data['module'] = ceil($estimate->area / $saystemSetting->module_unit_in_meter);
-        $data['wallbox_electricity_generate'] = $saystemSetting->wallbox_boost_electricity;
-        $data['generated_electricity_per_module'] = $saystemSetting->generate_electricity_per_module;
-        $data['unit_price'] = $saystemSetting->unit_price;
-
-        // If invoice doesn't exist, generate it
-
-        $pdf = new \Mpdf\Mpdf([
-            'format' => 'A4',
-            'margin_top' => 10,
-            'margin_bottom' => 10,
-            'margin_left' => 10,
-            'margin_right' => 10,
+        $data['sub_total'] = array_sum([
+            $data['solar_panel_price'],
+            $data['solar_inverter_price'],
+            $data['solar_inverter_battery_price'],
+            $data['solar_inverter_charger_price'],
+            $data['monitoring_system_price'],
+            $data['wallbox'],
+            $data['evu_fees'],
         ]);
 
-        $html = view('invoice.generate-invoice-analysis', compact('data'))->render();
+        $data['discount_amount'] = $data['sub_total'] * ($data['discount'] / 100);
+        $data['vat_amount'] = $data['sub_total'] * ($data['vat'] / 100);
+        $data['grand_total'] = $data['sub_total'] - $data['discount_amount'] + $data['vat_amount'] + $data['delivery_fees'] + $data['service_charge'];
 
-        $pdf->WriteHTML($html);
+        $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice-analysis', compact('data'));
 
-        $content = $pdf->Output('', 'S');
-
-        $filename = 'estimate-econimic'.$estimate_id.'-'.now()->format('YmdHis').'.pdf';
-
-        $path = Storage::disk('public')->put('estimates/'.$filename, $content);
-
-        // return response()->download($path);
+        // Set proper headers and force download
+        return response()->streamDownload(
+            function () use ($pdf) {
+                echo $pdf->output();
+            },
+            'your-analysis.pdf',
+            [
+                'Content-Type' => 'application/pdf',
+                'Content-Disposition' => 'attachment; filename="your-analysis.pdf"',
+            ]
+        );
     }
 }

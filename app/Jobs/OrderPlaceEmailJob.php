@@ -6,6 +6,7 @@ use App\Mail\OrderPlaceEmail;
 use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Foundation\Queue\Queueable;
 use Illuminate\Queue\SerializesModels;
+use Illuminate\Support\Facades\Log;
 use Illuminate\Support\Facades\Mail;
 
 class OrderPlaceEmailJob implements ShouldQueue
@@ -19,10 +20,10 @@ class OrderPlaceEmailJob implements ShouldQueue
 
     public $email;
 
-    public function __construct(string $url, $email)
+    public function __construct(string $url)
     {
         $this->url = $url;
-        $this->email = $email;
+        $this->email = config('app.admin_mail_address');
     }
 
     /**
@@ -30,6 +31,14 @@ class OrderPlaceEmailJob implements ShouldQueue
      */
     public function handle(): void
     {
-        Mail::to($this->email)->send(new OrderPlaceEmail($this->url));
+        try {
+            Mail::to($this->email)->send(new OrderPlaceEmail($this->url));
+        } catch (\Exception $e) {
+            Log::error('OrderPlaceEmailJob failed: '.$e->getMessage(), [
+                'email' => $this->email,
+                'url' => $this->url,
+                'exception' => $e,
+            ]);
+        }
     }
 }

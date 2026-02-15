@@ -1,9 +1,8 @@
-
 <!DOCTYPE html>
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Bitte bestätigen Sie Ihre E-Mail-Adresse</title>
+    <title>Kostenvoranschlag prüfen</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -51,17 +50,18 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>KLARSOLAR powered by e.on</h2>
+            <h2>Energie Solution Nord</h2>
         </div>
         <div class="content">
-            <h3>Hallo ,</h3>
-            <p>Vielen Dank für Ihr Interesse an der Klarsolar PV-Lösung.</p>
-            <p>Damit unser Vertrieb Sie künftig per E-Mail kontaktieren darf, bestätigen Sie bitte jetzt noch Ihre E-Mail-Adresse.</p>
+            <h3>Hallo,</h3>
+            <p>Vielen Dank für Ihre Anfrage / Bestellung.</p>
+            <p>Bitte überprüfen Sie Ihren Kostenvoranschlag über den Button unten:</p>
             
-            <a href="{{ $url }}" class="button">E-Mail-Adresse bestätigen</a>
+            <a href="{{ $url }}" class="button">Kostenvoranschlag prüfen</a>
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} Klarsolar. Alle Rechte vorbehalten.
+            &copy; 2026 Energie Solution Nord. Alle Rechte vorbehalten.<br>
+            <a href="https://www.energiesolutionnord.de" style="color:#888888; text-decoration:none;">www.energiesolutionnord.de</a>
         </div>
     </div>
 </body>

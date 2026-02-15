@@ -2,7 +2,7 @@
 <html lang="de">
 <head>
     <meta charset="UTF-8">
-    <title>Neue Anfrage eingegangen</title>
+    <title>Neue Admin-Benachrichtigung</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -53,15 +53,14 @@
             <h2>Energie Solution Nord</h2>
         </div>
         <div class="content">
-            <h3>Hallo,</h3>
-            <p>Es wurde eine neue Anfrage eingegangen.</p>
-            <p>Bitte prüfen Sie die Details über das Dashboard, indem Sie auf den Button unten klicken:</p>
+            <h3>Hallo Admin,</h3>
+            <p>Es gibt eine neue Benachrichtigung im System von <strong>www.energiesolutionnord.de</strong>.</p>
+            <p>Bitte prüfen Sie die Details und handeln Sie entsprechend in Ihrem Dashboard.</p>
             
-            <a href="{{ $url }}" class="button">Zur Anfrage</a>
+            <a href="https://www.energiesolutionnord.de/admin/dashboard" class="button">Zum Dashboard</a>
         </div>
         <div class="footer">
-            &copy; {{ date('Y') }} Energie Solution Nord. Alle Rechte vorbehalten.<br>
-            <a href="https://www.energiesolutionnord.de" style="color:#888888; text-decoration:none;">www.energiesolutionnord.de</a>
+            &copy; {{ date('Y') }} Energie Solution Nord. Alle Rechte vorbehalten.
         </div>
     </div>
 </body>

@@ -2,22 +2,22 @@
 
 namespace App\Mail;
 
+use Illuminate\Bus\Queueable;
 use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
-use Illuminate\Support\Facades\Log;
+use Illuminate\Queue\SerializesModels;
 
-class OrderPlaceEmail extends Mailable
+class ContactMail extends Mailable
 {
+    use Queueable, SerializesModels;
+
     /**
      * Create a new message instance.
      */
-    public string $url;
-
-    public function __construct(string $url)
+    public function __construct()
     {
-        $this->url = $url;
-        Log::info('Order Mail Send constructor called');
+        //
     }
 
     /**
@@ -26,7 +26,7 @@ class OrderPlaceEmail extends Mailable
     public function envelope(): Envelope
     {
         return new Envelope(
-            subject: 'Bitte bestätigen Sie Ihre E-Mail-Adresse',
+            subject: 'New Contact Message',
         );
     }
 
@@ -36,10 +36,7 @@ class OrderPlaceEmail extends Mailable
     public function content(): Content
     {
         return new Content(
-            view: 'emails.order_place_email',
-            with: [
-                'url' => $this->url,
-            ],
+            view: 'emails.contact_mail',
         );
     }
 
