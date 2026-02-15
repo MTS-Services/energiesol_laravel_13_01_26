@@ -24,6 +24,8 @@ Route::group([], function () {
 
     Route::get('/order/success/{estimate_id}', [HomeController::class, 'orderSuccess'])->name('order.success');
     Route::get('/order/success/verify/{estimate_id}', [HomeController::class, 'orderSuccessVerify'])->name('order.success.verify');
+    Route::get('/order/success/admin-view/{estimate_id}', [HomeController::class, 'OrderSuccessAdminView'])->name('order.success.admin-view');
+
     Route::post('/order/download/{estimate_id}', [HomeController::class, 'orderDownloadPdf'])->name('order.download');
     Route::post('/order/download/analysis/{estimate_id}', [HomeController::class, 'orderDownloadPdfAnalysis'])->name('order.download.analysis');
     Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');

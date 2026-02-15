@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Frontend;
 
 use App\Http\Controllers\Controller;
+use App\Jobs\ContactMailJob;
 use App\Jobs\EstimateMailJob;
 use App\Jobs\OrderPlaceEmailJob;
 use App\Mail\EstimateMail;
@@ -195,6 +196,22 @@ class HomeController extends Controller
         ]);
     }
 
+    public function OrderSuccessAdminView($estimate_id){
+         $estimate = $this->estimateService->find($estimate_id);
+
+        $monitoringSystem = $this->monitoringSystemService->monitor();
+        if (! $estimate) {
+            return redirect()->route('configurator');
+        }
+        $estimate->load('solarPanel', 'solarInverter');
+
+        return Inertia::render('frontend/order-success-admin-view', [
+            'estimate' => $estimate,
+            'is_valid_order' => $estimate->is_valid_order,
+            'monitoringSystem' => $monitoringSystem,
+        ]);
+    }
+
     public function orderSuccessVerify($encrypted_estimate_id)
     {
 
@@ -242,6 +259,7 @@ class HomeController extends Controller
 
         $contact = $this->contactService->create($request->all());
 
+        if($contact) ContactMailJob::dispatch();
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
     }
 
@@ -280,8 +298,8 @@ class HomeController extends Controller
 
         try {
 
-            EstimateMailJob::dispatch(route('order.success.verify', $estimate->id), $estimate->email);
-            OrderPlaceEmailJob::dispatch(route('order.success', $estimate->id), 'xmonirislam75@gmail.com');
+            // EstimateMailJob::dispatch(route('order.success.verify', $estimate->id), $estimate->email);
+            OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id), 'xmonirislam75@gmail.com');
         } catch (\Exception $e) {
 
             Log::error('Error sending email: '.$e->getMessage());
