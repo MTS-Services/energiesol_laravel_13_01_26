@@ -171,31 +171,31 @@
     </div>
 
     <!-- Items List -->
-    <h2>Econmic Analysis With Wallbox</h2>
+    <h2>Wirtschaftlichkeitsanalyse mit Wandladestation</h2>
     <table class="items-table">
         <tr>
             <td class="title">
-               <span>Total Investment: </span> 
+               <span>Gesamtinvestition:  </span> 
             </td>
             <td class="price">{{ number_format( $data['grand_total'], 2) }} €.</td>
         </tr>
         <tr>
-            <td class="title">Energy Generated ( {{ $data['module']}} modules )</td>
+            <td class="title">Erzeugte Energie ( {{ $data['module']}} module )</td>
             <td class="price">{{ number_format(($data['module'] * $data['generated_electricity_per_module']) /1000, 2) }} Kwh </td>
         </tr>
 
         <tr>
-            <td class="title">Walbox</td>
+            <td class="title">Wandladestation</td>
             <td class="price">{{ $data['wallbox_electricity_generate']}} Kwh</td>
         </tr>
 
 
         <tr>
-            <td class="title">Unit Price</td>
+            <td class="title">Stückpreis</td>
             <td class="price">{{ $data['unit_price']}} €.</td>
         </tr>
         <tr>
-            <td class="title">Return in year </td>
+            <td class="title">Rendite pro Jahr </td>
             <td class="price">{{ number_format((((($data['module'] * $data['generated_electricity_per_module']) /1000) + $data['wallbox_electricity_generate']) * $data['unit_price']), 2)  }} €.</td>
         </tr>
         <tr>
@@ -204,7 +204,7 @@
         </tr>
 
          <tr>
-            <td class="title">Return Of Investment (20 Jahre) </td>
+            <td class="title">Amortisation (20 Jahre) </td>
             <td class="price">{{ number_format(20 * (((($data['module'] * $data['generated_electricity_per_module']) /1000) + $data['wallbox_electricity_generate']) * $data['unit_price']), 2) }} €.</td>
         </tr>
 
@@ -212,27 +212,27 @@
 
     
     <!-- Items List -->
-    <h2>Econmic Analysis Without Wallbox</h2>
+    <h2>Wirtschaftlichkeitsanalyse ohne Wandladestation</h2>
     <table class="items-table">
         <tr>
             <td class="title">
-               <span>Total Investment: </span> 
+               <span>Gesamtinvestition: </span> 
             </td>
             <td class="price">{{ number_format($data['grand_total'] - $data['wallbox'] , 2)}} €.</td>
         </tr>
         <tr>
-            <td class="title">Energy Generated ( {{ $data['module']}} modules )</td>
+            <td class="title">Erzeugte Energie ( {{ $data['module']}} module )</td>
             <td class="price">{{ number_format(($data['module'] * $data['generated_electricity_per_module']) /1000, 2) }} Kwh </td>
         </tr>
 
 
 
         <tr>
-            <td class="title">Unit Price</td>
+            <td class="title">Stückpreis</td>
             <td class="price">{{ $data['unit_price']}} €. Kwh</td>
         </tr>
         <tr>
-            <td class="title">Return in year </td>
+            <td class="title">Rendite pro Jahr </td>
             <td class="price">{{ number_format((((($data['module'] * $data['generated_electricity_per_module']) /1000) ) * $data['unit_price']), 2)  }} €.</td>
         </tr>
         <tr>
@@ -241,7 +241,7 @@
         </tr>
 
          <tr>
-            <td class="title">Return Of Investment (20 Jahre) </td>
+            <td class="title">Amortisation (20 Jahre) </td>
             <td class="price">{{ number_format(20 * (((($data['module'] * $data['generated_electricity_per_module']) /1000)) * $data['unit_price']), 2) }} €.</td>
         </tr>
 

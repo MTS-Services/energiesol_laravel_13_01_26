@@ -174,37 +174,37 @@
     <table class="items-table">
         <tr>
             <td class="title">
-               <span>Solar Panel: </span> {{ $solarPanel->title }}
+               <span>Solarmodul:  </span> {{ $solarPanel->title }}
             </td>
             <td class="price">({{  $data['solar_panel_module']}} {{ "module"}} )    {{ $data['solar_panel_price'] }} €.</td>
         </tr>
         <tr>
-            <td class="title">Solar Inverter: {{ $solarInverter->title }}</td>
+            <td class="title">Solarwechselrichter: {{ $solarInverter->title }}</td>
             <td class="price">{{ $data['solar_inverter_price']}} €.</td>
         </tr>
         @if($data['solar_inverter_charger_price'] > 0)
         <tr>
-            <td class="title">Charger</td>
+            <td class="title">Ladegerät: </td>
             <td class="price">{{ $data['solar_inverter_charger_price']}} €.</td>
         </tr>
         @endif
 
         @if($data['solar_inverter_battery_price'] > 0)
         <tr>
-            <td class="title">Battery</td>
+            <td class="title">Solarbatterie: </td>
             <td class="price">{{ $data['solar_inverter_battery_price']}} €.</td>
         </tr>
         @endif
         <tr>
-            <td class="title">Monitoring System</td>
+            <td class="title">Überwachungssystem</td>
             <td class="price">{{ $data['monitoring_system_price']}} €.</td>
         </tr>
         <tr>
-            <td class="title">Wallbox </td>
+            <td class="title">Wandladestation </td>
             <td class="price">{{ $data['wallbox']}} €.</td>
         </tr>
         <tr>
-            <td class="title">EVU </td>
+            <td class="title">Energieversorgungsunternehmen  </td>
             <td class="price">{{ $data['evu_fees']}} €.</td>
         </tr>
 
@@ -216,26 +216,26 @@
         <table class="items-table">
         <tr>
             <td class="title">
-               <span>Subtotal </span> 
+               <span>Zwischensumme </span> 
             </td>
             <td class="price"> {{ $data['sub_total'] }} €.</td>
         </tr>
         <tr>
-            <td class="title">VAT ({{ $data['vat'] }}%) </td>
+            <td class="title">Mehrwertsteuer (MwSt.) ({{ $data['vat'] }}%) </td>
             <td class="price">{{ $data['vat_amount'] }} €.</td>
         </tr>
         
         <tr>
-            <td class="title">Delivery Charge</td>
+            <td class="title">Liefergebühr</td>
             <td class="price">{{ $data['delivery_fees'] }} €.</td>
         </tr>
         
         <tr>
-            <td class="title">Service Charge </td>
+            <td class="title">Servicegebühr </td>
             <td class="price">{{ $data['service_charge'] }} €.</td>
         </tr>
         <tr>
-            <td class="title">Discount ({{ $data['discount'] }}%) </td>
+            <td class="title">Rabatt ({{ $data['discount'] }}%) </td>
             <td class="price">{{ $data['discount_amount'] }} €.</td>
         </tr>
         </table>
@@ -248,7 +248,7 @@
         <table class="items-table">
             <tr>
                 <td class="title">
-                <span style="font-weight: 700">Grand Total </span> 
+                <span style="font-weight: 700">Gesamtsumme </span> 
                 </td>
                 <td class="price " style="font-weight: 700">{{ $data['grand_total'] }} €.</td>
             </tr>
@@ -259,11 +259,11 @@
     <div class="footer">
         <div class="signature-block">
             <div class="signature-box"></div>
-            <div class="signature-label">Date</div>
+            <div class="signature-label">Datum</div>
         </div>
         <div class="signature-block">
             <div class="signature-box"></div>
-            <div class="signature-label">Signature</div>
+            <div class="signature-label">Unterschrift</div>
         </div>
     </div>
 </body>
