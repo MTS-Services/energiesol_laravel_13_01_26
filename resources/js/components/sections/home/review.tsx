@@ -1,7 +1,7 @@
 import { SectionHeader } from "@/components/cards/section-header"
 import { Slider } from "@/components/cards/slider";
 
-export default function review() {
+export default function review({reviews}: {reviews: any}) {
     const SectionHeaderData = {
         slogan: 'Kundengeschichten',
         title: {
@@ -36,7 +36,7 @@ export default function review() {
 
                 <div className="features grid grid-cols-1 gap-6 pt-6 lg:pt-10">
 
-                    <Slider sliders={sliders} />
+                    <Slider sliders={reviews} />
 
                 </div>
             </div>

@@ -8,7 +8,7 @@ import DeliveryEnergy from "@/components/sections/home/delivery-energy";
 import Generation from "@/components/sections/home/generation";
 import StartConfigurator from "@/components/sections/home/start-configurator";
 
-export default function Home({ features, partners }: { features: any[], partners: any[] }) {
+export default function Home({ features, partners, reviews }: { features: any[], partners: any[], reviews: any[] }) {
   console.log(partners);
   return (
     <FrontendLayout>
@@ -21,7 +21,7 @@ export default function Home({ features, partners }: { features: any[], partners
 
     <OptionalBanner />
    
-    <Review />
+    <Review  reviews={reviews}/>
 
 
     <DeliveryEnergy />
