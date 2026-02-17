@@ -21,7 +21,7 @@ export default function banner() {
                 <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
                     <div className="col-span-1 w-full lg:w-3/5">
                       <div>
-                                <img src="/images/logo-2.png" alt=""  className='w-80 pb-5' />
+                                <img src="/images/logo-2.png" alt=""  className='w-70 pb-5' />
                             </div>
                         <div className="inline-flex items-center gap-3">
                             <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
