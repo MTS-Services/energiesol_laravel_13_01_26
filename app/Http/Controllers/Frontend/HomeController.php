@@ -75,12 +75,14 @@ class HomeController extends Controller
 
     public function advantage(Request $request): Response
     {
+        $reviews = $this->googleReviewService->getReviews();
         $advantages = $this->advantageService->latest();
         $values = $this->valueService->latest();
 
         return Inertia::render('frontend/advantage', [
             'advantages' => $advantages,
             'values' => $values,
+            'reviews' => $reviews,
         ]);
     }
 
