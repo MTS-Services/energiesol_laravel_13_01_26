@@ -12,7 +12,7 @@ interface PartnerProps {
 export default function partner({partners}:PartnerProps) {
   return (
     <div className="bg-linear-to-r from-btn-primary/15 to-info/15 justify-around rounded-md">
-      <div className='relative z-10 mx-auto max-w-7xl py-10 lg:py-1 px-4 lg:px-0  gap-4 lg:gap-6 place-items-center'>
+      <div className='relative z-10 mx-auto max-w-7xl py-5 lg:py-1 px-4 lg:px-0  gap-4 lg:gap-6 place-items-center'>
         {/* {
           items.map((item, index) => (
             <PartnerCard key={index} image={item.image} />

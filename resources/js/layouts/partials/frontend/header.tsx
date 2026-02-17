@@ -37,7 +37,7 @@ export function FrontendHeader() {
                     </Link>
                 </div>
                 {navLinks && (
-                    <div className="hidden md:block">
+                    <div className="hidden lg:block">
                         <ul className="flex justify-between gap-7">
                             {navLinks &&
                                 navLinks.map((link) => (
@@ -89,7 +89,7 @@ export function FrontendHeader() {
                         </div>
                     )} */}
 
-                    <div className="hidden items-center gap-2 md:flex">
+                    <div className="hidden items-center gap-2 lg:flex">
                         <Link
                             href={route('configurator')}
                             className="rounded-full!"
@@ -116,7 +116,7 @@ export function FrontendHeader() {
                             <Button
                                 variant="ghost"
                                 size="icon"
-                                className="md:hidden"
+                                className="lg:hidden"
                             >
                                 <Menu className="h-5 w-5" />
                             </Button>
@@ -140,35 +140,7 @@ export function FrontendHeader() {
 
                             <div className="flex flex-1 flex-col justify-between p-6">
                                 <div className="space-y-3">
-                                    {!auth.user ? (
-                                        <>
-                                            <Link
-                                                href={login()}
-                                                className="block w-full"
-                                                onClick={() =>
-                                                    setIsMobileMenuOpen(false)
-                                                }
-                                            >
-                                                <Button
-                                                    variant="outline"
-                                                    className="w-full py-6"
-                                                >
-                                                    Log in
-                                                </Button>
-                                            </Link>
-                                            <Link
-                                                href={register()}
-                                                className="block w-full"
-                                                onClick={() =>
-                                                    setIsMobileMenuOpen(false)
-                                                }
-                                            >
-                                                <Button className="w-full bg-violet-600 py-6 hover:bg-violet-700">
-                                                    Get Started
-                                                </Button>
-                                            </Link>
-                                        </>
-                                    ) : (
+                                    
                                         <div>
                                             <Link
                                                 href={route('admin.dashboard')}
@@ -177,9 +149,7 @@ export function FrontendHeader() {
                                                     setIsMobileMenuOpen(false)
                                                 }
                                             >
-                                                <Button className="w-full bg-violet-600 py-6">
-                                                    Dashboard
-                                                </Button>
+                                              
                                             </Link>
                                             <ul className="mt-3 flex flex-col justify-between gap-2">
                                                 {navLinks &&
@@ -187,7 +157,7 @@ export function FrontendHeader() {
                                                         <li>
                                                             <Link
                                                                 href={link.href}
-                                                                className="inline-block w-full rounded-full bg-btn-primary px-2 py-2 text-primary hover:bg-btn-primary/90"
+                                                               className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary lg:text-base ${url == link.slug ? 'text-btn-primary!' : 'text-secondary'}`}
                                                             >
                                                                 {link.name}
                                                             </Link>
@@ -195,7 +165,6 @@ export function FrontendHeader() {
                                                     ))}
                                             </ul>
                                         </div>
-                                    )}
                                 </div>
                             </div>
                         </SheetContent>
