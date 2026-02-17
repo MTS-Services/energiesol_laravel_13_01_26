@@ -53,7 +53,7 @@ class HomeController extends Controller
         $partners = $this->partnerService->latest();
         $reviews = $this->googleReviewService->getReviews();
 
-    
+
 
         return Inertia::render('frontend/home', [
             'features' => $features,
@@ -312,21 +312,31 @@ class HomeController extends Controller
     public function orderDownloadPdf($estimate_id)
     {
         $estimate = $this->estimateService->find($estimate_id);
-        $saystemSetting = $this->systemSettingService->getSystemSettings();
+        $systemSetting = $this->systemSettingService->getSystemSettings();
         $monitoringSystem = $this->monitoringSystemService->monitor();
+
         if (! $estimate) {
             abort(404);
         }
+
+        if (! $systemSetting) {
+            abort(500, 'System settings not configured');
+        }
+
         $estimate->load('solarPanel', 'solarInverter');
 
+        if (! $estimate->solarPanel || ! $estimate->solarInverter) {
+            abort(422, 'Missing solar panel or inverter data');
+        }
+
         $data = [
-            'solar_panel_module' => ceil($estimate->area / $saystemSetting->module_unit_in_meter),
-            'solar_panel_price' => ceil($estimate->area / $saystemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
+            'solar_panel_module' => ceil($estimate->area / $systemSetting->module_unit_in_meter),
+            'solar_panel_price' => ceil($estimate->area / $systemSetting->module_unit_in_meter) * $estimate->solarPanel->price,
             'solar_inverter_price' => $estimate->solarInverter->price,
-            'wallbox' => $saystemSetting->wallbox_price,
-            'evu_fees' => $saystemSetting->evu_fees,
-            'delivery_fees' => $saystemSetting->delivery_fees,
-            'service_charge' => $saystemSetting->service_charge,
+            'wallbox' => $systemSetting->wallbox_price,
+            'evu_fees' => $systemSetting->evu_fees,
+            'delivery_fees' => $systemSetting->delivery_fees,
+            'service_charge' => $systemSetting->service_charge,
         ];
         if ($estimate->battery) {
             $data['solar_inverter_battery_price'] = $estimate->solarInverter->battery_price;
@@ -339,8 +349,8 @@ class HomeController extends Controller
             $data['solar_inverter_charger_price'] = 0;
         }
 
-        $data['vat'] = $saystemSetting->vat ?? 0;
-        $data['discount'] = $saystemSetting->discount ?? 0;
+        $data['vat'] = $systemSetting->vat ?? 0;
+        $data['discount'] = $systemSetting->discount ?? 0;
         $data['monitoring_system_price'] = $monitoringSystem->price ?? 0;
 
         $data['sub_total'] = (
@@ -361,22 +371,13 @@ class HomeController extends Controller
         $solarPanel = $estimate->solarPanel;
         $solarInverter = $estimate->solarInverter;
 
-        $pdf = new \Mpdf\Mpdf([
-            'format' => 'A4',
-            'margin_top' => 10,
-            'margin_bottom' => 10,
-            'margin_left' => 10,
-            'margin_right' => 10,
-        ]);
-
-
-        //  $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'));
-
-        $html = view()->make('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'))->render();
-
-         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
-
-        return $pdf->download('estimate.pdf');
+        try {
+            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadView('invoice.generate-invoice', compact('data', 'solarPanel', 'solarInverter', 'monitoringSystem'));
+            return $pdf->download('estimate.pdf');
+        } catch (\Exception $e) {
+            Log::error('PDF generation failed: ' . $e->getMessage());
+            abort(500, 'PDF generation failed. Please try again.');
+        }
 
     }
 
@@ -438,10 +439,14 @@ class HomeController extends Controller
 
         $html = view()->make('invoice.generate-invoice-analysis', compact('data'))->render();
 
-         $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
-
-        return $pdf->download('estimate.pdf');
+        try {
+            $pdf = \Barryvdh\DomPDF\Facade\Pdf::loadHTML($html);
+            return $pdf->download('estimate-analysis.pdf');
+        } catch (\Exception $e) {
+            Log::error('PDF analysis generation failed: ' . $e->getMessage());
+            abort(500, 'PDF analysis generation failed. Please try again.');
+        }
 
     }
-    
+
 }

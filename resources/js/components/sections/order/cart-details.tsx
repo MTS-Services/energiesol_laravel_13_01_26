@@ -81,7 +81,7 @@ function CartDetails(
       + solar_inverter_price
       + charger_price
       + battery_price
-      + monitoring_system_price +  wallBoxPrice() + evuFees();
+      + monitoring_system_price + wallBoxPrice() + evuFees();
 
     return total; // ← this is now a NUMBER
   };
@@ -110,40 +110,49 @@ function CartDetails(
   };
 
   const calculateTotal = () => {
-    return (investment() + calculateVat() - calculateDiscount()  + deliveryFees()
+    return (investment() + calculateVat() - calculateDiscount() + deliveryFees()
       + serviceCharge());
   };
 
   //  href={route('order.download', { id: estimate?.id })} method='post' onClick={e=> e.preventDefault()}
   const [processing, setProcessing] = useState(false);
 
+  function submitDownloadForm(url: string) {
+    const form = document.createElement("form");
+    form.method = "POST";
+    form.action = url;
+    form.style.display = "none";
+
+    const token = document
+      .querySelector('meta[name="csrf-token"]')
+      ?.getAttribute("content");
+    if (token) {
+      const input = document.createElement("input");
+      input.name = "_token";
+      input.value = token;
+      form.appendChild(input);
+    }
+
+    document.body.appendChild(form);
+    form.submit();
+    document.body.removeChild(form);
+  }
+
   function handlePdfDownload(e) {
     e.preventDefault();
-    setProcessing(true); // start
-    router.post(route("order.download", { id: estimate?.id }), {
-      onSuccess: () => {
-        setProcessing(false);
-      },
-      onError: () => {
-        setProcessing(false); // reset on error
-      },
-    });
+    setProcessing(true);
+    submitDownloadForm(route("order.download", { estimate_id: estimate?.id }));
+    setProcessing(false);
   }
 
 
-    const [processingAnalysis, setProcessingAnalysis] = useState(false);
-    const handlePdfDownloadForAnalysis = (e) => {
-      e.preventDefault();
-      setProcessing(true); // start
-      router.post(route("order.download.analysis", { id: estimate?.id }), {
-        onSuccess: () => {
-          setProcessingAnalysis(false);
-        },
-        onError: () => {
-          setProcessingAnalysis(false); // reset on error
-        },
-      });
-    };
+  const [processingAnalysis, setProcessingAnalysis] = useState(false);
+  const handlePdfDownloadForAnalysis = (e) => {
+    e.preventDefault();
+    setProcessingAnalysis(true);
+    submitDownloadForm(route("order.download.analysis", { estimate_id: estimate?.id }));
+    setProcessingAnalysis(false);
+  };
 
   return (
     <div className="relative z-10 mx-auto mb-5 max-w-7xl rounded-lg bg-linear-to-r from-btn-primary/15 to-info/15 px-5 pt-13 pb-5 lg:mb-10 lg:gap-x-10 lg:px-20 lg:py-40 lg:pt-26 lg:pb-10">
@@ -411,19 +420,19 @@ function CartDetails(
               {processing ? "Donwloading PDF" : "  Kostenvoranschlag herunterladen"}
             </Button>
 
-          
-                          <Button
-                        onClick={handlePdfDownloadForAnalysis}
-                        className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white"
-                        >
-                        <Icon
-                            iconNode={Download}
-                            variant="circle"
-                            className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
-                            iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
-                        />
-                        {processingAnalysis ? "Downloading PDF" : "Wirtschaftsanalyse herunterladen"}
-                        </Button>
+
+            <Button
+              onClick={handlePdfDownloadForAnalysis}
+              className="group border border-btn-primary bg-transparent text-secondary transition-all duration-300 ease-in-out hover:bg-btn-primary hover:text-white"
+            >
+              <Icon
+                iconNode={Download}
+                variant="circle"
+                className="border border-btn-primary bg-transparent text-secondary/70 transition-all duration-300 ease-in-out group-hover:border-white group-hover:text-white"
+                iconClassName="text-btn-primary group-hover:text-white transition-colors duration-300 ease-in-out"
+              />
+              {processingAnalysis ? "Downloading PDF" : "Wirtschaftsanalyse herunterladen"}
+            </Button>
           </div>
 
           <div className="flex items-center justify-center pt-21">
