@@ -5,19 +5,20 @@ import React from 'react'
 import WhyChoose from '@/components/sections/advantage/why-choose'
 import DefaultCard from '@/components/sections/advantage/default-card'
 import Values from '@/components/sections/advantage/values'
-import Review from '@/components/sections/advantage/review'
+// import Review from '@/components/sections/advantage/review'
+import Review from "@/components/sections/home/review";
 import Resposiblity from '@/components/sections/advantage/responsiblity'
 import StartConfigurator from '@/components/sections/advantage/start-configurator'
 
 
-export default function advantage({advantages, values}: {advantages: any, values: any}) {
+export default function advantage({advantages, values , reviews}: {advantages: any, values: any, reviews: any}) {
   return (
    <FrontendLayout>
         <Banner />
         <WhyChoose advantages={advantages} />
         <DefaultCard />
         <Values values={values} />
-        <Review />
+        <Review reviews={reviews}/>
         <Resposiblity />
 
         <StartConfigurator />
