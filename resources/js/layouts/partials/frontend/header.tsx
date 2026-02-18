@@ -20,7 +20,7 @@ export function FrontendHeader() {
     console.log(url);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navLinks = [
-        { name: 'Heim', href: route('home'), slug: '/' },
+        { name: 'Home', href: route('home'), slug: '/' },
         { name: 'Service', href: route('service'), slug: '/service' },
         { name: 'Vorteile', href: route('advantage'), slug: '/advantage' },
         { name: 'Geschichte', href: route('about'), slug: '/about-us' },
@@ -29,8 +29,9 @@ export function FrontendHeader() {
     ];
 
     return (
-        <header className="bg-linear-t-b fixed top-0 z-50 w-full bg-white/15 from-white/80 to-white/80 backdrop-blur-sm">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+        <header className="bg-linear-t-b fixed top-0 z-50 w-full bg-black/10 from-white/80 to-white/80 backdrop-blur-sm">
+            <div className="container mx-auto flex h-30 items-center justify-between px-4 md:px-8">
+            {/* <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8"> */}
                 <div className="flex items-center gap-8">
                     <Link href="/" className="">
                         <AppLogo />
@@ -125,7 +126,7 @@ export function FrontendHeader() {
                             side="right"
                             className="flex w-full flex-col p-0 sm:max-w-sm"
                         >
-                            <SheetHeader className="flex-row items-center justify-between space-y-0 border-b p-6">
+                            <SheetHeader className="flex-row items-center justify-between space-y-0 border-b p-6   bg-black/10 from-white/80 to-white/80 backdrop-blur-sm">
                                 <AppLogo />
                                 <SheetClose asChild>
                                     <Button
