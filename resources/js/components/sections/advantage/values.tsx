@@ -60,7 +60,7 @@ export default function Values({values}: {values: any}) {
                                },
                                changeOrder: index % 2 === 1,
                               }
-                            return  (<BoxCard key={index} item={newItem} className={'grid grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} /> )
+                            return  (<BoxCard key={index} item={newItem} className={'grid grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} /> )
                             })
                         }
                         

@@ -19,24 +19,13 @@ export default function banner() {
         >
         </div>
         {/* <div className="absolute inset-y-0 left-0 z-[1] w-[30%] bg-gradient-to-r from-white/30 via-white/20 to-transparent backdrop-blur-sm"></div> */}
-        <div className="relative z-10 mx-auto max-w-7xl px-6 pt-20 pb-14 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-23 lg:pb-14">
+        <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-14 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-42 ">
           <div className="col-span-1 w-full lg:w-3/5">
             <div>
               <div>
-                <img src="/images/logo-2.png" alt="" className="w-60 pb-5" />
-              </div>
-              <div>
-                <div className="inline-flex items-center gap-3">
-                  <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'>
-                  </span>
-                  <p className="mt-1 text-sm font-normal uppercase md:text-secondary">
-                    E-Mail- und SMS-Listenoptimierung mit KI
-                  </p>
-                </div>
-
                 <div className="flex flex-col gap-3 pt-2">
                   <h2 className="pr-2 font-playfair-display text-4xl font-semibold text-secondary md:text-[56px]">
-                    <span className="pr-2 font-playfair-display text-4xl font-semibold text-info italic md:text-[56px]">
+                    <span className="pr-2 font-playfair-display text-4xl font-semibold text-[#03edcd] italic md:text-[56px]">
                       Premium
                     </span>{" "}
                     Solarqualität zum erschwinglichen Preis
@@ -131,12 +120,12 @@ export default function banner() {
             </div>
           </div>
 
-          <div className="relative col-span-1 hidden w-2/5 justify-end lg:flex">
+          <div className="relative col-span-1 hidden w-2/5 justify-end lg:flex translate-x-[185px] -translate-y-[51px]">
             <div className='relative z-10 flex h-67 w-67 items-center justify-center rounded-full border-10 border-info bg-transparent after:absolute after:top-1/2 after:left-1/2 after:z-0 after:h-60 after:w-60 after:-translate-x-1/2 after:-translate-y-1/2 after:rounded-full after:bg-info after:content-[""]'>
               <p className="pt-2 relative z-10 flex -translate-y-3 -rotate-23 flex-col items-center justify-center font-montserrat text-2xl font-semibold text-primary">
                 <span>INKLUSIVE</span>
                 <span className="text-center px-3 text-primary/70">
-                  10 Jahre Herstellergaran tie auf Wechselrichter und Speicher
+                  10 Jahre Herstellergarantie auf Wechselrichter und Speicher
                 </span>
               </p>
             </div>
