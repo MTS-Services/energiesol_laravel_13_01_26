@@ -44,7 +44,7 @@ function Banner({ item }: Props) {
                     }}
                 ></div>
                 {/* <div className="absolute inset-y-0 left-0 z-[1] w-[30%] bg-gradient-to-r from-white/30 via-white/20 to-transparent backdrop-blur-sm"></div> */}
-                <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+                <div className="relative z-10 mx-auto max-w-7xl px-6 pt-45 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40 lg:pt-80">
                     <div className="col-span-1 w-full lg:w-3/5">
                         {
                             item?.slogan && (
