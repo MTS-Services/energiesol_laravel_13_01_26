@@ -45,7 +45,7 @@ export function FrontendHeader() {
                                     <li>
                                         <Link
                                             href={link.href}
-                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary md:text-base ${url == link.slug ? 'text-btn-primary!' : 'text-secondary'}`}
+                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-hover md:text-base ${url == link.slug ? 'text-hover!' : 'text-secondary'}`}
                                         >
                                             {link.name}
                                         </Link>
@@ -97,14 +97,14 @@ export function FrontendHeader() {
                         >
                             <Button
                                 size="sm"
-                                className="rounded-full! bg-btn-primary py-5!"
+                                className="rounded-full! bg-btn-primary py-5.5!"
                             >
                                 <Icon
                                     iconNode={ArrowRight}
                                     variant="circle"
-                                    className="h-4! w-4! rounded-full bg-primary p-3 text-btn-primary"
+                                    className="h-4! w-4! rounded-full bg-primary p-4 text-btn-primary"
                                 />
-                                Konfigurator
+                               Angebot erstellen
                             </Button>
                         </Link>
                     </div>

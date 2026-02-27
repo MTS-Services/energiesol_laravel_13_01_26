@@ -25,7 +25,7 @@ export default function banner() {
               <div>
                 <div className="flex flex-col gap-3 pt-2">
                   <h2 className="pr-2 font-playfair-display text-4xl font-semibold text-secondary md:text-[56px]">
-                    <span className="pr-2 font-playfair-display text-4xl font-semibold text-[#03edcd] italic md:text-[56px]">
+                    <span className="pr-2 font-playfair-display text-4xl font-semibold text-info italic md:text-[56px]">
                       Premium
                     </span>{" "}
                     Solarqualität zum erschwinglichen Preis
@@ -48,7 +48,7 @@ export default function banner() {
                     className="bg-primary!"
                     iconClassName="text-secondary"
                   />
-                  Konfigurator
+                Angebot erstellen
                 </Button>
               </Link>
             </div>
@@ -79,30 +79,12 @@ export default function banner() {
             </div>
 
             <div className="flex">
-              <div className="flex items-center gap-4 rounded-full bg-primary px-2 py-2">
-                <Link href={route("home")}>
-                  {" "}
-                  <img
-                    src="/images/facebook.png"
-                    alt="Facebook icon"
-                    className="h-6 w-auto"
-                  />
-                  {" "}
-                </Link>
+              <div className="flex items-center gap-2 rounded-full bg-primary px-2 py-2">
                 <Link>
                   {" "}
                   <img
                     src="/images/instragram.png"
                     alt="Instragram icon"
-                    className="h-6 w-auto"
-                  />
-                  {" "}
-                </Link>
-                <Link>
-                  {" "}
-                  <img
-                    src="/images/linkedin.png"
-                    alt="LinkedIn icon"
                     className="h-6 w-auto"
                   />
                   {" "}
