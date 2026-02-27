@@ -157,12 +157,12 @@ export function FrontendHeader() {
                                                 {navLinks &&
                                                     navLinks.map((link) => (
                                                         <li>
-                                                            <Link
-                                                                href={link.href}
-                                                               className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary lg:text-base  ${url == link.slug || url == (link.slug + '#contact') ? ' text-btn-primary!' : 'text-secondary'}`}
-                                                            >
-                                                                {link.name}
-                                                            </Link>
+                                                             <Link
+                                            href={link.href}
+                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-hover md:text-base ${url == link.slug ? 'text-hover!' : 'text-secondary'}`}
+                                        >
+                                            {link.name}
+                                        </Link>
                                                         </li>
                                                     ))}
                                             </ul>
