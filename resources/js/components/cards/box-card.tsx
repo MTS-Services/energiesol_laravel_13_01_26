@@ -20,7 +20,7 @@ interface ItemProps{
             iconClassName?: string|null,
             iconParentClassName?: string|null,
             iconNode?: LucideIcon | null;
-            iconVariant?: "cricle" | "default" | "cirlce-transparent" | null ;
+            iconVariant?: "circle" | "default" | "circle-transparent" | null ;
 
 
         }|null,
@@ -32,9 +32,8 @@ interface ItemProps{
 
 function BoxCard({item, className, children}: ItemProps) {
 
-    const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, item.description_length ?? 250) ?? null);
+    const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, item.description_length ?? 150) ?? null);
     
-    console.log(item?.image_url, item);
     const expandDescription = () => {
         if (item?.description) {
             setDescription(item?.description);
@@ -42,14 +41,14 @@ function BoxCard({item, className, children}: ItemProps) {
     }
     const collapseDescription = () => {
         if (item?.description) {
-            setDescription(item?.description?.substring(0, item.description_length ?? 250));
+            setDescription(item?.description?.substring(0, item.description_length ?? 150));
         }
     }
 
     const changeOrder = item?.changeOrder ?? false;
 
   return (
-     <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md  gap-2  ', className)}>
+     <div className={cn('box-item p-3  lg:p-6 bg-linear-to-r from-btn-primary/20 to-info/20 rounded-md  gap-2 flex flex-col ', className)}>
       
         {item?.image_url && (
         <div
@@ -67,7 +66,7 @@ function BoxCard({item, className, children}: ItemProps) {
         )}
 
 
-        <div className={` ${ !changeOrder ? 'order-last' : 'order-first'}`}>
+        <div className={` ${ !changeOrder ? 'order-last' : 'order-first'} flex-1 flex flex-col justify-between`}>
 
 
             {
@@ -90,17 +89,17 @@ function BoxCard({item, className, children}: ItemProps) {
            
            {
             item?.description && (
-                <p className=' dark:text-gray-400 text-base font-open-sans text-secondary/70'>
+                <p className=' dark:text-gray-400 text-base font-open-sans text-secondary/70 min-h-16'>
                     {description}
 
                  {
-                    item?.description?.length > (item.description_length ?? 250) && item?.description?.length != description?.length && (
+                    item?.description?.length > (item.description_length ?? 150) && item?.description?.length != description?.length && (
                         <span className='text-info cursor-pointer' onClick={expandDescription}>...Read more</span>
                     )
                  }
                 {
                 item?.description?.length === description?.length &&
-                item?.description?.length > (item.description_length ?? 250) && (
+                item?.description?.length > (item.description_length ?? 150) && (
                     <span
                     className="text-info cursor-pointer"
                     onClick={collapseDescription}
