@@ -1,4 +1,5 @@
 import { DefaultCardComp } from '@/components/cards/default-card-comp';
+import { ArrowRight } from 'lucide-react';
 
 
 export default function Resposiblity() {
@@ -9,11 +10,17 @@ export default function Resposiblity() {
             middle: 'Verantwortung.',
         },
        
-        description: 'Bei Energiesol glauben wir, dass Energie mehr ist als nur Strom – es geht darum, die Umwelt für die nächste Generation zu schützen. Wir übernehmen die volle Verantwortung dafür, Ihr Zuhause mit sauberer, erneuerbarer Solarenergie zu versorgen. Unsere Mission ist es, Ihnen durch nachhaltige Lösungen ein gutes Gefühl zu geben und gemeinsam zu einer helleren und grüneren Zukunft für Ihre Familie beizutragen.',
+        description: `Bei Energiesol verstehen wir Energie als mehr als nur Strom – sie ist ein Beitrag zum Schutz unserer Umwelt und zur Verantwortung gegenüber kommenden Generationen.
+
+Wir kümmern uns darum, Ihr Zuhause zuverlässig mit sauberer, erneuerbarer Solarenergie zu versorgen. Mit nachhaltigen, durchdachten Lösungen schaffen wir Sicherheit, Unabhängigkeit und ein gutes Gefühl – heute und für die Zukunft Ihrer Familie.`,
         image: '/images/responsiblity.png',
         btn: {
             label: 'Konfigurator starten',
             href: route('configurator') ,
+            iconParentClassName: 'bg-primary',
+            iconClassName: 'text-secondary',
+            iconVariant: 'circle',
+            iconNode: ArrowRight,
         }
     };
 
@@ -35,6 +42,7 @@ export default function Resposiblity() {
                 btn={item.btn}
                 image={item.image}
             >
+                
             </DefaultCardComp>
         </div>
     );

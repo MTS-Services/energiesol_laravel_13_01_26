@@ -10,10 +10,10 @@ import { ArrowRight } from "lucide-react";
 export default function WhyChoose({advantages, className}: {advantages?: any[], className?: string}) {
 
     const SectionHeaderData = {
-        slogan: 'WARUM ENERGIESOL?',
+        slogan: 'WARUM Energie Solution Nord',
         title: {
-            initial: 'Warum Sie uns ',
-            middle: 'wählen ',
+            initial: 'Warum Sie sich für uns ',
+            middle: 'entscheiden ',
             last: 'sollten',
         },
         description: "Wir kombinieren Spitzentechnologie mit fachkundiger Beratung, um Ihren Weg zur Solarenergie reibungslos und transparent zu gestalten."

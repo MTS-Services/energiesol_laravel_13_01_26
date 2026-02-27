@@ -28,10 +28,10 @@ export default function OptionalBanner() {
         </div>
         <div className='flex flex-col justify-center items-center w-full lg:w-3/4 mx-auto mt-2'>
             <p className='text-center px-6 lg:px-16.5 text-base lg:text-xl font-open-sans text-secondary/90 font-normal'>
-               Egal, ob Sie gerade mit der Recherche beginnen, mitten in der Installation stecken oder Jahre nach der Inbetriebnahme Ihres Systems Fragen haben – unser Team steht an Ihrer Seite. Wir glauben an den Aufbau langfristiger Partnerschaften, nicht nur an Projekte.
+              Ob Sie sich noch in der Informationsphase befinden, Ihr Projekt gerade umgesetzt wird oder Ihre Anlage bereits seit Jahren in Betrieb ist – unser Team begleitet Sie zuverlässig in jeder Phase. Wir setzen auf langfristige Partnerschaften statt auf kurzfristige Projekte.
             </p>
             <p className='text-center px-6 lg:px-16.5 mt-3 text-base lg:text-xl font-open-sans text-secondary/90 font-normal'>
-              Haben Sie eine besondere Herausforderung? Suchen Sie nach einer maßgeschneiderten Energielösung? Oder möchten Sie einfach mehr über unsere Prozesse erfahren? Kontaktieren Sie unser engagiertes Support-Team per Telefon, E-Mail oder Live-Chat.
+              Sie haben eine besondere Anforderung, wünschen eine individuelle Energielösung oder möchten mehr über unsere Abläufe erfahren? Unser engagiertes Team ist telefonisch oder per E-Mail für Sie erreichbar – persönlich, kompetent und lösungsorientiert.
             </p>
         </div>
         <div className='mt-6 lg:mt-10'>

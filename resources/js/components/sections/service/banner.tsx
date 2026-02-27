@@ -4,20 +4,21 @@ import { ArrowRight } from 'lucide-react';
 
 export default function banner() {
     const BannerData = {
-        slogan: 'Intelligente Solarlösungen',
+        slogan: 'INTELLIGENTE SOLARLÖSUNGEN',
+       
         title: {
             initial: 'Eigene  ',
             middle: 'saubere',
-            last: 'Energie ganz einfach',
+            last: 'Energie – ganz einfach',
             breakPoint: {
                 before: false,
             }
         },
 
-        description: 'Hochleistungsfähige Solarlösungen für eine intelligentere, unabhängige Energiezukunft.',
+        description: 'Leistungsstarke, durchdachte Solarsysteme für eine effiziente, unabhängige und zukunftssichere Energieversorgung.',
         image: '/images/service-banner.png',
         btn: {
-            label: 'Meine Konfiguration starten',
+            label: 'Angebot erstellen',
             href: route('configurator'),
             iconParentClassName: 'bg-primary!',
             iconClassName: 'text-secondary!',

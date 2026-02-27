@@ -26,6 +26,14 @@ function Contact() {
                     <p className="text-center text-base text-secondary lg:px-78 lg:text-lg">
                        Füllen Sie das folgende Formular aus und unsere Energieexperten werden sich innerhalb von 24 Stunden bei Ihnen melden, um Ihre maßgeschneiderte Lösung zu besprechen.
                     </p>
+
+                
+                    <p className="text-center text-base text-secondary lg:px-78 lg:text-lg">
+                       <span>Telefon: 040 764 84 844</span>
+                       <span> or </span>
+                       <span>E-Mail: info@energiesolutionnord.de</span>
+                    </p>
+                    
                 </div>
 
                 <ContactForm />
