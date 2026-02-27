@@ -6,13 +6,13 @@ import { Award, ChartBarDecreasing, CircleDollarSign, PackageCheck, PlugZap, Sec
 export default function WhyChoose({advantages}: {advantages?: any[]}) {
 
     const SectionHeaderData = {
-        slogan: 'WARUM ENERGIESOL?',
+        slogan: 'WARUM Energie Solution Nord',
         title: {
-            initial: 'Warum Sie uns ',
-            middle: 'wählen ',
+            initial: 'Warum Sie sich für uns ',
+            middle: 'entscheiden  ',
             last: 'sollten',
         },
-        description: "Wir kombinieren Spitzentechnologie mit fachkundiger Beratung, um Ihren Weg zur Solarenergie reibungslos und transparent zu gestalten."
+        description: "Wir verbinden moderne Solartechnologie mit persönlicher, fachkundiger Beratung. So gestalten wir Ihren Weg zur eigenen Solarenergie effizient, transparent und zuverlässig – von Anfang an."
     }
     return (
         <div className="relative bg-linear-to-r from-btn-primary/15 to-info/5">

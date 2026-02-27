@@ -35,12 +35,12 @@ export default function generation() {
                         </div>
 
                         <div className="mt-10">
-                           <Link href={'mailto:example@gmail.com'}>
+                           <a href={'mailto:example@gmail.com'}>
                             <Button className='bg-transparent!  border border-btn-primary! text-btn-primary!'>
                                 <Icon iconNode={ArrowRight} variant="circle-transparent"  ></Icon>
                                 Kontaktieren Sie uns
                             </Button>
-                           </Link>
+                           </a>
                         </div>
                     </div>
                     <div className='grid grid-cols-2 gap-6'>

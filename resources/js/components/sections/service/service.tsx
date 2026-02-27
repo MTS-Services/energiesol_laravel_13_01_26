@@ -15,11 +15,11 @@ export default function Service({ services }: { services?: any[] | null }) {
   const SectionHeaderData = {
     slogan: 'PROJEKTDURCHFÜHRUNG',
     title: {
-      initial: 'Solar ',
-      middle: 'Expertise',
+      initial: '',
+      middle: 'Solar-Expertise',
       last: ' aus einer Hand',
     },
-    description: "Als Full-Service-Partner begleiten wir Sie vom Erstgespräch bis zum Netzanschluss. Unser digitaler Prozess garantiert Ihnen maximale Transparenz, Komfort und absolute Klarheit – einfach এবং zuverlässig."
+    description: "Als Full-Service-Partner begleiten wir Sie vom ersten Beratungsgespräch bis zum Netzanschluss. Unser strukturierter, digitaler Prozess sorgt für maximale Transparenz, hohen Komfort und klare Abläufe – einfach und zuverlässig."
   }
 
   return (

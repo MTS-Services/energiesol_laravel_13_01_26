@@ -1,5 +1,5 @@
 import { DefaultCardComp } from "@/components/cards/default-card-comp";
-import { ServiceCard } from "@/components/cards/service-card";
+
 
  function About() {
         return (
@@ -8,23 +8,25 @@ import { ServiceCard } from "@/components/cards/service-card";
                 <div className="mb-3 flex flex-row items-center justify-center gap-3">
                     <span className='after:content[" "] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
                     <p className="mt-1 text-sm font-normal uppercase md:text-base md:text-secondary">
-                  Über uns
+                 ÜBER UNS
                     </p>
                 </div>
                 <div className="flex flex-col items-center justify-start lg:items-center lg:justify-center ">
                     <h2 className="font-montserrat text-3xl font-semibold lg:text-[40px] mb-2 text-center">
-                  Unsere Geschichte
+               Unsere Geschichte
                     </h2>
-                    <p className="text-center lg:px-78 text-base lg:text-lg text-secondary">Innovative Energy, Backed by Experience.</p>
+                    <p className="text-center lg:px-78 text-base lg:text-lg text-secondary">Innovative Energie – getragen von Erfahrung.</p>
                 </div>
 
                 <div className="service grid grid-cols-1 gap-6">
 
                     <DefaultCardComp image="/images/about-image.png" >  
                         <div className="-mt-6">
-                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal">Seit Beginn unserer strategischen Partnerschaft mit weltweit führenden Energieunternehmen profitieren unsere Kunden von erhöhter Stabilität und Sicherheit. Wir verbinden die Zuverlässigkeit bewährter Infrastruktur mit der innovativen Agilität eines modernen Technologieunternehmens. Erleben Sie die Zukunft des intelligenten Energiemanagements mit unserem engagierten Expertenteam.</p>
-                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-3 ">Von unserem zentralen Hub aus arbeiten unsere spezialisierten Teams – darunter Engineering, Projektmanagement und technische Integration – Hand in Hand, um sicherzustellen, dass jedes System landesweit nach den höchsten Standards gebaut und gewartet wird.</p>
-                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-3 ">Unser Leitsatz „Erneuerbare Energie sollte für jedes Zuhause einfach, effizient und bezahlbar sein“ treibt unser Führungsteam an. Gemeinsam machen wir den weltweiten Übergang zu sauberer Energie für alle mühelos und kosteneffizient.</p>
+                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal">Seit unserer Gründung stehen wir für eine moderne, effiziente und transparente Umsetzung von Solarprojekten. Unsere Kunden profitieren von fundierter Branchenerfahrung, klaren Prozessen und einem starken Netzwerk aus qualifizierten Fachpartnern. Dabei verbinden wir technische Kompetenz mit der Agilität eines dynamischen Unternehmens.</p>
+                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-3 ">Der Gründer unseres Unternehmens war über viele Jahre in führenden Solar- und Energieunternehmen tätig und hat dort Strukturen aufgebaut, Prozesse optimiert und Projekte maßgeblich mitgestaltet. Dieses gebündelte Know-how fließt heute in ein ganzheitliches Konzept ein, das Preis und Leistung konsequent optimiert – zum direkten Vorteil unserer Kunden.</p>
+                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-3 ">Von unserem zentralen Standort aus steuern wir Planung, Projektmanagement und technische Umsetzung. Unsere spezialisierten Teams arbeiten eng zusammen, um sicherzustellen, dass jedes System bundesweit nach höchsten Qualitätsstandards geplant, umgesetzt und betreut wird.</p>
+                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-3 ">Unser Leitsatz lautet: <span className="font-semibold">Erneuerbare Energie soll für jedes Zuhause einfach, effizient und bezahlbar sein.</span></p>
+                            <p className="text-base lg:text-lg  text-secondary/70 font-monserrat font-normal mt-1 ">Mit diesem Anspruch gestalten wir den Weg zu sauberer Energie transparent, wirtschaftlich und nachhaltig – für heute und kommende Generationen.</p>
                         </div>
                     </DefaultCardComp>                    
                     

@@ -50,8 +50,8 @@ function CardFour() {
                 <h3 className='text-secondary text-2xl font-semibold font-montserrat'>Produktdatenblätter herunterladen:</h3>
                 
                 <div className='mt-3'>
-                    <Link href={route('products')} className='mt-3 block text-[#FF383C] lg:text-lg text-base underline ' >ECOFLOW</Link>
-                    <Link href={route('products')} className='block text-[#FF383C] lg:text-lg text-base underline' >SIGENERGY</Link>
+                    <Link href='https://homebattery.ecoflow.com/de/documentation' target="_blank" className='mt-3 block text-[#FF383C] lg:text-lg text-base underline ' >ECOFLOW</Link>
+                    <Link href={'https://www.sigenergy.com/de/support/download'} target="_blank" className='block text-[#FF383C] lg:text-lg text-base underline' >SIGENERGY</Link>
                 </div>
             </div>
 

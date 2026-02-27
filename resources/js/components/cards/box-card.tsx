@@ -124,7 +124,7 @@ function BoxCard({item, className, children}: ItemProps) {
            {
             item?.btn && (
                 item?.btn?.href ? (
-                    <Link href={item.btn.href}>
+                    <a href={item.btn.href}>
                         <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
                             <Icon iconNode={item.btn.iconNode ?? ArrowRight} variant={item.btn.iconVariant ?? 'circle'} iconClassName={cn('', item.btn.iconClassName)} className={cn('', item.btn.iconParentClassName)} />  
 
@@ -132,7 +132,7 @@ function BoxCard({item, className, children}: ItemProps) {
                             { item.btn.label }
 
                             </Button>
-                    </Link>
+                    </a>
                 ):  (
                     <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
                    

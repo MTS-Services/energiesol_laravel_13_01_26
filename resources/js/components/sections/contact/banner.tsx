@@ -3,7 +3,7 @@ import { Banner } from '@/components/cards/banner';
 
 export default function banner() {
     const BannerData = {
-        slogan: 'Persönliche Unterstützung',
+        slogan: 'PERSÖNLICHE UNTERSTÜTZUNG',
         title: {
             initial: 'Haben Sie Fragen? ',
             middle: 'Wir sind für Sie da.',
@@ -12,7 +12,9 @@ export default function banner() {
             }
         },
 
-        description: 'Der Wechsel zu Solarenergie ist eine große Entscheidung, und wir möchten, dass Sie sich bei jedem Schritt sicher fühlen. Egal, ob Sie Fragen zu Ersparnissen, der Installation oder der Technologie haben – unsere Spezialisten stehen bereit, um Ihnen klare und ehrliche Antworten zu geben. Kontaktieren Sie uns – wir beraten Sie gerne.',
+        description: `Der Umstieg auf Solarenergie ist eine wichtige Entscheidung – und wir sorgen dafür, dass Sie sich in jeder Phase gut informiert und sicher fühlen. Ob es um Wirtschaftlichkeit, Installation oder technische Details geht: Unsere Experten geben Ihnen verständliche, transparente und ehrliche Antworten.
+
+Sprechen Sie uns an – wir beraten Sie persönlich und unverbindlich.`,
         image: '/images/contact-banner.png',
         btn: {
             label: 'Kostenlose Expertenberatung',

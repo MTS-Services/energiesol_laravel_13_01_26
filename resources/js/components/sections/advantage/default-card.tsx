@@ -5,12 +5,12 @@ export default function DefaultCard() {
         slogan: 'SOLARLÖSUNGEN',
         title: {
             initial: 'ENERGIE SOLUTION NORD – ',
-            middle: 'Energie für Ihre Zukunft.',
+            middle: 'Energie für Ihre Zukunft',
             breakPoint: {
                 before: true,
             }
         },
-        subtitle:'Lebensqualität stärken durch nachhaltige Energie und innovative Technologien – für ein grüneres Morgen.',
+        subtitle:'Mehr Lebensqualität durch nachhaltige Energie und innovative Technologien – für ein grüneres Morgen.',
 
         image: '/images/group-house.png',
     };
@@ -36,31 +36,25 @@ export default function DefaultCard() {
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Spitzentechnologie:</span> Wir verwenden modernste Solarmodule und smarte Energiesysteme, um Ihre Effizienz zu maximieren.
+                            <span className='font-normal text-secondary font-open-sans'>Spitzentechnologie:</span> Wir setzen auf modernste Solarmodule und intelligente Energiesysteme, um Effizienz und Ertrag nachhaltig zu maximieren.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Expertenberatung:</span>  Unser Team bietet Ihnen eine persönliche Beratung, um das perfekte Energiesystem für Sie zu finden.
+                            <span className='font-normal text-secondary font-open-sans'>Persönliche Expertenberatung:</span>Unser Team entwickelt gemeinsam mit Ihnen ein maßgeschneidertes Energiesystem – abgestimmt auf Ihr Dach, Ihren Verbrauch und Ihre Ziele.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Seamless Installation:</span>Problemlose und professionelle Einrichtung durch unsere zertifizierten Techniker.
+                            <span className='font-normal text-secondary font-open-sans'>Professionelle Umsetzung:</span>Die fachgerechte Montage erfolgt durch qualifizierte Partnerbetriebe – präzise, zuverlässig und termingerecht koordiniert.
                         </p>
                     </div>
                     <div className='pl-4 relative mb-2'>
                         <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
                         <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>Reibungslose Installation:</span>Stressfreie und professionelle Montage durch unsere zertifizierten Techniker.
-                        </p>
-                    </div>
-                    <div className='pl-4 relative mb-2'>
-                        <span className="h-2.5 w-2.5 rounded-full bg-btn-primary block absolute top-2 left-0"></span>
-                        <p className='font-normal text-secondary/70 font-open-sans'>
-                            <span className='font-normal text-secondary font-open-sans'>24/7 Kundensupport: </span>Kontinuierliche Überwachung und Unterstützung, um sicherzustellen, dass Ihre Stromversorgung niemals ausfällt.
+                            <span className='font-normal text-secondary font-open-sans'>24/7 Betreuung & Support:</span>Auch nach der Installation bleiben wir an Ihrer Seite – mit kontinuierlicher Betreuung und zuverlässiger Unterstützung für einen dauerhaft sicheren Anlagenbetrieb.
                         </p>
                     </div>
                 </div>
