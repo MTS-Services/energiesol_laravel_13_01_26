@@ -13,18 +13,18 @@ class ValueSeeder extends Seeder
     public function run(): void
     {
         Value::create([
-            'title' => 'Ein Partner, auf den Sie zählen können.',
-            'description' => 'Bei Energiesol bieten wir mehr als nur Solarmodule Von Ihrer ersten Anfrage bis zur finalen professionellen Installation begleitet Sie ein persönlicher Experte durch jeden technischen Schritt. > Unser Ziel ist es,
-die Komplexität von Planung und Montage für Sie zu übernehmen, damit Sie einen reibungslosen, transparenten und stressfreien Wechsel zu sauberer Energie genießen können.',
+            'title' => 'Moderne Technologie, schnell geliefert',
+            'description' => 'Durch unsere effizient strukturierten, digitalen Prozesse vermeiden wir unnötige Verzögerungen und beschleunigen die Umsetzung Ihres Projekts. Wir arbeiten ohne veraltete Lagerbestände und setzen konsequent auf aktuelle, leistungsstarke Solarmodule und moderne Komponenten – für maximale Effizienz und Zukunftssicherheit.',
             'image' => '/images/values1.png',
             'action_text' => 'Konfigurator starten',
             'action_url' => route('configurator'),
         ]);
 
         Value::create([
-            'title' => 'Moderne Technologie, schnell geliefert.',
-            'description' => 'Dank unserer effizienten digitalen Prozesse vermeiden wir unnötige Verzögerungen. Wir führen keine alten Lagerbestände – stattdessen stellen wir sicher,
-dass Ihr System immer die neuesten und fortschrittlichsten Solarmodule und Komponenten erhält, die aktuell auf dem Markt verfügbar sind.',
+            'title' => 'Ein Partner, auf den Sie zählen können',
+            'description' => 'Bei Energie Solution Nord erhalten Sie mehr als nur Solarmodule. Von der ersten Anfrage bis zur finalen, fachgerechten Installation steht Ihnen ein persönlicher Ansprechpartner zur Seite und begleitet Sie durch jeden technischen Schritt.
+
+Unser Anspruch ist es, die gesamte Planung, Koordination und Umsetzung für Sie zu übernehmen – damit Ihr Wechsel zu sauberer Energie reibungslos, transparent und stressfrei verläuft.',
             'image' => '/images/values2.png',
             'action_text' => 'Konfigurator starten',
             'action_url' => route('configurator'),

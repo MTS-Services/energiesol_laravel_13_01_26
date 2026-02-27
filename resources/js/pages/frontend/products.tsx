@@ -15,7 +15,7 @@ export default function products({features}:any) {
   return (
   <FrontendLayout>
     <Banner />
-    <CardOne />
+    {/* <CardOne /> */}
     <CardTwo />
     <CardThree />
     <CardFour />
@@ -26,7 +26,7 @@ export default function products({features}:any) {
     {/* Features item */}
 
     <CardSeven />
-    <CardFive />
+    {/* <CardFive /> */}
  
     <StartConfigurator />
   </FrontendLayout>

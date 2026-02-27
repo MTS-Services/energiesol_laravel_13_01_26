@@ -4,37 +4,15 @@ import { buttonVariants } from "@/components/ui/button";
 
 export default function Values({values}: {values: any}) {
     
-    const items: ServiceItem[] = [
-    {
-
-      image: "/images/service1.jpg",
-      title: "End-to-End Solar Expertise.",
-      description: "As your full-service solar partner, we support you at every step — from initial consultation to final commissioning and grid connection. Our digital process ensures clarity, comfort, and full transparency.",
-      btn: {
-        label: "Start configurator",
-        href: "#",
-      }
-      },
-      {
-
-        image: "/images/service2.jpg",
-        title: "Seamless Project Management",
-        description: "We manage the complete implementation of your solar system — from sourcing high-quality components to coordinating professional installation — ensuring a smooth and reliable experience.",
-        btn: {
-          label: "Start configurator",
-          href: "#",
-        },
-        changeOrder: true,
-    },
-  ];
+    
 
   const sectionHeaderData = {
     slogan: "UNSERE WERTE",
     title: {
       initial: "Was uns ",
-      middle: "auszeichnet!",
+      middle: "auszeichnet",
     },
-    description: "Wir verbinden modernste Solar-Innovation mit professioneller Betreuung, um Ihren Wechsel zu sauberer Energie so einfach und ehrlich wie möglich zu gestalten.",
+    description: "Wir verbinden moderne Solartechnologie mit verantwortungsvoller, persönlicher Betreuung. Unser Anspruch ist es, Ihren Weg zu sauberer Energie transparent, effizient und zuverlässig zu gestalten – ehrlich, partnerschaftlich und auf Augenhöhe.",
   };
 
     return (
@@ -49,6 +27,7 @@ export default function Values({values}: {values: any}) {
                         {
                             values?.map((item, index)=> {
                               const newItem = {
+                                description_length: 500,
                                 ...item,
                                  btn: {
                                 label: item.action_text,
@@ -60,7 +39,7 @@ export default function Values({values}: {values: any}) {
                                },
                                changeOrder: index % 2 === 1,
                               }
-                            return  (<BoxCard key={index} item={newItem} className={'grid grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} /> )
+                            return  (<BoxCard key={index} item={newItem} className={'grid grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent pb-10 '} contentBoxClassName="justify-start" /> )
                             })
                         }
                         

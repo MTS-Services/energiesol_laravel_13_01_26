@@ -6,14 +6,15 @@ export default function banner() {
         slogan: 'Saubere Energie',
         title: {
           
-            middle: 'Grüne Energie – ',
-            last: 'Ihre Zukunft im Fokus',
+            middle: 'Unsere Produkte –',
+            last: ' Technologie für maximale Unabhängigkeit',
             breakPoint: {
                 after: true, 
             }
         },
 
-        description: 'Wir liefern intelligente Solarlösungen, die Leistung, Zuverlässigkeit und langfristige Einsparungen vereinen – exakt zugeschnitten auf Ihren Energiebedarf.',
+        description: `Innovative Solarsysteme, leistungsstarke Speicherlösungen und intelligentes Energiemanagement – perfekt aufeinander abgestimmt.
+Für mehr Eigenverbrauch, geringere Energiekosten und maximale Kontrolle.`,
         image: '/images/product-banner.png',
         btn: {
             label: 'Ersparnis berechnen',

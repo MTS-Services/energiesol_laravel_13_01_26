@@ -29,31 +29,29 @@ function ConfiguratorCard({ item }: Props) {
                 <div className="mb-3 flex flex-row items-center justify-start gap-3">
                     <span className='after:content-[""] relative inline-block h-5 w-5 rounded-[3px] bg-btn-primary after:absolute after:top-1 after:left-1 after:h-5 after:w-5 after:rounded-[3px] after:bg-info'></span>
                     <p className="mt-1 text-sm font-normal uppercase md:text-base md:text-secondary">
-                        3 Minuten Einrichtung
+                        UNTER 5 MINUTEN
                     </p>
                 </div>
                 <div className="">
                     <h2 className="font-montserrat text-3xl font-semibold lg:text-[40px]">
-                        PV-Anlage in {' '}
-                        <span className="font-playfair-display font-semibold text-info italic">
-                            nur 3 Minuten{' '}
-                        </span>
-                        konfiguriert
+                        Ihre PV-Anlage schnell und einfach geplant
                     </h2>
                 </div>
                 <div className="flex flex-col">
                     <p className="mt-3 font-open-sans text-base text-secondary/50 lg:text-lg">
-                        Kostenlose, individuelle Solar-Kostenschätzung – inklusive detaillierter Profitabilitätsanalyse.
-                        Maßgeschneidert für Ihr Dach und Ihren Verbrauch. Planen Sie jetzt Ihre Energiezukunft mit präzisen Daten und voller Transparenz.
+                        Erhalten Sie eine kostenlose, individuelle Solarkostenschätzung – inklusive transparenter Wirtschaftlichkeitsanalyse. Präzise abgestimmt auf Ihr Dach und Ihren Energieverbrauch. Starten Sie jetzt mit klaren Daten in Ihre nachhaltige Energiezukunft.
                     </p>
                 </div>
 
                 <div className="mt-10 grid grid-cols-1 sm:grid-cols-2 gap-4 items-center overflow-hidden">
-                    <div>
+                    <div className="relative">
+                        <p className="absolute top-0 left-0 px-4 py-3 md:py-4  md:text-sm text-muted-foreground">
+                            Dachfläche:
+                        </p>
                         <Input 
                             type='number' 
-                            className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4 py-6' 
-                            placeholder='80'
+                            className='rounded-full shadow-[inset_1px_1px_20px_3px_#fff] px-4 py-6 pl-27  md:pl-23.5' 
+                            placeholder='50 m²'
                             value={inputValue}
                             onChange={(e) => setInputValue(e.target.value ? Number(e.target.value) : '')}
                         />

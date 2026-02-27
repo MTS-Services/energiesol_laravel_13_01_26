@@ -3,7 +3,7 @@ import React from 'react'
 
  function VisionCard() {
   const item = {
-        slogan: 'Energie für morgen',
+        slogan: 'ENERGIE FÜR MORGEN',
         title: {
             initial: 'Unsere Vision',
         },
@@ -25,9 +25,9 @@ import React from 'react'
             >
                 <div>
                     <p className='text-base lg:text-lg font-montserrat mb-3 text-secondary/70'>
-                      Wir setzen uns dafür ein, der heutigen Generation eine umfassende und nachhaltige Versorgung mit erneuerbaren Energien zu bieten.</p>
+                    Wir setzen uns dafür ein, Haushalte heute und in Zukunft zuverlässig mit nachhaltiger, erneuerbarer Energie zu versorgen. Unser Anspruch ist es, saubere Energie wirtschaftlich, effizient und für möglichst viele Menschen zugänglich zu machen.</p>
                     <p className='text-base lg:text-lg font-montserrat mb-3 text-secondary/70'>
-                       Unser langfristiges Ziel ist es, jedem Privathaushalt eine 100%ige Energieunabhängigkeit zu ermöglichen. Während unsere Kernkompetenz in der Hochleistungs-Solartechnologie liegt, bleiben wir ein Vorreiter für Innovationen – wir erforschen vielfältige erneuerbare Energiequellen, um eine krisenfeste und saubere Energiezukunft für Familien heute এবং für kommende Generationen zu sichern. 
+                       Langfristig verfolgen wir das Ziel, Privathaushalten ein Höchstmaß an Energieunabhängigkeit zu ermöglichen. Unsere Kernkompetenz liegt in leistungsstarker Solartechnologie – kombiniert mit intelligenten Speicher- und Energiemanagementlösungen. Gleichzeitig bleiben wir offen für technologische Weiterentwicklungen, um eine stabile, krisenfeste und zukunftssichere Energieversorgung für Familien und kommende Generationen zu gestalten.
                     </p>
                 </div>
             </DefaultCardComp>
