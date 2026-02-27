@@ -43,7 +43,7 @@ export default function Feature({ features }: Props) {
                              descrittion_length: 100,
                         };
 
-                        return <BoxCard key={index} item={enhancedItem} />;
+                        return <BoxCard key={index} item={enhancedItem}  />;
                     })}
                 </div>
             </div>

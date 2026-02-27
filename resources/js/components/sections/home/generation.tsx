@@ -35,7 +35,7 @@ export default function generation() {
                         </div>
 
                         <div className="mt-10">
-                           <a href={'mailto:example@gmail.com'}>
+                           <a href={route('contact')+'#contact'}>
                             <Button className='bg-transparent!  border border-btn-primary! text-btn-primary!'>
                                 <Icon iconNode={ArrowRight} variant="circle-transparent"  ></Icon>
                                 Kontaktieren Sie uns

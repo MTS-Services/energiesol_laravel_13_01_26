@@ -27,6 +27,7 @@ export default function Values({values}: {values: any}) {
                         {
                             values?.map((item, index)=> {
                               const newItem = {
+                                description_length: 500,
                                 ...item,
                                  btn: {
                                 label: item.action_text,

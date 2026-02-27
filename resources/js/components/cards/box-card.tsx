@@ -94,8 +94,8 @@ function BoxCard({item, className, children, contentBoxClassName}: ItemProps) {
                     {description}
 
                  {
-                    item?.description?.length > (item.description_length ?? 150) && item?.description?.length != description?.length && (
-                        <span className='text-info cursor-pointer' onClick={expandDescription}>...Read more</span>
+                    item?.description?.length > (item.description_length ?? 150) && description?.length === (item.description_length ?? 150) && (
+                        <span className='text-info cursor-pointer' onClick={expandDescription}>...See More</span>
                     )
                  }
                 {
@@ -105,7 +105,7 @@ function BoxCard({item, className, children, contentBoxClassName}: ItemProps) {
                     className="text-info cursor-pointer"
                     onClick={collapseDescription}
                     >
-                    ...Read less
+                    ...See Less
                     </span>
                 )
                 }

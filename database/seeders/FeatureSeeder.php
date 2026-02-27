@@ -17,7 +17,7 @@ class FeatureSeeder extends Seeder
             'description' => 'Profitieren Sie von der Kompetenz und dem fundierten Know-how eines jungen, engagierten Unternehmens. Unsere Lösungen basieren auf langjähriger Branchenerfahrung und ermöglichen einen sicheren sowie nachhaltigen Übergang zu erneuerbaren Energien.',
             'image' => '/images/feature1.png',
             'action_text' => 'Unsere Geschichte',
-            'action_url' => 'mailto:example@gmail.com',
+            'action_url' => route('contact').'#contact',
         ]);
 
         Feature::create([
@@ -25,7 +25,7 @@ class FeatureSeeder extends Seeder
             'description' => 'Durch unsere vereinfachten Prozesse und ein starkes Netzwerk ausgewählter Fachpartner reduzieren wir Kosten und steigern gleichzeitig die Effizienz. So bieten wir Ihnen hochwertige Solartechnologie zu attraktiven Konditionen – mit einem überzeugenden Preis-Leistungs-Verhältnis.',
             'image' => '/images/feature2.png',
             'action_text' => 'Unsere Geschichte',
-            'action_url' => 'https://energiesolutionnord.de/contact',
+            'action_url' => route('contact').'#contact',
         ]);
 
         Feature::create([
@@ -33,7 +33,7 @@ class FeatureSeeder extends Seeder
             'description' => 'Unser engagiertes Team überwacht Ihre Solaranlage rund um die Uhr und steht Ihnen jederzeit mit persönlichem Support zur Seite – zuverlässig, schnell und kompetent.',
             'image' => '/images/feature3.png',
             'action_text' => 'Kontaktieren Sie uns',
-            'action_url' => 'tel:+8801234567890',
+            'action_url' => route('contact').'#contact',
         ]);
     }
 }
