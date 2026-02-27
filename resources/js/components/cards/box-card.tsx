@@ -28,9 +28,10 @@ interface ItemProps{
     }
      children?: React.ReactNode,
      className?: string|null,
+     contentBoxClassName?: string|null
 }
 
-function BoxCard({item, className, children}: ItemProps) {
+function BoxCard({item, className, children, contentBoxClassName}: ItemProps) {
 
     const [description , setDescription] = React.useState<string | null>(item?.description?.substring(0, item.description_length ?? 150) ?? null);
     
@@ -66,7 +67,7 @@ function BoxCard({item, className, children}: ItemProps) {
         )}
 
 
-        <div className={` ${ !changeOrder ? 'order-last' : 'order-first'} flex-1 flex flex-col justify-between`}>
+        <div className={cn(` ${ !changeOrder ? 'order-last' : 'order-first'} flex-1 flex flex-col justify-between`, contentBoxClassName)    }>
 
 
             {
@@ -125,7 +126,7 @@ function BoxCard({item, className, children}: ItemProps) {
             item?.btn && (
                 item?.btn?.href ? (
                     <a href={item.btn.href}>
-                        <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
+                        <Button size="default" className={cn('bg-secondary! hover:bg-hover! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
                             <Icon iconNode={item.btn.iconNode ?? ArrowRight} variant={item.btn.iconVariant ?? 'circle'} iconClassName={cn('', item.btn.iconClassName)} className={cn('', item.btn.iconParentClassName)} />  
 
                             
@@ -134,7 +135,7 @@ function BoxCard({item, className, children}: ItemProps) {
                             </Button>
                     </a>
                 ):  (
-                    <Button size="default" className={cn('bg-secondary! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
+                    <Button size="default" className={cn('bg-secondary! hover:bg-hover! mt-6 cursor-pointer!', item.btn.buttonClassName)} > 
                    
                     <Icon iconNode={item.btn.iconNode ?? ArrowRight} variant={item.btn.iconVariant ?? 'circle'} iconClassName={cn('', item.btn.iconClassName)} className={cn('', item.btn.iconParentClassName)} />  
                     

@@ -26,7 +26,7 @@ export default function products({features}:any) {
     {/* Features item */}
 
     <CardSeven />
-    <CardFive />
+    {/* <CardFive /> */}
  
     <StartConfigurator />
   </FrontendLayout>

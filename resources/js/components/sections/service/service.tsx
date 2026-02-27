@@ -42,7 +42,7 @@ export default function Service({ services }: { services?: any[] | null }) {
                   image_url: item.image_url,
                   descrittion_length: 1000,
                 }
-                return (<BoxCard key={index} item={newItem} className={`grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent grid  ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} />)
+                return (<BoxCard key={index} item={newItem} className={`grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent grid  ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} contentBoxClassName="justify-start" />)
              
               })
             }

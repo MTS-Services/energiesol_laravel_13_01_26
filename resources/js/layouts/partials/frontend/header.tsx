@@ -17,7 +17,8 @@ import { useState } from 'react';
 export function FrontendHeader() {
     const { auth } = usePage<SharedData>().props;
     const { url } = usePage();
-    console.log(url);
+
+    console.log(url );
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navLinks = [
         { name: 'Home', href: route('home'), slug: '/' },
@@ -158,7 +159,7 @@ export function FrontendHeader() {
                                                         <li>
                                                             <Link
                                                                 href={link.href}
-                                                               className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary lg:text-base ${url == link.slug ? 'text-btn-primary!' : 'text-secondary'}`}
+                                                               className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary lg:text-base  ${url == link.slug || url == (link.slug + '#contact') ? ' text-btn-primary!' : 'text-secondary'}`}
                                                             >
                                                                 {link.name}
                                                             </Link>
