@@ -62,6 +62,12 @@ RUN mkdir -p storage/framework/{views,sessions,cache} \
     && chown -R www-data:www-data storage/framework storage/logs bootstrap/cache \
     && chmod -R 775 storage/framework storage/logs bootstrap/cache
 
+
+# Add this near your other mkdir/chown commands
+RUN touch /var/www/storage/logs/queue-worker.log \
+    && chown www-data:www-data /var/www/storage/logs/queue-worker.log \
+    && chmod 664 /var/www/storage/logs/queue-worker.log
+
 # Install PHP dependencies
 RUN composer install --no-dev --optimize-autoloader && php artisan wayfinder:generate
 
