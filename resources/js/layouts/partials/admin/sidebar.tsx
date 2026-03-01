@@ -175,7 +175,7 @@ export const AdminSidebar = React.memo<AdminSidebarProps>(
         return (
             <aside
                 className={cn(
-                    'relative hidden h-screen border-r bg-background',
+                    'relative hidden h-screen border-r bg-blue-500/30 backdrop-blur-3xl',
                     'transition-all duration-300 ease-in-out',
                     'flex-col md:flex',
                     isCollapsed ? 'w-16' : 'w-64',
@@ -190,12 +190,12 @@ export const AdminSidebar = React.memo<AdminSidebarProps>(
                 >
                     <Link
                         href="/"
-                        className="flex items-center gap-2 transition-opacity hover:opacity-80"
+                        className=" items-center gap-2 transition-opacity hover:opacity-80 inline-block px-6 overflow-hidden"
                     >
                         {isCollapsed ? (
                             <LayoutGrid className="h-6 w-6 text-primary" />
                         ) : (
-                            <AppLogo className="text-base!" />
+                            <AppLogo className="text-base! overflow-hidden h-12 w-20! object-contain" />
                         )}
                     </Link>
                 </div>
