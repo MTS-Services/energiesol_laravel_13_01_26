@@ -44,7 +44,7 @@ function ContactForm() {
             <div>
               <Input 
                 type='text' 
-                placeholder='John' 
+                placeholder='Max' 
                 id="first_name" 
                 className='font-normal text-base placeholder:text-secondary/50 shadow-[1px_1px_4px_-2px_#c7c4c4de] rounded-xl font-montserrat px-6! py-4! block! h-auto!'
                 value={data.first_name}
@@ -58,7 +58,7 @@ function ContactForm() {
             <div>
               <Input 
                 type='text' 
-                placeholder='Doe' 
+                placeholder='Mustermann' 
                 id="last_name" 
                 className='font-normal text-base placeholder:text-secondary/50 shadow-[1px_1px_4px_-2px_#c7c4c4de] rounded-xl font-montserrat px-6! py-4! block! h-auto!'
                 value={data.last_name}
@@ -89,7 +89,7 @@ function ContactForm() {
             <div>
               <Input 
                 type='text' 
-                placeholder='(406) 555-0120' 
+                placeholder='(+49) 40 123 456' 
                 id="phone_number" 
                 className='font-normal text-base placeholder:text-secondary/50 shadow-[1px_1px_4px_-2px_#c7c4c4de] rounded-xl font-montserrat px-6! py-4! block! h-auto!'
                 value={data.phone_number}

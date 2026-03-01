@@ -2,6 +2,7 @@ import { ArrowRight, LucideIcon } from "lucide-react";
 import { Button } from "../ui/button";
 import { Icon } from "../ui/icon";
 import { Link } from "@inertiajs/react";
+import { cn } from '@/lib/utils'
 
 interface Props {
     slogan?: string | null,
@@ -29,8 +30,9 @@ interface Props {
         } | null,
         description?: string | null,
     }
+    className?: string | null
 }
-function Banner({ item }: Props) {
+function Banner({ item , className}: Props) {
 
     return (
         <div className="relative isolate overflow-hidden">
@@ -44,7 +46,7 @@ function Banner({ item }: Props) {
                     }}
                 ></div>
                 {/* <div className="absolute inset-y-0 left-0 z-[1] w-[30%] bg-gradient-to-r from-white/30 via-white/20 to-transparent backdrop-blur-sm"></div> */}
-                <div className="relative z-10 mx-auto max-w-7xl px-6 pt-40 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40">
+                <div className={cn('relative z-10 mx-auto max-w-7xl px-6 pt-45 pb-24 lg:flex lg:items-center lg:gap-x-10 lg:px-8 lg:py-40 lg:pt-80', className)}>
                     <div className="col-span-1 w-full lg:w-3/5">
                         {
                             item?.slogan && (
@@ -73,7 +75,9 @@ function Banner({ item }: Props) {
                                 {item?.description || ""}
                             </p>
                         </div>
-                        <div>
+                        {
+                            item?.btn && (
+                                <div>
                            <Link href={item?.btn?.href || "#"}>
                              <Button size="default" variant={item?.btn?.buttonVariant || "default"} className={item?.btn?.buttonClassName || ""}>
                                 <Icon iconNode={item?.btn?.iconNode || ArrowRight} variant={item?.btn?.iconVariant || "circle"} className={item?.btn?.iconParentClassName || ""} iconClassName={item?.btn?.iconClassName || ""} />
@@ -81,7 +85,8 @@ function Banner({ item }: Props) {
                             </Button>
                            </Link>
                         </div>
-
+                                )
+                        }
 
                     </div>
 

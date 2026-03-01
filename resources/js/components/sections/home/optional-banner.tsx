@@ -12,9 +12,9 @@ export default function OptionalBanner() {
                 after: true,
             }
         },
-        description: 'Gestützt auf jahrzehntelange Branchenerfahrung bieten unsere engagierten Spezialisten umfassenden telefonischen Support, um Ihnen bei der Auswahl der richtigen Technologie zu helfen und Sie auf Ihrem Weg zur Energieunabhängigkeit zu begleiten.',
+        description: 'Basierend auf langjähriger Branchenerfahrung stehen Ihnen unsere engagierten Spezialisten mit persönlichem, telefonischem Support zur Seite. Wir unterstützen Sie bei der Wahl der passenden Technologie und begleiten Sie Schritt für Schritt auf Ihrem Weg zur Energieunabhängigkeit',
         btn: {
-            label: 'Konfigurator',
+            label: 'Angebot erstellen',
             href: route('configurator'),
             buttonVariant: 'default',
             buttonClassName: '',

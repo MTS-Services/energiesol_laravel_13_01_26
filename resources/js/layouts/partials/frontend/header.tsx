@@ -17,10 +17,11 @@ import { useState } from 'react';
 export function FrontendHeader() {
     const { auth } = usePage<SharedData>().props;
     const { url } = usePage();
-    console.log(url);
+
+    console.log(url );
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const navLinks = [
-        { name: 'Heim', href: route('home'), slug: '/' },
+        { name: 'Home', href: route('home'), slug: '/' },
         { name: 'Service', href: route('service'), slug: '/service' },
         { name: 'Vorteile', href: route('advantage'), slug: '/advantage' },
         { name: 'Geschichte', href: route('about'), slug: '/about-us' },
@@ -29,8 +30,9 @@ export function FrontendHeader() {
     ];
 
     return (
-        <header className="bg-linear-t-b fixed top-0 z-50 w-full bg-white/15 from-white/80 to-white/80 backdrop-blur-sm">
-            <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8">
+        <header className="bg-linear-t-b fixed top-0 z-50 w-full bg-black/10 from-white/80 to-white/80 backdrop-blur-sm">
+            <div className="container mx-auto flex h-30 items-center justify-between px-4 md:px-8">
+            {/* <div className="container mx-auto flex h-16 items-center justify-between px-4 md:px-8"> */}
                 <div className="flex items-center gap-8">
                     <Link href="/" className="">
                         <AppLogo />
@@ -44,7 +46,7 @@ export function FrontendHeader() {
                                     <li>
                                         <Link
                                             href={link.href}
-                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary md:text-base ${url == link.slug ? 'text-btn-primary!' : 'text-secondary'}`}
+                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-hover md:text-base ${url == link.slug ? 'text-hover!' : 'text-secondary'}`}
                                         >
                                             {link.name}
                                         </Link>
@@ -96,14 +98,14 @@ export function FrontendHeader() {
                         >
                             <Button
                                 size="sm"
-                                className="rounded-full! bg-btn-primary py-5!"
+                                className="rounded-full! bg-btn-primary py-5.5!"
                             >
                                 <Icon
                                     iconNode={ArrowRight}
                                     variant="circle"
-                                    className="h-4! w-4! rounded-full bg-primary p-3 text-btn-primary"
+                                    className="h-4! w-4! rounded-full bg-primary p-4 text-btn-primary"
                                 />
-                                Konfigurator
+                               Angebot erstellen
                             </Button>
                         </Link>
                     </div>
@@ -125,7 +127,7 @@ export function FrontendHeader() {
                             side="right"
                             className="flex w-full flex-col p-0 sm:max-w-sm"
                         >
-                            <SheetHeader className="flex-row items-center justify-between space-y-0 border-b p-6">
+                            <SheetHeader className="flex-row items-center justify-between space-y-0 border-b p-6   bg-black/10 from-white/80 to-white/80 backdrop-blur-sm">
                                 <AppLogo />
                                 <SheetClose asChild>
                                     <Button
@@ -155,12 +157,12 @@ export function FrontendHeader() {
                                                 {navLinks &&
                                                     navLinks.map((link) => (
                                                         <li>
-                                                            <Link
-                                                                href={link.href}
-                                                               className={`font-open-sans text-sm font-normal text-secondary hover:text-btn-primary lg:text-base ${url == link.slug ? 'text-btn-primary!' : 'text-secondary'}`}
-                                                            >
-                                                                {link.name}
-                                                            </Link>
+                                                             <Link
+                                            href={link.href}
+                                            className={`font-open-sans text-sm font-normal text-secondary hover:text-hover md:text-base ${url == link.slug ? 'text-hover!' : 'text-secondary'}`}
+                                        >
+                                            {link.name}
+                                        </Link>
                                                         </li>
                                                     ))}
                                             </ul>

@@ -5,9 +5,9 @@ export default function review({reviews}: {reviews: any}) {
     const SectionHeaderData = {
         slogan: 'Kundengeschichten',
         title: {
-            initial: 'Unsere Kunden  ',
-            middle: 'empfehlen',
-            last: ' uns sehr gerne weiter.',
+            initial: 'Unsere Kundinnen und Kunden',
+            middle: ' empfehlen ',
+            last: 'uns mit Überzeugung und voller Zufriedenheit weiter.',
             breakPoint: {
                 before: false,
             }

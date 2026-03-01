@@ -15,11 +15,11 @@ export default function Service({ services }: { services?: any[] | null }) {
   const SectionHeaderData = {
     slogan: 'PROJEKTDURCHFÜHRUNG',
     title: {
-      initial: 'Solar ',
-      middle: 'Expertise',
+      initial: '',
+      middle: 'Solar-Expertise',
       last: ' aus einer Hand',
     },
-    description: "Als Full-Service-Partner begleiten wir Sie vom Erstgespräch bis zum Netzanschluss. Unser digitaler Prozess garantiert Ihnen maximale Transparenz, Komfort und absolute Klarheit – einfach এবং zuverlässig."
+    description: "Als Full-Service-Partner begleiten wir Sie vom ersten Beratungsgespräch bis zum Netzanschluss. Unser strukturierter, digitaler Prozess sorgt für maximale Transparenz, hohen Komfort und klare Abläufe – einfach und zuverlässig."
   }
 
   return (
@@ -40,9 +40,9 @@ export default function Service({ services }: { services?: any[] | null }) {
                   description: item.description,
                   changeOrder: index % 2 === 1,
                   image_url: item.image_url,
-                  descrittion_length: 1000,
+                  description_length: 500,
                 }
-                return (<BoxCard key={index} item={newItem} className={`grid-cols-2 gap-10 from-transparent to-transparent grid  ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} />)
+                return (<BoxCard key={index} item={newItem} className={`grid-cols-1 md:grid-cols-2 gap-10 from-transparent to-transparent grid  ${services.length === index + 1 ? '' : 'border-b'} border-[primary/70] pb-10 rounded-none`} contentBoxClassName="justify-start" />)
              
               })
             }

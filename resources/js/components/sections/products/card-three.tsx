@@ -5,7 +5,7 @@ import { Link } from '@inertiajs/react'
 
 function CardThree() {
     const item = {
-        slogan: 'Intelligentes Energiezentrum',
+        slogan: 'INTELLIGENTES ENERGIEZENTRUM',
        
         image: '/images/box1.png',
         boxClassName: 'py-0!',
@@ -22,13 +22,16 @@ function CardThree() {
             <div>
                 <h2 className='text-2xl lg:text-[32px] font-semibold font-montserrat'>
                     <span className='font-playfair-display font-semibold text-info italic'>Smart Energy </span>
-                    <span>Intelligentes Energiezentrum</span>
+                    <span>– volle Kontrolle für Ihr Zuhause</span>
                 </h2>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-                   Der <span className='font-normal font-montserrat text-secondary'>Energiesol</span>,Home Energy Manager ist unser fortschrittliches Energiemanagementsystem (HEMS), das Ihnen die vollständige Kontrolle gibt. Dieses kompakte und dennoch leistungsstarke Gerät lässt sich nahtlos in alle Photovoltaikanlagen von Energiesol integrieren und fungiert als das „Gehirn“ Ihres heimischen Energie-Ökosystems.
+                   Der <span className='font-normal font-montserrat text-secondary'>Energie Solution </span>Home Energy Manager (HEMS) ist das intelligente Herzstück Ihres Energiesystems. Das kompakte, leistungsstarke System integriert sich nahtlos in Ihre Photovoltaikanlage und steuert Erzeugung, Speicherung und Verbrauch zentral und effizient.
                 </p>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3'>
-                Mit der Energiesol Smart App können Sie Ihre Energieflüsse in Echtzeit visualisieren, Ihre Solarproduktion überwachen und Ihr Verbrauchsverhalten anpassen, um Ihre Autarkie zu maximieren. Unser System greift intelligent ein, um die Energienutzung zu optimieren und Kosten zu sparen – ohne dabei auf Ihren gewohnten Lebenskomfort zu verzichten.
+               Mit der Energie Solution Smart App behalten Sie Ihre Energieflüsse jederzeit im Blick. Verfolgen Sie Ihre Solarproduktion in Echtzeit, analysieren Sie Ihren Verbrauch und optimieren Sie gezielt Ihre Eigenversorgung.
+                </p>
+                <p className='font-normal font-montserrat text-secondary/70 mt-3'>
+             Unser Energiemanagement greift automatisch ein, um Strom intelligent zu verteilen, Kosten zu senken und Ihre Autarkie zu erhöhen – ohne Einschränkungen im Alltag und bei vollem Komfort.
                 </p>
             </div>
         </DefaultCardComp>
@@ -36,27 +39,27 @@ function CardThree() {
         <DefaultCardComp  order={true} image={item2.image} boxClassName={item2.boxClassName}>
             <div>
                 <h2 className='text-lg lg:text-2xl font-semibold font-montserrat'>
-                   Ihre Vorteile mit dem Energiesol Energiemanager:
+                   Ihre Vorteile mit dem Energie Solution Energiemanager
                 </h2>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3 lg:text-lg text-base'>
                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary/70"></span>
-                    <span className='font-normal font-montserrat text-secondary'>Transparenz & totale Kontrolle: </span>TErhalten Sie durch die intuitive Energiesol App volle Einblicke in die Energieerzeugung und den Verbrauch Ihres Zuhauses.
+                    <span className='font-normal font-montserrat text-secondary'>Transparenz & volle Kontrolle: </span>Mit der intuitiven Energie Solution App erhalten Sie jederzeit detaillierte Einblicke in Energieerzeugung, Speicherung und Verbrauch Ihres Zuhauses.
                 </p>
                <p className='font-normal font-montserrat text-secondary/70 mt-3 lg:text-lg text-base'>
                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary/70"></span>
-                   <span className='font-normal font-montserrat text-secondary'>Maximaler Eigenverbrauch: </span>Erleben Sie intelligente Steuerung für mehr Unabhängigkeit vom Stromnetz und steigenden Stromkosten.
+                   <span className='font-normal font-montserrat text-secondary'>Maximaler Eigenverbrauch: </span>Durch intelligente Steuerung wird Ihr Solarstrom optimal genutzt – für mehr Unabhängigkeit vom Stromnetz und steigenden Energiekosten.
                 </p>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3 lg:text-lg text-base'>
                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary/70"></span>
-                   <span className='font-normal font-montserrat text-secondary'>Intelligentes EV-Laden: </span>Laden Sie Ihr Elektrofahrzeug mit überschüssigem Solarstrom machen Sie Ihre Mobilität sowohl kosteneffizient als auch umweltfreundlich.
+                   <span className='font-normal font-montserrat text-secondary'>Intelligentes E-Auto-Laden: </span>Laden Sie Ihr Elektrofahrzeug bevorzugt mit überschüssigem Solarstrom und machen Sie Ihre Mobilität effizient und nachhaltig.
                 </p>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3 lg:text-lg text-base'>
                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary/70"></span>
-                   <span className='font-normal font-montserrat text-secondary'>Dynamische Preisoptimierung: </span>Senken Sie Ihre Kosten, indem Sie energieintensive Aufgaben automatisch in Zeiten mit den günstigsten Stromtarifen verschieben.
+                   <span className='font-normal font-montserrat text-secondary'>Dynamische Preisoptimierung: </span>Verschieben Sie energieintensive Anwendungen automatisch in Zeiten mit günstigen Stromtarifen und senken Sie so aktiv Ihre Kosten.
                 </p>
                 <p className='font-normal font-montserrat text-secondary/70 mt-3 lg:text-lg text-base'>
                  <span className="mr-2 inline-block h-1.5 w-1.5 rounded-full bg-secondary/70"></span>
-                   <span className='font-normal font-montserrat text-secondary'>Zukunftssichere Technologie: </span>Bereit für kommende Innovationen – von bidirektionalem Laden bis hin zu fortschrittlichen Smart-Home-Integrationen.
+                   <span className='font-normal font-montserrat text-secondary'>Zukunftssichere Technologie: </span>Bereit für kommende Innovationen – von bidirektionalem Laden bis hin zu erweiterten Smart-Home-Integrationen.
                 </p>
             </div>
         </DefaultCardComp>
