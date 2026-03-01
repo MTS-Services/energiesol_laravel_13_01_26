@@ -184,18 +184,18 @@ export const AdminSidebar = React.memo<AdminSidebarProps>(
                 {/* Logo Section */}
                 <div
                     className={cn(
-                        'flex h-16 items-center border-b',
+                        'flex h-20 items-center border-b',
                         isCollapsed ? 'justify-center px-2' : 'px-6',
                     )}
                 >
                     <Link
                         href="/"
-                        className=" items-center gap-2 transition-opacity hover:opacity-80 inline-block px-6 overflow-hidden"
+                        className=" items-center gap-2 transition-opacity hover:opacity-80 inline-block py-2 mx-auto overflow-hidden"
                     >
                         {isCollapsed ? (
                             <LayoutGrid className="h-6 w-6 text-primary" />
                         ) : (
-                            <AppLogo className="text-base! overflow-hidden h-12 w-20! object-contain" />
+                            <AppLogo className="text-base! overflow-hidden h-18 w-20! object-contain" />
                         )}
                     </Link>
                 </div>
