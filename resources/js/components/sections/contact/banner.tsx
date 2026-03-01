@@ -18,7 +18,7 @@ Sprechen Sie uns an – wir beraten Sie persönlich und unverbindlich.`,
         image: '/images/contact-banner.png',
         btn: {
             label: 'Kostenlose Expertenberatung',
-            href: route('configurator') ,
+            href: route('contact')+"#contact" ,
             iconParentClassName: 'bg-primary',
             iconClassName: 'text-secondary',
         }
