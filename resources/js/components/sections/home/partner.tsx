@@ -21,7 +21,7 @@ export default function partner({partners}:PartnerProps) {
 
         <div className="features grid grid-cols-1 gap-6">
 
-                    <PartnerSlider sliders={partners} perView={3} className='bg-transparent' />
+                    <PartnerSlider sliders={partners} perView={3} className='bg-transparent items-center' />
 
                 </div>
 
