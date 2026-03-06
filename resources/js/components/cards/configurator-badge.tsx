@@ -13,7 +13,7 @@ function ConfiguratorBadge() {
                     />
                 </div>
                 <p className="text-left text-xs text-secondary">
-                   Deutschlandweite Installation durch Profis
+                Installation in Norddeutschland durch unsere Zertifizierten Fachpartner
                 </p>
             </div>
 
@@ -37,7 +37,7 @@ function ConfiguratorBadge() {
                     />
                 </div>
                 <p className="text-left text-xs text-secondary">
-                   Professionelles Handwerk seit 2018
+                    TÜV zertifizierter Photovoltaikplaner seit 2026
                 </p>
             </div>
         </div>

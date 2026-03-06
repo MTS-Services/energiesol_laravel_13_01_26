@@ -31,7 +31,8 @@ export default function Configurator6({
         last_name: '',
         email: '',
         phone: '',
-        consent: false,
+        consentEmail: false,
+        consentPhone: false,
     });
 
     const benefits = useMemo(
@@ -85,7 +86,7 @@ export default function Configurator6({
                                 <span className="text-red-600">*</span>
                             </label>
                             <Input
-                                placeholder="John"
+                                placeholder="Max"
                                 value={data.first_name}
                                 onChange={(e) =>
                                     setData('first_name', e.target.value)
@@ -102,7 +103,7 @@ export default function Configurator6({
                                 <span className="text-red-600">*</span>
                             </label>
                             <Input
-                                placeholder="Doe"
+                                placeholder="Mustermann"
                                 value={data.last_name}
                                 onChange={(e) =>
                                     setData('last_name', e.target.value)
@@ -136,7 +137,7 @@ export default function Configurator6({
                             </label>
                             <Input
                                 type="tel"
-                                placeholder="(406) 555-0120"
+                                placeholder="(+49) 40 123 456"
                                 value={data.phone}
                                 onChange={(e) =>
                                     setData('phone', e.target.value)
@@ -151,35 +152,81 @@ export default function Configurator6({
                     </div>
 
                     <div className="mt-6 space-y-4 text-sm text-slate-600">
-                        <label className=" items-start gap-3 flex flex-row">
+                        <label className="flex flex-row items-start gap-3">
                             <Checkbox
-                                checked={data.consent}
+                                checked={data.consentEmail}
                                 onCheckedChange={(checked) =>
-                                    setData('consent', checked ? true : false)
+                                    setData('consentEmail', checked ? true : false)
                                 }
-                                className="w-6 h-6 border border-secondary mt-2"
+                                className="mt-2 h-6 w-6 border border-secondary"
                             />
                             <div className="ml-3 font-open-sans text-base leading-relaxed">
-                                <p className='mb-6'>
-                                   Ich bin damit einverstanden, die Ergebnisse dieses Solarkonfigurators sowie zusätzliche Informationen zu meiner Anfrage (z. B. Terminbestätigungen) von energiesol per E-Mail zu erhalten, basierend auf den von mir angegebenen Daten.
+                                <p className="mb-1 font-semibold">
+                                    (BUTTON 1) Einwilligung E-Mail
                                 </p>
-                                <p className='mb-6'>
-                                    Ich bin außerdem damit einverstanden, telefonisch kontaktiert zu werden, um erste Fragen zu klären, gegebenenfalls einen Vor-Ort-Termin zu vereinbaren und an Kundenzufriedenheitsumfragen per E-Mail teilzunehmen.
-                                </p>
-                                <p className='mb-6'>
-                                   Sie können Ihre Einwilligung jederzeit ohne Angabe von Gründen widerrufen, indem Sie energiesol per E-Mail oder schriftlich kontaktieren.
-                                </p>
-                                <p>
-                                   Weitere Einzelheiten zur Verarbeitung Ihrer personenbezogenen Daten und zu Ihren Rechten als betroffene Person finden Sie in unserer Datenschutzerklärung.
+                                <p className="mb-4">
+                                    Ich bin damit einverstanden, dass die von mir
+                                    angegebenen Daten zur Bearbeitung meiner
+                                    Anfrage verwendet werden und ich die
+                                    Ergebnisse des Solarkonfigurators sowie
+                                    Informationen zu meiner Anfrage (z. B.
+                                    Terminbestätigungen) per E-Mail von
+                                    energiesol erhalte.
                                 </p>
                             </div>
                         </label>
+
+                        <label className="flex flex-row items-start gap-3">
+                            <Checkbox
+                                checked={data.consentPhone}
+                                onCheckedChange={(checked) =>
+                                    setData('consentPhone', checked ? true : false)
+                                }
+                                className="mt-2 h-6 w-6 border border-secondary"
+                            />
+                            <div className="ml-3 font-open-sans text-base leading-relaxed">
+                                <p className="mb-1 font-semibold">
+                                    (BUTTON 2) Einwilligung Telefon
+                                </p>
+                                <p className="mb-4">
+                                    Ich bin außerdem damit einverstanden, dass
+                                    mich energiesol telefonisch kontaktiert, um
+                                    meine Anfrage zu besprechen, offene Fragen zu
+                                    klären oder gegebenenfalls einen
+                                    Vor-Ort-Termin zu vereinbaren.
+                                </p>
+                            </div>
+                        </label>
+
+                        <p className="mt-2 font-open-sans text-base font-semibold text-red-600">
+                            Beide Einwilligungen müssen erteilt werden, um
+                            fortzufahren.
+                        </p>
+
+                        <div className="mt-4 font-open-sans text-base leading-relaxed">
+                            <p className="mb-2 font-semibold">Widerruf</p>
+                            <p className="mb-4">
+                                Ich kann meine Einwilligung jederzeit mit Wirkung
+                                für die Zukunft widerrufen, z. B. per E-Mail oder
+                                schriftlich an energiesol. Die Rechtmäßigkeit der
+                                bis zum Widerruf erfolgten Verarbeitung bleibt
+                                davon unberührt.
+                            </p>
+                            <p className="mb-2 font-semibold">
+                                Datenschutzhinweis
+                            </p>
+                            <p>
+                                Weitere Informationen zur Verarbeitung meiner
+                                personenbezogenen Daten und zu meinen Rechten
+                                finde ich in der Datenschutzerklärung.
+                            </p>
+                        </div>
                     </div>
 
                    <div className="mt-8 flex justify-start">
                     <Button 
                         variant={'default'}
-                        disabled={!data.consent}
+                        disabled={!data.consentEmail || !data.consentPhone}
                         className="disabled:opacity-50 disabled:cursor-not-allowed"
                         type='submit'
                     >
@@ -190,11 +237,11 @@ export default function Configurator6({
                 </div>
                 </form>
 
-                <div className="mt-10 p-6 sm:p-10">
+                <div className="mt-10 p-6 sm:p-10 ">
                     <div className="grid gap-8 lg:grid-cols-2 lg:gap-12">
                         <div className="flex flex-col justify-center">
                             <h3 className="font-montserrat text-2xl font-semibold text-secondary sm:text-3xl">
-                                Your Personalized Cost Estimate
+                                Ihr persönliches Solar-Angebot - kostenlos & unverbindlich
                             </h3>
                             <ul className="mt-3 space-y-4 text-base text-secondary font-open-sans font-normal  ">
                                 {benefits.map((item) => (
@@ -208,10 +255,10 @@ export default function Configurator6({
                                 ))}
                             </ul>
                         </div>
-                        <div className="rounded-3xl bg-white p-6">
+                        <div className="rounded-3xl p-6 bg-linear-to-r from-btn-primary/20 to-info/20">
                             <div className="relative mt-4 overflow-hidden rounded-2xl">
                                 <img
-                                    src="/images/configurator/energie-solution.png"
+                                    src="/images/logo-2.png"
                                     alt="Energie Solution Nord"
                                     className="w-full object-cover sm:h-72 lg:h-full"
                                 />

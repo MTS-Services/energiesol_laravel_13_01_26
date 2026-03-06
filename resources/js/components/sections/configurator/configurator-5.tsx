@@ -77,11 +77,11 @@ export default function Configurator5({ solarInverter, area, solar_id, inverter_
                 <div className="mx-auto text-center">
                     <div className="max-w-5xl mx-auto">
                         <h2 className="text-2xl font-montserrat font-semibold leading-tight text-secondary sm:text-3xl md:text-4xl lg:text-[40px] ">
-                           Möchten Sie Ihrem Solarsystem eine Batteriespeicherung hinzufügen?
+                            Möchten Sie Ihrem Solarsystem eine Wallbox hinzufügen?
                         </h2>
 
                         <p className="mt-3 text-sm text-slate-500 sm:text-base lg:text-lg xl:text-xl">
-                          Ein Solarspeicher nutzt überschüssige Tagesenergie, damit Ihr Zuhause auch nachts oder bei Stromausfällen versorgt wird.
+                            Mit einer Wallbox können Sie Ihr Elektroauto bequem zu Hause laden – idealerweise mit selbst erzeugtem Solarstrom.
                         </p>
                     </div>
 
@@ -101,14 +101,14 @@ export default function Configurator5({ solarInverter, area, solar_id, inverter_
                             />
                         ))}
                     </div>
-                    <div className="mt-10 flex justify-center">
+                    {/* <div className="mt-10 flex justify-center">
                         <div className="inline-flex w-full max-w-6xl items-center gap-3 rounded-lg bg-linear px-6 py-4 text-sm text-slate-600 shadow-sm sm:text-base">
                             <Info className="h-5 w-5 text-secondary" />
                             <p>
                                Ein Solarspeicher nutzt Tagesüberschuss, um Ihr Zuhause auch nachts oder bei Ausfällen zu versorgen.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                     {/* Under-card notes */}
                     <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
 
