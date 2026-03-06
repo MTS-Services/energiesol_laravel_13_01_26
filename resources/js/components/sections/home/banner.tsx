@@ -72,15 +72,15 @@ export default function banner() {
                 <span className="pl-1 font-montserrat text-xl font-semibold text-secondary md:text-2xl">
                   5
                 </span>
-                <span className="font-open-sans text-xl font-normal text-secondary/72 md:text-2xl">
+                {/* <span className="font-open-sans text-xl font-normal text-secondary/72 md:text-2xl">
                   (150K)
-                </span>
+                </span> */}
               </p>
             </div>
 
             <div className="flex">
               <div className="flex items-center gap-2 rounded-full bg-primary px-2 py-2">
-                <Link>
+                <a href="https://www.instagram.com/energiesolutionnord/" target="_blank">
                   {" "}
                   <img
                     src="/images/instragram.png"
@@ -88,8 +88,8 @@ export default function banner() {
                     className="h-6 w-auto"
                   />
                   {" "}
-                </Link>
-                <Link>
+                </a>
+                <a href="https://share.google/DEj8j7hRShezTAdA5" target="_blank">
                   {" "}
                   <img
                     src="/images/google.png"
@@ -97,7 +97,7 @@ export default function banner() {
                     className="h-6 w-auto"
                   />
                   {" "}
-                </Link>
+                </a>
               </div>
             </div>
           </div>

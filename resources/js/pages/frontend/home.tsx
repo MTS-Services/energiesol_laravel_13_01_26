@@ -15,7 +15,7 @@ export default function Home({ features, partners, reviews }: { features: any[],
 
     <Banner />
     
-    <Partner partners={partners}  />
+    {/* <Partner partners={partners}  /> */}
 
     <Feature features={features}  />
 
