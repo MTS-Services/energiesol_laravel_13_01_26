@@ -21,9 +21,7 @@ use App\Services\ValueService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
-use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
-use Illuminate\Support\Facades\Storage;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
 use Inertia\Response;
@@ -84,6 +82,16 @@ class HomeController extends Controller
             'values' => $values,
             'reviews' => $reviews,
         ]);
+    }
+
+    public function privacyPolicy()
+    {
+        return inertia('frontend/privacy-policy');
+    }
+    
+    public function legal()
+    {
+        return inertia('frontend/legal');
     }
 
     public function about(Request $request): Response
@@ -450,5 +458,8 @@ class HomeController extends Controller
         }
 
     }
+
+
+
 
 }

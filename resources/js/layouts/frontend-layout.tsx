@@ -4,6 +4,7 @@ import { FrontendFooter } from '@/layouts/partials/frontend/footer';
 import { useAppearance } from '@/hooks/use-appearance';
 import { CookieConsentDialog } from '@/components/cookie-consent-dialog';
 import { ConsultantWidget } from '@/components/consultant-widget';
+import { usePage } from '@inertiajs/react';
 
 interface FrontendLayoutProps {
     children: React.ReactNode;
@@ -11,7 +12,8 @@ interface FrontendLayoutProps {
 
 export default function FrontendLayout({ children }: FrontendLayoutProps) {
      const {appearance, updateAppearance} = useAppearance();
-    
+    const { url } = usePage();
+    console.log(url);
         React.useEffect(() => {
            if(appearance != 'light') updateAppearance('light');
         }, [appearance])
@@ -20,7 +22,13 @@ export default function FrontendLayout({ children }: FrontendLayoutProps) {
             <FrontendHeader />
             <main className="flex flex-1 flex-col">{children}</main>
             <FrontendFooter />
-            <CookieConsentDialog />
+            {
+                url !== '/privacy-policy' && url !== '/legal' && (
+                    <>
+                        <CookieConsentDialog />
+                    </>
+                )
+            }
             <ConsultantWidget />
         </div>
     );

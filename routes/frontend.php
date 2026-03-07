@@ -30,6 +30,9 @@ Route::group([], function () {
     Route::post('/order/download/analysis/{estimate_id}', [HomeController::class, 'orderDownloadPdfAnalysis'])->name('order.download.analysis');
     Route::post('/store-contact', [HomeController::class, 'store'])->name('store.contact');
 
+
+    Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
+    Route::get('legal', [HomeController::class, 'legal'])->name('legal');
     // WebHook Route for Calendly
 
     Route::post('/calendly/webhook', [CalendlyWebhookController::class, 'handle'])
