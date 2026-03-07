@@ -119,10 +119,10 @@ export function CookieConsentDialog() {
 
                     <div className=" border-t px-8 py-5 md:flex-row md:items-center md:justify-between">
                         <div className="flex flex-wrap gap-4 text-sm font-open-sans text-secondary underline-offset-2">
-                            <a href="#" className="hover:underline">
+                            <a href={route('privacy-policy')} target='_blank' className="hover:underline">
                                 Datenschutzerklärung
                             </a>
-                            <a href="#" className="hover:underline">
+                            <a href={route('legal')} target='_blank' className="hover:underline">
                                 Impressum
                             </a>
                             <a href="#" className="hover:underline">
