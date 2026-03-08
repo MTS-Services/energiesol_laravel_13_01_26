@@ -282,18 +282,22 @@ class HomeController extends Controller
             'last_name' => 'required|string|max:255',
             'email' => 'required|email|max:255',
             'phone' => 'required|string|max:20',
-            'consent' => 'required|boolean',
+           
         ], [
             'first_name.required' => 'Bitte geben Sie Ihren Vornamen ein.',
             'last_name.required' => 'Bitte geben Sie Ihren Nachnamen ein.',
             'email.required' => 'Bitte geben Sie Ihre E-Mail-Adresse ein.',
             'email.email' => 'Bitte geben Sie eine gültige E-Mail-Adresse ein.',
             'phone.required' => 'Bitte geben Sie Ihre Telefonnummer ein.',
-            'consent.required' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
-            'consent.accepted' => 'Bitte akzeptieren Sie die Datenschutzerklärung.',
+          
+           
         ]);
 
-        // dd($request->all());
+       $data = $request->all();
+        $data['consent'] = true;
+       unset($data['consentEmail']);
+       unset($data['consentPhone']);
+       
         $key = 'estimate-form:'.$request->ip();
         $limit = 10;
         $duration = 60;
@@ -306,7 +310,7 @@ class HomeController extends Controller
 
         RateLimiter::hit($key, $duration);
 
-        $estimate = $this->estimateService->create($request->all());
+        $estimate = $this->estimateService->create($data);
 
         try {
             EstimateMailJob::dispatch(route('order.success.verify', encrypt($estimate->id)), $estimate->email);
