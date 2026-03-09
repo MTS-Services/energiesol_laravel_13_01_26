@@ -5,7 +5,35 @@ import { Icon } from '@/components/ui/icon';
 import { Link } from '@inertiajs/react';
 import { ArrowRight, Star } from 'lucide-react';
 
-export default function banner() {
+export default function () {
+    const isMobile = window.innerWidth < 768;
+
+    return <>{isMobile ? mobileBanner() : desktopBanner()}</>;
+}
+
+function mobileBanner() {
+    return (
+        <div className="relative isolate overflow-hidden min-h-[70vh]">
+            <div className="bannerArea relative flex flex-col">
+                <div
+                    className="absolute inset-0 z-0 bg-cover bg-center bg-no-repeat"
+                    style={{
+                        backgroundImage: "url('/images/home_banner-2.png')",
+                        backgroundSize: 'cover',
+                        backgroundPosition: 'center center',
+                        opacity: '0.6',
+                    }}
+                ></div>
+                
+                <div className="relative z-10 flex-1 flex items-center justify-center min-h-[70vh]">
+                    {/* Mobile content can go here if needed in the future */}
+                </div>
+            </div>
+        </div>
+    );
+}
+
+function desktopBanner() {
     return (
         <div className="relative isolate overflow-hidden">
             <div className="bannerArea relative flex flex-col">
@@ -128,8 +156,6 @@ export default function banner() {
                             </p>
                         </div>
                     </div>
-
-                   
                 </div>
                 <div className="absolute top-0 right-0 bottom-0 w-1/6 overflow-hidden">
                     <div
@@ -141,9 +167,9 @@ export default function banner() {
                         }}
                     ></div>
                 </div>
-                 <div className=' flex justify-end absolute top-[83%] right-[5%] lg:right-[12%] w-full'>
-                  <AppLogo />
-                 </div>
+                <div className="absolute top-[83%] right-[5%] flex w-full justify-end lg:right-[12%]">
+                    <AppLogo />
+                </div>
             </div>
         </div>
     );
