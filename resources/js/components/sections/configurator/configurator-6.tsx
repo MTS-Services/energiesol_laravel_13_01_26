@@ -162,7 +162,7 @@ export default function Configurator6({
                             />
                             <div className="ml-3 font-open-sans text-base leading-relaxed">
                                 <p className="mb-1 font-semibold">
-                                    (BUTTON 1) Einwilligung E-Mail
+                                   Einwilligung E-Mail
                                 </p>
                                 <p className="mb-4">
                                     Ich bin damit einverstanden, dass die von mir
@@ -186,7 +186,7 @@ export default function Configurator6({
                             />
                             <div className="ml-3 font-open-sans text-base leading-relaxed">
                                 <p className="mb-1 font-semibold">
-                                    (BUTTON 2) Einwilligung Telefon
+                                   Einwilligung Telefon
                                 </p>
                                 <p className="mb-4">
                                     Ich bin außerdem damit einverstanden, dass

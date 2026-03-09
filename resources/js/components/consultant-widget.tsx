@@ -72,7 +72,7 @@ export function ConsultantWidget() {
 
                             {/* Phone button */}
                             <a
-                                href="tel:06221648-0000"
+                                href="tel:040 764 84 844"
                                 className="mb-3 flex items-center justify-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3 font-montserrat text-base font-semibold text-secondary transition-colors hover:border-secondary/40 hover:bg-secondary/5"
                             >
                                 <Phone className="h-5 w-5 text-info" />

@@ -53,8 +53,8 @@ function BoxCard({item, className, children, contentBoxClassName}: ItemProps) {
       
         {item?.image_url && (
         <div
-            className={`overflow-hidden rounded-md flex items-center  w-full ${
-            !changeOrder ? "order-first" : "order-last"
+            className={`overflow-hidden rounded-md flex items-center  w-full order-last ${
+            !changeOrder ? "md:order-first" : "md:order-last"
             }`}
             style={{ height: "300px" }}
         >
@@ -67,7 +67,7 @@ function BoxCard({item, className, children, contentBoxClassName}: ItemProps) {
         )}
 
 
-        <div className={cn(` ${ !changeOrder ? 'order-last' : 'order-first'} flex-1 flex flex-col justify-between`, contentBoxClassName)    }>
+        <div className={cn(` order-first ${ !changeOrder ? 'md:order-last' : 'md:order-first'} flex-1 flex flex-col justify-between`, contentBoxClassName)    }>
 
 
             {
