@@ -6,6 +6,9 @@ use App\Http\Controllers\Controller;
 use App\Jobs\ContactMailJob;
 use App\Jobs\EstimateMailJob;
 use App\Jobs\OrderPlaceEmailJob;
+use App\Mail\ContactMail;
+use App\Mail\EstimateMail;
+use App\Mail\OrderPlaceEmail;
 use App\Services\AdvantageService;
 use App\Services\ContactService;
 use App\Services\EstimateService;
@@ -21,6 +24,7 @@ use App\Services\ValueService;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\RateLimiter;
 use Illuminate\Validation\ValidationException;
 use Inertia\Inertia;
@@ -271,7 +275,8 @@ class HomeController extends Controller
 
         $contact = $this->contactService->create($request->all());
 
-        if($contact) ContactMailJob::dispatch();
+        // if($contact) ContactMailJob::dispatch();
+        if($contact)  Mail::to(config('app.admin_mail_address'))->send(new ContactMail);
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
     }
 
@@ -313,8 +318,12 @@ class HomeController extends Controller
         $estimate = $this->estimateService->create($data);
 
         try {
-            EstimateMailJob::dispatch(route('order.success.verify', encrypt($estimate->id)), $estimate->email);
-            OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id));
+
+
+             Mail::to($estimate->email)->send(new EstimateMail(route('order.success.verify', encrypt($estimate->id))));
+          //  EstimateMailJob::dispatch(route('order.success.verify', encrypt($estimate->id)), $estimate->email);
+            Mail::to(config('app.admin_mail_address'))->send(new OrderPlaceEmail(route('order.success.admin-view', $estimate->id)));
+           // OrderPlaceEmailJob::dispatch(route('order.success.admin-view', $estimate->id));
         } catch (\Exception $e) {
 
             Log::error('Error sending email: '.$e->getMessage());
