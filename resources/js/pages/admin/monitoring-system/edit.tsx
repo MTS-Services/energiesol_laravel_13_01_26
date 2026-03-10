@@ -183,8 +183,8 @@ export default function EditMonitoringSystem({ monitoringSystem }: Props) {
                                            Price
                                         </Label>
                                         <Input type='number' min={0} 
-                                        value={data.price}
-                                        onChange={(e) => setData('price', e.target.value)} />
+                                        value={parseInt(data.price) || 0}
+                                        onChange={(e) => setData('price', parseInt(e.target.value) || 0)} />
                                     </div>
 
                                 </CardContent>

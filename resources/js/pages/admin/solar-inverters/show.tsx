@@ -154,19 +154,19 @@ export default function ShowSolarInverter({ solarInverter }: Props) {
                                     <p className="text-sm text-muted-foreground">
                                         Price
                                     </p>
-                                    <p className="font-medium">{ solarInverter.price ? `${solarInverter.price} €` : 'N/A' }</p>
+                                    <p className="font-medium">{ solarInverter.price ? `${parseInt(solarInverter.price)} €` : 'N/A' }</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">
                                         Charger Price
                                     </p>
-                                    <p className="font-medium">{ solarInverter.charger_price ? `${solarInverter.charger_price} €` : 'N/A' }</p>
+                                    <p className="font-medium">{ solarInverter.charger_price ? `${parseInt(solarInverter.charger_price)} €` : 'N/A' }</p>
                                 </div>
                                 <div>
                                     <p className="text-sm text-muted-foreground">
                                         Battery Price
                                     </p>
-                                    <p className="font-medium">{ solarInverter.battery_price ? `${solarInverter.battery_price} €` : 'N/A' }</p>
+                                    <p className="font-medium">{ solarInverter.battery_price ? `${parseInt(solarInverter.battery_price)} €` : 'N/A' }</p>
                                 </div>
                             </CardContent>
                         </Card>

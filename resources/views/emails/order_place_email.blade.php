@@ -1,3 +1,5 @@
+
+
 <!DOCTYPE html>
 <html lang="de">
 <head>
@@ -19,7 +21,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .header {
-            background-color: #004aad;
+            background-color: #00f7e4;;
             color: #ffffff;
             text-align: center;
             padding: 20px;
@@ -33,11 +35,12 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 24px;
-            background-color: #004aad;
+            background-color: #00f7e4;
             color: #ffffff;
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
         .footer {
             text-align: center;
@@ -54,10 +57,9 @@
         </div>
         <div class="content">
             <h3>Hallo,</h3>
-            <p>Es wurde eine neue Anfrage eingegangen.</p>
-            <p>Bitte prüfen Sie die Details über das Dashboard, indem Sie auf den Button unten klicken:</p>
-            
-            <a href="{{ $url }}" class="button">Zur Anfrage</a>
+            <p>Es wurde eine neue Kostenvoranschlagsanfrage eingegangen.</p>
+            <p>Klicken Sie auf den Button unten, um die Anfrage einzusehen:</p>
+            <a href="{{ $url }}" class="button">Anfrage ansehen</a>
         </div>
         <div class="footer">
             &copy; {{ date('Y') }} Energie Solution Nord. Alle Rechte vorbehalten.<br>

@@ -98,13 +98,13 @@ function desktopBanner() {
                                     />
                                     <AvatarFallback>ER</AvatarFallback>
                                 </Avatar>
-                                <Avatar>
+                                {/* <Avatar>
                                     <AvatarImage
                                         src="https://github.com/maxleiter.png"
                                         alt="@maxleiter"
                                     />
                                     <AvatarFallback>ML</AvatarFallback>
-                                </Avatar>
+                                </Avatar> */}
                             </div>
                             <p className="flex items-center gap-2">
                                 <Star className="fill-golden-yellow stroke-golden-yellow" />

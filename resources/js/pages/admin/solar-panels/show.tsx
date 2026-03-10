@@ -116,7 +116,7 @@ export default function ShowSolarPanel({ solarPanel }: Props) {
                                     <p className="text-sm text-muted-foreground">
                                         Price
                                     </p>
-                                    <p className="font-medium">{ solarPanel.price ? `${solarPanel.price} €` : 'N/A' }</p>
+                                    <p className="font-medium">{ solarPanel.price ? `${parseInt(solarPanel.price)} €` : 'N/A' }</p>
                                 </div>
                             </CardContent>
                         </Card>

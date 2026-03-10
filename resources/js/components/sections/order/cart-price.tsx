@@ -135,7 +135,7 @@ function CartPrice({ is_valid_order, estimate, monitoringSystem }: Props) {
                 </span>{' '}
               </p>
               <span className="font-semibold text-secondary">
-                {calculateTotal().toFixed(4)} €
+                {calculateTotal().toFixed(2)} €
               </span>
             </p>
             <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">

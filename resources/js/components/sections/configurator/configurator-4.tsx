@@ -96,14 +96,14 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
                             />
                         ))}
                     </div>
-                    <div className="mt-10 flex justify-center">
+                    {/* <div className="mt-10 flex justify-center">
                         <div className="inline-flex w-full max-w-6xl items-center gap-3 rounded-lg bg-linear px-6 py-4 text-sm text-slate-600 shadow-sm sm:text-base">
                             <Info className="h-5 w-5 text-secondary" />
                             <p>
                               Ein Solarspeicher nutzt Tagesüberschuss, um Ihr Zuhause auch nachts oder bei Ausfällen zu versorgen.
                             </p>
                         </div>
-                    </div>
+                    </div> */}
                     {/* Under-card notes */}
                  <div className="mt-10 flex flex-col items-center justify-center gap-4 text-sm text-slate-600 sm:flex-row">
 

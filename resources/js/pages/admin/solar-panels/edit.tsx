@@ -36,7 +36,7 @@ export default function EditSolarPanel({ solarPanel }: Props) {
         image: null as File | null,
         description: solarPanel.description || '',
         status: solarPanel.status,
-        price: solarPanel.price || 0,
+        price: solarPanel.price|| 0,
         note: solarPanel.note || '',
         delete_existing_brand_logo: false,
         delete_existing_image: false,
@@ -309,11 +309,11 @@ export default function EditSolarPanel({ solarPanel }: Props) {
                                             id="price"
                                             type="number"
                                             step="0.01"
-                                            value={data.price}
+                                            value={parseInt(data.price) || 0}
                                             onChange={(e) =>
                                                 setData(
                                                     'price',
-                                                    parseFloat(
+                                                    parseInt(
                                                         e.target.value,
                                                     ) || 0,
                                                 )

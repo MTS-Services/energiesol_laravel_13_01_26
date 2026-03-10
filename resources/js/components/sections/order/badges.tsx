@@ -2,51 +2,44 @@ import { BadgeCheck } from "lucide-react";
 
 function Badges() {
     return (
-        <div>
-            {/* Bottom badges */}
-            <div className="mx-auto  grid max-w-4xl grid-cols-1 lg:grid-cols-3 items-center justify-center gap-6">
-                {/* Card 1 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden">
-                        <img
-                            src="/images/configurator/local-teams.png"
-                            alt="Local professional teams"
-                            className="h-full w-full object-contain"
-                        />
-                    </div>
-                    <p className="text-left text-xs text-secondary">
-                        Nationwide installation by local
-                        <br />
-                        professional teams
-                    </p>
-                </div>
+       
 
-                {/* Card 2 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center rounded-xl">
-                        <BadgeCheck className="h-full w-full text-emerald-600" />
-                    </div>
-                    <p className="text-left text-xs text-secondary">
-                        Certified Expert
-                    </p>
+        <div className="mx-auto mt-10 grid max-w-4xl grid-cols-1 md:grid-cols-2 lg:grid-cols-3 mb-8 items-center justify-center gap-6 sm:flex-row">
+            {/* Card 1 */}
+            <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+                    <img
+                        src="/images/configurator/local-teams.png"
+                        alt="Local professional teams"
+                        className="h-full w-full object-contain"
+                    />
                 </div>
+                <p className="text-left text-xs text-secondary">
+                Installation in Norddeutschland durch unsere Zertifizierten Fachpartner
+                </p>
+            </div>
 
-                {/* Card 3 */}
-                <div className="flex items-center gap-3 rounded-2xl bg-linear-to-r from-btn-primary/15 to-info/5 px-4 py-4 shadow-sm">
-                    <div className="flex h-9 w-9 flex-shrink-0 items-center justify-center overflow-hidden">
-                        <img
-                            src="/images/configurator/craftsmanship.png"
-                            alt="Craftsmanship since 2018"
-                            className="h-full w-full object-contain"
-                        />
-                    </div>
-                    <p className="text-left text-xs text-secondary">
-                        Professional Craftsmanship since 2018
-                    </p>
+            {/* Card 2 */}
+            <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center rounded-xl">
+                    <BadgeCheck className="h-full w-full text-emerald-600" />
                 </div>
+                <p className="text-left text-xs text-secondary">
+                  Zertifizierter Experte
+                </p>
+            </div>
 
-                <p className="text-secondary/70 text-xs text-center w-full col-span-1 lg:col-span-3 mt-3 pb-10">
-                    Impressum Datenschutz
+            {/* Card 3 */}
+            <div className="bg-linear flex items-center gap-3 rounded-2xl p-4 shadow-sm">
+                <div className="flex h-9 w-9 items-center justify-center overflow-hidden">
+                    <img
+                        src="/images/configurator/craftsmanship.png"
+                        alt="Craftsmanship since 2018"
+                        className="h-full w-full object-contain"
+                    />
+                </div>
+                <p className="text-left text-xs text-secondary">
+                    TÜV zertifizierter Photovoltaik Planer seit 2026
                 </p>
             </div>
         </div>

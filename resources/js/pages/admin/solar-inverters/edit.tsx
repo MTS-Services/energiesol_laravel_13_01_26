@@ -756,11 +756,11 @@ export default function EditSolarInverter({ solarInverter }: Props) {
                                             id="price"
                                             type="number"
                                             step="0.01"
-                                            value={data.price}
+                                            value={parseInt(data.price) || 0}
                                             onChange={(e) =>
                                                 setData(
                                                     'price',
-                                                    parseFloat(
+                                                    parseInt(
                                                         e.target.value,
                                                     ) || 0,
                                                 )
@@ -776,11 +776,11 @@ export default function EditSolarInverter({ solarInverter }: Props) {
                                             id="battery_price"
                                             type="number"
                                             step="0.01"
-                                            value={data.battery_price}
+                                            value={parseInt(data.battery_price) || 0}
                                             onChange={(e) =>
                                                 setData(
                                                     'battery_price',
-                                                    parseFloat(
+                                                    parseInt(
                                                         e.target.value,
                                                     ) || 0,
                                                 )
@@ -796,11 +796,11 @@ export default function EditSolarInverter({ solarInverter }: Props) {
                                             id="charger_price"
                                             type="number"
                                             step="0.01"
-                                            value={data.charger_price}
+                                            value={parseInt(data.charger_price) || 0}
                                             onChange={(e) =>
                                                 setData(
                                                     'charger_price',
-                                                    parseFloat(
+                                                    parseInt(
                                                         e.target.value,
                                                     ) || 0,
                                                 )

@@ -395,7 +395,7 @@ export default function CreateSolarInverter() {
                                             type="number"
                                             step="0.01"
                                             value={data.price}
-                                            onChange={(e) => setData('price', parseFloat(e.target.value) || 0)}
+                                            onChange={(e) => setData('price', parseInt(e.target.value) || 0)}
                                             required
                                         />
                                         <InputError message={errors.price} />
@@ -408,7 +408,7 @@ export default function CreateSolarInverter() {
                                             type="number"
                                             step="0.01"
                                             value={data.battery_price}
-                                            onChange={(e) => setData('battery_price', parseFloat(e.target.value) || 0)}
+                                            onChange={(e) => setData('battery_price', parseInt(e.target.value) || 0)}
                                         />
                                         <InputError message={errors.battery_price} />
                                     </div>
@@ -420,7 +420,7 @@ export default function CreateSolarInverter() {
                                             type="number"
                                             step="0.01"
                                             value={data.charger_price}
-                                            onChange={(e) => setData('charger_price', parseFloat(e.target.value) || 0)}
+                                            onChange={(e) => setData('charger_price', parseInt(e.target.value) || 0)}
                                         />
                                         <InputError message={errors.charger_price} />
                                     </div>

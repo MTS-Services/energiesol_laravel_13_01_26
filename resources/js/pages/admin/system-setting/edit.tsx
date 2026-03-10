@@ -102,7 +102,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.wallbox_price}
                                     onChange={(e) =>
-                                        setData('wallbox_price', e.target.value)
+                                        setData('wallbox_price', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.wallbox_price} />
@@ -114,7 +114,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.evu_fees}
                                     onChange={(e) =>
-                                        setData('evu_fees', e.target.value)
+                                        setData('evu_fees', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.evu_fees} />
@@ -126,7 +126,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.delivery_fees}
                                     onChange={(e) =>
-                                        setData('delivery_fees', e.target.value)
+                                        setData('delivery_fees', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.delivery_fees} />
@@ -138,7 +138,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.service_charge}
                                     onChange={(e) =>
-                                        setData('service_charge', e.target.value)
+                                        setData('service_charge', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.service_charge} />
@@ -152,7 +152,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.wallbox_boost_electricity}
                                     onChange={(e) =>
-                                        setData('wallbox_boost_electricity', e.target.value)
+                                        setData('wallbox_boost_electricity', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.wallbox_boost_electricity} />
@@ -166,7 +166,7 @@ export default function EditSystemSetting({ systemSetting }: Props) {
                                     type="number"
                                     value={data.generate_electricity_per_module}
                                     onChange={(e) =>
-                                        setData('generate_electricity_per_module', e.target.value)
+                                        setData('generate_electricity_per_module', parseInt(e.target.value) || 0)
                                     }
                                 />
                                 <InputError message={errors.generate_electricity_per_module} />

@@ -218,7 +218,7 @@ export default function CreateSolarPanel() {
                                             onChange={(e) =>
                                                 setData(
                                                     'price',
-                                                    parseFloat(
+                                                    parseInt(
                                                         e.target.value,
                                                     ) || 0,
                                                 )

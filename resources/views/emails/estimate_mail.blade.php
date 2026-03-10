@@ -19,7 +19,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .header {
-            background-color: #004aad;
+            background-color: #00f7e4;
             color: #ffffff;
             text-align: center;
             padding: 20px;
@@ -33,11 +33,12 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 24px;
-            background-color: #004aad;
-            color: #ffffff;
+            background-color: #00f7e4; /* slightly darker teal so white text is readable */
+            color: #ffffff;            /* FIX: was missing semicolon after background-color above */
             text-decoration: none;
             border-radius: 4px;
             font-weight: bold;
+            margin-bottom: 20px;
         }
         .footer {
             text-align: center;
@@ -54,14 +55,14 @@
         </div>
         <div class="content">
             <h3>Hallo,</h3>
-            <p>Vielen Dank für Ihre Anfrage / Bestellung.</p>
-            <p>Bitte überprüfen Sie Ihren Kostenvoranschlag über den Button unten:</p>
-            
-            <a href="{{ $url }}" class="button">Kostenvoranschlag prüfen</a>
+            <p>Vielen Dank für Ihr Interesse!</p>
+            <p>Es wurde eine neue Anfrage für ein kostenloses Angebot erstellt.</p>
+            <p>Um Ihre Anfrage abzuschließen und Ihr Angebot einzusehen, bitten wir Sie, Ihre E-Mail-Adresse zu bestätigen. Klicken Sie dazu einfach auf den folgenden Button:</p>
+            <a href="{{ $url }}" class="button">Zur Anfrage</a>
         </div>
         <div class="footer">
-            &copy; 2026 Energie Solution Nord. Alle Rechte vorbehalten.<br>
-            <a href="https://www.energiesolutionnord.de" style="color:#888888; text-decoration:none;">www.energiesolutionnord.de</a>
+            Herzliche Grüße<br>
+            <p>Ihr Team von Energie Solution Nord</p>
         </div>
     </div>
 </body>

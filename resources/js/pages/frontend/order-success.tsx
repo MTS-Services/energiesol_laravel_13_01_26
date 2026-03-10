@@ -18,7 +18,7 @@ import FrontendLayout from "@/layouts/frontend-layout";
 
           <CartPrice is_valid_order={is_valid_order}  estimate={estimate} monitoringSystem={monitoringSystem}  />
   
-           {/* <Calendar /> */}
+           <Calendar  is_valid_order={is_valid_order}/>
 
            <Badges />
 

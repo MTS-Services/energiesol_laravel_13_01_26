@@ -37,7 +37,7 @@ function ConfiguratorBadge() {
                     />
                 </div>
                 <p className="text-left text-xs text-secondary">
-                    TÜV zertifizierter Photovoltaikplaner seit 2026
+                    TÜV zertifizierter Photovoltaik Planer seit 2026
                 </p>
             </div>
         </div>

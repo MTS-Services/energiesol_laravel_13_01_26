@@ -94,19 +94,19 @@ function CartDetails(
   };
 
   const wallBoxPrice = () => {
-    return Number(SystemSetting?.wallbox_price ?? 0);
+    return Number(SystemSetting?.wallbox_price.toFixed(2) ?? 0);
   };
 
   const evuFees = () => {
-    return Number(SystemSetting?.evu_fees ?? 0);
+    return Number(SystemSetting?.evu_fees.toFixed(2) ?? 0);
   };
 
   const deliveryFees = () => {
-    return Number(SystemSetting?.delivery_fees ?? 0);
+    return Number(SystemSetting?.delivery_fees.toFixed(2) ?? 0);
   };
 
   const serviceCharge = () => {
-    return Number(SystemSetting?.service_charge ?? 0);
+    return Number(SystemSetting?.service_charge.toFixed(2) ?? 0);
   };
 
   const calculateTotal = () => {
@@ -204,7 +204,7 @@ function CartDetails(
                   iconClassName="text-secondary"
                 />
               </span>
-              Professionelle Installation & Netzeinbindung
+              <span className="">Professionelle Installation & Netzeinbindung</span>
               <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
                 <Icon
                   iconNode={CircleCheckBig}
@@ -215,8 +215,7 @@ function CartDetails(
               </span>
             </h2>
             <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans text-xs font-normal text-secondary/70 lg:pr-120 lg:text-base">
-              Unsere Expertentechniker übernehmen die komplette Montage und Elektroinstallation, sorgen für nahtlose
-              Netzanbindung und verwenden ausschließlich hochwertige Materialien.
+              Unsere Expertentechniker übernehmen die komplette Montage und Elektroinstallation, sorgen für nahtlose Netzanbindung und verwenden ausschließlich hochwertige Materialien.
             </p>
           </div>
           <div className="mt-4">
@@ -227,7 +226,7 @@ function CartDetails(
                   iconClassName="text-secondary"
                 />
               </span>
-              Professionelle Installation & Netzeinbindung
+              <span className="">Umfassende Standortvorbereitung & Sicherheit</span>
               <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
                 <Icon
                   iconNode={CircleCheckBig}
@@ -238,8 +237,7 @@ function CartDetails(
               </span>
             </h2>
             <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans text-xs font-normal text-secondary/70 lg:pr-120 lg:text-base">
-              Unsere Expertentechniker übernehmen die komplette Montage und Elektroinstallation, sorgen für nahtlose
-              Netzanbindung und verwenden ausschließlich hochwertige Materialien.
+             Wir übernehmen den gesamten Gerüstaufbau, von der Montage bis zur sicheren Demontage,  und gewährleisten eine sichere Arbeitsumgebung während der gesamten Installationsphase.
             </p>
           </div>
           <div className="mt-4">
@@ -250,7 +248,7 @@ function CartDetails(
                   iconClassName="text-secondary"
                 />
               </span>
-              Professionelle Installation & Netzeinbindung
+             End-to-End Projektmanagement
               <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
                 <Icon
                   iconNode={CircleCheckBig}
@@ -261,33 +259,10 @@ function CartDetails(
               </span>
             </h2>
             <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans font-normal text-secondary/70 lg:pr-120">
-              Unsere Expertentechniker übernehmen die komplette Montage und Elektroinstallation, sorgen für nahtlose
-              Netzanbindung und verwenden ausschließlich hochwertige Materialien.
+              Als Ihr engagierter Full-Service-Partner übernehmen wir behördliche Anmeldungen und die Koordination mit Netzbetreibern, um sicherzustellen, dass Ihr System vollständig konform und einsatzbereit ist.
             </p>
           </div>
-          <div className="mt-4">
-            <h2 className="flex items-center gap-2 font-montserrat text-base font-semibold text-secondary lg:text-lg">
-              <span className="h-7.5 w-7.5">
-                <Icon
-                  iconNode={CircleCheckBig}
-                  iconClassName="text-secondary"
-                />
-              </span>
-              Professionelle Installation & Netzeinbindung
-              <span className="flex items-center gap-2 rounded-full bg-info p-1 px-2 text-sm text-primary lg:text-base">
-                <Icon
-                  iconNode={CircleCheckBig}
-                  iconClassName="w-4 h-4 text-primary"
-                  className="p-1"
-                />{" "}
-                Inklusive
-              </span>
-            </h2>
-            <p className="flex gap-2 pt-2 pr-0 pl-9 font-open-sans font-normal text-secondary/70 lg:pr-120">
-              Unsere Expertentechniker übernehmen die komplette Montage und Elektroinstallation, sorgen für nahtlose
-              Netzanbindung und verwenden ausschließlich hochwertige Materialien.
-            </p>
-          </div>
+          
         </div>
       </div>
 
@@ -320,7 +295,7 @@ function CartDetails(
 
           <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
             <span className="font-normal text-secondary/70">
-              WallBox
+              Wandladestation
             </span>{" "}
             <span className="font-semibold text-secondary">
               {wallBoxPrice()} €
@@ -328,7 +303,7 @@ function CartDetails(
           </p>
           <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
             <span className="font-normal text-secondary/70">
-              EVU Fees
+             EVU-Gebühren
             </span>{" "}
             <span className="font-semibold text-secondary">
               {evuFees()} €
@@ -337,7 +312,7 @@ function CartDetails(
 
           <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
             <span className="font-normal text-secondary/70">
-              Delivery Fees
+             Liefergebühren
             </span>{" "}
             <span className="font-semibold text-secondary">
               {deliveryFees()} €
@@ -346,7 +321,7 @@ function CartDetails(
 
           <p className="mb-3 flex justify-between px-0 pr-0 font-open-sans text-base lg:px-15 lg:text-lg">
             <span className="font-normal text-secondary/70">
-              Service Charge
+              Servicegebühr
             </span>{" "}
             <span className="font-semibold text-secondary">
               {serviceCharge()} €
@@ -369,7 +344,7 @@ function CartDetails(
               Summe
             </span>{" "}
             <span className="font-semibold text-secondary lg:text-[40px]">
-              {calculateTotal().toFixed(4)} €
+              {calculateTotal().toFixed(2)} €
             </span>
           </p>
 
@@ -378,7 +353,7 @@ function CartDetails(
               Spezifische Kosten pro kWp (gemäß den jährlichen Steuerbestimmungen 2022){" "}
             </span>{" "}
             <span className="text-sm font-semibold text-secondary lg:text-base">
-              {calculateTotal().toFixed(4)} €
+              {calculateTotal().toFixed(2)} €
             </span>
           </p>
         </div>

@@ -19,7 +19,7 @@
             box-shadow: 0 2px 6px rgba(0,0,0,0.1);
         }
         .header {
-            background-color: #004aad;
+            background-color: #00f7e4;
             color: #ffffff;
             text-align: center;
             padding: 20px;
@@ -33,7 +33,7 @@
             display: inline-block;
             margin-top: 20px;
             padding: 12px 24px;
-            background-color: #004aad;
+            background-color: #00f7e4;
             color: #ffffff;
             text-decoration: none;
             border-radius: 4px;
@@ -57,7 +57,7 @@
             <p>Es gibt eine neue Benachrichtigung im System von <strong>www.energiesolutionnord.de</strong>.</p>
             <p>Bitte prüfen Sie die Details und handeln Sie entsprechend in Ihrem Dashboard.</p>
             
-            <a href="https://www.energiesolutionnord.de/admin/dashboard" class="button">Zum Dashboard</a>
+            <a href="https://www.energiesolutionnord.de/admin/contacts/" class="button">Zum Dashboard</a>
         </div>
         <div class="footer">
             &copy; {{ date('Y') }} Energie Solution Nord. Alle Rechte vorbehalten.

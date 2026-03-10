@@ -18,7 +18,13 @@ import FrontendLayout from "@/layouts/frontend-layout";
 
           <CartPrice is_valid_order={true}  estimate={estimate} monitoringSystem={monitoringSystem}  />
   
-           <Calendar />
+           {/* <Calendar /> */}
+
+           <div className="w-full mb-4">
+            <a href="https://calendly.com/app/contacts/user/me" className="block text-center text-info cursor pointer underline ">
+             Bitte prüfen Sie Ihre E-Mails oder Calendly, um die Buchungsdetails einzusehen.
+            </a>
+           </div>
 
            <Badges />
 
