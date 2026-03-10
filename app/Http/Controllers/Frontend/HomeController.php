@@ -276,7 +276,12 @@ class HomeController extends Controller
         $contact = $this->contactService->create($request->all());
 
         // if($contact) ContactMailJob::dispatch();
-        if($contact)  Mail::to(config('app.admin_mail_address'))->send(new ContactMail);
+       try{
+         if($contact)  Mail::to(config('app.admin_mail_address'))->send(new ContactMail);
+       }catch(\Exception $e){
+         // Log the error or handle it as needed
+         Log::error('Contact mail sending failed: ' . $e->getMessage());
+       }
         return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
     }
 
