@@ -6,7 +6,7 @@ function Calendly() {
 
 return (
 <div className='w-full'>
-  <InlineWidget url="https://calendly.com/xmonirislam75/for-free-consultation"   styles={{ height: "120vh"  , width:"100%"}} />
+  <InlineWidget url="https://calendly.com/xmonirislam75/for-free-consultation"   styles={{ height: "90vh"  , width:"100%"}} />
 </div>
 );
 }
