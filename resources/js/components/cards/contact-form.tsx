@@ -22,7 +22,10 @@ function ContactForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    
     post(store.url(), {
+      preserveState: true,
+      preserveScroll: true,
       onSuccess: () => {
         reset()
       }
@@ -31,13 +34,13 @@ function ContactForm() {
 
   return (
     <div className='w-full'>
-     {success && (
-    <div className='w-full rounded-md bg-linear text-center px-5 py-5 font-montserrat text-base mb-2 text-secondary '>
-      {success}
-    </div>
-  )}
-      
-      <form onSubmit={handleSubmit}>
+      <form onSubmit={handleSubmit} onScroll={(e) => e.stopPropagation()}>
+        {success && (
+          <div className='w-full rounded-md bg-linear-to-r from-btn-primary/20 to-info/20 text-center px-5 py-5 font-montserrat text-base mb-2 text-secondary '>
+            {success}
+          </div>
+        )}
+        
         <div className='flex flex-col! lg:flex-row! gap-4 z-1 mb-7'>
           <div className='w-full'>
             <Label htmlFor='first_name' className='text-secondary font-montserrat text-base lg:text-2xl mb-4 block'>Vorname</Label>
