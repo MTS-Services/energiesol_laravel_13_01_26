@@ -27,7 +27,7 @@ function HeadingSection() {
                     <div className="pt-12">
                         <SectionHeader item={SectionHeaderData}>
                             <div className="flex items-center justify-center">
-                                <Link href="#" className="inline-block pt-10">
+                                <Link href="#appointment" className="inline-block pt-10">
                                     <Button variant="default">
                                         <Icon
                                             iconNode={ArrowRight}
