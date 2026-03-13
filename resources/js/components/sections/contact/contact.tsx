@@ -29,7 +29,7 @@ function Contact() {
 
                 
                     <p className="text-center text-base text-secondary lg:px-78 lg:text-lg">
-                       <span>Telefon: 040 764 84 844</span>
+                       <span>Telefon: 040 / 764 84 844</span>
                        <span> or </span>
                        <span>E-Mail: info@energiesolutionnord.de</span>
                     </p>
