@@ -67,7 +67,7 @@ export function ConsultantWidget() {
                                 Jetzt mit Berater sprechen
                             </h3>
                             <p className="mb-6 font-open-sans text-base text-secondary/80">
-                                Von 8 - 18 Uhr für Sie erreichbar
+                                Von 9 - 20 Uhr für Sie erreichbar
                             </p>
 
                             {/* Phone button */}
@@ -76,7 +76,7 @@ export function ConsultantWidget() {
                                 className="mb-3 flex items-center justify-center gap-2 rounded-full border-2 border-secondary/20 bg-white px-6 py-3 font-montserrat text-base font-semibold text-secondary transition-colors hover:border-secondary/40 hover:bg-secondary/5"
                             >
                                 <Phone className="h-5 w-5 text-info" />
-                                040 764 84 844
+                                040 / 764 84 844
                             </a>
                         </div>
                     </div>
