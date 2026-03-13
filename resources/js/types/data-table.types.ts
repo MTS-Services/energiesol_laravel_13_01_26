@@ -36,6 +36,16 @@ export interface ActionConfig<T = any> {
   className?: string;
 }
 
+export interface BulkActionConfig<T = any> {
+  label: string;
+  icon?: React.ReactNode;
+  onClick: (selectedItems: T[]) => void;
+  variant?: 'default' | 'destructive' | 'outline' | 'secondary' | 'ghost' | 'link';
+  requireConfirmation?: boolean;
+  confirmationMessage?: (selectedCount: number) => string;
+  className?: string;
+}
+
 export interface DataTableProps<T = any> {
   data: T[];
   columns: ColumnConfig<T>[];
@@ -45,6 +55,7 @@ export interface DataTableProps<T = any> {
   numberingKey?: keyof T;
   filters?: FilterConfig[];
   actions?: ActionConfig<T>[];
+  bulkActions?: BulkActionConfig<T>[];
   onSearch?: (search: string) => void;
   onFilterChange?: (filters: Record<string, any>) => void;
   onSort?: (sortBy: string, sortOrder: 'asc' | 'desc') => void;
@@ -57,4 +68,6 @@ export interface DataTableProps<T = any> {
   isLoading?: boolean;
   emptyMessage?: string;
   searchPlaceholder?: string;
+  enableSelection?: boolean;
+  selectionKey?: keyof T;
 }

@@ -70,4 +70,19 @@ class ContactController extends Controller
 
         return redirect()->back()->with('success', 'Contact deleted successfully');
     }
+
+    /**
+     * Bulk delete contacts.
+     */
+    public function bulkDestroy(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'required|integer|exists:contacts,id',
+        ]);
+
+        $deletedCount = $this->contactService->bulkDelete($request->ids);
+
+        return redirect()->back()->with('success', "{$deletedCount} contacts deleted successfully");
+    }
 }

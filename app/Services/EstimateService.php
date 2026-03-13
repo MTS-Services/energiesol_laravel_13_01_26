@@ -50,4 +50,9 @@ class EstimateService
 
         return $storedData->refresh();
     }
+
+    public function bulkDelete(array $estimateIds): int
+    {
+        return $this->model->whereIn('id', $estimateIds)->delete();
+    }
 }
