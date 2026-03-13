@@ -8,8 +8,9 @@ import { ArrowRight } from 'lucide-react'
 import { useForm, usePage } from '@inertiajs/react'
 import { store } from '@/actions/App/Http/Controllers/Frontend/HomeController'
 import InputError from '../input-error'
+import { cn } from '@/lib/utils'
 
-function ContactForm() {
+function ContactForm({ className }: { className?: string }) {
   const { success } = usePage().props
   
   const { data, setData, post, processing, errors, reset } = useForm({
@@ -33,8 +34,8 @@ function ContactForm() {
   }
 
   return (
-    <div className='w-full'>
-      <form onSubmit={handleSubmit} onScroll={(e) => e.stopPropagation()}>
+    <div className={cn('w-full p-10', className)}>
+      <form onSubmit={handleSubmit} onScroll={(e) => e.stopPropagation()} >
         {success && (
           <div className='w-full rounded-md bg-linear-to-r from-btn-primary/20 to-info/20 text-center px-5 py-5 font-montserrat text-base mb-2 text-secondary '>
             {success}

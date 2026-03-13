@@ -282,7 +282,7 @@ class HomeController extends Controller
          // Log the error or handle it as needed
          Log::error('Contact mail sending failed: ' . $e->getMessage());
        }
-        return redirect()->route('contact')->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
+        return redirect()->back()->with('success', 'Vielen Dank für Ihre Nachricht! Wir werden uns so schnell wie möglich bei Ihnen melden.');
     }
 
     public function storeEstimate(Request $request)

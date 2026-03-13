@@ -66,7 +66,7 @@ export default function CreateAdvantage() {
                 <InputError message={errors.description} />
               </div>
 
-              <Card>
+              {/* <Card>
                 <CardHeader>
                   <CardTitle className="text-lg">
                     Advantage Icon
@@ -83,7 +83,7 @@ export default function CreateAdvantage() {
                     <InputError message={errors.icon} />
                   </div>
                 </CardContent>
-              </Card>
+              </Card> */}
             </div>
 
             {/* Right Column - Action Buttons */}

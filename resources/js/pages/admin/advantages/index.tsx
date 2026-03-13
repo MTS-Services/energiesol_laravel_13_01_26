@@ -54,22 +54,22 @@ export default function Index({advantages, pagination, offset, filters, search, 
         </div>
       ),
     },
-    {
-        key: 'icon',
-        label: 'Icon',
-        sortable: false,
-        render: (advantage) => (
-            <div className="text-gray-600 dark:text-gray-400">
-                {advantage.icon_url ? (
-                  <img src={advantage.icon_url} alt={advantage.title} className="w-8 h-8" />
-                ) : 
-                (
-                  <span className="text-gray-500">No Icon</span>
-                )
-                }
-            </div>
-        ),
-    },
+    // {
+    //     key: 'icon',
+    //     label: 'Icon',
+    //     sortable: false,
+    //     render: (advantage) => (
+    //         <div className="text-gray-600 dark:text-gray-400">
+    //             {advantage.icon_url ? (
+    //               <img src={advantage.icon_url} alt={advantage.title} className="w-8 h-8" />
+    //             ) : 
+    //             (
+    //               <span className="text-gray-500">No Icon</span>
+    //             )
+    //             }
+    //         </div>
+    //     ),
+    // },
     {
       key: 'created_at',
       label: 'Posted on',
@@ -119,9 +119,9 @@ export default function Index({advantages, pagination, offset, filters, search, 
         {/* <Link href={create.url()}>
           <Button>Create Advantage</Button> 
         </Link> */}
-        <ActionButton  href={create.url()}>
+        {/* <ActionButton  href={create.url()}>
            Create New
-        </ActionButton>
+        </ActionButton> */}
       </div>
 
       <div className="mx-auto">

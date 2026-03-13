@@ -35,4 +35,11 @@ class ContactService
 
         return $contact->delete();
     }
+
+    public function bulkDelete(array $contactIds): int
+    {
+
+      
+        return $this->model->whereIn('id', $contactIds)->delete();
+    }
 }

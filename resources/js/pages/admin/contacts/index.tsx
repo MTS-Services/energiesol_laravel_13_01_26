@@ -2,7 +2,7 @@ import { destroy, show } from '@/actions/App/Http/Controllers/Admin/ContactContr
 import { DataTable } from '@/components/ui/data-table';
 import { useDataTable } from '@/hooks/use-data-table';
 import AdminLayout from '@/layouts/admin-layout';
-import { ActionConfig, ColumnConfig, PaginationData } from '@/types/data-table.types';
+import { ActionConfig, BulkActionConfig, ColumnConfig, PaginationData } from '@/types/data-table.types';
 import { Contact } from '@/types/models';
 import { Head, router } from '@inertiajs/react';
 import { Eye, Trash2 } from 'lucide-react';
@@ -106,6 +106,24 @@ export default function Index({contacts, pagination, offset, filters, search, so
     },
   ];
 
+  const bulkActions: BulkActionConfig<Contact>[] = [
+    {
+      label: 'Delete Selected',
+      icon: <Trash2 className="h-4 w-4" />,
+      onClick: (selectedContacts) => {
+        const contactIds = selectedContacts.map(contact => contact.id);
+        router.delete('/admin/contacts/bulk', {
+          data: { ids: contactIds },
+          preserveState: true,
+          preserveScroll: true,
+        });
+      },
+      variant: 'destructive',
+      requireConfirmation: true,
+      confirmationMessage: (count) => `Are you sure you want to delete ${count} contact${count !== 1 ? 's' : ''}? This action cannot be undone.`,
+    },
+  ];
+
    return (
     <AdminLayout activeSlug="admin-contacts">
       <Head title="Contacts" />
@@ -118,6 +136,9 @@ export default function Index({contacts, pagination, offset, filters, search, so
           offset={offset}
           showNumbering={true}
           actions={actions}
+          bulkActions={bulkActions}
+          enableSelection={true}
+          selectionKey="id"
           onSearch={handleSearch}
           onFilterChange={handleFilterChange}
           onSort={handleSort}

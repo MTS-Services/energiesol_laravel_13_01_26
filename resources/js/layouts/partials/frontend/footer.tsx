@@ -10,8 +10,9 @@ export function FrontendFooter() {
                     </p>
                     
                     <p className='flex items-center gap-4'>
-                         <Link href={route('privacy-policy')} className="text-hover hover:underline">Impressum</Link>
-                      <Link href={route('legal')} className="text-hover hover:underline">Datenschutz</Link>
+                        
+                      <Link href={route('legal')} className="text-hover hover:underline">Impressum</Link>
+                         <Link href={route('privacy-policy')} className="text-hover hover:underline">Datenschutz</Link>
                     </p>
                 </div>
                 {/* Bottom Bar */}

@@ -47,7 +47,7 @@ export default function ShowAdvantage({ advantage }: Props) {
                             </CardContent>
                         </Card>
 
-                        <Card>
+                        {/* <Card>
                             <CardHeader>
                                 <CardTitle>Icon</CardTitle>
                             </CardHeader>
@@ -58,7 +58,7 @@ export default function ShowAdvantage({ advantage }: Props) {
                                     )}
                                 </p>
                             </CardContent>
-                        </Card>
+                        </Card> */}
                     </div>
 
                     {/* Right Column */}

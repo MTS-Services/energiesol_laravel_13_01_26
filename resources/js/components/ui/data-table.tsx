@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { ChevronUp, ChevronDown, Search, X, Settings, ChevronLeft, ChevronRight } from 'lucide-react';
+import { ChevronUp, ChevronDown, Search, X, Settings, ChevronLeft, ChevronRight, Check, Trash2 } from 'lucide-react';
 import {
     Select,
     SelectContent,
@@ -17,6 +17,7 @@ import {
     DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { DataTableProps } from '@/types/data-table.types';
+import { Checkbox } from '@/components/ui/checkbox';
 
 export function DataTable<T extends Record<string, any>>({
     data,
@@ -27,6 +28,7 @@ export function DataTable<T extends Record<string, any>>({
     numberingKey,
     filters = [],
     actions = [],
+    bulkActions = [],
     onSearch,
     onFilterChange,
     onSort,
@@ -39,9 +41,13 @@ export function DataTable<T extends Record<string, any>>({
     isLoading = false,
     emptyMessage = 'No data available',
     searchPlaceholder = 'Search...',
+    enableSelection = false,
+    selectionKey = 'id',
 }: DataTableProps<T>) {
     const [localSearch, setLocalSearch] = useState(searchValue);
     const [localFilters, setLocalFilters] = useState(filterValues);
+    const [selectedItems, setSelectedItems] = useState<Set<string | number>>(new Set());
+    const [isAllSelected, setIsAllSelected] = useState(false);
 
     useEffect(() => {
         const timer = setTimeout(() => {
@@ -77,6 +83,52 @@ export function DataTable<T extends Record<string, any>>({
         const newSortOrder = sortBy === columnKey && sortOrder === 'asc' ? 'desc' : 'asc';
         if (onSort) {
             onSort(columnKey, newSortOrder);
+        }
+    };
+
+    // Selection handling functions
+    const handleSelectItem = (item: T) => {
+        const itemId = item[selectionKey] as string | number;
+        const newSelected = new Set(selectedItems);
+        
+        if (newSelected.has(itemId)) {
+            newSelected.delete(itemId);
+        } else {
+            newSelected.add(itemId);
+        }
+        
+        setSelectedItems(newSelected);
+        setIsAllSelected(newSelected.size === data.length);
+    };
+
+    const handleSelectAll = () => {
+        if (isAllSelected) {
+            setSelectedItems(new Set());
+            setIsAllSelected(false);
+        } else {
+            const allIds = new Set(data.map(item => item[selectionKey] as string | number));
+            setSelectedItems(allIds);
+            setIsAllSelected(true);
+        }
+    };
+
+    const handleBulkAction = (action: any) => {
+        const selectedData = data.filter(item => selectedItems.has(item[selectionKey] as string | number));
+        
+        if (action.requireConfirmation) {
+            const message = action.confirmationMessage 
+                ? action.confirmationMessage(selectedData.length)
+                : `Are you sure you want to perform this action on ${selectedData.length} items?`;
+            
+            if (confirm(message)) {
+                action.onClick(selectedData);
+                setSelectedItems(new Set());
+                setIsAllSelected(false);
+            }
+        } else {
+            action.onClick(selectedData);
+            setSelectedItems(new Set());
+            setIsAllSelected(false);
         }
     };
 
@@ -240,10 +292,42 @@ export function DataTable<T extends Record<string, any>>({
             </div>
 
             {/* Table */}
+            {enableSelection && selectedItems.size > 0 && (
+                <div className="datatable-bulk-actions py-3 px-4 bg-gray-50 border border-gray-200 rounded-md mb-4">
+                    <div className="flex items-center gap-2">
+                        <span className="text-sm text-gray-600">
+                            {selectedItems.size} item{selectedItems.size !== 1 ? 's' : ''} selected
+                        </span>
+                        <div className="flex gap-2">
+                            {bulkActions.map((action, index) => (
+                                <Button
+                                    key={index}
+                                    variant={action.variant || 'default'}
+                                    size="sm"
+                                    onClick={() => handleBulkAction(action)}
+                                    className={action.className}
+                                >
+                                    {action.icon && <span className="mr-2">{action.icon}</span>}
+                                    {action.label}
+                                </Button>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            )}
             <div className="datatable-wrapper">
                 <table className="datatable">
                     <thead className="datatable-thead">
                         <tr>
+                            {enableSelection && (
+                                <th className="datatable-th datatable-th-checkbox">
+                                    <Checkbox
+                                        checked={isAllSelected}
+                                        onCheckedChange={handleSelectAll}
+                                        aria-label="Select all"
+                                    />
+                                </th>
+                            )}
                             {showNumbering && (
                                 <th className="datatable-th datatable-th-number">#</th>
                             )}
@@ -283,7 +367,7 @@ export function DataTable<T extends Record<string, any>>({
                         {isLoading ? (
                             <tr>
                                 <td
-                                    colSpan={columns.length + (showNumbering ? 1 : 0) + (actions.length > 0 ? 1 : 0)}
+                                    colSpan={columns.length + (showNumbering ? 1 : 0) + (actions.length > 0 ? 1 : 0) + (enableSelection ? 1 : 0)}
                                     className="datatable-cell-center"
                                 >
                                     <div className="datatable-loading">
@@ -295,7 +379,7 @@ export function DataTable<T extends Record<string, any>>({
                         ) : data.length === 0 ? (
                             <tr>
                                 <td
-                                    colSpan={columns.length + (showNumbering ? 1 : 0) + (actions.length > 0 ? 1 : 0)}
+                                    colSpan={columns.length + (showNumbering ? 1 : 0) + (actions.length > 0 ? 1 : 0) + (enableSelection ? 1 : 0)}
                                     className="datatable-cell-center"
                                 >
                                     <div className="datatable-empty">
@@ -319,6 +403,15 @@ export function DataTable<T extends Record<string, any>>({
                         ) : (
                             data.map((item, index) => (
                                 <tr key={index} className="datatable-row">
+                                    {enableSelection && (
+                                        <td className="datatable-cell datatable-cell-checkbox">
+                                            <Checkbox
+                                                checked={selectedItems.has(item[selectionKey] as string | number)}
+                                                onCheckedChange={() => handleSelectItem(item)}
+                                                aria-label={`Select item ${index + 1}`}
+                                            />
+                                        </td>
+                                    )}
                                     {renderNumbering(index, item)}
                                     {columns.map((column) => (
                                         <td key={column.key} className={`datatable-cell ${column.className || ''}`}>

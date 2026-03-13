@@ -119,12 +119,12 @@ const adminNavItems: NavItemType[] = [
                 slug: 'admin-values',
                 permission: 'view advantages',
             },
-            {
-                title: 'Partners',
-                href: route('admin.partners.index'),
-                icon: BarChart,
-                permission: 'view analytics',
-            },
+            // {
+            //     title: 'Partners',
+            //     href: route('admin.partners.index'),
+            //     icon: BarChart,
+            //     permission: 'view analytics',
+            // },
         ],
     },
     {

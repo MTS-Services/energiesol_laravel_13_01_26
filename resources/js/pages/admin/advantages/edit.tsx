@@ -112,7 +112,7 @@ export default function EditAdvantage({ advantage }: Props) {
                                 <InputError message={errors.description} />
                             </div>
 
-                            <Card>
+                            {/* <Card>
                                 <CardHeader>
                                     <CardTitle className="text-lg">
                                         Advantage Icon
@@ -135,7 +135,7 @@ export default function EditAdvantage({ advantage }: Props) {
                                         <InputError message={errors.icon} />
                                     </div>
                                 </CardContent>
-                            </Card>
+                            </Card> */}
                         </div>
 
                         <div className="space-y-6">

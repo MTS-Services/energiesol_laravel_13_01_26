@@ -114,6 +114,21 @@ class EstimateController extends Controller
     }
 
     /**
+     * Bulk delete estimates.
+     */
+    public function bulkDestroy(Request $request)
+    {
+        $request->validate([
+            'ids' => 'required|array',
+            'ids.*' => 'required|integer|exists:estimates,id',
+        ]);
+
+        $deletedCount = $this->estimateService->bulkDelete($request->ids);
+
+        return redirect()->back()->with('success', "{$deletedCount} estimates deleted successfully");
+    }
+
+    /**
      * Toggle the status of the specified resource.
      */
     public function toggleStatus(Estimate $estimate)

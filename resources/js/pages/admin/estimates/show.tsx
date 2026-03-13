@@ -28,6 +28,9 @@ export default function ShowEstimate({ estimate }: Props) {
                         <ActionButton IconNode={ArrowLeft} href={index.url()}>
                             Back to Estimates
                         </ActionButton>
+                        <ActionButton IconNode={SquarePen} href={route('order.success.admin-view', { estimate_id: estimate.id })}>
+                           See Quote
+                        </ActionButton>
                     </div>
                 </div>
 

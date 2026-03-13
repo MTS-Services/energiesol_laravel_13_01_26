@@ -34,8 +34,10 @@ Route::group(['as' => 'admin.', 'prefix' => 'admin', 'middleware' => ['auth', 'v
     Route::resource('services', ServiceController::class)->names('services');
     Route::resource('advantages', AdvantageController::class)->names('advantages');
     Route::resource('values', ValueController::class)->names('values');
+    Route::delete('contacts/bulk', [ContactController::class, 'bulkDestroy'])->name('contacts.bulk-destroy');
     Route::resource('contacts', ContactController::class)->only(['index', 'show', 'store', 'destroy'])->names('contacts');
 
+    Route::delete('estimates/bulk', [EstimateController::class, 'bulkDestroy'])->name('estimates.bulk-destroy');
     Route::resource('estimates', EstimateController::class)->names('estimates');
     Route::put('estimates/{estimate}/toggle-status', [EstimateController::class, 'toggleStatus'])->name('estimates.toggle-status');
 });
