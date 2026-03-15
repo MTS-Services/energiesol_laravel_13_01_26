@@ -80,7 +80,7 @@ export default function Configurator4({ solarInverter, area, solar_id, inverter_
                         </h2>
 
                         <p className="mt-3 text-sm text-slate-500 sm:text-base lg:text-lg xl:text-xl">
-                           Ein Solarbatteriesystem speichert die tagsüber erzeugte überschüssige Energie und ermöglicht es Ihnen, Ihr Haus auch nachts oder bei Stromausfällen mit Strom zu versorgen.
+                           Ein Solarbatteriesystem speichert die tagsüber erzeugte überschüssige Energie und ermöglicht es Ihnen, Ihr Haus auch Nachts oder bei Stromausfällen mit Strom zu versorgen.
                         </p>
                     </div>
 
