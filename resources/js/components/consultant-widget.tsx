@@ -1,34 +1,48 @@
 import * as React from 'react';
-import { ArrowRight, Phone, X } from 'lucide-react';
-import { Button } from '@/components/ui/button';
-
+import { Phone, X } from 'lucide-react';
+ 
 export function ConsultantWidget() {
     const [isExpanded, setIsExpanded] = React.useState(false);
-
+    const [isDismissed, setIsDismissed] = React.useState(false);
+ 
+    if (isDismissed) {
+        return null;
+    }
+ 
     return (
         <div className="fixed bottom-6 right-6 z-50">
             {/* Teaser (always visible by default) */}
             {!isExpanded && (
-                <button
-                    type="button"
-                    onClick={() => setIsExpanded(true)}
-                    className="group relative flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl ring-1 ring-black/5 transition hover:shadow-2xl"
-                    aria-label="Jetzt mit Berater sprechen"
-                >
-                    <span className="font-montserrat text-sm font-semibold text-secondary">
-                        Jetzt mit Berater sprechen
-                    </span>
-
-                    <span className="relative ml-1 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white ring-2 ring-white shadow-lg">
-                        <img
-                            src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=faces"
-                            alt="Berater"
-                            className="h-full w-full object-cover"
-                        />
-                    </span>
-                </button>
+                <div className="relative">
+                    <button
+                        type="button"
+                        onClick={() => setIsDismissed(true)}
+                        className="absolute -left-3 -top-3 z-10 flex h-7 w-7 items-center justify-center rounded-full bg-white text-secondary shadow ring-1 ring-black/10"
+                        aria-label="Kontakt-Widget schließen"
+                    >
+                        <X className="h-4 w-4" />
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setIsExpanded(true)}
+                        className="group relative flex items-center gap-3 rounded-2xl bg-white px-5 py-3 shadow-xl ring-1 ring-black/5 transition hover:shadow-2xl"
+                        aria-label="Jetzt mit Berater sprechen"
+                    >
+                        <span className="font-montserrat text-sm font-semibold text-secondary">
+                            Jetzt mit Berater sprechen
+                        </span>
+ 
+                        <span className="relative ml-1 flex h-12 w-12 items-center justify-center overflow-hidden rounded-full bg-white ring-2 ring-white shadow-lg">
+                            <img
+                                src="https://images.unsplash.com/photo-1573496359142-b8d87734a5a2?w=120&h=120&fit=crop&crop=faces"
+                                alt="Berater"
+                                className="h-full w-full object-cover"
+                            />
+                        </span>
+                    </button>
+                </div>
             )}
-
+ 
             {/* Popup (opens when teaser clicked) */}
             {isExpanded && (
                 <div className="transition-all duration-200 ease-out">
@@ -42,7 +56,7 @@ export function ConsultantWidget() {
                         >
                             <X className="h-5 w-5" />
                         </button>
-
+ 
                         {/* Consultant Image with gradient overlay */}
                         <div className="relative h-48 overflow-hidden">
                             <div className="absolute inset-0 bg-gradient-to-br from-btn-primary/20 to-info/30" />
@@ -60,7 +74,7 @@ export function ConsultantWidget() {
                                 />
                             </div>
                         </div>
-
+ 
                         {/* Content */}
                         <div className="px-6 pb-6 pt-20 text-center">
                             <h3 className="mb-2 font-montserrat text-2xl font-bold text-secondary">
@@ -69,7 +83,7 @@ export function ConsultantWidget() {
                             <p className="mb-6 font-open-sans text-base text-secondary/80">
                                 Von 9 - 20 Uhr für Sie erreichbar
                             </p>
-
+ 
                             {/* Phone button */}
                             <a
                                 href="tel:040 764 84 844"
