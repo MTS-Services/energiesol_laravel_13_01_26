@@ -11,7 +11,8 @@ export default function DeliveryEnergy() {
         },
         btn: {
             label: 'Angebot erstellen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href: route('angebot-erstellen'),
             iconParentClassName: 'bg-primary!',
             iconClassName: 'w-4 h-4 text-secondary!',
 
