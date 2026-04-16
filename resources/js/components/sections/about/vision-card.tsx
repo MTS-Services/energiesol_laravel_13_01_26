@@ -10,7 +10,8 @@ import React from 'react'
         image: '/images/vission-card.png',
         btn: {
             label: 'Angebot einholen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href: route('angebot-erstellen'),
         }
     };
 
