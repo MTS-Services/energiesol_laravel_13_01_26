@@ -33,7 +33,8 @@ import React from 'react'
             </p>
         </div>
         <div className='mt-6 lg:mt-10'>
-           <Link href={route('configurator')}>
+           {/* <Link href={route('configurator')}> */}
+           <Link href={route('angebot-erstellen')}>
                 <Button className='text-primary'>
                     <Icon iconNode={ArrowRight} variant='circle' className='bg-primary' iconClassName='text-secondary' ></Icon>
             Meine Schätzung starten
