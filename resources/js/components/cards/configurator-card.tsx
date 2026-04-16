@@ -19,7 +19,8 @@ function ConfiguratorCard({ item }: Props) {
         if (inputValue !== '') {
            
            
-            router.visit(route('configurator.step2', {area:inputValue}))
+            // router.visit(route('configurator.step2', {area:inputValue}))
+            router.visit(route('angebot-erstellen'))
         }
     }
     return (

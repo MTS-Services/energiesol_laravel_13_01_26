@@ -51,7 +51,7 @@
 <body>
     <div class="container">
         <div class="header">
-            <h2>Energie Solution Nord</h2>
+            <h2>Kostenvoranschlag Anfrage angefragt.</h2>
         </div>
         <div class="content">
             <h3>Hallo,</h3>
