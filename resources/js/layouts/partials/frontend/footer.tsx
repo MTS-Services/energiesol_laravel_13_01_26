@@ -13,6 +13,7 @@ export function FrontendFooter() {
                         
                       <Link href={route('legal')} className="text-hover hover:underline">Impressum</Link>
                          <Link href={route('privacy-policy')} className="text-hover hover:underline">Datenschutz</Link>
+                         <Link href={route('agb')} className="text-hover hover:underline">Allgemeine Geschäftsbedingungen</Link>
                     </p>
                 </div>
                 {/* Bottom Bar */}
