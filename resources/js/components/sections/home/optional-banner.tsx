@@ -15,7 +15,8 @@ export default function OptionalBanner() {
         description: 'Basierend auf langjähriger Branchenerfahrung stehen Ihnen unsere engagierten Spezialisten mit persönlichem, telefonischem Support zur Seite. Wir unterstützen Sie bei der Wahl der passenden Technologie und begleiten Sie Schritt für Schritt auf Ihrem Weg zur Energieunabhängigkeit',
         btn: {
             label: 'Angebot erstellen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href: route('angebot-erstellen'),
             buttonVariant: 'default',
             buttonClassName: '',
             iconClassName: 'text-secondary!',
