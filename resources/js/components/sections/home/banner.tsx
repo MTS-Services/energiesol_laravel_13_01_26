@@ -70,7 +70,18 @@ function desktopBanner() {
                             </div>
                         </div>
                         <div>
-                            <Link href={route('configurator')}>
+                            {/* <Link href={route('configurator')}>
+                                <Button size="default" className="">
+                                    <Icon
+                                        iconNode={ArrowRight}
+                                        variant="circle"
+                                        className="bg-primary!"
+                                        iconClassName="text-secondary"
+                                    />
+                                    Angebot erstellen
+                                </Button>
+                            </Link> */}
+                               <Link href={route('angebot-erstellen')}>
                                 <Button size="default" className="">
                                     <Icon
                                         iconNode={ArrowRight}
