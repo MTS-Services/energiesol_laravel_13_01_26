@@ -18,7 +18,8 @@ Für mehr Eigenverbrauch, geringere Energiekosten und maximale Kontrolle.`,
         image: '/images/product-banner.png',
         btn: {
             label: 'Ersparnis berechnen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href:route('angebot-erstellen'),
             iconParentClassName: 'bg-primary',
             iconClassName: 'text-secondary',
         }
