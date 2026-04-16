@@ -13,7 +13,8 @@ function CardOne() {
         },
         btn: {
             label: 'Angebot einholen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href: route('angebot-erstellen'),
             iconParentClassName: 'bg-primary!',
             iconClassName: 'w-4 h-4 text-secondary!',
 
