@@ -33,8 +33,10 @@ Route::group([], function () {
 
     Route::get('privacy-policy', [HomeController::class, 'privacyPolicy'])->name('privacy-policy');
     Route::get('legal', [HomeController::class, 'legal'])->name('legal');
+    Route::get('agb', [HomeController::class, 'agb'])->name('agb');
+    Route::get('/angebot-erstellen', [HomeController::class, 'angebotErstellen'])->name('angebot-erstellen');
+    
     // WebHook Route for Calendly
-
     Route::post('/calendly/webhook', [CalendlyWebhookController::class, 'handle'])
         ->withoutMiddleware([VerifyCsrfToken::class]);
 

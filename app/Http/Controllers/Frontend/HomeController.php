@@ -476,6 +476,16 @@ class HomeController extends Controller
         }
 
     }
+    
+    public function agb()
+    {
+        return Inertia::render('frontend/agb');
+    }
+
+    public function angebotErstellen()
+    {
+        return Inertia::render('frontend/angebot-erstellen');
+    }
 
 
 

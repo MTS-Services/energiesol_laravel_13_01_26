@@ -19,7 +19,8 @@ export default function banner() {
         image: '/images/service-banner.png',
         btn: {
             label: 'Angebot erstellen',
-            href: route('configurator'),
+            // href: route('configurator'),
+            href: route('angebot-erstellen'),
             iconParentClassName: 'bg-primary!',
             iconClassName: 'text-secondary!',
             iconNode: ArrowRight,

@@ -92,8 +92,25 @@ export function FrontendHeader() {
                     )} */}
 
                     <div className="hidden items-center gap-2 lg:flex">
-                        <Link
+                        {/* <Link
                             href={route('configurator')}
+                            className="rounded-full!"
+                        >
+                            <Button
+                                size="sm"
+                                className="rounded-full! bg-btn-primary py-5.5!"
+                            >
+                                <Icon
+                                    iconNode={ArrowRight}
+                                    variant="circle"
+                                    className="h-4! w-4! rounded-full bg-primary p-4 text-btn-primary"
+                                />
+                               Angebot erstellen
+                            </Button>
+                        </Link> */}
+
+                         <Link
+                            href={route('angebot-erstellen')}
                             className="rounded-full!"
                         >
                             <Button

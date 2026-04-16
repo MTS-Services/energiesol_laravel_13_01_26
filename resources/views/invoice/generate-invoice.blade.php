@@ -144,7 +144,7 @@
     <!-- Header -->
     <div class="header">
         <div class="header-right">
-            <h1>Energy Solution Nord</h1>
+            <h1>Kostenvoranschlag Anfrage angefragt.</h1>
             <p>Hauptstraße 24, 22885 </p>
             <p>Barsbüttel, Deutschland</p>
         </div>
